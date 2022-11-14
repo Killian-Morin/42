@@ -1,1 +1,1 @@
-# repo pour mettre le projet sur lequel je bosse
+# repo pour push les projets en cours
