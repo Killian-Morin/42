@@ -50,13 +50,13 @@ char	**ft_split(char const *s, char c);
 int	main(void)
 {
 	int	i;
-	char **tab;
-		
-	tab = ft_split("bonjour je me présente", ',');
+	char const	*tab;
+
+	tab = *ft_split("hellojemepresente", 'e');
 	i = 0;
 	while (i < 4)
 	{
-		printf("string %d : %s\n", i, tab[i]);
+		printf("string %d : %c\n", i, tab[i]);
 		i++;
 	}
 	return (0);
