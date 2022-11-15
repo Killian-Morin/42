@@ -14,41 +14,49 @@
 
 int	ft_len(int n)
 {
-	int	nb;
+	int	len;
 
-	nb = 0;
-	if (n < 0)
+	len = 0;
+	if (n <= 0)
 	{
 		n = n * -1;
-		ft_len(n);
-		nb++;
+		len++;
 	}
+	if (n == -2147483648)
+		len = 11;
 	while (n > 0)
 	{
-		ft_len(n / 10);
-		nb++;
+		n = n / 10;
+		len++;
 	}
-	return (nb);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		i;
-	int		j;
 
-	i = 0;
-	j = ft_len(n);
-	str = malloc(sizeof(str) * (j + 1));
+	i = ft_len(n);
+	str = malloc(sizeof(str) * (i + 1));
 	if (!str)
 		return (NULL);
+	str[i--] = '\0';
 	if (n == 0)
-		str[i] = 48;
+	{
+		str[0] = 48;
+		return (str);
+	}
+	if (n == -2147483648)
+	{
+		str[0] = '-';
+		str[1] = '2';
+		n = 147483648;
+	}
 	if (n < 0)
 	{
-		str[i] = '-';
+		str[0] = '-';
 		n = n * -1;
-		ft_itoa(n);
 	}
 	while (n > 0)
 	{

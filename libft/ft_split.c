@@ -12,35 +12,34 @@
 
 #include "libft.h"
 
-size_t	ft_countsep(char const *s, char c)
+int	ft_countmot(char const *s, char c)
 {
-	size_t		i;
-	size_t		nbsep;
+	int	i;
+	int	nb;
 
 	i = 0;
-	nbsep = 0;
+	nb = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-		{
-			nbsep++;
-			i++;
-		}
-		else
-			i++;
+			nb++;
+		i++;
 	}
-	return (nbsep);
+	printf("%i\n", nb);
+	return (nb);
 }
 
 char	*ft_small(char const *s, char c)
 {
 	char	*smallstr;
-	size_t	i;
-	size_t	j;
-	size_t	l;
+	int		i;
+	int		j;
+	int		l;
 
 	i = 0;
 	j = 0;
+	while (s[i] == c)
+		i++;
 	while (s[i + j] != '\0' && s[i + j] != c)
 		j++;
 	smallstr = (char *)malloc(sizeof(smallstr) * (j + 1));
@@ -61,33 +60,32 @@ char	**ft_split(char const *s, char c)
 {
 	char	**bigstr;
 	char	*smallstr;
-	size_t	i;
-	size_t	k;
-	size_t	z;
+	int		i;
+	int		k;
+	int		nbmot;
 
 	if (s == NULL)
 		return (NULL);
-	bigstr = (char **)malloc(sizeof(bigstr) * (ft_countsep(s, c) + 1));
+	nbmot = ft_countmot(s, c);
+	bigstr = malloc(sizeof(char *) * (nbmot + 1));
 	if (!bigstr)
 		return (NULL);
 	i = 0;
 	k = 0;
-	while (k != ft_countsep(s, c) && s[i])
+	while (k < nbmot)
 	{
-		z = 0;
-		if (s[i] != c)
+		while (s[i] != c)
 		{
-			while (s[i + z] != c)
-			{
-				smallstr = ft_small(s, c);
-				i++;
-				z++;
-			}
-		}
-		else
+			smallstr = ft_small(s, c);
+			printf("%s\n", smallstr);
 			i++;
+		}
+		if (s[i] == c)
+		{
 			bigstr[k] = smallstr;
 			k++;
+			i++;
+		}
 	}
 	bigstr[k] = NULL;
 	return (bigstr);
