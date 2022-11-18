@@ -32,27 +32,41 @@ int	ft_len(int n)
 	return (len);
 }
 
+char	*ft_min(int n)
+{
+	char	*str;
+	int		i;
+
+	i = 11;
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
+		return (NULL);
+	str[i--] = '\0';
+	str[0] = '-';
+	str[1] = '2';
+	n = 147483648;
+	while (n > 0)
+	{
+		str[i--] = 48 + (n % 10);
+		n = n / 10;
+	}
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		i;
 
+	if (n == -2147483648)
+		return (ft_min(n));
 	i = ft_len(n);
-	str = malloc(sizeof(str) * (i + 1));
+	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	str[i--] = '\0';
 	if (n == 0)
-	{
-		str[0] = 48;
-		return (str);
-	}
-	if (n == -2147483648)
-	{
-		str[0] = '-';
-		str[1] = '2';
-		n = 147483648;
-	}
+		str[i] = 48;
 	if (n < 0)
 	{
 		str[0] = '-';
@@ -60,9 +74,8 @@ char	*ft_itoa(int n)
 	}
 	while (n > 0)
 	{
-		str[i] = 48 + (n % 10);
+		str[i--] = 48 + (n % 10);
 		n = n / 10;
-		i--;
 	}
 	return (str);
 }
