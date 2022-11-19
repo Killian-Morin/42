@@ -22,8 +22,6 @@ int	ft_len(int n)
 		n = n * -1;
 		len++;
 	}
-	if (n == -2147483648)
-		len = 11;
 	while (n > 0)
 	{
 		n = n / 10;

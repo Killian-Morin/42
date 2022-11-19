@@ -12,63 +12,89 @@
 
 #include "libft.h"
 
-size_t	ft_countmot(char const *s, char c)
+int	ft_count(char const *s, char c, int len)
 {
-	size_t	i;
-	size_t	nb;
+	int	nb;
+	int	i;
+	int	temp;
 
 	i = 0;
 	nb = 0;
-	while (s[i])
+	while (i < len)
 	{
-		if (s[i] == c)
+		while (i < len)
+		{
+			if (s[i] == c)
+				break ;
+			i++;
+		}
+		temp = i;
+		while (i < len)
+		{
+			if (s[i] != c)
+				break ;
+			i++;
+		}
+		if (i > temp)
 			nb++;
-		i++;
 	}
-	nb = nb + 1;
 	return (nb);
 }
 
-char	*ft_small(const char *s, size_t i)
+char	*ft_small(char const *s, char c, int len)
 {
-	size_t	j;
+	int		i;
+	int		k;
+	int		temp;
+	char	*smallstr;
 
-	j = 0;
-	while (j < i)
-		j++;
-	return (ft_substr(s, i, j));
+	i = 0;
+	k = 0;
+	while (i < len)
+	{
+		while (i < len)
+		{
+			if (s[i] == c)
+				break ;
+			i++;
+		}
+		while (i < len)
+		{
+			if (s[i] != c)
+				break ;
+			i++;
+			k++;
+		}
+		temp = i;
+		i = 0;
+		smallstr = malloc(sizeof(char *) * (k + 1));
+		if (!smallstr)
+			return (NULL);
+		while (i != temp)
+			smallstr[k++] = s[i++];
+		smallstr[k] = '\0';
+	}
+	return (smallstr);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	int		m;
+	int		len;
+	int		nbstr;
 	char	**bigstr;
-	size_t	i;
-	size_t	k;
-	size_t	nbmot;
 
-	if (s == NULL)
-		return (NULL);
-	nbmot = ft_countmot(s, c);
-	bigstr = (char **)malloc(sizeof(char *) * (nbmot + 1));
+	len = ft_strlen(s);
+	nbstr = ft_count(s, c, len);
+	bigstr = (char **)malloc(sizeof(char *) * (nbstr + 1));
 	if (!bigstr)
 		return (NULL);
-	k = 0;
-	i = 0;
-	while (s[i])
+	m = 0;
+	while (m != nbstr)
 	{
-		if (s[i] != c && s[i])
-			i++;
-		else
-		{
-			while (s[i + 1] == c || s[i + 1])
-			{
-				bigstr[k] = ft_small(s, i);
-				i++;
-			}
-			k++;
-		}
-		i++;
+		bigstr[m] = ft_small(s, c, len);
+		m++;
 	}
-	bigstr[k + 1] = NULL;
+	bigstr[m] = NULL;
 	return (bigstr);
 }

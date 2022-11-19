@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 15:02:08 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/18 15:03:43 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/19 13:48:36 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/19 13:59:52 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		i;
-	t_list	*temp;
+	t_list	*newlist;
 
-	i = 0;
-	if (lst == 0)
-		return (i);
-	temp = lst;
-	while (temp != 0)
+	newlist = (t_list *)malloc(sizeof(*newlist));
+	if (!newlist)
+		return (NULL);
+	while (lst)
 	{
-		temp = temp->next;
-		i++;
+		newlist = (*f)(lst->content);
+		lst = lst->next;
 	}
-	return (i);
+	return (newlist);
 }
