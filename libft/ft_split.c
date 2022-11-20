@@ -12,89 +12,104 @@
 
 #include "libft.h"
 
-int	ft_count(char const *s, char c, int len)
+int	ft_countmot(char *src, char c)
 {
-	int	nb;
 	int	i;
-	int	temp;
+	int	nb;
 
 	i = 0;
-	nb = 0;
-	while (i < len)
+	nb = 1;
+	while (src[i])
 	{
-		while (i < len)
+		if (src[i] != c)
 		{
-			if (s[i] == c)
-				break ;
-			i++;
-		}
-		temp = i;
-		while (i < len)
-		{
-			if (s[i] != c)
-				break ;
-			i++;
-		}
-		if (i > temp)
 			nb++;
+			while (src[i] != c && src[i])
+				i++;
+		}
+		else
+			i++;
 	}
 	return (nb);
 }
 
-char	*ft_small(char const *s, char c, int len)
+int	*ft_cara_par_str(char *src, char c, int nbmot)
 {
-	int		i;
-	int		k;
-	int		temp;
-	char	*smallstr;
+	int	i;
+	int	len;
+	int	*lenstr;
 
 	i = 0;
-	k = 0;
-	while (i < len)
+	lenstr = malloc(sizeof(int) * nbmot);
+	if (!lenstr)
+		return (NULL);
+	while (*src)
 	{
-		while (i < len)
+		if (*src != c)
 		{
-			if (s[i] == c)
-				break ;
-			i++;
+			len = 0;
+			while (*src != c && *src)
+			{
+				src++;
+				len++;
+			}
+			lenstr[i++] = len + 1;
 		}
-		while (i < len)
-		{
-			if (s[i] != c)
-				break ;
-			i++;
-			k++;
-		}
-		temp = i;
-		i = 0;
-		smallstr = malloc(sizeof(char *) * (k + 1));
-		if (!smallstr)
-			return (NULL);
-		while (i != temp)
-			smallstr[k++] = s[i++];
-		smallstr[k] = '\0';
+		else
+			src++;
 	}
-	return (smallstr);
+	return (lenstr);
+}
+
+char	**ft_free(char **bigstr, int i)
+{
+	int	k;
+
+	k = 0;
+	while (i > k)
+		free(bigstr[k++]);
+	free(bigstr);
+	return (NULL);
+}
+
+char	**ft_fill_tab(char *src, char c, char **bigstr, int *len)
+{
+	int	j;
+	int	k;
+
+	k = 0;
+	while (*src)
+	{
+		if (*src != c)
+		{
+			bigstr[k] = malloc(sizeof(char) * len[k]);
+			if (!bigstr[k])
+				return (ft_free(bigstr, k));
+			j = 0;
+			while (*src != c && *src)
+				bigstr[k][j++] = *src++;
+			bigstr[k++][j] = '\0';
+		}
+		else
+			src++;
+	}
+	bigstr[k] = NULL;
+	free(len);
+	return (bigstr);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		m;
-	int		len;
-	int		nbstr;
+	int		nbmot;
+	int		*carastrnb;
+	char	*src;
 	char	**bigstr;
 
-	len = ft_strlen(s);
-	nbstr = ft_count(s, c, len);
-	bigstr = (char **)malloc(sizeof(char *) * (nbstr + 1));
+	src = (char *)s;
+	nbmot = ft_countmot(src, c);
+	carastrnb = ft_cara_par_str(src, c, nbmot);
+	bigstr = malloc(sizeof(char *) * nbmot);
 	if (!bigstr)
 		return (NULL);
-	m = 0;
-	while (m != nbstr)
-	{
-		bigstr[m] = ft_small(s, c, len);
-		m++;
-	}
-	bigstr[m] = NULL;
-	return (bigstr);
+	return (ft_fill_tab(src, c, bigstr, carastrnb));
 }
