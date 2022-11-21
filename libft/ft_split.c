@@ -61,7 +61,7 @@ int	*ft_cara_par_str(char *src, char c, int nbmot)
 	return (lenstr);
 }
 
-char	**ft_free(char **bigstr, int i)
+char	**ft_free(char **bigstr, int i, int *len)
 {
 	int	k;
 
@@ -69,6 +69,7 @@ char	**ft_free(char **bigstr, int i)
 	while (i > k)
 		free(bigstr[k++]);
 	free(bigstr);
+	free(len);
 	return (NULL);
 }
 
@@ -84,7 +85,7 @@ char	**ft_fill_tab(char *src, char c, char **bigstr, int *len)
 		{
 			bigstr[k] = malloc(sizeof(char) * len[k]);
 			if (!bigstr[k])
-				return (ft_free(bigstr, k));
+				return (ft_free(bigstr, k, len));
 			j = 0;
 			while (*src != c && *src)
 				bigstr[k][j++] = *src++;
