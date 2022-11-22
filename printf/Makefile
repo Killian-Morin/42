@@ -1,22 +1,23 @@
 NAME = libftprintf.a
 
-SRCS = .c
+SRCS = ft_int.c
 
 OBJS = ${SRCS:.c=.o}
 
 HEADER = printf.h
 
-MAKE = make
+MAKE:
+	make all
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-.c.o: ${OBJS}
-	${CC} ${CFLAGS} -c -I ${HEADER} $< -o ${:.c=.o}
+.c.o:	${OBJS}
+	${CC} ${CFLAGS} -c -I ${HEADER} $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-	cd libft && ${MAKE} all
+	cd libft && ${MAKE}
 	arc rc libftprintf.a *.o
 
 all:	${NAME}

@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 15:07:39 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:21:09 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/22 14:43:58 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/22 14:54:50 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#ifndef PRINTF_H
+# define PRINTF_H
 
-int	main(void)
-{
-	printf("bonjour %s \n", "132");
-	return (0);
-}
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdarg.h>
+#include "libft.h"
+
+int	ft_int(int arg, ...);
+
+#endif
