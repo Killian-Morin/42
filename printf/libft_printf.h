@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft_printf.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 15:07:39 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/22 09:21:09 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/23 10:36:59 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/23 15:33:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#ifndef LIBFT_PRINTF_H
+# define LIBFT_PRINTF_H
 
-int	main(void)
-{
-	printf("bonjour %s \n", "132");
-	return (0);
-}
+# include <stdio.h>
+# include <string.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include "libft.h"
+
+void	ft_writechar(int num, ...);
+void	ft_writeint(int num, ...);
+
+#endif

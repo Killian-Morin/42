@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 14:43:58 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/22 14:54:50 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/23 14:50:31 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/23 15:40:36 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "libft_printf.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft.h"
-
-int	ft_int(int arg, ...);
-
-#endif
+int	main(void)
+{
+//	ft_writechar(3, 'a', 'b', 'c', 'd');
+	ft_writeint(3, 2, 43);
+	return (0);
+}

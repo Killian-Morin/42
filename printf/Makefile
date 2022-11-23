@@ -4,10 +4,9 @@ SRCS = ft_int.c
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER = printf.h
+HEADER = libft_printf.h
 
-MAKE:
-	make all
+MAKE =	make -C libft
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -17,17 +16,19 @@ RM = rm -f
 	${CC} ${CFLAGS} -c -I ${HEADER} $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-	cd libft && ${MAKE}
-	arc rc libftprintf.a *.o
+	${MAKE}
+	ar rc libftprintf.a *.o
 
 all:	${NAME}
 
 clean:
+	${MAKE} clean
 	${RM} ${OBJS}
 
-flcean:	clean
+fclean:	clean
+	${MAKE} fclean
 	${RM} ${NAME}
 
-re: flcean all
+re: fclean all
 
-.PHONY: all clean flcean all
+.PHONY: all clean fclean all

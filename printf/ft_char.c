@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_int.c                                           :+:      :+:    :+:   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 15:31:54 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/23 15:38:40 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/23 14:49:39 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/23 15:37:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_printf.h"
 
-void	ft_writeint(int num_args, ...)
+void	ft_writechar(int num_args, ...)
 {
 	int		i;
-	int		res;
+	char	res;
 	va_list	arg;
 
 	i = 0;
@@ -23,7 +23,6 @@ void	ft_writeint(int num_args, ...)
 	while (i > (int)arg)
 	{
 		res = va_arg(arg, int);
-		ft_itoa(res);
 		write(1, &res, 1);
 		i++;
 	}
