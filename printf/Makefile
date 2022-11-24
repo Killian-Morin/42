@@ -1,10 +1,10 @@
 NAME = libftprintf.a
 
-SRCS = ft_int.c
+SRCS = ft_printf.c
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER = libft_printf.h
+HEADER = ft_printf.h
 
 MAKE =	make -C libft
 
@@ -17,6 +17,7 @@ RM = rm -f
 
 ${NAME}:	${OBJS}
 	${MAKE}
+	cp libft/libft.a ./
 	ar rc libftprintf.a *.o
 
 all:	${NAME}
@@ -27,7 +28,7 @@ clean:
 
 fclean:	clean
 	${MAKE} fclean
-	${RM} ${NAME}
+	${RM} ${NAME} libft.a
 
 re: fclean all
 

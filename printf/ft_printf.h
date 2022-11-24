@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_printf.h                                     :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 10:36:59 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/23 15:33:13 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/24 09:37:29 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/24 14:26:46 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_PRINTF_H
-# define LIBFT_PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "libft.h"
+# include "libft/libft.h"
 
-void	ft_writechar(int num, ...);
-void	ft_writeint(int num, ...);
+int	ft_printf(const char *str, ...);
 
 #endif
