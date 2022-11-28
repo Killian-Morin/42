@@ -6,7 +6,7 @@
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 09:37:29 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/24 14:26:46 by kmorin           ###   ########.fr       */
+/*   Updated: 2022/11/28 17:10:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-int	ft_printf(const char *str, ...);
+void	ft_write_char(char c);
+void	ft_write_int(int n);
+void	ft_write_str(const char *s);
+int		ft_printf(const char *str, ...);
 
 #endif

@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-SRCS = ft_printf.c
+SRCS = ft_printf.c ft_printf_externe.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -18,6 +18,7 @@ RM = rm -f
 ${NAME}:	${OBJS}
 	${MAKE}
 	cp libft/libft.a ./
+	cp libft/*.o ./
 	ar rc libftprintf.a *.o
 
 all:	${NAME}
