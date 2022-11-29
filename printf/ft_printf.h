@@ -6,7 +6,7 @@
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 09:37:29 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/28 17:10:13 by kmorin           ###   ########.fr       */
+/*   Updated: 2022/11/29 17:28:07 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,16 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-void	ft_write_char(char c);
-void	ft_write_int(int n);
-void	ft_write_str(const char *s);
-int		ft_printf(const char *str, ...);
+int	ft_printf(const char *str, ...);
+
+int	ft_write_char(char c);
+int	ft_write_str(char *s);
+
+int	ft_write_hexadecimal(unsigned int n, char type);
+
+int	ft_write_integer(int n);
+int	ft_write_unsigned_integer(unsigned int n);
+
+int	ft_write_pointer(void *ptr);
 
 #endif

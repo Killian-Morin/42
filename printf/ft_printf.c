@@ -6,65 +6,60 @@
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:50:31 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/28 17:16:44 by kmorin           ###   ########.fr       */
+/*   Updated: 2022/11/29 17:29:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_cas_part(const char *str, int index)
+int	ft_printf_which_format(const char *str, va_list args)
 {
-	if (str[index + 1] == '%')
-		ft_write_char('%');
-}
+	int	len;
 
-int	ft_printf_principale(const char *str, va_list args)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			if (str[i + 1] == '%')
-				ft_write_char('%');
-			if (str[i + 1] == 'c')
-				ft_write_char(va_arg(args, int));
-			if (str[i + 1] == 'i' || str[i + 1] == 'd')
-				ft_write_int(va_arg(args, int));
-			i++;
-		}
-		else
-			ft_write_char(str[i]);
-		i++;
-	}
-	ft_write_char('\n');
-	return (0);
+	len = 0;
+	if (str[0] == 'c')
+		len += ft_write_char(va_arg(args, int));
+	else if (str[0] == 's')
+		len += ft_write_str(va_arg(args, char *));
+	else if (str[0] == 'p')
+		len += ft_write_pointer(va_arg(args, void *));
+	else if (str[0] == 'd' || str[0] == 'i')
+		len += ft_write_integer(va_arg(args, int));
+	else if (str[0] == 'u')
+		len += ft_write_unsigned_integer(va_arg(args, unsigned int));
+	else if (str[0] == 'x' || str[0] == 'X')
+		len += ft_write_hexadecimal(va_arg(args, unsigned int), str[0]);
+	else if (str[0] == '%')
+		len += ft_write_char('%');
+	return (len);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
+	int		i;
+	int		len;
 
+	i = 0;
+	len = 0;
 	va_start(args, str);
-	ft_printf_principale(str, args);
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+			len += ft_printf_which_format(&str[i + 1], args);
+			i++;
+		}
+		else
+			len += ft_write_char(str[i]);
+		i++;
+	}
 	va_end(args);
-	return (0);
+	return (len);
 }
-
+/*
 int	main(void)
 {
-//	void	*pointer_to_main = (void *) main;
-
-	ft_printf("Print a character: %c", '0');
-//	ft_printf("Print a string: %s", "Hello World");
-//	ft_printf("Print a pointer: %p", pointer_to_main);
-	ft_printf("Print a number: %d %d", 10, 11);
-	ft_printf("Print a number: %i %i", 10, 11);
-//	ft_printf("Print an unsigned integer: %u", -10);
-//	ft_printf("Print an hex integer with minuscules: %x", 10);
-//	ft_printf("Print an hex integer with majuscules: %X", 10);
-	ft_printf("Print a percentage: %% %%");
+	ft_printf("%d", 10);
 	return (0);
-}
+}*/

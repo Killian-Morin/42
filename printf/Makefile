@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_printf_externe.c
+SRCS = ft_printf.c ft_printf_gestion_divers.c ft_printf_gestion_hex.c ft_printf_gestion_int.c ft_printf_gestion_ptr.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -25,7 +25,7 @@ all:	${NAME}
 
 clean:
 	${MAKE} clean
-	${RM} ${OBJS}
+	${RM} ${OBJS} *.o
 
 fclean:	clean
 	${MAKE} fclean
