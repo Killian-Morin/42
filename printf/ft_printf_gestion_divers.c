@@ -25,12 +25,12 @@ int	ft_write_str(char *s)
 	i = 0;
 	if (!s)
 	{
-		ft_putstr_fd("(null)", 1);
+		ft_write_str("(null)");
 		return (6);
 	}
 	while (s[i])
 	{
-		write(1, &s[i], 1);
+		ft_write_char(s[i]);
 		i++;
 	}
 	return (i);

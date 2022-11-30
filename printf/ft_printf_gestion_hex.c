@@ -12,30 +12,43 @@
 
 #include "ft_printf.h"
 
-int	ft_write_hexadecimal(unsigned int n, char type)
+int	ft_len_hexadecimal(unsigned int n)
 {
 	int	len;
 
 	len = 0;
+	if (n >= 0 && n <= 9)
+		return (1);
+	if (n < 0)
+		len = 1;
+	while (n)
+	{
+		len++;
+		n = n / 16;
+	}
+	return (len);
+}
+
+int	ft_write_hexadecimal(unsigned int n, char type)
+{
+	int	len;
+
+	len = ft_len_hexadecimal(n);
 	if (n >= 16)
 	{
-		ft_write_hexadecimal(n / 10, type);
-		ft_write_hexadecimal(n % 10, type);
+		ft_write_hexadecimal(n / 16, type);
+		ft_write_hexadecimal(n % 16, type);
 	}
 	else
 	{
 		if (n <= 9)
-		{
-			ft_write_integer(n);
-			len++;
-		}
+			ft_putnbr_fd(n, 1);
 		else
 		{
 			if (type == 'x')
 				ft_write_char((n - 10) + 'a');
 			if (type == 'X')
 				ft_write_char((n - 10) + 'A');
-			len++;
 		}
 	}
 	return (len);

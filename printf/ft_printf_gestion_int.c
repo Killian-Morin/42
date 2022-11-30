@@ -66,6 +66,6 @@ int	ft_write_unsigned_integer(unsigned int n)
 		ft_write_unsigned_integer(n % 10);
 	}
 	else
-		ft_write_integer(n);
+		ft_putnbr_fd(n, 1);
 	return (len);
 }

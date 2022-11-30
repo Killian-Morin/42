@@ -18,7 +18,7 @@ RM = rm -f
 ${NAME}:	${OBJS}
 	${MAKE}
 	cp libft/libft.a ./
-	cp libft/*.o ./
+	mv libft/*.o ./
 	ar rc libftprintf.a *.o
 
 all:	${NAME}
