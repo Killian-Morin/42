@@ -1,1 +1,1 @@
-# repo pour push les projets en cours
+# repo pour push les projets
