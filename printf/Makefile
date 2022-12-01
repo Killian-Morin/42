@@ -17,15 +17,13 @@ RM = rm -f
 
 ${NAME}:	${OBJS}
 	${MAKE}
-	cp libft/libft.a ./
-	mv libft/*.o ./
-	ar rc libftprintf.a *.o
+	ar rc libftprintf.a *.o libft/*.o
 
 all:	${NAME}
 
 clean:
 	${MAKE} clean
-	${RM} ${OBJS} *.o
+	${RM} ${OBJS}
 
 fclean:	clean
 	${MAKE} fclean
