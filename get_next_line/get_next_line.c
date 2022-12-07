@@ -15,15 +15,32 @@
 
 char	*get_next_line(int fd)
 {
-	char	buf[42];
-	long	ret;
+	int	count;
+	char	buf[BUFFER_SIZE];
+	static char	*stock;
+	char	*temp;
 
-	ret = read(fd, buf, 20);
-	return ((char *)ret);
+	count = BUFFER_SIZE + 1;
+	while (fd)
+	{
+		*buf++ = read(fd, buf, count);
+		temp = buf;
+		get_next_line(fd);
+		if (buf == '\n')
+		{
+			temp = stock;
+			temp = '\n';
+			ft_putstr_fd(temp);
+		}
+	}
+	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	printf("%s\n", get_next_line(4));
+	int	n;
+
+	n = (int)argv[argc];
+	printf("%s\n", get_next_line(n));
 	return (0);
 }

@@ -12,3 +12,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+
+char	*get_next_line(int fd);
+
+void	ft_putstr_fd(char *str, int fd);
