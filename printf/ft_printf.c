@@ -22,7 +22,7 @@ int	ft_printf_which_format(const char *str, va_list args)
 	else if (str[0] == 's')
 		len += ft_write_str(va_arg(args, char *));
 	else if (str[0] == 'p')
-		len += ft_write_pointer(va_arg(args, unsigned long));
+		len += ft_write_pointer(va_arg(args, uintptr_t));
 	else if (str[0] == 'd' || str[0] == 'i')
 		len += ft_write_integer(va_arg(args, int));
 	else if (str[0] == 'u')

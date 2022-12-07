@@ -35,7 +35,7 @@ int			ft_len_int_unsigned(unsigned int n);
 int			ft_write_unsigned_integer(unsigned int n);
 
 int			ft_len_pointer(uintptr_t ptr);
-int			ft_write_pointer(unsigned long long ptr);
+int			ft_write_pointer(uintptr_t ptr);
 
 void		ft_put_ptr(uintptr_t ptr);
 

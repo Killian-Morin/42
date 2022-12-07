@@ -41,7 +41,7 @@ void	ft_put_ptr(uintptr_t ptr)
 	}
 }
 
-int	ft_write_pointer(unsigned long long ptr)
+int	ft_write_pointer(uintptr_t ptr)
 {
 	int	len;
 
