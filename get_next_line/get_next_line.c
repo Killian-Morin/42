@@ -12,26 +12,59 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
+#include <fcntl.h>
+
+void	ft_line(char *temp)
+{
+	char	*line;
+	int		k;
+	int		l;
+
+	k = 0;
+	l = 0;
+	line = "";
+	while (temp[k] != '\n')
+		line[l++] = temp[k++];
+	line[l] = '\n';
+	ft_putstr_fd(line, 1);
+}
+
+static char	*ft_temp(char *buf, int count)
+{
+	char	*temp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	temp = "";
+	while (i <= count)
+	{
+		temp[j++] = *buf;
+		i++;
+	}
+	if (temp[j] == '\n')
+		ft_line(temp);
+	return (temp);
+}
 
 char	*get_next_line(int fd)
 {
-	int	count;
-	char	buf[BUFFER_SIZE];
-	static char	*stock;
-	char	*temp;
+	int			i;
+	char		buf[BUFFER_SIZE];
+	char		*line;
+	static char	*temp;
 
-	count = BUFFER_SIZE + 1;
-	while (fd)
+	i = 0;
+	temp = "";
+	line = "";
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	while (read(fd, buf, BUFFER_SIZE) != 0)
 	{
-		*buf++ = read(fd, buf, count);
-		temp = buf;
+		buf[i++] = read(fd, buf, BUFFER_SIZE);
+		temp = ft_temp(buf, BUFFER_SIZE);
 		get_next_line(fd);
-		if (buf == '\n')
-		{
-			temp = stock;
-			temp = '\n';
-			ft_putstr_fd(temp);
-		}
 	}
 	return (0);
 }
@@ -41,6 +74,7 @@ int	main(int argc, char **argv)
 	int	n;
 
 	n = (int)argv[argc];
+//	printf("%d\n", open("myfile.txt", O_RDONLY)); pour connaitre fd du fichier test
 	printf("%s\n", get_next_line(n));
 	return (0);
 }
