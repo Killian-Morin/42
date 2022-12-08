@@ -12,59 +12,56 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
-#include <fcntl.h>
 
-void	ft_line(char *temp)
+char	*get_line(char *str)
 {
-	char	*line;
-	int		k;
-	int		l;
-
-	k = 0;
-	l = 0;
-	line = "";
-	while (temp[k] != '\n')
-		line[l++] = temp[k++];
-	line[l] = '\n';
-	ft_putstr_fd(line, 1);
-}
-
-static char	*ft_temp(char *buf, int count)
-{
-	char	*temp;
 	int		i;
-	int		j;
+	char	*line;
 
 	i = 0;
-	j = 0;
-	temp = "";
-	while (i <= count)
+	line = "";
+	while (str[i] != '\n')
 	{
-		temp[j++] = *buf;
+		line[i] = str[i];
 		i++;
 	}
-	if (temp[j] == '\n')
-		ft_line(temp);
-	return (temp);
+	line[i] = '\n';
+	return (line);
+}
+
+int	check_end_of_line(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '\n')
+		return (1);
+	else
+		i++;
+	return (0);
 }
 
 char	*get_next_line(int fd)
 {
-	int			i;
-	char		buf[BUFFER_SIZE];
-	char		*line;
-	static char	*temp;
+	int				cara_to_read;
+	int				i;
+	static char		*buffer[BUFFER_SIZE];
+	char			*line;
+	static char		*stock;
 
+	cara_to_read = BUFFER_SIZE;
 	i = 0;
-	temp = "";
+	stock = "";
 	line = "";
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (read(fd, buf, BUFFER_SIZE) != 0)
+	while (read(fd, buffer, cara_to_read) != 0)
 	{
-		buf[i++] = read(fd, buf, BUFFER_SIZE);
-		temp = ft_temp(buf, BUFFER_SIZE);
-		get_next_line(fd);
+		stock[i++] = read(fd, buffer, cara_to_read);
+		if (check_end_of_line(stock) == 1)
+			line = get_line(stock);
+		else
+			get_next_line(fd);
 	}
 	return (0);
 }
@@ -74,7 +71,6 @@ int	main(int argc, char **argv)
 	int	n;
 
 	n = (int)argv[argc];
-//	printf("%d\n", open("myfile.txt", O_RDONLY)); pour connaitre fd du fichier test
 	printf("%s\n", get_next_line(n));
 	return (0);
 }

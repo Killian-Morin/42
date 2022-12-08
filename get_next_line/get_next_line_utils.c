@@ -12,14 +12,12 @@
 
 #include "get_next_line.h"
 
-void	ft_putstr_fd(char *str, int fd)
+size_t	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
-	{
-		write(1, &str[i], fd);
 		i++;
-	}
+	return (i);
 }
