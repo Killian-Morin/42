@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -20,4 +20,19 @@ size_t	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+char	*ft_strchr(char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (i <= ft_strlen(str))
+	{
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		else
+			i++;
+	}
+	return (0);
 }

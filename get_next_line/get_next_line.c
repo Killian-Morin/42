@@ -20,7 +20,7 @@ char	*get_line(char *str)
 
 	i = 0;
 	line = "";
-	while (str[i] != '\n')
+	while (str[i])
 	{
 		line[i] = str[i];
 		i++;
@@ -29,41 +29,31 @@ char	*get_line(char *str)
 	return (line);
 }
 
-int	check_end_of_line(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '\n')
-		return (1);
-	else
-		i++;
-	return (0);
-}
-
 char	*get_next_line(int fd)
 {
-	int				cara_to_read;
 	int				i;
-	static char		*buffer[BUFFER_SIZE];
+	char			*buffer[BUFFER_SIZE];
 	char			*line;
 	static char		*stock;
 
-	cara_to_read = BUFFER_SIZE;
 	i = 0;
 	stock = "";
 	line = "";
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (read(fd, buffer, cara_to_read) != 0)
+	while (read(fd, buffer, BUFFER_SIZE) != 0)
 	{
-		stock[i++] = read(fd, buffer, cara_to_read);
-		if (check_end_of_line(stock) == 1)
+		read(fd, buffer, BUFFER_SIZE);
+		stock[i] = buffer[i];
+		if (ft_strchr(stock, '\n') != 0)
+		{
 			line = get_line(stock);
-		else
-			get_next_line(fd);
+			return (line);
+			stock = ft_strchr(stock, '\n');
+		}
+		i++;
 	}
-	return (0);
+	return (line);
 }
 
 int	main(int argc, char **argv)
