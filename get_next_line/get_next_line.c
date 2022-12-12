@@ -19,8 +19,10 @@ char	*get_line(char *str)
 	char	*line;
 
 	i = 0;
-	line = "";
-	while (str[i])
+	line = malloc(sizeof(line) * (ft_strlen(str) + 1));
+	if (!line)
+		return (NULL);
+	while (str[i] != '\0')
 	{
 		line[i] = str[i];
 		i++;
@@ -31,36 +33,45 @@ char	*get_line(char *str)
 
 char	*get_next_line(int fd)
 {
-	int				i;
-	char			*buffer[BUFFER_SIZE];
+	int				checker;
+	char			buffer[BUFFER_SIZE];
 	char			*line;
 	static char		*stock;
 
-	i = 0;
 	stock = "";
 	line = "";
+	checker = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (read(fd, buffer, BUFFER_SIZE) != 0)
+	while (!(ft_strchr(stock, '\n')))
 	{
-		read(fd, buffer, BUFFER_SIZE);
-		stock[i] = buffer[i];
-		if (ft_strchr(stock, '\n') != 0)
-		{
-			line = get_line(stock);
-			return (line);
-			stock = ft_strchr(stock, '\n');
-		}
-		i++;
+		checker = read(fd, buffer, BUFFER_SIZE);
+		if (checker == -1)
+			return (NULL);
+		else if (checker == 0)
+			stock[checker] = '\0';
+		if (stock == NULL)
+			stock = buffer;
+		else
+			stock = ft_strjoin(stock, buffer);
 	}
-	return (line);
+	line = get_line(stock);
+	return (NULL);
 }
 
 int	main(int argc, char **argv)
 {
-	int	n;
+	int		n;
+	char	*line;
 
 	n = (int)argv[argc];
-	printf("%s\n", get_next_line(n));
+	while (1)
+	{
+		line = get_next_line(n);
+		printf("%s\n", line);
+		free(line);
+		if (line == NULL)
+			break ;
+	}
 	return (0);
 }
