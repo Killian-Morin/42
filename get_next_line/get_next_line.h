@@ -21,10 +21,12 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
+char	*gnl_line(char *str);
+char	*gnl_stock(int fd, char *str);
+char	*gnl_new_stock(char *str);
 
-int		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 char	*ft_strchr(char *str, int c);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlcpy(char *dest, const char *src, int destsize);
+char	*ft_strjoin(const char *s1, const char *s2);
 
 #endif
