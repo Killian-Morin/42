@@ -14,41 +14,30 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-char	*gnl_new_stock(char *str)
+char	*gnl_line(char *stock)
 {
-	int		i;
-	int		j;
-	char	*dest;
-
-	i = 0;
-	j = 0;
-	if (!str)
-		return (NULL);
-	dest = malloc(sizeof(dest) * ft_strlen(str));
-	if (!dest)
-		return (NULL);
-	while (str[i])
-		dest[j++] = str[i++];
-	dest[j] = '\0';
-	free(str);
-	return (dest);
-}
-
-char	*gnl_line(char *str)
-{
-	int		i;
+	size_t	i;
 	char	*line;
 
 	i = 0;
-	line = malloc(sizeof(line) * (ft_strlen(str) + 1));
+	if (!stock)
+		return (NULL);
+	while (stock[i] != '\0' && stock[i] != '\n')
+		i++;
+	line = malloc(sizeof(line) * (i + 2));
 	if (!line)
 		return (NULL);
-	while (str[i])
+	while (stock[i] != '\0' && stock[i] != '\n')
 	{
-		line[i] = str[i];
+		line[i] = stock[i];
 		i++;
 	}
-	line[i] = '\n';
+	if (stock[i] == '\n')
+	{
+		line[i] = stock[i];
+		i++;
+	}
+	line[i] = '\0';
 	return (line);
 }
 
@@ -61,20 +50,16 @@ char	*gnl_stock(int fd, char *stock)
 	buffer = malloc(sizeof(buffer) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(stock, '\n') && checker <= 0)
+	while (!gnl_strchr(stock, '\n') && checker != 0)
 	{
 		checker = read(fd, buffer, BUFFER_SIZE);
 		if (checker == -1)
 		{
 			free(buffer);
-			free(stock);
 			return (NULL);
 		}
-		else
-		{
-			buffer[checker] = '\0';
-			stock = ft_strjoin(stock, buffer);
-		}
+		buffer[checker] = '\0';
+		stock = gnl_strjoin(stock, buffer);
 	}
 	free(buffer);
 	return (stock);
@@ -91,24 +76,25 @@ char	*get_next_line(int fd)
 	if (!stock)
 		return (NULL);
 	line = gnl_line(stock);
-	stock = gnl_new_stock(stock);
-	free(stock);
+	stock = gnl_update_stock(stock);
 	return (line);
 }
-
+/*
 int	main(void)
 {
+	int		i;
 	int		fd;
 	char	*line;
 
+	i = 0;
 	fd = open("test.txt", O_RDONLY);
-	while (1)
+	while (i < 1)
 	{
 		line = get_next_line(fd);
 		printf("%s", line);
 		free(line);
-		if (line == NULL)
-			break ;
+		i++;
 	}
+	close(fd);
 	return (0);
-}
+}*/

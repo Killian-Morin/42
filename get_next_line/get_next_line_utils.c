@@ -13,50 +13,88 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-size_t	ft_strlen(const char *str)
+size_t	gnl_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*gnl_strchr(char *stock, int c)
 {
 	size_t	i;
 
 	i = 0;
-	while (i <= ft_strlen(str))
+	if (!stock)
 	{
-		if (str[i] == (char)c)
-			return ((char *)str + i);
+		free((char *)stock);
+		return (NULL);
+	}
+	while (stock[i])
+	{
+		if (stock[i] == (char)c)
+			return ((char *)stock + i);
 		else
 			i++;
 	}
 	return (0);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*gnl_strjoin(char *stock, char *buffer)
 {
 	char	*str;
 	size_t	i;
 	size_t	j;
 	size_t	size;
 
-	size = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(sizeof(str) * size);
+	size = gnl_strlen(stock) + gnl_strlen(buffer);
+	str = malloc(sizeof(str) * (size + 1));
 	if (!str)
+	{
+		free((char *)buffer);
+		free((char *)stock);
 		return (NULL);
+	}
 	i = 0;
 	j = 0;
-	while (j != ft_strlen(s1))
-		str[j++] = s1[i++];
+	while (j != gnl_strlen(stock))
+		str[j++] = stock[i++];
 	i = 0;
 	while (j != size)
-		str[j++] = s2[i++];
-	free((char *)s1);
-	free((char *)s2);
+		str[j++] = buffer[i++];
+	str[j] = '\0';
+	free((char *)buffer);
+	free((char *)stock);
+	return (str);
+}
+
+char	*gnl_update_stock(char *stock)
+{
+	size_t		i;
+	size_t		k;
+	char		*str;
+
+	i = 0;
+	while (stock[i] != '\0' && stock[i] != '\n')
+		i++;
+	if (!stock)
+	{
+		free((char *)stock);
+		return (NULL);
+	}
+	str = malloc(sizeof(str) * (gnl_strlen(stock) - i + 1));
+	if (!str)
+		return (NULL);
+	i++;
+	k = 0;
+	while (stock[i])
+		str[k++] = stock[i++];
+	str[k] = '\0';
+	free((char *)stock);
 	return (str);
 }

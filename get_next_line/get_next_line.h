@@ -25,8 +25,9 @@ char	*gnl_line(char *str);
 char	*gnl_stock(int fd, char *str);
 char	*gnl_new_stock(char *str);
 
-size_t	ft_strlen(const char *str);
-char	*ft_strchr(char *str, int c);
-char	*ft_strjoin(const char *s1, const char *s2);
+size_t	gnl_strlen(char *str);
+char	*gnl_strchr(char *stock, int c);
+char	*gnl_strjoin(char *stock, char *buffer);
+char	*gnl_update_stock(char *stock);
 
 #endif
