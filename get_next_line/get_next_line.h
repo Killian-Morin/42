@@ -21,13 +21,12 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
-char	*gnl_line(char *str);
-char	*gnl_stock(int fd, char *str);
-char	*gnl_new_stock(char *str);
+char	*gnl_line(char *stock);
+char	*gnl_stock(int fd, char *stock);
+char	*gnl_update_stock(char *stock);
 
 size_t	gnl_strlen(char *str);
-char	*gnl_strchr(char *stock, int c);
+int		gnl_strchr(char *stock, int c);
 char	*gnl_strjoin(char *stock, char *buffer);
-char	*gnl_update_stock(char *stock);
 
 #endif
