@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:35:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:36:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/26 10:07:55 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/07 09:44:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "printf/ft_printf.h"
-
-typedef struct s_stack
+int	ft_atoi(const char	*str)
 {
-    int    *value;
-    struct s_stack *next;
-}   t_stack;
+	int	i;
+	int	res;
+	int	signe;
 
-//ds push_swap.c
-void    push_swap(int *stack_a, int nb_element);
-
-//ds sort_small_stack.c
-void    sort_small_stack(int *stack_a, int nb_element);
-void	sort_three_element(t_stack *stack_a);
-
-#endif
+	i = 0;
+	res = 0;
+	signe = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			signe = signe * -1;
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		res = res * 10 + (str[i] - 48);
+		i++;
+	}
+	return (res * signe);
+}

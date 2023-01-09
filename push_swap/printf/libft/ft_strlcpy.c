@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:35:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:36:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/28 15:45:41 by kmorin            #+#    #+#             */
+/*   Updated: 2022/10/31 12:02:38 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "printf/ft_printf.h"
-
-typedef struct s_stack
+size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {
-    int    *value;
-    struct s_stack *next;
-}   t_stack;
+	size_t	i;
 
-//ds push_swap.c
-void    push_swap(int *stack_a, int nb_element);
-
-//ds sort_small_stack.c
-void    sort_small_stack(int *stack_a, int nb_element);
-void	sort_three_element(t_stack *stack_a);
-
-#endif
+	i = 0;
+	if (destsize == 0)
+		return (ft_strlen(src));
+	if (destsize <= ft_strlen(src))
+	{
+		while (i < (destsize - 1))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+	}
+	if (destsize > ft_strlen(src))
+	{
+		while (src[i])
+		{
+			dest[i] = src[i];
+			i++;
+		}
+	}
+	dest[i] = '\0';
+	return (ft_strlen(src));
+}

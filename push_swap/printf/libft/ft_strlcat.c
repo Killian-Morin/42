@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:35:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:36:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/25 13:58:06 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/01 09:55:21 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "printf/ft_printf.h"
-
-typedef struct s_stack
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-    int    *value;
-    struct s_stack *next;
-}   t_stack;
+	size_t	i;
+	size_t	j;
+	size_t	ls;
 
-//ds push_swap.c
-void    push_swap(int *stack_a, int nb_element);
-
-//ds sort_small_stack.c
-void    sort_small_stack(int *stack_a, int nb_element);
-void	sort_three_element(t_stack *stack_a);
-
-#endif
+	j = 0;
+	i = ft_strlen(dest);
+	ls = ft_strlen(src);
+	if (size == 0)
+		return (ls);
+	if (size - 1 < i)
+		return (ls + size);
+	if (size - 1 >= i)
+	{
+		while (src[j] && (i + j + 1) < size)
+		{
+			dest[i + j] = src[j];
+			j++;
+		}
+	}
+	dest[i + j] = '\0';
+	return (i + ls);
+}

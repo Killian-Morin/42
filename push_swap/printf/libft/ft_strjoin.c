@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:35:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:36:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/09 11:41:42 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/09 12:38:12 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "printf/ft_printf.h"
-
-typedef struct s_stack
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    int    *value;
-    struct s_stack *next;
-}   t_stack;
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	size;
 
-//ds push_swap.c
-void    push_swap(int *stack_a, int nb_element);
-
-//ds sort_small_stack.c
-void    sort_small_stack(int *stack_a, int nb_element);
-void	sort_three_element(t_stack *stack_a);
-
-#endif
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j != ft_strlen(s1))
+	{
+		str[j++] = s1[i++];
+	}
+	i = 0;
+	while (j != size)
+	{
+		str[j] = s2[i];
+		i++;
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}

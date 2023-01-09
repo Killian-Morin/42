@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:35:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:36:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/11 12:15:20 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/11 14:02:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "printf/ft_printf.h"
-
-typedef struct s_stack
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-    int    *value;
-    struct s_stack *next;
-}   t_stack;
+	char			*str;
+	unsigned int	i;
 
-//ds push_swap.c
-void    push_swap(int *stack_a, int nb_element);
-
-//ds sort_small_stack.c
-void    sort_small_stack(int *stack_a, int nb_element);
-void	sort_three_element(t_stack *stack_a);
-
-#endif
+	if (s == NULL || f == NULL)
+		return (NULL);
+	str = malloc(sizeof(*s) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

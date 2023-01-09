@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf_gestion_divers.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 11:35:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/01/05 11:36:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/29 16:55:27 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/29 17:01:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include "printf/ft_printf.h"
-
-typedef struct s_stack
+int	ft_write_char(char c)
 {
-    int    *value;
-    struct s_stack *next;
-}   t_stack;
+	write(1, &c, 1);
+	return (1);
+}
 
-//ds push_swap.c
-void    push_swap(int *stack_a, int nb_element);
+int	ft_write_str(char *s)
+{
+	int	i;
 
-//ds sort_small_stack.c
-void    sort_small_stack(int *stack_a, int nb_element);
-void	sort_three_element(t_stack *stack_a);
-
-#endif
+	i = 0;
+	if (!s)
+	{
+		ft_write_str("(null)");
+		return (6);
+	}
+	while (s[i])
+	{
+		ft_write_char(s[i]);
+		i++;
+	}
+	return (i);
+}
