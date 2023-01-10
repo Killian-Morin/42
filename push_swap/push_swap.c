@@ -12,38 +12,63 @@
 
 #include "push_swap.h"
 
-void    push_swap(t_stack *stack_a, int nb_element)
+void	push_swap(t_stack *stack_a, int nb_element)
 {
-    if (nb_element <= 5)
-        sort_small_stack(stack_a, nb_element);
-    // else
-    //     sort_big_stack(stack_a, nb_element);
+	if (nb_element <= 5)
+		sort_small_stack(stack_a, nb_element);
+    //else
+	//	sort_big_stack(stack_a, nb_element);
 }
 
-int    main(int argc, char **argv)
-{
-    t_stack *stack_a;
-    t_stack *stack_b;
-    int i;
+// int	main(int argc, char **argv)
+// {
+// 	t_stack	*stack_a;
+// 	t_stack	*stack_b;
+// 	int		i;
 
-    stack_a = NULL;
-    i = 1;
-    if (argc >= 2)
-    {
-        if (check_correct_value(argv) != 0)
-        {
-            stack_a = malloc(sizeof(stack_a) * (argc - 1));
-            if (!stack_a)
-                return (NULL);
-            while (**argv)
-            {
-                stack_a[i] = *argv[i];
-                i++;
-            }
-            push_swap(stack_a, i);
-        }
-        else
-            ft_putstr_fd("Error\n", 1);
-    }
-    return (0);
+// 	stack_a = NULL;
+// 	i = 1;
+// 	if (argc >= 2)
+// 	{
+// 		if (check_correct_value(argv) != 0)
+// 		{
+// 			stack_a = malloc(sizeof(stack_a) * (argc - 1));
+// 			if (!stack_a)
+// 				return (0);
+// 			while (**argv)
+// 			{
+// 				stack_a[i] = *argv[i];
+// 				i++;
+// 			}
+// 			push_swap(stack_a, i);
+// 		}
+// 		else
+// 			ft_putstr_fd("Error\n", 1);
+// 	}
+// 	return (0);
+// }
+
+int	main(int argc, char *argv[])
+{
+	t_stack	*stack_a;
+	int		i;
+	int		j;
+
+	if (argc < 2)
+		return (0);
+	i = 1;
+	j = 0;
+	stack_a = NULL;
+	stack_b = NULL;
+	stack_a = malloc(sizeof(t_stack) * (argc - 1));
+	if (!stack_a)
+		return (0);
+	if (check_correct_value(argv) != 0)
+		ft_printf("%s\n", "Error");
+	while (i != argc)
+	{
+		stack_a->value[j] = *argv[i];
+		i++;
+		j++;
+	}
 }
