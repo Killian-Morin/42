@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS = push_swap.c sort_small_stack.c sort_big_stack.c
+SRCS = push_swap.c sort_small_stack.c sort_big_stack.c correct_input.c
 
 OBJS = ${SRCS:.c=.o}
 

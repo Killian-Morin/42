@@ -14,6 +14,12 @@
 #include <limits.h>
 #include <stdio.h>
 
+/*
+all functions of this file: 
+return 1 -> the input is invalid
+return 0 -> the input is valid
+*/
+
 int	ft_atoi(const char	*str)
 {
 	int	i;
@@ -39,6 +45,11 @@ int	ft_atoi(const char	*str)
 	return (res * signe);
 }
 
+/*
+compare two strings
+return the difference between the two elements that diverge
+if there is no difference (the strings are identical) it return 0
+*/
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -49,8 +60,11 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-/*should return 1 if there is a duplicate, 0 if not duplicate*/
-int	check_for_duplicate(char **argv)
+/*
+return 1 -> there is things that are not an int / the input is invalid
+return 0 -> everything is an int / the input is valid
+*/
+int	int_only(char **argv)
 {
 	int	i;
 	int	j;
@@ -58,10 +72,36 @@ int	check_for_duplicate(char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		j = 1;
-		while (argv[j])
+		j = 0;
+		while (argv[i][j])
 		{
-			if (j != i && ft_strcmp(argv[i], argv[j]) == 0)
+			if ((argv[i][j] >= '0' && argv[i][j] <= '9') ||
+			(argv[i][j] == '+' || argv[i][j] == '-'))
+				j++;
+			else
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+/*
+return 1 -> there is a duplicate in the input / the input is invalid
+return 0 -> there is no duplicate / the input is valid
+*/
+int	check_for_duplicate(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i != argc)
+	{
+		j = i + 1;
+		while (j != argc)
+		{
+			if (ft_strcmp(argv[i], argv[j]) == 0)
 				return (1);
 			j++;
 		}
@@ -69,33 +109,29 @@ int	check_for_duplicate(char **argv)
 	}
 	return (0);
 }
-/*should return 1 if the input has an error, 0 if the input is correct*/
-int	check_correct_value(char **argv)
+
+/*
+return 1 -> the input is invalid
+return 0 -> the input is valid
+*/
+int	check_correct_value(int argc, char **argv)
 {
 	int	i;
 	int	element;
 
 	i = 1;
+	if (check_for_duplicate(argc, argv) == 1)
+		return (1);
+	if (int_only(argv) == 1)
+		return (1);
 	while (*argv[i])
 	{
 		element = ft_atoi(argv[i]);
-		if (INT_MAX > element && INT_MIN < element)
-			return (0);
+		if (element < INT_MAX && element > INT_MIN)
+			i++;
 		else
 			return (1);
-		i++;
-	}
-	if (check_for_duplicate(argv) == 1)
-		return (1);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc >= 2)
-	{
-		printf("%d\n", check_correct_value(argv));
-		printf("%d\n", check_for_duplicate(argv));
+		return (0);
 	}
 	return (0);
 }

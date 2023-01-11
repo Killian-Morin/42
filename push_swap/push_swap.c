@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-void	push_swap(t_stack *stack_a, int nb_element)
+void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)
 {
 	if (nb_element <= 5)
-		sort_small_stack(stack_a, nb_element);
-    //else
-	//	sort_big_stack(stack_a, nb_element);
+		sort_small_stack(stack_a, stack_b, nb_element);
+    // else
+	// 	sort_big_stack(stack_a, nb_element);
 }
 
 // int	main(int argc, char **argv)
@@ -51,20 +51,24 @@ void	push_swap(t_stack *stack_a, int nb_element)
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 	int		i;
 	int		j;
 
 	if (argc < 2)
 		return (0);
+	if (check_correct_value(argc, argv) != 0)
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	i = 1;
 	j = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	stack_a = malloc(sizeof(t_stack) * (argc - 1));
 	if (!stack_a)
-		return (0);
-	if (check_correct_value(argv) != 0)
-		ft_printf("%s\n", "Error");
+		exit (1);
 	while (i != argc)
 	{
 		stack_a->value[j] = *argv[i];

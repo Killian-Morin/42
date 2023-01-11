@@ -12,37 +12,25 @@
 
 #include "push_swap.h"
 
-void	swap_a(t_stack *stack_a)
+void	swap(t_stack *str)
 {
 	t_stack	*temp;
 
-	if (ft_lstsize(stack_a) >= 2)
+	if (ft_lstsize(str) >= 2)
 	{
-		temp[0] = stack_a[1];
-		stack_a[1] = stack_a[0];
-		stack_a[0] = temp[0];
-	}
-}
-
-void	swap_b(t_stack *stack_b)
-{
-	t_stack	*temp;
-
-	if (ft_lstsize(stack_b) >= 2)
-	{
-		temp[0] = stack_b[1];
-		stack_b[1] = stack_b[0];
-		stack_b[0] = temp[0];
+		temp[0] = str[1];
+		str[1] = str[0];
+		str[0] = temp[0];
 	}
 }
 
 void	swap_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	swap(stack_a);
+	swap(stack_b);
 }
 
-void	push_a(t_stack *stack_a, t_stack *stack_b)
+void	push(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack	*temp;
 
@@ -52,20 +40,6 @@ void	push_a(t_stack *stack_a, t_stack *stack_b)
 	{
 		temp[0] = stack_b[0];
 		ft_lstadd_front(stack_a, temp);
-		//del stack_b[0] et monter tous ses elements de 1
-	}
-}
-
-void	push_b(t_stack *stack_a, t_stack *stack_b)
-{
-	t_stack	*temp;
-
-	if (!*stack_a)
-		break ;
-	else
-	{
-		temp[0] = stack_a[0];
-		ft_lstadd_front(stack_b, temp);
-		//del stack_a[0] et monter tous ses elements de 1
+		/*del stack_b[0] et monter tous ses elements de 1*/
 	}
 }
