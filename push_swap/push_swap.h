@@ -20,7 +20,7 @@
 
 typedef struct t_list
 {
-	int				*value;
+	int				value;
 	struct s_list	*next;
 }					t_stack;
 
@@ -40,14 +40,15 @@ int		int_only(char **argv);
 int		check_for_duplicate(int argc, char **argv);
 int		check_correct_value(int argc, char **argv);
 
-//ds action_first_part.c
-void	swap(t_stack *stack_a);
+//ds action_push.c
+
+//ds action_reverse_rotate.c
+
+//ds action_rotate.c
+
+//ds action_swap.c
+void	swap_a(t_stack *stack_a);
+void	swap_b(t_stack *stack_b);
 void	swap_ss(t_stack *stack_a, t_stack *stack_b);
-void	push(t_stack *stack_a, t_stack *stack_b);
-//ds action_second_part.c
-void	rotate(t_stack *stack_a);
-void	rotate_rr(t_stack *stack_a, t_stack *stack_b);
-void	reverse_rotate(t_stack *stack_a);
-void	reverse_rotate_rrr(t_stack *stack_a, t_stack *stack_b);
 
 #endif

@@ -22,7 +22,7 @@ void	sort_small_stack(t_stack *stack_a, t_stack *stack_b, int nb_element)
 		//ex: 2 1
 		else
 		{
-			swap(stack_a);
+			swap_a(stack_a);
 			ft_printf("%s\n", "sa");
 		}
 	}
@@ -45,7 +45,7 @@ void	sort_three_element(t_stack *stack_a)
 		//1 3 2, monter le max puis le mettre dernier
 		else
 		{
-			swap(stack_a);
+			swap_a(stack_a);
 			rotate(stack_a);
 			ft_printf("%s\n%s\n", "sa", "ra");
 		}
@@ -56,7 +56,7 @@ void	sort_three_element(t_stack *stack_a)
 		//2 1 3, le max est le der dc intervertit l'element 0 et l'element 1
 		if (stack_a[0] < stack_a[2])
 		{
-			swap(stack_a);
+			swap_a(stack_a);
 			ft_printf("%s\n", "sa");
 		}
 		//3 1 2, le max est l'element 0 dc on le met à la fin
@@ -78,7 +78,7 @@ void	sort_three_element(t_stack *stack_a)
 		//3 2 1, intervertir l'element 0 avec l'element 1 puis monter le min à la 1ere place
 		else
 		{
-			swap(stack_a);
+			swap_a(stack_a);
 			reverse_rotate(stack_a);
 			ft_printf("%s\n%s\n", "sa", "rra");
 		}
@@ -98,14 +98,14 @@ void	sort_four_element(t_stack *stack_a, t_stack *stack_b)
 	//stack_a[1] < stack_a[0] < stack_a[2]
 	else if (stack_a[0] > stack_a[1] && stack_a[0] < stack_a[2])
 	{
-		swap(stack_a);
+		swap_a(stack_a);
 		ft_printf("%s\n", "sa");
 	}
 	//stack_a[2] < stack_a[0] < stack_a[3]
 	else if (stack_a[2] < stack_a[0] && stack_a[0] stack_a[3])
 	{
 		reverse_rotate(stack_a);
-		swap(stack_a);
+		swap_a(stack_a);
 		rotate(stack_a);
 		rotate(stack_a);
 		ft_printf("%s\n%s\n%s\n%s\n", "rra", "sa", "ra", "ra");
