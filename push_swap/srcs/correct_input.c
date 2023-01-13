@@ -10,55 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <limits.h>
-#include <stdio.h>
+#include "../includes/push_swap.h"
 
 /*
 all functions of this file: 
 return 1 -> the input is invalid
 return 0 -> the input is valid
 */
-
-int	ft_atoi(const char	*str)
-{
-	int	i;
-	int	res;
-	int	signe;
-
-	i = 0;
-	res = 0;
-	signe = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			signe = signe * -1;
-		i++;
-	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		res = res * 10 + (str[i] - 48);
-		i++;
-	}
-	return (res * signe);
-}
-
-/*
-compare two strings
-return the difference between the two elements that diverge
-if there is no difference (the strings are identical) it return 0
-*/
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
 
 /*
 return 1 -> there is things that are not an int / the input is invalid

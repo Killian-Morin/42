@@ -10,7 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
+
+t_stack *fill_value_in_stack(int argc, char **argv)
+{
+    int i;
+	int	value;
+    t_stack *stack_a;
+
+	stack_a = NULL;
+    i = 1;
+	value = 0;
+    while (i != argc)
+    {
+		value = ft_atoi(argv[i]);
+		if (i == 1)
+			stack_a = add_node_with_value(value);
+		else
+			add_node_bottom(stack_a, value);
+        i++;
+    }
+    return (stack_a);
+}
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)
 {
@@ -20,59 +41,24 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)
 	// 	sort_big_stack(stack_a, nb_element);
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	t_stack	*stack_a;
-// 	t_stack	*stack_b;
-// 	int		i;
-
-// 	stack_a = NULL;
-// 	i = 1;
-// 	if (argc >= 2)
-// 	{
-// 		if (check_correct_value(argv) != 0)
-// 		{
-// 			stack_a = malloc(sizeof(stack_a) * (argc - 1));
-// 			if (!stack_a)
-// 				return (0);
-// 			while (**argv)
-// 			{
-// 				stack_a[i] = *argv[i];
-// 				i++;
-// 			}
-// 			push_swap(stack_a, i);
-// 		}
-// 		else
-// 			ft_putstr_fd("Error\n", 1);
-// 	}
-// 	return (0);
-// }
-
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		i;
-	int		j;
 
 	if (argc < 2)
 		return (0);
+	if (argc == 2)
+		ft_putstr(argv[1]);
 	if (check_correct_value(argc, argv) != 0)
 	{
 		write(2, "Error\n", 6);
 		exit(1);
 	}
-	i = 1;
-	j = 0;
-	stack_a = NULL;
+	stack_a = fill_value_in_stack(argc, argv);
 	stack_b = NULL;
-	stack_a = malloc(sizeof(t_stack) * (argc - 1));
-	if (!stack_a)
-		exit (1);
-	while (i != argc)
-	{
-		stack_a->value[j] = *argv[i];
-		i++;
-		j++;
-	}
+	push_swap(stack_a, stack_b, (argc - 1));
+	// free(&stack_a);
+	// free(&stack_b);
+	return (0);
 }

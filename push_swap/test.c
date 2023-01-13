@@ -1,13 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-/*main pour tester correct input*/
-int	main(int argc, char **argv)
+#include <unistd.h>
+/*
+ancien push
+void	push_a(t_stack *stack_a, t_stack *stack_b)
 {
-	if (argc >= 2)
-	{
-		printf("%d\n", check_correct_value(argv));
-		printf("%d\n", check_for_duplicate(argv));
-	}
-	return (0);
+	t_stack	*new_node;
+	t_stack	*head;
+
+	if (!stack_b)
+		return ;
+	new_node = NULL;
+	head = find_first_node(stack_a);
+	new_node->data = stack_b->data;
+	new_node->next = head;
+	head = new_node;
 }
+
+*/

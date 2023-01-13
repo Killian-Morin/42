@@ -10,22 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /*
-s1 est la stack dt le 1er node est deplace vers s2 / le head doit changer pour pointer vers l'ancien 2nd node
-s2 est la stack qui recoit le node deplace / le head doit etre update pour pointer vers le new_node, faire les autres changements qui s'impose
+Prend le premier élément au sommet de b et le met sur a.
+Ne fait rien si b est vide.
 */
-void	push(t_stack *stack_deplace, t_stack *stack_recevant)
+void	push_a(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!*stack_deplace)
-		break ;
-	else
-	{
-		/*
-		del/free stack_recevant[0];
-		copie le 1er node de la stack_deplace et le mettre en 1ere position sur la stack_recevant
-		del stack_b[0] et monter tous ses elements de 1
-		*/
-	}
+	t_stack	*new_node;
+
+	if (!stack_a)
+		return ;
+	new_node = stack_b->next;
+	stack_b->next = stack_a;
+	stack_a = stack_b;
+	stack_b = new_node;
+	new_node = NULL;
+}
+
+/*
+Prend le premier élément au sommet de a et le met sur b.
+Ne fait rien si a est vide.
+*/
+void	push_b(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*new_node;
+
+	if (!stack_a)
+		return ;
+	new_node = stack_a->next;
+	stack_a->next = stack_b;
+	stack_b = stack_a;
+	stack_a = new_node;
+	new_node = NULL;
 }

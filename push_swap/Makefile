@@ -1,30 +1,32 @@
 NAME = push_swap
 
-SRCS = push_swap.c sort_small_stack.c sort_big_stack.c correct_input.c
+SRC_PATH = ./srcs/
+SRC = push_swap.c action_push.c action_reverse_rotate.c action_rotate.c action_swap.c correct_input.c sort_small_stack.c stack_manipulation.c utils.c
+SRCS = ${addprefix ${SRCS_PATH}, ${SRC}}
 
-OBJS = ${SRCS:.c=.o}
-
-HEADER = push_swap.h
-
-MAKE = make -C printf
+OBJ_PATH = ./objs/
+OBJ = ${SRC:.c=.o}
+OBJS = ${addprefix ${OBJ_PATH}, ${OBJ}}
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-RM = rm -f
+RM = rm -rf
 
-.c.o: ${OBJS}
-	${CC} ${CFLAGS} -c -I ${HEADER} $< -o ${<:.c=.o}
+all: ${OBJ_PATH} ${NAME}
 
-all: ${OBJS}
-	${MAKE}
-	${CC} ${CFLAGS} ${OBJS} ${HEADER} && ./${NAME}
+${OBJ_PATH}:
+	mkdir ${OBJ_PATH}
+
+${OBJ_PATH}%.o: ${SRC_PATH}%.c
+	${CC} ${CFLAGS} -c $< -o $@ -I ./includes/
+
+${NAME}: ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 clean:
-	${MAKE} clean
-	${RM} ${OBJS}
+	${RM} ${OBJ_PATH}
 
 fclean: clean
-	${MAKE} fclean
 	${RM} ${NAME}
 
 re: fclean all

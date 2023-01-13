@@ -10,25 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void	rotate(t_stack *str)
+/*
+Décale d’une position vers le haut tous les élements de la pile a.
+Le premier élément devient le dernier.
+*/
+void	rotate_a(t_stack *stack_a)
 {
-	t_stack	*temp;
-	int		i;
+	int	temp;
 
-	temp[0] = str[0];
-	i = 1;
-	while (i != ft_lstsize(str))
+	temp = stack_a->data;
+	while (stack_a->next != NULL)
 	{
-		str[i - 1] = str[i];
-		i++;
+		stack_a->data = stack_a->next->data;
+		stack_a = stack_a->next;
 	}
-	str[i] = temp[0];
+	stack_a->data = temp;
 }
 
-void	rotate_rr(t_stack *stack_a, t_stack *stack_b)
+/*
+Décale d’une position vers le haut tous les élements de la pile b.
+Le premier élément devient le dernier.
+*/
+void	rotate_b(t_stack *stack_b)
 {
-	rotate(stack_a);
-	rotate(stack_b);
+	int	temp;
+
+	temp = stack_b->data;
+	while (stack_b->next != NULL)
+	{
+		stack_b->data = stack_b->next->data;
+		stack_b = stack_b->next;
+	}
+	stack_b->data = temp;
+}
+
+/*
+ra et rb en même temps
+*/
+void	rotate_r(t_stack *stack_a, t_stack *stack_b)
+{
+	rotate_a(stack_a);
+	rotate_b(stack_b);
 }

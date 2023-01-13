@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 10:07:55 by kmorin            #+#    #+#             */
-/*   Updated: 2022/11/07 09:44:37 by kmorin           ###   ########.fr       */
+/*   Created: 2023/01/09 11:17:00 by kmorin            #+#    #+#             */
+/*   Updated: 2023/01/09 11:17:10 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
+
+void    ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
+void    ft_putstr(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        ft_putchar(str[i]);
+        i++;
+    }
+}
 
 int	ft_atoi(const char	*str)
 {
@@ -35,4 +52,19 @@ int	ft_atoi(const char	*str)
 		i++;
 	}
 	return (res * signe);
+}
+
+/*
+compare two strings
+return the difference between the two elements that diverge
+if there is no difference (the strings are identical) it return 0
+*/
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

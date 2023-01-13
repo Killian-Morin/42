@@ -10,26 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void	reverse_rotate(t_stack *str)
+/*
+Décale d’une position vers le bas tous les élements de
+la pile a. Le dernier élément devient le premier.
+*/
+void	reverse_rotate_a(t_stack *stack_a)
 {
-	t_stack	*temp;
-	int		i;
-	int		j;
+	int	data_last;
 
-	i = ft_lstsize(str);
-	temp[0] = str[i];
-	while (i != 0)
+	data_last = last_node_data(stack_a);
+	while (stack_a->next != NULL)
 	{
-		str[i - 1] = str[i];
-		i--;
+		stack_a->next->data = stack_a->data;
+		stack_a = stack_a->next;
 	}
-	str[0] = temp[0];
 }
 
-void	reverse_rotate_rrr(t_stack *stack_a, t_stack *stack_b)
+/*
+Décale d’une position vers le bas tous les élements de
+la pile b. Le dernier élément devient le premier.
+*/
+void	reverse_rotate_b(t_stack *stack_b)
 {
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
+	int	data_last;
+
+	data_last = last_node_data(stack_b);
+	while (stack_b->next != NULL)
+	{
+		stack_b->next->data = stack_b->data;
+		stack_b = stack_b->next;
+	}
+}
+
+/*
+rra et rrb en même temps
+*/
+void	reverse_rotate_r(t_stack *stack_a, t_stack *stack_b)
+{
+	reverse_rotate_a(stack_a);
+	reverse_rotate_b(stack_b);
 }
