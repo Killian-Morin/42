@@ -12,25 +12,25 @@
 
 #include "../includes/push_swap.h"
 
-t_stack *fill_value_in_stack(int argc, char **argv)
+t_stack	*fill_value_in_stack(int argc, char **argv)
 {
-    int i;
+	int	i;
 	int	value;
-    t_stack *stack_a;
+	t_stack	*stack_a;
 
 	stack_a = NULL;
-    i = 1;
+	i = 1;
 	value = 0;
-    while (i != argc)
-    {
+	while (i != argc)
+	{
 		value = ft_atoi(argv[i]);
 		if (i == 1)
 			stack_a = add_node_with_value(value);
 		else
 			add_node_bottom(stack_a, value);
-        i++;
-    }
-    return (stack_a);
+		i++;
+	}
+	return (stack_a);
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)

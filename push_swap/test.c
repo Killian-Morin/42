@@ -17,4 +17,10 @@ void	push_a(t_stack *stack_a, t_stack *stack_b)
 	head = new_node;
 }
 
+autre ancien push
+new_node = stack_a->next;
+stack_a->next = stack_b;
+stack_b = stack_a;
+stack_a = new_node;
+new_node = NULL;
 */

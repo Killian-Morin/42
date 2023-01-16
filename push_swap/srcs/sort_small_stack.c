@@ -32,7 +32,8 @@ void	sort_small_stack(t_stack *stack_a, t_stack *stack_b, int nb_element)
 
 void	sort_three_element(t_stack *stack_a)
 {
-	if (stack_a->data < stack_a->next->data && stack_a->data < stack_a->next->next->data)
+	if (stack_a->data < stack_a->next->data
+		&& stack_a->data < stack_a->next->next->data)
 	{
 		if (stack_a->next->data < stack_a->next->next->data)
 			ft_putstr("\n");
@@ -43,7 +44,8 @@ void	sort_three_element(t_stack *stack_a)
 			ft_putstr("sa\nra\n");
 		}
 	}
-	else if (stack_a->data > stack_a->next->data && stack_a->next->data < stack_a->next->next->data)
+	else if (stack_a->data > stack_a->next->data
+		&& stack_a->next->data < stack_a->next->next->data)
 	{
 		if (stack_a->data < stack_a->next->next->data)
 		{
@@ -56,7 +58,8 @@ void	sort_three_element(t_stack *stack_a)
 			ft_putstr("ra\n");
 		}
 	}
-	else if (stack_a->data > stack_a->next->next->data && stack_a->next->data > stack_a->next->next->data)
+	else if (stack_a->data > stack_a->next->next->data
+		&& stack_a->next->data > stack_a->next->next->data)
 	{
 		if (stack_a->data < stack_a->next->data)
 		{
@@ -74,21 +77,25 @@ void	sort_three_element(t_stack *stack_a)
 
 void	sort_four_element(t_stack *stack_a, t_stack *stack_b)
 {
-	push_b(stack_a, stack_b);
+	//qd il arrive ici stack_b est NULL
+	push_b(stack_b, stack_a);
 	ft_putstr("pb\n");
 	sort_three_element(stack_a);
-	push_a(stack_b, stack_a);
+	ft_putstr("test\n");
+	push_a(stack_a, stack_b);
 	ft_putstr("pa\n");
 	if (stack_a->data < stack_a->next->data)
 		ft_putstr("\n");
 	//stack_a[1] < stack_a[0] < stack_a[2]
-	else if (stack_a->data > stack_a->next->data && stack_a->data < stack_a->next->next->data)
+	else if (stack_a->data > stack_a->next->data
+		&& stack_a->data < stack_a->next->next->data)
 	{
 		swap_a(stack_a);
 		ft_putstr("sa\n");
 	}
 	//stack_a[2] < stack_a[0] < stack_a[3]
-	else if (stack_a->next->next->data < stack_a->data && stack_a->data > stack_a->next->next->next->data)
+	else if (stack_a->next->next->data < stack_a->data
+		&& stack_a->data > stack_a->next->next->next->data)
 	{
 		reverse_rotate_a(stack_a);
 		swap_a(stack_a);
