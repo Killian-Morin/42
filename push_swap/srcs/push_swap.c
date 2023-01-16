@@ -12,10 +12,21 @@
 
 #include "../includes/push_swap.h"
 
+int	stack_is_sorted(t_stack *stack)
+{
+	while (stack->next != NULL)
+	{
+		if (stack->data > stack->next->data)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
 t_stack	*fill_value_in_stack(int argc, char **argv)
 {
-	int	i;
-	int	value;
+	int		i;
+	int		value;
 	t_stack	*stack_a;
 
 	stack_a = NULL;
@@ -35,7 +46,9 @@ t_stack	*fill_value_in_stack(int argc, char **argv)
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)
 {
-	if (nb_element <= 5)
+	if (stack_is_sorted(stack_a) == 1 && nb_element == 2)
+		swap_a(stack_a);
+	else if (nb_element > 2 && nb_element <= 5 && stack_is_sorted(stack_a) == 1)
 		sort_small_stack(stack_a, stack_b, nb_element);
     // else
 	// 	sort_big_stack(stack_a, nb_element);
@@ -49,11 +62,11 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
-		ft_putstr(argv[1]);
+		exit (EXIT_FAILURE);
 	if (check_correct_value(argc, argv) != 0)
 	{
 		write(2, "Error\n", 6);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	stack_a = fill_value_in_stack(argc, argv);
 	stack_b = NULL;

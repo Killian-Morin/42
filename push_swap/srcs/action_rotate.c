@@ -27,6 +27,7 @@ void	rotate_a(t_stack *stack_a)
 		stack_a = stack_a->next;
 	}
 	stack_a->data = temp;
+	ft_putstr("ra\n");
 }
 
 /*
@@ -44,6 +45,7 @@ void	rotate_b(t_stack *stack_b)
 		stack_b = stack_b->next;
 	}
 	stack_b->data = temp;
+	ft_putstr("rb\n");
 }
 
 /*

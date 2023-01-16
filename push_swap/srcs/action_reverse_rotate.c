@@ -27,6 +27,7 @@ void	reverse_rotate_a(t_stack *stack_a)
 		stack_a = stack_a->next;
 	}
 	stack_a->data = data_last;
+	ft_putstr("rra\n");
 }
 
 /*
@@ -44,6 +45,7 @@ void	reverse_rotate_b(t_stack *stack_b)
 		stack_b = stack_b->next;
 	}
 	stack_b->data = data_last;
+	ft_putstr("rrb\n");
 }
 
 /*

@@ -71,25 +71,25 @@ int	check_for_duplicate(int argc, char **argv)
 /*
 return 1 -> the input is invalid
 return 0 -> the input is valid
+la var element est en long int pour prendre le retour de ft_atoi
+afin de gerer correctement les int min & max
 */
 int	check_correct_value(int argc, char **argv)
 {
-	int	i;
-	int	element;
+	int			i;
+	long int	element;
 
 	i = 1;
 	if (check_for_duplicate(argc, argv) == 1)
 		return (1);
 	if (int_only(argv) == 1)
 		return (1);
-	while (*argv[i])
+	while (argv[i])
 	{
 		element = ft_atoi(argv[i]);
-		if (element < INT_MAX && element > INT_MIN)
-			i++;
-		else
+		if (element > INT_MAX || element < INT_MIN)
 			return (1);
-		return (0);
+		i++;
 	}
 	return (0);
 }

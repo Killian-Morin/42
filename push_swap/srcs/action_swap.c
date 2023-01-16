@@ -14,6 +14,7 @@
 /*
 Intervertit les 2 premiers éléments au sommet de la pile a.
 Ne fait rien s’il n’y en a qu’un ou aucun.
+ne sais pas si dois free le temp à la fin (pour le moment enleve)
 */
 void	swap_a(t_stack *stack_a)
 {
@@ -24,12 +25,13 @@ void	swap_a(t_stack *stack_a)
 	temp = stack_a->data;
 	stack_a->data = stack_a->next->data;
 	stack_a->next->data = temp;
-	// free(temp);
+	ft_putstr("sa\n");
 }
 
 /*
 Intervertit les 2 premiers éléments au sommet de la pile b.
 Ne fait rien s’il n’y en a qu’un ou aucun.
+ne sais pas si dois free le temp à la fin (pour le moment enleve)
 */
 void	swap_b(t_stack *stack_b)
 {
@@ -40,7 +42,7 @@ void	swap_b(t_stack *stack_b)
 	temp = stack_b->data;
 	stack_b->data = stack_b->next->data;
 	stack_b->next->data = temp;
-	// free(temp);
+	ft_putstr("sb\n");
 }
 
 /*

@@ -29,17 +29,18 @@ void	ft_putstr(char *str)
 	}
 }
 
-int	ft_atoi(const char	*str)
+/*
+passe le type de retour en long int pour qu'il puisse gerer les int min & int max
+*/
+long int	ft_atoi(char *str)
 {
-	int	i;
-	int	res;
-	int	signe;
+	int			i;
+	int			signe;
+	long int	res;
 
 	i = 0;
 	res = 0;
 	signe = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')

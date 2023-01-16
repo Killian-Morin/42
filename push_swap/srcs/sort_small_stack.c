@@ -14,20 +14,12 @@
 
 void	sort_small_stack(t_stack *stack_a, t_stack *stack_b, int nb_element)
 {
-	if (nb_element == 2)
-	{
-		if (stack_a->data < stack_a->next->data)
-			ft_putstr("\n");
-		else
-		{
-			swap_a(stack_a);
-			ft_putstr("sa\n");
-		}
-	}
 	if (nb_element == 3)
 		sort_three_element(stack_a);
 	if (nb_element == 4)
 		sort_four_element(stack_a, stack_b);
+	if (nb_element == 5)
+		sort_five_element(stack_a, stack_b);
 }
 
 void	sort_three_element(t_stack *stack_a)
@@ -36,77 +28,72 @@ void	sort_three_element(t_stack *stack_a)
 		&& stack_a->data < stack_a->next->next->data)
 	{
 		if (stack_a->next->data < stack_a->next->next->data)
-			ft_putstr("\n");
-		else
-		{
-			swap_a(stack_a);
-			rotate_a(stack_a);
-			ft_putstr("sa\nra\n");
-		}
+			return ;
+		swap_a(stack_a);
+		rotate_a(stack_a);
 	}
 	else if (stack_a->data > stack_a->next->data
 		&& stack_a->next->data < stack_a->next->next->data)
 	{
 		if (stack_a->data < stack_a->next->next->data)
-		{
 			swap_a(stack_a);
-			ft_putstr("sa\n");
-		}
-		else
-		{
-			rotate_a(stack_a);
-			ft_putstr("ra\n");
-		}
+		rotate_a(stack_a);
 	}
 	else if (stack_a->data > stack_a->next->next->data
 		&& stack_a->next->data > stack_a->next->next->data)
 	{
 		if (stack_a->data < stack_a->next->data)
-		{
 			reverse_rotate_a(stack_a);
-			ft_putstr("rra\n");
-		}
-		else
-		{
-			swap_a(stack_a);
-			reverse_rotate_a(stack_a);
-			ft_putstr("sa\nrra\n");
-		}
+		swap_a(stack_a);
+		reverse_rotate_a(stack_a);
 	}
 }
 
 void	sort_four_element(t_stack *stack_a, t_stack *stack_b)
 {
-	//qd il arrive ici stack_b est NULL
-	push_b(stack_b, stack_a);
-	ft_putstr("pb\n");
+	push_b(&stack_b, &stack_a);
 	sort_three_element(stack_a);
-	ft_putstr("test\n");
-	push_a(stack_a, stack_b);
-	ft_putstr("pa\n");
-	if (stack_a->data < stack_a->next->data)
-		ft_putstr("\n");
-	//stack_a[1] < stack_a[0] < stack_a[2]
-	else if (stack_a->data > stack_a->next->data
-		&& stack_a->data < stack_a->next->next->data)
-	{
+	push_a(&stack_a, &stack_b);
+	if (stack_a->data < stack_a->next->next->data)
 		swap_a(stack_a);
-		ft_putstr("sa\n");
-	}
-	//stack_a[2] < stack_a[0] < stack_a[3]
-	else if (stack_a->next->next->data < stack_a->data
-		&& stack_a->data > stack_a->next->next->next->data)
+	else if (stack_a->data < stack_a->next->next->next->data)
 	{
 		reverse_rotate_a(stack_a);
 		swap_a(stack_a);
 		rotate_a(stack_a);
 		rotate_a(stack_a);
-		ft_putstr("rra\nsa\nra\nra\n");
 	}
-	//stack_a[3] < stack_a[0]
-	else if (stack_a->next->next->next->data < stack_a->data)
-	{
+	else if (stack_a->data > stack_a->next->next->next->data)
 		rotate_a(stack_a);
-		ft_putstr("ra\n");
+	else if (stack_a->data < stack_a->next->data)
+		return ;
+}
+
+void	sort_five_element(t_stack *stack_a, t_stack *stack_b)
+{
+	push_b(&stack_b, &stack_a);
+	sort_four_element(stack_a, stack_b);
+	push_a(&stack_a, &stack_b);
+	if (stack_a->data < stack_a->next->data)
+		return ;
+	else if (stack_a->data < stack_a->next->next->data)
+		swap_a(stack_a);
+	else if (stack_a->data < stack_a->next->next->next->data)
+	{
+		reverse_rotate_a(stack_a);
+		swap_a(stack_a);
+		reverse_rotate_a(stack_a);
+		swap_a(stack_a);
+		reverse_rotate_a(stack_a);
+		reverse_rotate_a(stack_a);
 	}
+	else if (stack_a->data < stack_a->next->next->next->next->data)
+	{
+		reverse_rotate_a(stack_a);
+		swap_a(stack_a);
+		rotate_a(stack_a);
+		rotate_a(stack_a);
+	}
+	else if (stack_a->data > stack_a->next->next->next->next->data)
+		rotate_a(stack_a);
 }
