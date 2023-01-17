@@ -16,17 +16,21 @@
 Décale d’une position vers le haut tous les élements de la pile a.
 Le premier élément devient le dernier.
 */
-void	rotate_a(t_stack *stack_a)
+void	rotate_a(t_stack **stack_a)
 {
-	int	temp;
+	t_stack *first_node;
+	t_stack *last_node;
 
-	temp = stack_a->data;
-	while (stack_a->next != NULL)
+	first_node = (*stack_a);
+	last_node = (*stack_a);
+
+	while (last_node->next != NULL)
 	{
-		stack_a->data = stack_a->next->data;
-		stack_a = stack_a->next;
+		last_node = last_node->next;
 	}
-	stack_a->data = temp;
+	(*stack_a) = first_node->next;
+	first_node->next = NULL;
+	last_node->next = first_node;
 	ft_putstr("ra\n");
 }
 
@@ -34,24 +38,23 @@ void	rotate_a(t_stack *stack_a)
 Décale d’une position vers le haut tous les élements de la pile b.
 Le premier élément devient le dernier.
 */
-void	rotate_b(t_stack *stack_b)
+void	rotate_b(t_stack **stack_b)
 {
-	int	temp;
+	t_stack	*temp;
+	t_stack *last_node;
 
-	temp = stack_b->data;
-	while (stack_b->next != NULL)
-	{
-		stack_b->data = stack_b->next->data;
-		stack_b = stack_b->next;
-	}
-	stack_b->data = temp;
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	last_node = find_last_node(*stack_b);
+	temp->next = NULL;
+	last_node->next = temp;
 	ft_putstr("rb\n");
 }
 
 /*
 ra et rb en même temps
 */
-void	rotate_r(t_stack *stack_a, t_stack *stack_b)
+void	rotate_r(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate_a(stack_a);
 	rotate_b(stack_b);

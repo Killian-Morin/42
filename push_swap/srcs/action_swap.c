@@ -48,8 +48,8 @@ void	swap_b(t_stack *stack_b)
 /*
 sa et sb en même temps
 */
-void	swap_ss(t_stack *stack_a, t_stack *stack_b)
+void	swap_ss(t_stack **stack_a, t_stack **stack_b)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	swap_a(*stack_a);
+	swap_b(*stack_b);
 }

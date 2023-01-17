@@ -9,3 +9,11 @@
 /*   Updated: 2023/01/09 11:17:10 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/push_swap.h"
+#include <stdio.h>
+
+void    sort_big_stack(int nb_element)
+{
+    printf("en travail :) %d elements\n", nb_element);
+}

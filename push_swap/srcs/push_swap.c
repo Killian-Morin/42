@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdio.h>
 
 int	stack_is_sorted(t_stack *stack)
 {
@@ -25,9 +26,9 @@ int	stack_is_sorted(t_stack *stack)
 
 t_stack	*fill_value_in_stack(int argc, char **argv)
 {
-	int		i;
-	int		value;
-	t_stack	*stack_a;
+	int			i;
+	long int	value;
+	t_stack		*stack_a;
 
 	stack_a = NULL;
 	i = 1;
@@ -36,7 +37,7 @@ t_stack	*fill_value_in_stack(int argc, char **argv)
 	{
 		value = ft_atoi(argv[i]);
 		if (i == 1)
-			stack_a = add_node_with_value(value);
+			stack_a = add_first_node((int)value);
 		else
 			add_node_bottom(stack_a, value);
 		i++;
@@ -46,12 +47,12 @@ t_stack	*fill_value_in_stack(int argc, char **argv)
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)
 {
-	if (stack_is_sorted(stack_a) == 1 && nb_element == 2)
+	if (nb_element == 2 && stack_is_sorted(stack_a) == 1)
 		swap_a(stack_a);
 	else if (nb_element > 2 && nb_element <= 5 && stack_is_sorted(stack_a) == 1)
 		sort_small_stack(stack_a, stack_b, nb_element);
-    // else
-	// 	sort_big_stack(stack_a, nb_element);
+    else
+		sort_big_stack(nb_element);
 }
 
 int	main(int argc, char *argv[])

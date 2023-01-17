@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-t_stack	*add_node_with_value(int value)
+t_stack	*add_first_node(int value)
 {
 	t_stack	*new_node;
 	t_stack	*head;
@@ -43,14 +43,14 @@ void	add_node_bottom(t_stack *stack, int value)
 
 t_stack	*find_last_node(t_stack *stack)
 {
-	while (stack->next != NULL)
+	while (stack && stack->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
 
-int	last_node_data(t_stack *stack)
+t_stack	*find_previous_last_node(t_stack *stack)
 {
-	while (stack->next != NULL)
+	while (stack && stack->next && stack->next->next != NULL)
 		stack = stack->next;
-	return (stack->data);
+	return (stack);
 }
