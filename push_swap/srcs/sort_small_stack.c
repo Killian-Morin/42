@@ -55,14 +55,15 @@ void	sort_three_element(t_stack *stack_a)
 			reverse_rotate_a(&stack_a);
 		}
 	}
+	printf("les element apres le tri a trois %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data);
 }
 
 void	sort_four_element(t_stack *stack_a, t_stack *stack_b)
 {
 	push_b(&stack_b, &stack_a);
-	printf("les arg avant le tri a trois %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data);
+	printf("les element avant le tri a trois %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data);
 	sort_three_element(stack_a);
-	printf("les arg apres le tri a trois %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data);
+	printf("les element apres le tri a trois %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data);
 	push_a(&stack_a, &stack_b);
 	if (stack_a->data < stack_a->next->data)
 		return ;
@@ -81,11 +82,11 @@ void	sort_four_element(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_five_element(t_stack *stack_a, t_stack *stack_b)
 {
-	printf("les arg avant le premier push %d %d %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data, stack_a->next->next->next->data, stack_a->next->next->next->next->data);
+	// printf("les element avant le premier push %d %d %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data, stack_a->next->next->next->data, stack_a->next->next->next->next->data);
 	push_b(&stack_b, &stack_a);
 	sort_four_element(stack_a, stack_b);
 	push_a(&stack_a, &stack_b);
-	// printf("les arg apres le tri %d %d %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data, stack_a->next->next->next->data, stack_a->next->next->next->next->data);
+	// printf("les element apres le tri %d %d %d %d %d \n", stack_a->data, stack_a->next->data, stack_a->next->next->data, stack_a->next->next->next->data, stack_a->next->next->next->next->data);
 	if (stack_a->data < stack_a->next->data)
 		return ;
 	else if (stack_a->data < stack_a->next->next->data)

@@ -11,45 +11,41 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 /*
-Intervertit les 2 premiers éléments au sommet de la pile a.
+Intervertit les 2 premiers éléments au sommet de la stack passe en arg.
 Ne fait rien s’il n’y en a qu’un ou aucun.
 ne sais pas si dois free le temp à la fin (pour le moment enleve)
 */
-void	swap_a(t_stack *stack_a)
+static void	swap(t_stack *stack)
 {
 	int	temp;
 
-	if (stack_a == NULL || stack_a->next == NULL)
+	if (stack == NULL || stack->next == NULL)
 		return ;
-	temp = stack_a->data;
-	stack_a->data = stack_a->next->data;
-	stack_a->next->data = temp;
+	temp = stack->data;
+	stack->data = stack->next->data;
+	stack->next->data = temp;
+}
+
+void	swap_a(t_stack *stack_a)
+{
+	swap(stack_a);
 	ft_putstr("sa\n");
 }
 
-/*
-Intervertit les 2 premiers éléments au sommet de la pile b.
-Ne fait rien s’il n’y en a qu’un ou aucun.
-ne sais pas si dois free le temp à la fin (pour le moment enleve)
-*/
 void	swap_b(t_stack *stack_b)
 {
-	int	temp;
-
-	if (stack_b == NULL || stack_b->next == NULL)
-		return ;
-	temp = stack_b->data;
-	stack_b->data = stack_b->next->data;
-	stack_b->next->data = temp;
+	swap(stack_b);
 	ft_putstr("sb\n");
 }
 
 /*
 sa et sb en même temps
 */
-void	swap_ss(t_stack **stack_a, t_stack **stack_b)
+void	swap_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	swap_a(*stack_a);
-	swap_b(*stack_b);
+	swap(stack_a);
+	swap(stack_b);
+	ft_putstr("ss\n");
 }

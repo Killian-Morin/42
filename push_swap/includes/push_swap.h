@@ -59,14 +59,14 @@ void	reverse_rotate_b(t_stack **stack_b);
 void	reverse_rotate_r(t_stack *stack_a, t_stack *stack_b);
 
 /* action_rotate.c */
-void	rotate_a(t_stack **stack_a);
-void	rotate_b(t_stack **stack_b);
+void	rotate_a(t_stack **stack);
+void	rotate_b(t_stack **stack);
 void	rotate_r(t_stack **stack_a, t_stack **stack_b);
 
 /* action_swap.c */
 void	swap_a(t_stack *stack_a);
 void	swap_b(t_stack *stack_b);
-void	swap_ss(t_stack **stack_a, t_stack **stack_b);
+void	swap_ss(t_stack *stack_a, t_stack *stack_b);
 
 /* utils.c */
 void	ft_putchar(char c);

@@ -11,47 +11,37 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
-// Décale d’une position vers le bas tous les élements de
-// la pile a. Le dernier élément devient le premier.
+/*
+Décale d’une position vers le bas tous les élements de la stack passe en arg.
+Le dernier élément devient le premier.
+*/
+static void	reverse_rotate(t_stack **stack)
+{
+	t_stack	*last_node;
+	t_stack	*previous_last_node;
+
+	last_node = (*stack);
+	previous_last_node = NULL;
+	while (last_node->next != NULL)
+	{
+		previous_last_node = last_node;
+		last_node = last_node->next;
+	}
+	previous_last_node->next = NULL;
+	last_node->next = (*stack);
+	(*stack) = last_node;
+}
 
 void	reverse_rotate_a(t_stack **stack_a)
 {
-	t_stack	*last_node;
-	t_stack	*previous_last_node;
-
-	last_node = (*stack_a);
-	previous_last_node = NULL;
-	while (last_node->next != NULL)
-	{
-		previous_last_node = last_node;
-		last_node = last_node->next;
-	}
-	previous_last_node->next = NULL;
-	last_node->next = (*stack_a);
-	(*stack_a) = last_node;
+	reverse_rotate(stack_a);
 	ft_putstr("rra\n");
 }
 
-// Décale d’une position vers le bas tous les élements de
-// la pile b. Le dernier élément devient le premier.
-
 void	reverse_rotate_b(t_stack **stack_b)
 {
-	t_stack	*last_node;
-	t_stack	*previous_last_node;
-
-	last_node = (*stack_b);
-	previous_last_node = NULL;
-	while (last_node->next != NULL)
-	{
-		previous_last_node = last_node;
-		last_node = last_node->next;
-	}
-	previous_last_node->next = NULL;
-	last_node->next = (*stack_b);
-	(*stack_b) = last_node;
+	reverse_rotate(stack_b);
 	ft_putstr("rrb\n");
 }
 
@@ -60,6 +50,7 @@ rra et rrb en même temps
 */
 void	reverse_rotate_r(t_stack *stack_a, t_stack *stack_b)
 {
-	reverse_rotate_a(&stack_a);
-	reverse_rotate_b(&stack_b);
+	reverse_rotate(&stack_a);
+	reverse_rotate(&stack_b);
+	ft_putstr("rrr\n");
 }
