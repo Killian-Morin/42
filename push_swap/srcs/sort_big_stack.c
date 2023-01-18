@@ -11,9 +11,13 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
-void    sort_big_stack(int nb_element)
+void	sort_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_element)
 {
-    printf("en travail :) %d elements\n", nb_element);
+	printf("en travail :) %d elements\n", nb_element);
+	while ((*stack_a)->next != NULL)
+	{
+		printf("stack_a : %d\n", (*stack_a)->data);
+		(*stack_a) = (*stack_a)->next;
+	}
 }

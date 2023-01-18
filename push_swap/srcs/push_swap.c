@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 int	stack_is_sorted(t_stack *stack)
 {
@@ -45,14 +44,16 @@ t_stack	*fill_value_in_stack(int argc, char **argv)
 	return (stack_a);
 }
 
-void	push_swap(t_stack *stack_a, t_stack *stack_b, int nb_element)
+void	push_swap(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 {
-	if (nb_element == 2 && stack_is_sorted(stack_a) == 1)
-		swap_a(stack_a);
-	else if (nb_element > 2 && nb_element <= 5 && stack_is_sorted(stack_a) == 1)
-		sort_small_stack(stack_a, stack_b, nb_element);
-    else
-		sort_big_stack(nb_element);
+	if (stack_is_sorted(*stack_a) == 0)
+		return ;
+	else if (nb_elem == 2)
+		swap_a(*stack_a);
+	else if (nb_elem > 2 && nb_elem <= 5)
+		sort_small_stack(stack_a, stack_b, nb_elem);
+	else
+		sort_big_stack(stack_a, stack_b, nb_elem);
 }
 
 int	main(int argc, char *argv[])
@@ -71,7 +72,7 @@ int	main(int argc, char *argv[])
 	}
 	stack_a = fill_value_in_stack(argc, argv);
 	stack_b = NULL;
-	push_swap(stack_a, stack_b, (argc - 1));
+	push_swap(&stack_a, &stack_b, (argc - 1));
 	// free(&stack_a);
 	// free(&stack_b);
 	return (0);

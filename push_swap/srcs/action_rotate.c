@@ -19,7 +19,7 @@ Le premier élément devient le dernier.
 static void	rotate(t_stack **stack)
 {
 	t_stack	*temp;
-	t_stack *last_node;
+	t_stack	*last_node;
 
 	temp = *stack;
 	*stack = (*stack)->next;
