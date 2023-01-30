@@ -1,7 +1,7 @@
 NAME = push_swap
 
 SRC_PATH = ./srcs/
-SRC = push_swap.c action_push.c action_reverse_rotate.c action_rotate.c action_swap.c correct_input.c sort_small_stack.c sort_big_stack.c stack_manipulation.c utils.c
+SRC = push_swap.c action_push.c action_reverse_rotate.c action_rotate.c action_swap.c correct_input.c sort_small_stack.c sort_big_stack.c stack_manipulation.c utils.c sort.c
 SRCS = ${addprefix ${SRCS_PATH}, ${SRC}}
 
 OBJ_PATH = ./objs/

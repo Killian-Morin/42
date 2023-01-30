@@ -12,13 +12,13 @@
 
 #include "../includes/push_swap.h"
 
-void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int nb_element)
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 {
-	if (nb_element == 3)
+	if (nb_elem == 3)
 		sort_three_element(stack_a);
-	if (nb_element == 4)
+	if (nb_elem == 4)
 		sort_four_element(stack_a, stack_b);
-	if (nb_element == 5)
+	if (nb_elem == 5)
 		sort_five_element(stack_a, stack_b);
 }
 
