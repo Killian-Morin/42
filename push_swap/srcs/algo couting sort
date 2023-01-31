@@ -1,0 +1,61 @@
+/* tentative implementation algo counting sort */
+
+/* adaptation de celui de geeksforgeeks */
+void    counting_sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
+{
+    t_stack **root;
+    int min;
+    int max;
+    int counts[];
+    int i;
+
+    min = find_min(stack_a);
+    max = find_max(stack_a);
+    root = stack_a;
+    counts = malloc(sizeof(int) * (max - min + 1))
+    while (root != NULL)
+    {
+        counts[root->data] += 1;
+        root = root->next;
+    }
+    i = 0;
+    while (ptr != NULL)
+    {
+        if (counts[i] == 0)
+            ++i;
+        else
+        {
+            root->data = i;
+            --counts[i];
+            root = root->next;
+        }
+    }
+}
+
+int find_min(t_stack **stack_a)
+{
+    int res;
+
+    res = (*stack_a)->data;
+    while ((*stack_a)->next != NULL)
+    {
+        if ((*stack_a)->data < res)
+            res = (*stack_a)->data;
+        (*stack_a) = (*stack_a)->next;
+    }
+    return (res);
+}
+
+int find_max(t_stack **stack_a)
+{
+    int res;
+
+    res = 0;
+    while ((*stack_a)->next != NULL)
+    {
+        if ((*stack_a)->data > res)
+            res = (*stack_a)->data;
+        (*stack_a) = (*stack_a)->next;
+    }
+    return (res);
+}

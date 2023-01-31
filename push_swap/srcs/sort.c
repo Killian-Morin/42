@@ -12,127 +12,61 @@
 
 #include "../includes/push_swap.h"
 
-t_stack	*copy_list(t_stack **stack)
-{
-    t_stack *result;
-	
-	result = NULL;
-	result->data = (*stack)->data;
-	result->next = copy_list(stack);
-    return (result);
-}
-
 void	sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 {
-	t_stack	*tmp;
-	int		n;
-	int		middle;
-	int		size_chunk;
-	int		start;
-	int		end;
-	int		i;
+	int	max;
+	int	digits_max;
+	int	i;
 
-	tmp = copy_list(stack_a);
-	printf("ici\n");
-	n = 1;
-	while ((nb_elem / n) > 20)
+	max = find_max(*stack_a, nb_elem);
+	digits_max = size_of_max(max);
+	i = 0;
+	while (i != digits_max)
 	{
-		n--;
-	}
-	middle = nb_elem / 2;
-	size_chunk = nb_elem / n;
-	start = 0;
-	end = size_chunk;
-	while ((*stack_a))
-	{
-		i = start;
-		while (i != size_chunk)
-		{
-			if ((*stack_a)->data >= start && (*stack_a)->data <= end)
-				push_b(stack_b, stack_a);
-			if ((*stack_b)->data < middle)
-				rotate_b(stack_b);
-			i++;
-		}
-		start += size_chunk;
-		size_chunk += size_chunk;
+		radix_sort(stack_a, nb_elem, digits_max);
+		i++;
 	}
 }
 
-/*
-void	counting_sort(t_stack **stack_a, t_stack **stack_b)
+void	radix_sort(t_stack **stack_a, int nb_elem, int exp)
+{
+	int	tab[10];
+	int	exp;
+
+	digit = exp * 10;
+	while ((*stack_a)->next != NULL)
+	{
+		tab[((*stack_a)->data % digit)] = (*stack_a)->data;
+		(*stack_a) = (*stack_a)->next;
+	}
+}
+
+int	find_max(t_stack *stack, int nb_elem)
 {
 	int	max;
-	t_stack	*tmp;
+	int	i;
 
-	max = find_max_data(*stack_a);
-	while (tmp->next != NULL)
+	max = 0;
+	i = 0;
+	while (i != nb_elem)
 	{
-		tmp->data = (*stack_a)->data;
-		(*stack_a) = (*stack_a)->next;
-		tmp = tmp->next;
-	}
-}
-
-void radix_sort (t_stack **stack_a)
-{
-   t_stack **tmp_double;
-   t_stack *tmp_simple;
-   int	max;
-   int	NOP;
-   int	pass;
-   int	i;
-   int	j;
-   int	r;
-   int	divisor;
-
-   max = find_max_data(*stack_a);
-   NOP = 0;
-   while (max > 0)
-   {
-	  NOP++;
-      max /= 10;
-   }
-   pass = 0;
-   divisor = 1;
-   while (pass < NOP)
-   {
-	  i = 0;
-      while (i < 10)
-	  {
-        tmp_simple->data = 0;
+		if (stack->data > max)
+			max = stack->data;
+		stack = stack->next;
 		i++;
-		tmp_simple = tmp_simple->next;
-      }
-      while (stack_a->next != NULL)
-	  {
-        r = ((*stack_a)->data / divisor) % 10;
-        tmp_double->data = stack_a;
-        tmp_simple->data += 1;
-		stack_a = stack_a->next;
-      }
-      while (tmp_simple->next != NULL)
-	  {
-		j = 0;
-        while (j < tmp_simple->data)
-		{
-           stack_a = tmp_double;
-		   j++;
-        }
-		tmp_simple = tmp_simple->next;
-      }
-      divisor *= 10;
-	  pass++;
-   }
+	}
+	return (max);
 }
 
-t_stack	*temp;
+int	size_of_max(int max)
+{
+	int	i;
 
-temp = (t_stack *)malloc(sizeof(t_stack));
-if (!temp)
-	return (NULL);
-temp->data = (*stack)->data;
-temp = copy_list(&(*stack)->next);
-
-return (temp);
-	*/
+	i = 1;
+	while (max > 10)
+	{
+		max = max / 10;
+		i++;
+	}
+	return (i);
+}

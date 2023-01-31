@@ -69,3 +69,20 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	return (s1[i] - s2[i]);
 }
+
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+	t_list	*temp;
+
+	i = 0;
+	if (lst == 0)
+		return (i);
+	temp = lst;
+	while (temp != 0)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
+}

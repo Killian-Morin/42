@@ -40,9 +40,6 @@ void	swap_b(t_stack *stack_b)
 	ft_putstr("sb\n");
 }
 
-/*
-sa et sb en même temps
-*/
 void	swap_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	swap(stack_a);

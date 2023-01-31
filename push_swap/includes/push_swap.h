@@ -43,14 +43,12 @@ void		sort_five_element(t_stack **stack_a, t_stack **stack_b);
 
 /* sort_big_stack.c */
 void		sort_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem);
-int			find_max_data(t_stack *stack);
-int			size_of_max(int max);
-void		divide_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem);
-void		reassemble_big_stack(t_stack **stack_a, t_stack **stack_b);
 
 /* sort.c */
 void		sort(t_stack **stack_a, t_stack **stack_b, int nb_elem);
-t_stack		*copy_list(t_stack **stack);
+void		radix_sort(t_stack **stack_a, int nb_elem, int exp);
+int			find_max(t_stack *stack, int nb_elem);
+int			size_of_max(int max);
 
 /* action_push.c */
 void		push_a(t_stack **stack_dest, t_stack **stack_src);
@@ -82,5 +80,6 @@ void		ft_putchar(char c);
 void		ft_putstr(char *str);
 int			ft_strcmp(char *s1, char *s2);
 long int	ft_atoi(char *str);
+int			ft_lstsize(t_list *lst)
 
 #endif

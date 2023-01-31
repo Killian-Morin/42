@@ -45,9 +45,6 @@ void	reverse_rotate_b(t_stack **stack_b)
 	ft_putstr("rrb\n");
 }
 
-/*
-rra et rrb en même temps
-*/
 void	reverse_rotate_r(t_stack *stack_a, t_stack *stack_b)
 {
 	reverse_rotate(&stack_a);

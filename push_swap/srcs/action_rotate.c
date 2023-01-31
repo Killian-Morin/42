@@ -40,9 +40,6 @@ void	rotate_b(t_stack **stack_b)
 	ft_putstr("rb\n");
 }
 
-/*
-ra et rb en même temps
-*/
 void	rotate_r(t_stack **stack_a, t_stack **stack_b)
 {
 	rotate(stack_a);

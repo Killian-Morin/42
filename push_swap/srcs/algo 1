@@ -1,0 +1,40 @@
+/* tentative algo de Not your typical 42Network push_swap algorithm */
+
+void	sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
+{
+	int		n;
+	int		middle;
+	int		size_chunk;
+	int		start;
+	int		end;
+	int		i;
+
+	n = 1;
+	while ((nb_elem / n) > 20)
+	{
+		n--;
+	}
+	middle = nb_elem / 2;
+	size_chunk = nb_elem / n;
+	start = 0;
+	end = size_chunk;
+	while ((*stack_a))
+	{
+		i = start;
+		while (i != size_chunk)
+		{
+			if ((*stack_a)->data >= start && (*stack_a)->data <= end)
+				push_b(stack_b, stack_a);
+			if ((*stack_b)->data < middle)
+				rotate_b(stack_b);
+			i++;
+		}
+		start += size_chunk;
+		size_chunk += size_chunk;
+	}
+}
+
+void	sort_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem)
+{
+	sort(stack_a, stack_b, nb_elem);
+}

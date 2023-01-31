@@ -75,5 +75,11 @@ int	main(int argc, char *argv[])
 	push_swap(&stack_a, &stack_b, (argc - 1));
 	// free(&stack_a);
 	// free(&stack_b);
+	while (argc != 1)
+	{
+		printf("%d\n", stack_a->data);
+		stack_a = stack_a->next;
+		argc--;
+	}
 	return (0);
 }
