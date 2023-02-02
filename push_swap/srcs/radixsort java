@@ -1,0 +1,152 @@
+public class RadixSort
+{
+	private List list;
+	public static Random random;
+	
+	public RadixSort()
+	{
+		list = new List();
+	}
+	
+	public List get_list()
+	{
+		return this.list;
+	}
+	
+	public static void radix_Sort(int []d, RadixSort []r, int maxL)
+	{	
+		int coveredL = 0;
+		int	j = 0;
+
+		while (j < d.length)//on checkait les unites
+		{
+			if (d[j] < 0)//si value est negatif
+			{
+				int totalL  = Integer.toString(d[j]).length()-2;
+				if (coveredL <= totalL)//si sa size est <= a la size total alors cela veut dire que c'est un negatif simple (de -1 a -9)
+				{
+					char s = Integer.toString(d[j]).charAt(totalL - coveredL + 1);//on convertit en char le 2nd cara, d[1] comme c'est '1'
+					r[Integer.parseInt(s+"")].get_list().insert_data(d[j]);//on met la value convertit ds un tab de type RadixSort, a l'emplacement correspondant (colonne 1 pour -1, 2 pour -2 ...)
+				}
+				else//si on est a un index superieure alors ce sera automatiquement 0 (ex: pour 2 et ds l'index des centaines l'index pour 2 sera direct 0)
+					r[0].get_list().insert_data(d[j]);
+			}
+			else//si value est positif
+			{
+				int totalL  = Integer.toString(d[j]).length()-1;
+				if (coveredL <= totalL)
+				{
+					char s = Integer.toString(d[j]).charAt(totalL - coveredL);//on convertit direct comme y'a pas de signe
+					r[Integer.parseInt(s+"")].get_list().insert_data(d[j]);
+				}
+				else//idem as aboce
+					r[0].get_list().insert_data(d[j]);
+			}
+			j++;
+		}
+		coveredL++;//on incremente l'index et on passe aux dizaines
+		while (coveredL <= maxL)//on itere jusqu'a ce qu'on soit a size_of_max
+		{
+			int	i = 0;
+			while (i < r.length)//on itere sur tout le tab qui contient les input classe suivant leurs unites (tab qui va de 0 a 9)
+			{
+				Node temp = r[i].get_list().get_dummy().get_next();
+				while (temp != null)//on itere sur toute la liste d'input
+				{
+					int data = temp.get_data();
+					if (data < 0)//si data est negatif
+					{
+						int totalL = Integer.toString(data).length()-2;
+						if (coveredL <= totalL)
+						{
+							char s = Integer.toString(data).charAt(totalL - coveredL + 1);
+							if (i != Integer.parseInt(s+""))//si l'ancien index et le nouveau ne sont pas les memes (comme 10) on change de place
+							{
+								temp = r[i].get_list().delete_node(data);//remplace value en l'enlevant de son ancien emplacement
+								r[Integer.parseInt(s+"")].get_list().insert_data(data);//et le met a la nouvelle position
+							}
+							else//alors que 11 n'a pas besoin d'etre changer de place
+								temp = temp.get_next();
+						}
+						else//si value est 100 et qu'on regarde les millers
+						{
+							if (i != 0)//alors si ce n'est pas au bon index on le met au bon
+							{
+								temp = r[i].get_list().delete_node(data);
+								r[0].get_list().insert_data(data);
+							}
+							else//sinon on passe au suivant
+								temp = temp.get_next();
+						}
+					}
+					else//si data est positif alors tout est identique as above sauf les conversions en char
+					{
+						int totalL = Integer.toString(data).length()-1;
+						if (coveredL <= totalL)
+						{
+							char s = Integer.toString(data).charAt(totalL - coveredL);
+							if (i != Integer.parseInt(s+""))
+							{
+								temp = r[i].get_list().delete_node(data);
+								r[Integer.parseInt(s+"")].get_list().insert_data(data);
+							}
+							else
+								temp = temp.get_next();
+						}
+						else
+						{
+							if (i != 0)
+							{
+								temp = r[i].get_list().delete_node(data);
+								r[0].get_list().insert_data(data);
+							}
+							else
+								temp = temp.get_next();
+						}
+					}
+				}
+				i++;
+			}
+			coveredL++;
+		}
+	}
+
+	public static void main(String[] args) 
+	{
+		random = new Random();
+		RadixSort table[] = new RadixSort[10];
+		int	i = 0;
+		while (i < 10)
+		{
+			table[i] = new RadixSort();
+			i++;
+		}
+		int data[] = new int[20];
+		System.out.println("Creating 20 random numbers from -20 to 20");
+		i = 0;
+		while (i < 20)
+		{
+			data[i] = random.nextInt(41) - 20;
+			System.out.print(data[i]+" ");
+			i++;
+		}
+		System.out.println();
+		int maxLength = 0;
+		i = 0;
+		while (i < data.length)
+		{
+			if (data[i] < 0)
+			{
+				if(maxLength < (Integer.toString(data[i]).length()-1))
+					maxLength = Integer.toString(data[i]).length()-1;
+			}
+			else
+			{
+				if (maxLength < (Integer.toString(data[i]).length()))
+					maxLength = Integer.toString(data[i]).length();
+			}
+			i++;
+		}
+		radix_Sort(data, table, maxLength);
+	}
+}

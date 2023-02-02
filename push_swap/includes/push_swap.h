@@ -46,8 +46,9 @@ void		sort_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem);
 
 /* sort.c */
 void		sort(t_stack **stack_a, t_stack **stack_b, int nb_elem);
-void		radix_sort(t_stack **stack_a, int nb_elem, int exp);
-int			find_max(t_stack *stack, int nb_elem);
+void		radix_sort(t_stack **stack_a, int *units_sorted, int digits_max);
+int			*radix_sort_units(t_stack **stack_a);
+int			find_max(t_stack *stack);
 int			size_of_max(int max);
 
 /* action_push.c */
@@ -80,6 +81,6 @@ void		ft_putchar(char c);
 void		ft_putstr(char *str);
 int			ft_strcmp(char *s1, char *s2);
 long int	ft_atoi(char *str);
-int			ft_lstsize(t_list *lst)
+int			ft_lstsize(t_stack *lst);
 
 #endif

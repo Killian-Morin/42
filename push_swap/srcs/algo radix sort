@@ -1,20 +1,5 @@
 /* tentative implementation algo radix sort */
 
-/* adaptation de celui javatpoint */
-void    radix_sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
-{
-    int max;
-    int exp;
-
-    max = find_max((*stack_a));
-    exp = 1;
-    while (max / exp > 0)
-    {
-        counting_sort(stack_a, stack_b, nb_elem);
-        exp *= 10;
-    }
-}
-
 /* adaptation de celui de geeksforgeeks */
 void    radix_sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 {
@@ -27,48 +12,6 @@ void    radix_sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
     {
         counting_sort(stack_a, stack_b, exp);
         exp *= 10;
-    }
-}
-
-void    counting_sort(t_stack **stack_a, t_stack **stack_b, int exp)
-{
-    int i;
-    int n;
-    int counts[10];
-    t_stack *result;
-    int other;
-
-    i = 0;
-    while (i < ft_lstsize(&stack_a))
-    {
-        counts[((*stack_a)->data / exp) % 10]++;
-        i++;
-    }
-    i = 1;
-    while (i < 10)
-    {
-        counts[i] += counts[i - 1];
-        i++;
-    }
-    i = n - 1;
-    while (i >= 0)
-    {
-        other = 0;
-        while (other != count[((*stack_a)->data / exp) % 10])
-        {
-            (*stack_a) = (*stack_a)->next;
-            other++;
-        }
-        result->data = (*stack_a);
-        count[((*stack_a)->data / exp) % 10]--;
-        i--;
-    }
-    i = 0;
-    while (i < n)
-    {
-        (*stack_a)->data = result->data;
-        i++;
-        (*stack_a) = (*stack_a)->next;
     }
 }
 
@@ -117,79 +60,6 @@ void    counting_sort(t_stack **stack_a, int size, int exp)
         i++;
         (*stack_a) = (*stack_a)->next;
         output = output->next;
-    }
-}
-
-void    radix_sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
-{
-    int max;
-    int exp;
-
-    max = find_max(stack_a);
-    exp = 1;
-    while (max / place)
-    {
-        counting_sort(stack_a, ft_lstsize(stack_a), exp);
-        exp *= 10;
-    }
-}
-
-/* adaptation de tutorialspoint */
-void    radix_sort(t_stack **stack_a, int nb_elem)
-{
-    int max;
-    int check;
-    int nb_of_pass;
-    int i;
-    int tab[10];
-    int value;
-    int divisor = 1;
-    t_stack **result;
-    t_stack **first_node;
-    t_stack **first_node_result;
-
-    max = find_max((*stack_a));
-    check = 0;
-    while (max > 10)
-    {
-        check++;
-        max /= 10;
-    }
-    nb_of_pass = 0;
-    first_node = stack;
-    first_node_result = result;
-    while (nb_of_pass < check)
-    {
-        i = 0;
-        while (i < 10)
-        {
-            tab[i] = 0;
-            i++;
-        }
-        i = 0;
-        while (i < nb_elem)
-        {
-            value = ((*stack)->data / divisor) % 10;
-            (*result)->data = (*stack_a)->data;
-            (*result) = (*result)->next;
-            (*stack_a) = (*stack_a)->next;
-        }
-        i = 0;
-        k = 0;
-        stack_a = first_node;
-        result = first_node_result;
-        while (k < 10)
-        {
-            while ((*result)->next != NULL)
-            {
-                (*stack_a) = (*result);
-                (*result) = (*result)->next;
-                (*stack_a) = (*stack_a)->next;
-            }
-            k++;
-        }
-        divisor *= 10;
-        check++;
     }
 }
 

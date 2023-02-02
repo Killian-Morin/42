@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-void		sort_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem)
+void	sort_big_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 {
 	sort(stack_a, stack_b, nb_elem);
 }
