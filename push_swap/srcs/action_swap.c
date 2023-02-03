@@ -16,6 +16,10 @@
 Intervertit les 2 premiers éléments au sommet de la stack passe en arg.
 Ne fait rien s’il n’y en a qu’un ou aucun.
 ne sais pas si dois free le temp à la fin (pour le moment enleve)
+
+créer une var temp qui stocke la data du 1er node;
+attribue la valeur du 2eme node au 1er node;
+attribue la valeur stocke ds temp au 2eme node correspondant au 1 er node
 */
 static void	swap(t_stack *stack)
 {

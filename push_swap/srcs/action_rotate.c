@@ -15,6 +15,12 @@
 /*
 Décale d’une position vers le haut tous les élements de la stack passe en arg.
 Le premier élément devient le dernier.
+
+creer une var temp qui stocke le 1er node,
+modif le 1er node pour qu'il pointe vers le second,
+une var last_node qui stock le dernier node (trouve avec ft ds utils.c);
+fait pointer temp vers NULL puisque c'est maintenant le dernier node;
+fait pointer last_node vers temp;
 */
 static void	rotate(t_stack **stack)
 {

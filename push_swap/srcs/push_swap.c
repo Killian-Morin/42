@@ -53,7 +53,7 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 	else if (nb_elem > 2 && nb_elem <= 5)
 		sort_small_stack(stack_a, stack_b, nb_elem);
 	else
-		sort_big_stack(stack_a, stack_b, nb_elem);
+		sort_big_stack(stack_a, stack_b);
 }
 
 int	main(int argc, char *argv[])
@@ -75,11 +75,11 @@ int	main(int argc, char *argv[])
 	push_swap(&stack_a, &stack_b, (argc - 1));
 	// free(&stack_a);
 	// free(&stack_b);
-	while (argc != 1)
-	{
-		printf("%d\n", stack_a->data);
-		stack_a = stack_a->next;
-		argc--;
-	}
+	// while (argc != 1)
+	// {
+	// 	printf("%d\n", stack_a->data);
+	// 	stack_a = stack_a->next;
+	// 	argc--;
+	// }
 	return (0);
 }

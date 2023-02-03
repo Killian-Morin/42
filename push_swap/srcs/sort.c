@@ -12,94 +12,85 @@
 
 #include "../includes/push_swap.h"
 
-void	sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
+void	sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	max;
 	int	digits_max;
-	int	*tab;
 
 	max = find_max(*stack_a);
 	digits_max = size_of_max(max) + 1;
-	tab = radix_sort_units(stack_a);
-	radix_sort(stack_a, tab, digits_max);
+	radix_sort_units(stack_a, stack_b);
+	radix_sort(stack_a, stack_b, digits_max);
 }
 
 //for the units rank
-int	*radix_sort_units(t_stack **stack_a)
+void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
 {
-	int	*tab;
-	int	temp;
+	t_stack	**temp;
+	t_stack	*node;
 
-	temp = 0;
-	tab = malloc(sizeof(tab) * 10);
-	if (!tab)
-		return (NULL);
+	temp = stack_a;
+	printf("a : %d\n", (*stack_a)->data);
 	while ((*stack_a)->next != NULL)
 	{
-		if ((*stack_a)->data < 0)
+		node = (*stack_a);
+		node->data %= 10;
+		while ((*stack_a)->next != NULL)
 		{
-			temp = (*stack_a)->data;
-			temp = ((temp * -1) % 10);
-			tab[temp] = (*stack_a)->data;
-		}
-		else
-		{
-			temp = (*stack_a)->data;
-			temp %= 10;
-			tab[temp] = (*stack_a)->data;
+			if (node->data <= (*stack_a)->data)
+			{
+				while ((*temp)->data != node->data)
+				{
+					rotate_a(temp);
+					(*temp) = (*temp)->next;
+				}
+				push_b(stack_b, temp);
+				printf("a : %d\n", (*stack_a)->data);
+				printf("b : %d\n", (*stack_b)->data);
+			}
+			(*stack_a) = (*stack_a)->next;
 		}
 		(*stack_a) = (*stack_a)->next;
 	}
-	return (tab);
+	stack_a = temp;
 }
 
 //for the dizaines rank and above
-void	radix_sort(t_stack **stack_a, int *units_sorted, int digits_max)
+void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 {
-	int	tab[10];
-	int	nb_of_pass;
-	int	i;
-	int	exp;
-	int	temp;
+	t_stack	**temp;
+	t_stack	*node;
+	int		i;
+	int		exp;
 
-	nb_of_pass = 1;
+	i = 1;
 	exp = 10;
-	temp = 0;
-	while (nb_of_pass != digits_max)
+	while (i != digits_max)
 	{
-		i = 0;
-		while (units_sorted[i])
+		temp = stack_a;
+		while ((*stack_a)->next != NULL)
 		{
+			node = (*stack_a);
+			node->data = node->data - (node->data % 10);
+			node->data /= exp;
+			node->data %= 10;
 			while ((*stack_a)->next != NULL)
 			{
-				if ((*stack_a)->data < 0)
+				if (node->data <= (*stack_a)->data)
 				{
-					if (i != ((temp * -1) % exp))
+					while ((*temp)->data != node->data)
 					{
-						temp = (*stack_a)->data;
-						temp = (((temp * -1) - i) / exp);
-						tab[temp] = (*stack_a)->data;
+						rotate_a(temp);
+						(*temp) = (*temp)->next;
 					}
-					else
-						(*stack_a) = (*stack_a)->next;
-				}
-				else
-				{
-					if (i != (temp % exp))
-					{
-						temp = (*stack_a)->data;
-						temp = ((temp - i) / exp);
-						tab[temp] = (*stack_a)->data;
-					}
-					else
-						(*stack_a) = (*stack_a)->next;
+					push_b(stack_b, temp);
 				}
 				(*stack_a) = (*stack_a)->next;
 			}
-			i++;
+			(*stack_a) = (*stack_a)->next;
 		}
-		nb_of_pass++;
-		exp++;
+		i++;
+		exp *= 10;
 	}
 }
 

@@ -15,6 +15,14 @@
 /*
 Décale d’une position vers le bas tous les élements de la stack passe en arg.
 Le dernier élément devient le premier.
+
+creer le node last_node qui stock le 1er node,
+creer le node previous_last_node qui est initalise a NULL pour le moment;
+itere tout le long de la liste en attribuant 
+le node ou l'on est a previous_last_node et en iterant sur last_node;
+quand le dernier node atteint, on fait pointer l'avant dernier node vers NULL;
+on fait pointer last_node vers le 1er node;
+ainsi l'avant dernier node devient le dernier et le dernier le 1er;
 */
 static void	reverse_rotate(t_stack **stack)
 {
