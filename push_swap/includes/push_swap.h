@@ -81,6 +81,5 @@ void		ft_putchar(char c);
 void		ft_putstr(char *str);
 int			ft_strcmp(char *s1, char *s2);
 long int	ft_atoi(char *str);
-int			ft_lstsize(t_stack *lst);
 
 #endif

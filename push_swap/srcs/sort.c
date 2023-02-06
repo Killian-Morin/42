@@ -20,39 +20,27 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	max = find_max(*stack_a);
 	digits_max = size_of_max(max) + 1;
 	radix_sort_units(stack_a, stack_b);
-	radix_sort(stack_a, stack_b, digits_max);
+	printf("%d\n%d\n%p\n", (*stack_b)->data, (*stack_b)->next->data, (*stack_b)->next->next);
+	// radix_sort(stack_a, stack_b, digits_max);
 }
 
 //for the units rank
 void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	**temp;
 	t_stack	*node;
 
-	temp = stack_a;
-	printf("a : %d\n", (*stack_a)->data);
-	while ((*stack_a)->next != NULL)
+	while ((*stack_a) != NULL)
 	{
 		node = (*stack_a);
 		node->data %= 10;
-		while ((*stack_a)->next != NULL)
-		{
-			if (node->data <= (*stack_a)->data)
-			{
-				while ((*temp)->data != node->data)
-				{
-					rotate_a(temp);
-					(*temp) = (*temp)->next;
-				}
-				push_b(stack_b, temp);
-				printf("a : %d\n", (*stack_a)->data);
-				printf("b : %d\n", (*stack_b)->data);
-			}
-			(*stack_a) = (*stack_a)->next;
-		}
 		(*stack_a) = (*stack_a)->next;
+		while (node->data <= ((*stack_a)->data % 10))
+			rotate_a(stack_a);
+		push_b(stack_b, stack_a);
+		printf("b : %d\n", (*stack_b)->data);
+		printf("a : %d\n", (*stack_a)->data);
 	}
-	stack_a = temp;
+	printf("ca passe\n");
 }
 
 //for the dizaines rank and above

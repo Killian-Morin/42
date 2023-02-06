@@ -1,4 +1,4 @@
-/* copie de l'algo de sort.c avant modif pour utiliser les lists aux lieux des tab */
+/* algo radix_sort avec des tab pour traitement au lieu de liste chainees */
 
 void	sort(t_stack **stack_a, t_stack **stack_b, int nb_elem)
 {
