@@ -18,10 +18,9 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	int	digits_max;
 
 	max = find_max(*stack_a);
-	digits_max = size_of_max(max) + 1;
+	digits_max = size_of_max(max);
 	radix_sort_units(stack_a, stack_b);
-	printf("%d\n%d\n%p\n", (*stack_b)->data, (*stack_b)->next->data, (*stack_b)->next->next);
-	// radix_sort(stack_a, stack_b, digits_max);
+	radix_sort(stack_a, stack_b, digits_max);
 }
 
 //for the units rank
@@ -32,50 +31,47 @@ void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
 	while ((*stack_a) != NULL)
 	{
 		node = (*stack_a);
-		node->data %= 10;
-		(*stack_a) = (*stack_a)->next;
-		while (node->data <= ((*stack_a)->data % 10))
+		rotate_a(stack_a);
+		while ((node->data % 10) > ((*stack_a)->data % 10))
 			rotate_a(stack_a);
 		push_b(stack_b, stack_a);
-		printf("b : %d\n", (*stack_b)->data);
-		printf("a : %d\n", (*stack_a)->data);
+		if ((*stack_a)->next == NULL)
+			push_b(stack_b, stack_a);
 	}
-	printf("ca passe\n");
+	// printf("fin radix_sort_units\n");
 }
 
 //for the dizaines rank and above
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 {
-	t_stack	**temp;
 	t_stack	*node;
 	int		i;
 	int		exp;
 
 	i = 1;
 	exp = 10;
+	while (ft_lstsize(*stack_b) != 1)
+	{
+		reverse_rotate_b(stack_b);
+		push_a(stack_a, stack_b);
+	}
+	push_a(stack_a, stack_b);
 	while (i != digits_max)
 	{
-		temp = stack_a;
-		while ((*stack_a)->next != NULL)
+		if (stack_is_sorted(*stack_a) == 0)
+			return ;
+		else
 		{
 			node = (*stack_a);
-			node->data = node->data - (node->data % 10);
+			node->data -= node->data % 10;
 			node->data /= exp;
 			node->data %= 10;
-			while ((*stack_a)->next != NULL)
-			{
-				if (node->data <= (*stack_a)->data)
-				{
-					while ((*temp)->data != node->data)
-					{
-						rotate_a(temp);
-						(*temp) = (*temp)->next;
-					}
-					push_b(stack_b, temp);
-				}
-				(*stack_a) = (*stack_a)->next;
-			}
-			(*stack_a) = (*stack_a)->next;
+			rotate_a(stack_a);
+			while (node->data > (*stack_a)->data)
+				rotate_a(stack_a);
+			push_b(stack_b, stack_a);
+			if ((*stack_a)->next == NULL)
+				push_b(stack_b, stack_a);
 		}
 		i++;
 		exp *= 10;
@@ -100,13 +96,12 @@ int	size_of_max(int max)
 {
 	int	i;
 
+	i = 1;
 	if (max < 0)
-		i = 0;
-	else
-		i = 1;
+		max *= -1;
 	while (max > 10)
 	{
-		max = max / 10;
+		max /= 10;
 		i++;
 	}
 	return (i);

@@ -70,3 +70,19 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
+int	ft_lstsize(t_stack *lst)
+{
+	int		i;
+	t_stack	*temp;
+
+	i = 0;
+	if (lst == 0)
+		return (i);
+	temp = lst;
+	while (temp != 0)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
+}
