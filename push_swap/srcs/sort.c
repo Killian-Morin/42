@@ -32,8 +32,12 @@ void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
 	{
 		node = (*stack_a);
 		rotate_a(stack_a);
-		while ((node->data % 10) > ((*stack_a)->data % 10))
+		if ((node->data % 10) > ((*stack_a)->data % 10))
+		{
 			rotate_a(stack_a);
+			while ((node->data % 10) > ((*stack_a)->data % 10))
+				rotate_a(stack_a);
+		}
 		push_b(stack_b, stack_a);
 		if ((*stack_a)->next == NULL)
 			push_b(stack_b, stack_a);
@@ -50,7 +54,7 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 
 	i = 1;
 	exp = 10;
-	while (ft_lstsize(*stack_b) != 1)
+	while ((*stack_b)->next != NULL)
 	{
 		reverse_rotate_b(stack_b);
 		push_a(stack_a, stack_b);
@@ -63,12 +67,16 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 		else
 		{
 			node = (*stack_a);
-			node->data -= node->data % 10;
-			node->data /= exp;
-			node->data %= 10;
+			// node->data -= node->data % 10;
+			// node->data /= exp;
+			// node->data %= 10;
 			rotate_a(stack_a);
-			while (node->data > (*stack_a)->data)
+			if (((node->data - (node->data % 10) / exp) % 10) > (((*stack_a)->data - ((*stack_a)->data % 10) / exp) % 10))
+			{
 				rotate_a(stack_a);
+				while (((node->data - (node->data % 10) / exp) % 10) > (((*stack_a)->data - ((*stack_a)->data % 10) / exp) % 10))
+					rotate_a(stack_a);
+			}
 			push_b(stack_b, stack_a);
 			if ((*stack_a)->next == NULL)
 				push_b(stack_b, stack_a);
