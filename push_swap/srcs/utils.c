@@ -55,34 +55,28 @@ long int	ft_atoi(char *str)
 	return (res * signe);
 }
 
-/*
-compare two strings
-return the difference between the two elements that diverge
-if there is no difference (the strings are identical) it return 0
-*/
-int	ft_strcmp(char *s1, char *s2)
+void	ft_free(char **str)
 {
 	int	i;
 
 	i = 0;
-	while (s1[i] && s1[i] == s2[i])
+	while (str[i])
 		i++;
-	return (s1[i] - s2[i]);
+	while (i >= 0)
+		free(str[i--]);
 }
 
-int	ft_lstsize(t_stack *lst)
+void	free_stack(t_stack **stack)
 {
-	int		i;
-	t_stack	*temp;
+	t_stack	*head;
+	t_stack	*tmp;
 
-	i = 0;
-	if (lst == 0)
-		return (i);
-	temp = lst;
-	while (temp != 0)
+	head = *stack;
+	while (head)
 	{
-		temp = temp->next;
-		i++;
+		tmp = head;
+		head = head->next;
+		free(tmp);
 	}
-	return (i);
+	free(stack);
 }

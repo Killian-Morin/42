@@ -27,22 +27,23 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*node;
+	t_stack	*tmp;
 
 	while ((*stack_a) != NULL)
 	{
 		node = (*stack_a);
+		tmp = node;
 		rotate_a(stack_a);
 		if ((node->data % 10) > ((*stack_a)->data % 10))
 		{
-			rotate_a(stack_a);
-			while ((node->data % 10) > ((*stack_a)->data % 10))
+			while (((node->data % 10) > ((*stack_a)->data % 10)))
 				rotate_a(stack_a);
 		}
 		push_b(stack_b, stack_a);
 		if ((*stack_a)->next == NULL)
 			push_b(stack_b, stack_a);
 	}
-	// printf("fin radix_sort_units\n");
+	//printf("fin radix_sort_units\n");
 }
 
 //for the dizaines rank and above

@@ -13,10 +13,19 @@
 #include "../includes/push_swap.h"
 
 /*
-all functions of this file: 
-return 1 -> the input is invalid
-return 0 -> the input is valid
+compare two strings
+return the difference between the two elements that diverge
+if there is no difference (the strings are identical) it return 0
 */
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
 
 /*
 return 1 -> there is things that are not an int / the input is invalid
@@ -78,15 +87,22 @@ int	check_correct_value(int argc, char **argv)
 {
 	int			i;
 	long int	element;
+	char		**av;
 
-	i = 1;
-	if (check_for_duplicate(argc, argv) == 1)
-		return (1);
-	if (int_only(argv) == 1)
-		return (1);
-	while (argv[i])
+	if (argc == 2)
+		av = ft_split(argv[1], ' ');
+	else
 	{
-		element = ft_atoi(argv[i]);
+		i = 1;
+		av = argv;
+	}
+	if (check_for_duplicate(argc, av) == 1)
+		return (1);
+	if (int_only(av) == 1)
+		return (1);
+	while (av[i])
+	{
+		element = ft_atoi(av[i]);
 		if (element > INT_MAX || element < INT_MIN)
 			return (1);
 		i++;

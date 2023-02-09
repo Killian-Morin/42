@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_manipulation.c                               :+:      :+:    :+:   */
+/*   utils_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,33 +12,33 @@
 
 #include "../includes/push_swap.h"
 
-t_stack	*add_first_node(int value)
+t_stack	*ft_lstnew(int value)
 {
-	t_stack	*new_node;
-	t_stack	*head;
+	t_stack	*temp;
 
-	head = NULL;
-	new_node = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_node)
+	temp = (t_stack *)malloc(sizeof(*temp));
+	if (!temp)
 		return (NULL);
-	new_node->data = value;
-	new_node->next = head;
-	head = new_node;
-	return (new_node);
+	temp->data = value;
+	temp->next = NULL;
+	return (temp);
 }
 
-void	add_node_bottom(t_stack *stack, int value)
+void	ft_lstadd_back(t_stack **stack, t_stack *new)
 {
-	t_stack	*new_node;
-	t_stack	*last;
+	t_stack	*node;
 
-	new_node = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_node)
-		free(stack);
-	new_node->data = value;
-	last = find_last_node(stack);
-	last->next = new_node;
-	new_node->next = NULL;
+	if (*stack)
+	{
+		node = find_last_node(*stack);
+		node->next = new;
+		new->next = NULL;
+	}
+	else
+	{
+		*stack = new;
+		(*stack)->next = NULL;
+	}
 }
 
 t_stack	*find_last_node(t_stack *stack)
@@ -53,4 +53,21 @@ t_stack	*find_previous_last_node(t_stack *stack)
 	while (stack && stack->next && stack->next->next != NULL)
 		stack = stack->next;
 	return (stack);
+}
+
+int	ft_lstsize(t_stack *lst)
+{
+	int		i;
+	t_stack	*temp;
+
+	i = 0;
+	if (lst == 0)
+		return (i);
+	temp = lst;
+	while (temp != 0)
+	{
+		temp = temp->next;
+		i++;
+	}
+	return (i);
 }

@@ -25,18 +25,19 @@ typedef struct t_list
 }					t_stack;
 
 /* push_swap.c */
-int			main(int argc, char *argv[]);
-void		push_swap(t_stack **stack_a, t_stack **stack_b, int nb_elem);
-t_stack		*fill_value_in_stack(int argc, char **argv);
+int			main(int argc, char **argv);
+void		push_swap(t_stack **stack_a, t_stack **stack_b);
+void		fill_value_in_stack(int argc, char **argv, t_stack **stack);
 int			stack_is_sorted(t_stack *stack);
 
 /* correct_input.c */
 int			int_only(char **argv);
 int			check_for_duplicate(int argc, char **argv);
 int			check_correct_value(int argc, char **argv);
+int			ft_strcmp(char *s1, char *s2);
 
 /* sort_small_stack.c */
-void		sort_small_stack(t_stack **stack_a, t_stack **stack_b, int nb_elem);
+void		sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 void		sort_three_element(t_stack **stack_a);
 void		sort_four_element(t_stack **stack_a, t_stack **stack_b);
 void		sort_five_element(t_stack **stack_a, t_stack **stack_b);
@@ -70,17 +71,29 @@ void		swap_a(t_stack *stack_a);
 void		swap_b(t_stack *stack_b);
 void		swap_ss(t_stack *stack_a, t_stack *stack_b);
 
-/* stack_manipulation.c */
-t_stack		*add_first_node(int value);
-void		add_node_bottom(t_stack *stack, int value);
+/* utils_stack.c */
+t_stack		*ft_lstnew(int value);
+void		ft_lstadd_back(t_stack **stack, t_stack *node);
 t_stack		*find_last_node(t_stack *stack);
 t_stack		*find_previous_last_node(t_stack *stack);
+int			ft_lstsize(t_stack *lst);
 
 /* utils.c */
 void		ft_putchar(char c);
 void		ft_putstr(char *str);
-int			ft_strcmp(char *s1, char *s2);
 long int	ft_atoi(char *str);
-int			ft_lstsize(t_stack *lst);
+void		ft_free(char **str);
+void		free_stack(t_stack **stack);
+
+/* ft_split.c */
+int			ft_countmot(char *src, char c);
+int			*ft_cara_par_str(char *src, char c, int nbmot);
+char		**ft_free_split(char **bigstr, int i, int *len);
+char		**ft_fill_tab(char *src, char c, char **bigstr, int *len);
+char		**ft_split(char const *s, char c);
+
+/* quicksort.c */
+t_stack		*partition(t_stack *first, t_stack *last);
+void		quick_sort(t_stack *first, t_stack *last);
 
 #endif
