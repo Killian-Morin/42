@@ -23,30 +23,38 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	radix_sort(stack_a, stack_b, digits_max);
 }
 
-//for the units rank
+/* for the units rank */
 void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*node;
-	t_stack	*tmp;
+	t_stack	*last_node;
+	int		i;
 
 	while ((*stack_a) != NULL)
 	{
 		node = (*stack_a);
-		tmp = node;
+		last_node = find_last_node(*stack_a);
 		rotate_a(stack_a);
+		i = 1;
+		if (ft_lstsize(*stack_a) == 2)
+		{
+			if ((*stack_a)->data < (*stack_a)->next->data)
+				swap_a(*stack_a);
+			push_b(stack_b, stack_a);
+		}
 		if ((node->data % 10) > ((*stack_a)->data % 10))
 		{
-			while (((node->data % 10) > ((*stack_a)->data % 10)))
+			while (((node->data % 10) > ((*stack_a)->data % 10)) || i != ft_lstsize(*stack_a))
+			{
 				rotate_a(stack_a);
+				i++;
+			}
 		}
 		push_b(stack_b, stack_a);
-		if ((*stack_a)->next == NULL)
-			push_b(stack_b, stack_a);
 	}
-	//printf("fin radix_sort_units\n");
 }
 
-//for the dizaines rank and above
+/* for the dizaines rank and above */
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 {
 	t_stack	*node;
@@ -55,12 +63,15 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 
 	i = 1;
 	exp = 10;
-	while ((*stack_b)->next != NULL)
+	if (*stack_a == NULL)
 	{
-		reverse_rotate_b(stack_b);
+		while ((*stack_b)->next != NULL)
+		{
+			reverse_rotate_b(stack_b);
+			push_a(stack_a, stack_b);
+		}
 		push_a(stack_a, stack_b);
 	}
-	push_a(stack_a, stack_b);
 	while (i != digits_max)
 	{
 		if (stack_is_sorted(*stack_a) == 0)
@@ -74,11 +85,9 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
 			rotate_a(stack_a);
 			if (((node->data - (node->data % 10) / exp) % 10) > (((*stack_a)->data - ((*stack_a)->data % 10) / exp) % 10))
 			{
-				rotate_a(stack_a);
 				while (((node->data - (node->data % 10) / exp) % 10) > (((*stack_a)->data - ((*stack_a)->data % 10) / exp) % 10))
 					rotate_a(stack_a);
 			}
-			push_b(stack_b, stack_a);
 			if ((*stack_a)->next == NULL)
 				push_b(stack_b, stack_a);
 		}

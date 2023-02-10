@@ -92,8 +92,4 @@ char		**ft_free_split(char **bigstr, int i, int *len);
 char		**ft_fill_tab(char *src, char c, char **bigstr, int *len);
 char		**ft_split(char const *s, char c);
 
-/* quicksort.c */
-t_stack		*partition(t_stack *first, t_stack *last);
-void		quick_sort(t_stack *first, t_stack *last);
-
 #endif
