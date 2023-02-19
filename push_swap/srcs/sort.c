@@ -14,113 +14,55 @@
 
 void	sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int	max;
-	int	digits_max;
-
-	max = find_max(*stack_a);
-	digits_max = size_of_max(max);
-	radix_sort_units(stack_a, stack_b);
-	radix_sort(stack_a, stack_b, digits_max);
+	radix_sort(stack_a, stack_b);
 }
 
-/* for the units rank */
-void	radix_sort_units(t_stack **stack_a, t_stack **stack_b)
+int	get_max_bits(t_stack **stack)
 {
-	t_stack	*node;
-	t_stack	*last_node;
-	int		i;
+	t_stack	*head;
+	int		max;
+	int		max_bits;
 
-	while ((*stack_a) != NULL)
+	head = *stack;
+	max = head->data;
+	max_bits = 0;
+	while (head)
 	{
-		node = (*stack_a);
-		last_node = find_last_node(*stack_a);
-		rotate_a(stack_a);
-		i = 1;
-		if (ft_lstsize(*stack_a) == 2)
+		if (head->data > max)
+			max = head->data;
+		head = head->next;
+	}
+	while ((max >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}
+
+void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*head_a;
+	int		i;
+	int		j;
+	int		size;
+	int		max_bits;
+
+	i = 0;
+	head_a = *stack_a;
+	size = ft_lstsize(head_a);
+	max_bits = get_max_bits(stack_a);
+	while (i != max_bits)
+	{
+		j = 0;
+		while (j < size)
 		{
-			if ((*stack_a)->data < (*stack_a)->next->data)
-				swap_a(*stack_a);
-			push_b(stack_b, stack_a);
-		}
-		if ((node->data % 10) > ((*stack_a)->data % 10))
-		{
-			while (((node->data % 10) > ((*stack_a)->data % 10)) || i != ft_lstsize(*stack_a))
-			{
+			head_a = *stack_a;
+			if (((head_a->data >> i) & 1) == 1)
 				rotate_a(stack_a);
-				i++;
-			}
-		}
-		push_b(stack_b, stack_a);
-	}
-}
-
-/* for the dizaines rank and above */
-void	radix_sort(t_stack **stack_a, t_stack **stack_b, int digits_max)
-{
-	t_stack	*node;
-	int		i;
-	int		exp;
-
-	i = 1;
-	exp = 10;
-	if (*stack_a == NULL)
-	{
-		while ((*stack_b)->next != NULL)
-		{
-			reverse_rotate_b(stack_b);
-			push_a(stack_a, stack_b);
-		}
-		push_a(stack_a, stack_b);
-	}
-	while (i != digits_max)
-	{
-		if (stack_is_sorted(*stack_a) == 0)
-			return ;
-		else
-		{
-			node = (*stack_a);
-			// node->data -= node->data % 10;
-			// node->data /= exp;
-			// node->data %= 10;
-			rotate_a(stack_a);
-			if (((node->data - (node->data % 10) / exp) % 10) > (((*stack_a)->data - ((*stack_a)->data % 10) / exp) % 10))
-			{
-				while (((node->data - (node->data % 10) / exp) % 10) > (((*stack_a)->data - ((*stack_a)->data % 10) / exp) % 10))
-					rotate_a(stack_a);
-			}
-			if ((*stack_a)->next == NULL)
+			else
 				push_b(stack_b, stack_a);
+			j++;
 		}
-		i++;
-		exp *= 10;
-	}
-}
-
-int	find_max(t_stack *stack)
-{
-	int	max;
-
-	max = 0;
-	while (stack->next != NULL)
-	{
-		if (stack->data > max)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
-
-int	size_of_max(int max)
-{
-	int	i;
-
-	i = 1;
-	if (max < 0)
-		max *= -1;
-	while (max > 10)
-	{
-		max /= 10;
+		while (ft_lstsize(*stack_b) != 0)
+			push_a(stack_a, stack_b);
 		i++;
 	}
-	return (i);
 }
