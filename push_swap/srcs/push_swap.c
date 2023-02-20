@@ -43,6 +43,7 @@ void	fill_value_in_stack(int argc, char **argv, t_stack **stack)
 		ft_lstadd_back(stack, new);
 		i++;
 	}
+	organize_stack(stack);
 	if (argc == 2)
 		ft_free(av);
 }
@@ -59,8 +60,7 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	else if (ft_lstsize(*stack_a) > 2 && ft_lstsize(*stack_a) <= 5)
 		sort_small_stack(stack_a, stack_b);
 	else
-		// quick_sort((*stack_a), find_last_node(*stack_a));
-		sort_big_stack(stack_a, stack_b);
+		radix_sort(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
