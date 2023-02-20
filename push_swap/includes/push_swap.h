@@ -46,8 +46,7 @@ void		sort_five_element(t_stack **stack_a, t_stack **stack_b);
 /* sort_big_stack.c */
 void		radix_sort(t_stack **stack_a, t_stack **stack_b);
 int			get_max_bits(t_stack **stack);
-t_stack		*get_next_min(t_stack **stack);
-void		organize_stack(t_stack **stack);
+int			*fill_tab_increasing(t_stack **stack_a);
 
 /* action_push.c */
 void		push_a(t_stack **stack_dest, t_stack **stack_src);

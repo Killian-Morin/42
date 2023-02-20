@@ -12,46 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-t_stack	*get_next_min(t_stack **stack)
-{
-	t_stack	*temp;
-	t_stack	*min;
-	int		signal;
-
-	signal = 0;
-	min = NULL;
-	temp = *stack;
-	while (temp)
-	{
-		if ((temp->index == -1) && (!signal || temp->data < min->data))
-		{
-			min = temp;
-			signal = 1;
-		}
-		temp = temp->next;
-	}
-	return (min);
-}
-
-void	organize_stack(t_stack **stack)
-{
-	t_stack	*result;
-	int		index;
-
-	index = 0;
-	result = get_next_min(stack);
-	while (result)
-	{
-		result->index = index++;
-		result = get_next_min(stack);
-	}
-	while ((*stack))
-	{
-		printf("%d\n", (*stack)->index);
-		(*stack) = (*stack)->next;
-	}
-}
-
 int	get_max_bits(t_stack **stack)
 {
 	t_stack	*head;
@@ -59,12 +19,12 @@ int	get_max_bits(t_stack **stack)
 	int		max_bits;
 
 	head = *stack;
-	max = head->index;
+	max = head->data;
 	max_bits = 0;
 	while (head)
 	{
-		if (head->index > max)
-			max = head->index;
+		if (head->data > max)
+			max = head->data;
 		head = head->next;
 	}
 	while ((max >> max_bits) != 0)
@@ -74,23 +34,23 @@ int	get_max_bits(t_stack **stack)
 
 void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*head_a;
+	int		*tab;
 	int		i;
 	int		j;
 	int		size;
 	int		max_bits;
 
 	i = 0;
-	head_a = *stack_a;
-	size = ft_lstsize(head_a);
+	tab = fill_tab_increasing(stack_a);
+	size = ft_lstsize(*stack_a);
 	max_bits = get_max_bits(stack_a);
-	while (i != max_bits)
+	while (i < max_bits)
 	{
 		j = 0;
 		while (j < size)
 		{
-			head_a = *stack_a;
-			if (((head_a->index >> i) & 1) == 1)
+			tab = fill_tab_increasing(stack_a);
+			if (((*tab >> i) & 1) == 1)
 				rotate_a(stack_a);
 			else
 				push_b(stack_b, stack_a);
@@ -99,5 +59,84 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 		while (ft_lstsize(*stack_b) != 0)
 			push_a(stack_a, stack_b);
 		i++;
+	}
+}
+
+int	*fill_tab_increasing(t_stack **stack_a)
+{
+	int		i;
+	int		j;
+	int		temp;
+	int		*number;
+	t_stack	*lol;
+
+	i = 0;
+	lol = *stack_a;
+	number = malloc(sizeof(number) * ft_lstsize(*stack_a));
+	while (i != ft_lstsize(*stack_a))
+	{
+		number[i] = lol->data;
+		i++;
+		lol = lol->next;
+	}
+	i = 0;
+	while (i < ft_lstsize(*stack_a))
+	{
+		j = i + 1;
+		while (j < ft_lstsize(*stack_a))
+		{
+			if (number[i] > number[j])
+			{
+				temp = number[i];
+				number[i] = number[j];
+				number[j] = temp;
+			}
+			++j;
+		}
+		++i;
+	}
+	return (number);
+}
+
+t_stack	*get_next_min(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*min;
+	int		has_min;
+
+	min = NULL;
+	has_min = 0;
+	head = *stack;
+	if (head)
+	{
+		while (head)
+		{
+			if ((head->index == -1) && (!has_min || head->data < min->data))
+			{
+				min = head;
+				has_min = 1;
+			}
+			head = head->next;
+		}
+	}
+	return (min);
+}
+
+void	organize_stack(t_stack **stack)
+{
+	t_stack	*head;
+	int		index;
+
+	index = 0;
+	head = get_next_min(stack);
+	while (head)
+	{
+		head->index = index++;
+		head = get_next_min(stack);
+	}
+	while ((*stack))
+	{
+		printf("%d\n", (*stack)->index);
+		(*stack) = (*stack)->next;
 	}
 }

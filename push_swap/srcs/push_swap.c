@@ -43,7 +43,6 @@ void	fill_value_in_stack(int argc, char **argv, t_stack **stack)
 		ft_lstadd_back(stack, new);
 		i++;
 	}
-	organize_stack(stack);
 	if (argc == 2)
 		ft_free(av);
 }
