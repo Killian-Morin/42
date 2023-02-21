@@ -23,13 +23,17 @@ attribue la valeur stocke ds temp au 2eme node correspondant au 1 er node
 */
 static void	swap(t_stack *stack)
 {
-	int	temp;
+	int	temp_data;
+	int	temp_index;
 
 	if (stack == NULL || stack->next == NULL)
 		return ;
-	temp = stack->data;
+	temp_data = stack->data;
+	temp_index = stack->index;
 	stack->data = stack->next->data;
-	stack->next->data = temp;
+	stack->index = stack->next->index;
+	stack->next->data = temp_data;
+	stack->next->index = temp_index;
 }
 
 void	swap_a(t_stack *stack_a)

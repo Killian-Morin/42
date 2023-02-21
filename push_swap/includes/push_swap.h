@@ -28,14 +28,18 @@ typedef struct t_list
 /* push_swap.c */
 int			main(int argc, char **argv);
 void		push_swap(t_stack **stack_a, t_stack **stack_b);
-void		fill_value_in_stack(int argc, char **argv, t_stack **stack);
 int			stack_is_sorted(t_stack *stack);
 
 /* correct_input.c */
 int			int_only(char **argv);
-int			check_for_duplicate(int argc, char **argv);
+int			check_for_duplicate(char **argv);
 int			check_correct_value(int argc, char **argv);
 int			ft_strcmp(char *s1, char *s2);
+
+/* init_stack.c */
+void		fill_value_in_stack(int argc, char **argv, t_stack **stack_a);
+t_stack		*get_next_min(t_stack **stack);
+void		organize_index_stack(t_stack **stack);
 
 /* sort_small_stack.c */
 void		sort_small_stack(t_stack **stack_a, t_stack **stack_b);
@@ -46,7 +50,6 @@ void		sort_five_element(t_stack **stack_a, t_stack **stack_b);
 /* sort_big_stack.c */
 void		radix_sort(t_stack **stack_a, t_stack **stack_b);
 int			get_max_bits(t_stack **stack);
-int			*fill_tab_increasing(t_stack **stack_a);
 
 /* action_push.c */
 void		push_a(t_stack **stack_dest, t_stack **stack_src);

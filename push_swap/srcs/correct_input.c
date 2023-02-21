@@ -57,18 +57,18 @@ int	int_only(char **argv)
 return 1 -> there is a duplicate in the input / the input is invalid
 return 0 -> there is no duplicate / the input is valid
 */
-int	check_for_duplicate(int argc, char **argv)
+int	check_for_duplicate(char **argv)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	while (i != argc)
+	i = 0;
+	while (argv[i])
 	{
-		j = i + 1;
-		while (j != argc)
+		j = 1;
+		while (argv[j])
 		{
-			if (ft_strcmp(argv[i], argv[j]) == 0)
+			if (j != i && ft_strcmp(argv[i], argv[j]) == 0)
 				return (1);
 			j++;
 		}
@@ -96,7 +96,7 @@ int	check_correct_value(int argc, char **argv)
 		i = 1;
 		av = argv;
 	}
-	if (check_for_duplicate(argc, av) == 1)
+	if (check_for_duplicate(av) == 1)
 		return (1);
 	if (int_only(av) == 1)
 		return (1);

@@ -23,30 +23,6 @@ int	stack_is_sorted(t_stack *stack)
 	return (0);
 }
 
-void	fill_value_in_stack(int argc, char **argv, t_stack **stack)
-{
-	int			i;
-	char		**av;
-	t_stack		*new;
-
-	i = 0;
-	if (argc == 2)
-		av = ft_split(argv[1], ' ');
-	else
-	{
-		i = 1;
-		av = argv;
-	}
-	while (av[i])
-	{
-		new = ft_lstnew(ft_atoi(av[i]));
-		ft_lstadd_back(stack, new);
-		i++;
-	}
-	if (argc == 2)
-		ft_free(av);
-}
-
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stack_is_sorted(*stack_a) == 0)
@@ -80,11 +56,11 @@ int	main(int argc, char **argv)
 	*stack_b = NULL;
 	fill_value_in_stack(argc, argv, stack_a);
 	push_swap(stack_a, stack_b);
-	while ((*stack_a))
-	{
-		printf("%d\n", (*stack_a)->data);
-		(*stack_a) = (*stack_a)->next;
-	}
+	// while ((*stack_a))
+	// {
+	// 	printf("%d\n", (*stack_a)->data);
+	// 	(*stack_a) = (*stack_a)->next;
+	// }
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
