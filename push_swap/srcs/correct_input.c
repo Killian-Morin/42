@@ -28,8 +28,8 @@ int	ft_strcmp(char *s1, char *s2)
 }
 
 /*
-return 1 -> there is things that are not an int / the input is invalid
-return 0 -> everything is an int / the input is valid
+return 1 -> the input is invalid (not entierely int)
+return 0 -> the input is valid (all int)
 */
 int	int_only(char **argv)
 {
@@ -54,8 +54,8 @@ int	int_only(char **argv)
 }
 
 /*
-return 1 -> there is a duplicate in the input / the input is invalid
-return 0 -> there is no duplicate / the input is valid
+return 1 -> the input is invalid (duplicate present)
+return 0 -> the input is valid (only unique elements)
 */
 int	check_for_duplicate(char **argv)
 {

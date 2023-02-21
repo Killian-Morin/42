@@ -56,11 +56,6 @@ int	main(int argc, char **argv)
 	*stack_b = NULL;
 	fill_value_in_stack(argc, argv, stack_a);
 	push_swap(stack_a, stack_b);
-	// while ((*stack_a))
-	// {
-	// 	printf("%d\n", (*stack_a)->data);
-	// 	(*stack_a) = (*stack_a)->next;
-	// }
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
