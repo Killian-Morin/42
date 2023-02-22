@@ -18,7 +18,7 @@ Le premier élément devient le dernier.
 
 creer une var temp qui stocke le 1er node,
 modif le 1er node pour qu'il pointe vers le second,
-une var last_node qui stock le dernier node (trouve avec ft ds utils.c);
+une var last_node qui stock le dernier node (trouve avec ft ds utils_stack.c);
 fait pointer temp vers NULL puisque c'est maintenant le dernier node;
 fait pointer last_node vers temp;
 */

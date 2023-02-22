@@ -21,17 +21,14 @@ t_stack	*get_next_min(t_stack **stack)
 	min = NULL;
 	signal = 0;
 	head = *stack;
-	if (head)
+	while (head)
 	{
-		while (head)
+		if ((head->index == -1) && (!signal || head->data < min->data))
 		{
-			if ((head->index == -1) && (!signal || head->data < min->data))
-			{
-				min = head;
-				signal = 1;
-			}
-			head = head->next;
+			min = head;
+			signal = 1;
 		}
+		head = head->next;
 	}
 	return (min);
 }

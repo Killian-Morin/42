@@ -15,8 +15,6 @@
 /*
 Prend le premier élément au sommet de src et le met sur dest.
 Ne fait rien si src est vide.
-stack_a est la src
-stack_b est la dest
 
 creer une var head_dest qui prend le 1er node de dest,
 creer une var head_src qui prend le 1er node de src,
@@ -28,7 +26,7 @@ si la dest est vide,
 	head_dest pointe vers NULL comme pas d'autre element ds la stack,
 	attribue head_dest comme 1er node de stack_dest;
 si il y a des elements ds dest,
-	alors fait pointer tmp vers head_dest
+	alors fait pointer tmp vers head_dest,
 	attribue tmp comme 1er node de stack_dest;
 */
 static void	push(t_stack **stack_dest, t_stack **stack_src)

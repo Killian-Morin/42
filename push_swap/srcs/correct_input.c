@@ -28,7 +28,7 @@ int	ft_strcmp(char *s1, char *s2)
 }
 
 /*
-return 1 -> the input is invalid (not entierely int)
+return 1 -> the input is invalid (some are not an int)
 return 0 -> the input is valid (all int)
 */
 int	int_only(char **argv)
