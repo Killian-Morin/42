@@ -12,6 +12,21 @@
 
 #include "../includes/push_swap.h"
 
+char	*ft_strchr(const char *str, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		else
+			i++;
+	}
+	return (0);
+}
+
 int	stack_is_sorted(t_stack *stack)
 {
 	while (stack->next != NULL)
@@ -26,10 +41,7 @@ int	stack_is_sorted(t_stack *stack)
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stack_is_sorted(*stack_a) == 0)
-	{
-		free_stack(stack_a);
-		free_stack(stack_b);
-	}
+		return ;
 	else if (ft_lstsize(*stack_a) == 2)
 		swap_a(*stack_a);
 	else if (ft_lstsize(*stack_a) > 2 && ft_lstsize(*stack_a) <= 5)
@@ -43,12 +55,12 @@ int	main(int argc, char **argv)
 	t_stack	**stack_a;
 	t_stack	**stack_b;
 
-	if (argc < 2)
+	if (argc < 2 || (argc == 2 && ft_strchr(argv[1], ' ') == 0))
 		return (-1);
 	if (check_correct_value(argc, argv) != 0)
 	{
 		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	stack_a = (t_stack **)malloc(sizeof(t_stack));
 	stack_b = (t_stack **)malloc(sizeof(t_stack));
