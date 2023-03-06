@@ -61,13 +61,15 @@ void	fill_value_in_stack(int argc, char **argv, t_stack **stack_a)
 		i = 1;
 		av = argv;
 	}
+	if (!av)
+		ft_free_char_string(av);
 	while (av[i])
 	{
-		new = ft_lstnew(ft_atoi(av[i]));
+		new = ft_lstnew(ft_ascii_to_long_int(av[i]));
 		ft_lstadd_back(stack_a, new);
 		i++;
 	}
 	organize_index_stack(stack_a);
 	if (argc == 2)
-		ft_free(av);
+		ft_free_char_string(av);
 }

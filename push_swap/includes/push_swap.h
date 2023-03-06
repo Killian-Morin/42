@@ -29,6 +29,7 @@ typedef struct t_list
 int			main(int argc, char **argv);
 void		push_swap(t_stack **stack_a, t_stack **stack_b);
 int			stack_is_sorted(t_stack *stack);
+char	*ft_strchr(const char *str, int c);
 
 /* correct_input.c */
 int			int_only(char **argv);
@@ -80,8 +81,8 @@ int			ft_lstsize(t_stack *lst);
 /* utils.c */
 void		ft_putchar(char c);
 void		ft_putstr(char *str);
-long int	ft_atoi(char *str);
-void		ft_free(char **str);
+long int	ft_ascii_to_long_int(char *str);
+void		ft_free_char_string(char **str);
 void		free_stack(t_stack **stack);
 
 /* ft_split.c */

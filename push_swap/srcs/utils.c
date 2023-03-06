@@ -32,7 +32,7 @@ void	ft_putstr(char *str)
 /*
 passe le type de retour en long int pour qu'il puisse gerer les int min & int max
 */
-long int	ft_atoi(char *str)
+long int	ft_ascii_to_long_int(char *str)
 {
 	int			i;
 	int			signe;
@@ -55,7 +55,7 @@ long int	ft_atoi(char *str)
 	return (res * signe);
 }
 
-void	ft_free(char **str)
+void	ft_free_char_string(char **str)
 {
 	int	i;
 

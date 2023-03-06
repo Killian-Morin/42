@@ -63,7 +63,11 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	stack_a = (t_stack **)malloc(sizeof(t_stack));
+	if (!stack_a)
+		return (-1);
 	stack_b = (t_stack **)malloc(sizeof(t_stack));
+	if (!stack_b)
+		return (-1);
 	*stack_a = NULL;
 	*stack_b = NULL;
 	fill_value_in_stack(argc, argv, stack_a);

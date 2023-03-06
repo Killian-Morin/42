@@ -96,13 +96,15 @@ int	check_correct_value(int argc, char **argv)
 		i = 1;
 		av = argv;
 	}
+	if (!av)
+		return (1);
 	if (check_for_duplicate(av) == 1)
 		return (1);
 	if (int_only(av) == 1)
 		return (1);
 	while (av[i])
 	{
-		element = ft_atoi(av[i]);
+		element = ft_ascii_to_long_int(av[i]);
 		if (element > INT_MAX || element < INT_MIN)
 			return (1);
 		i++;
