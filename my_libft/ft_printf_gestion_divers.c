@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_printf_gestion_divers.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 17:45:53 by kmorin            #+#    #+#             */
-/*   Updated: 2022/10/27 09:56:55 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/29 16:55:27 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/29 17:01:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isdigit(int c)
+int	ft_write_char(char c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_write_str(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+	{
+		ft_write_str("(null)");
+		return (6);
+	}
+	while (s[i])
+	{
+		ft_write_char(s[i]);
+		i++;
+	}
+	return (i);
 }
