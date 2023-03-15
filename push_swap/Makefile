@@ -31,4 +31,7 @@ fclean: clean
 
 re: fclean all
 
+leaks: re
+	leaks -atExit -- ./${NAME}
+
 .PHONY: all clean fclean re
