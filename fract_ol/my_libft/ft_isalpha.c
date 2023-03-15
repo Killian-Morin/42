@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/24 16:54:56 by kmorin            #+#    #+#             */
+/*   Updated: 2022/10/27 09:58:27 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
-
-#endif
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	else
+		return (0);
+}

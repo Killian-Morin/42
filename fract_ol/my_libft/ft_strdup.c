@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/02 13:33:11 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/07 09:45:19 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+char	*ft_strdup(const char *src)
+{
+	size_t		i;
+	char		*str;
+	char		*temp;
 
-#endif
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (temp == NULL)
+		return (0);
+	i = 0;
+	str = temp;
+	while (i != ft_strlen(src))
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

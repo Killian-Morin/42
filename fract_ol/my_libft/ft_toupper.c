@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/26 14:42:36 by kmorin            #+#    #+#             */
+/*   Updated: 2022/10/27 10:27:05 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
-
-#endif
+int	ft_toupper(int c)
+{
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
+}

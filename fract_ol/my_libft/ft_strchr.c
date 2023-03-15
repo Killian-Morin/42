@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/25 12:34:45 by kmorin            #+#    #+#             */
+/*   Updated: 2022/10/28 11:59:29 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+char	*ft_strchr(const char *str, int c)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (i <= ft_strlen(str))
+	{
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		else
+			i++;
+	}
+	return (0);
+}

@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/25 13:58:06 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/01 09:55:21 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	j;
+	size_t	ls;
 
-#endif
+	j = 0;
+	i = ft_strlen(dest);
+	ls = ft_strlen(src);
+	if (size == 0)
+		return (ls);
+	if (size - 1 < i)
+		return (ls + size);
+	if (size - 1 >= i)
+	{
+		while (src[j] && (i + j + 1) < size)
+		{
+			dest[i + j] = src[j];
+			j++;
+		}
+	}
+	dest[i + j] = '\0';
+	return (i + ls);
+}

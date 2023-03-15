@@ -12,21 +12,26 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
+MLX_MAKE = make -C mlx
+
 all: ${OBJ_PATH} ${NAME}
 
 ${OBJ_PATH}:
 	mkdir ${OBJ_PATH}
 
 ${OBJ_PATH}%.o: ${SRC_PATH}%.c
-	${CC} ${CFLAGS} -Imlx -Iincludes -c $< -o $@ 
+	${CC} ${CFLAGS} -Imlx -I ./includes -c $< -o $@ 
 
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+	${MLX_MAKE}
+	${CC} ${CFLAGS} ${OBJS} -Lmlx -framework OpenGL -framework AppKit -o ${NAME}
 
 clean:
+	${MLX_MAKE} clean
 	${RM} ${OBJ_PATH}
 
 fclean: clean
+	${MLX_MAKE} fclean
 	${RM} ${NAME}
 
 re: fclean all
@@ -34,4 +39,4 @@ re: fclean all
 leaks: re
 	leaks -atExit -- ${NAME}
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean leaks

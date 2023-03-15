@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/19 13:48:36 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/19 13:59:52 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*))
+{
+	t_list	*newlist;
+	t_list	*temp;
 
-#endif
+	if (!f || !del)
+		return (NULL);
+	newlist = NULL;
+	while (lst)
+	{
+		temp = ft_lstnew((*f)(lst->content));
+		if (!temp)
+		{
+			(*del)(temp->content);
+			free(temp);
+			return (NULL);
+		}
+		ft_lstadd_back(&newlist, temp);
+		lst = lst->next;
+	}
+	return (newlist);
+}

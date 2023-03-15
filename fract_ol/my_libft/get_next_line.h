@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/12/06 10:21:27 by kmorin            #+#    #+#             */
+/*   Updated: 2022/12/06 10:24:00 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+
+char	*get_next_line(int fd);
+char	*gnl_line(char *stock);
+char	*gnl_stock(int fd, char *stock);
+char	*gnl_update_stock(char *stock);
+
+size_t	gnl_strlen(char *str);
+int		gnl_strchr(char *stock, int c);
+char	*gnl_strjoin(char *stock, char *buffer);
 
 #endif

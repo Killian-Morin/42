@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/11/09 11:41:42 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/09 12:38:12 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	size;
 
-#endif
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (j != ft_strlen(s1))
+	{
+		str[j++] = s1[i++];
+	}
+	i = 0;
+	while (j != size)
+	{
+		str[j] = s2[i];
+		i++;
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
+}

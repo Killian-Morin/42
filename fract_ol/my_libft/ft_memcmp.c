@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/31 14:10:56 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/01 13:51:55 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
-# include "../mlx/mlx.h"
-# include "../my_libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
+{
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
-#endif
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (i < n)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		else
+			i++;
+	}
+	return (0);
+}
