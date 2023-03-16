@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include "../libft/libft.h"
 // # include "../mlx/mlx_int.h"
 // # include "../mlx/mlx_new_window.h"

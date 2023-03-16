@@ -1,11 +1,12 @@
 NAME = fractol
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c
+SRC_FILES = test.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
-OBJ = ${addprefix ${OBJ_PATH}, ${SRC:.c=.o}}
+OBJ_FILES = ${SRC_FILES:.c=.o}
+OBJ = ${addprefix ${OBJ_PATH}, ${OBJ_FILES}}
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
@@ -13,15 +14,15 @@ RM = rm -rf
 
 LIB_PATH = ./libft/
 LIB_MAKE = ${addprefix ${LIB_PATH}, libft.a}
-LIB_FLAG = -L ${LIB_PATH}
+LIB_FLAG = -L ${LIB_PATH} -l ft -l pthread
 
 MLX_PATH = ./mlx/
 MLX_MAKE = ${addprefix ${MLX_PATH}, mlx.a}
 MLX_FLAG = -L ${MLX_PATH} -l mlx -framework OpenGL -framework AppKit
 
-all: obj ${LIB_MAKE} ${MLX_MAKE} ${NAME}
+all: ${OBJ_PATH} ${LIB_MAKE} ${MLX_MAKE} ${NAME}
 
-obj:
+${OBJ_PATH}:
 	mkdir ${OBJ_PATH}
 
 ${OBJ_PATH}%.o: ${SRC_PATH}%.c
@@ -34,7 +35,7 @@ ${MLX_MAKE}:
 	make -C ${MLX_PATH}
 
 ${NAME}: ${OBJ}
-	${CC} ${CFLAGS} ${MLX_FLAG} ${LIB_FLAG} -lm -o ${NAME}
+	${CC} ${CFLAGS} ${OBJ} ${MLX_FLAG} ${LIB_FLAG} -lm -o ${NAME}
 
 clean:
 	${RM} ${OBJ_PATH}
