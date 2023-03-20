@@ -10,8 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -24,5 +32,8 @@
 // # include "../mlx/mlx_new_window.h"
 // # include "../mlx/mlx_opengl.h"
 // # include "../mlx/mlx_png.h"
+
+void    ft_start_fractol(char *fractal);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

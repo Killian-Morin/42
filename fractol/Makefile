@@ -1,7 +1,7 @@
 NAME = fractol
 
 SRC_PATH = ./srcs/
-SRC_FILES = test.c
+SRC_FILES = main.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
@@ -29,10 +29,10 @@ ${OBJ_PATH}%.o: ${SRC_PATH}%.c
 	${CC} ${CFLAGS} -I ${MLX_PATH} -I ${LIB_PATH} -I ./includes -o $@ -c $<
 
 ${LIB_MAKE}:
-	make -C ${LIB_PATH}
+	@make -C ${LIB_PATH}
 
 ${MLX_MAKE}:
-	make -C ${MLX_PATH}
+	@make -C ${MLX_PATH}
 
 ${NAME}: ${OBJ}
 	${CC} ${CFLAGS} ${OBJ} ${MLX_FLAG} ${LIB_FLAG} -lm -o ${NAME}
