@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-/*
-void	ft_mandelbrot()
+
+void	ft_mandelbrot(t_data *data, t_vars *vars)
 {
 	int	*x;
 	int	*y;
@@ -32,13 +32,8 @@ void	ft_mandelbrot()
 	}
 	if (iteration == max_iteration)
 		color = black;
-	plot(x[0], y[0], color);
+	my_mlx_pixel_put(&img, x[0], y[0], color);
 	if (iteration != max_iteration)
 		color = iteration;
-	plot(x[0], y[0], color);
-	if (iteration == max_iteration)
-	 	color = black;
-	else
-		color = iteration;
-	plot(x[0], y[0], color);
-}*/
+	my_mlx_pixel_put(&img, x[0], y[0], color);
+}

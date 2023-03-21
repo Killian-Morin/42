@@ -1,7 +1,7 @@
 NAME = fractol
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c
+SRC_FILES = main.c keyboard.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
@@ -49,6 +49,6 @@ fclean: clean
 re: fclean all
 
 leaks: re
-	leaks -atExit -- ${NAME}
+	leaks -atExit -- ./${NAME}
 
 .PHONY: all re clean fclean leaks

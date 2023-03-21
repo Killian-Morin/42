@@ -12,25 +12,21 @@
 
 #include "../includes/fractol.h"
 
-int	ft_keyboard(int keycode, t_vars *vars)
+int	ft_mouse(int mousecode, t_vars *vars)
 {
-	if (keycode == 53)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		exit(EXIT_SUCCESS);
-	}
 	return (0);
 }
 /*
-int ft_keyboard(int keycode, t_vars *vars)
+int ft_mouse(int mousecode, t_vars *vars)
 {
-    if (keycode == 123)//left arrow
-        deplacer vers la gauche x--
-    if (keycode == 124)//right arrow
-        deplacer vers la droite x++
-    if (keycde == 125)//down arrow
-        deplacer vers le bas y--
-    if (keycode == 126)//up arrow
-        deplacer vers le haut y++
+    if (mousecode == 1 && mouse_localisation croix)
+    {
+        mlx_destroy_window(vars->mlx, vars->win);
+        exit(EXIT_SUCCESS);
+    }
+    if (mousecode == 4)
+        zoom;
+    if (mousecode == 5)
+        dezoom;
     return (0);
 }*/

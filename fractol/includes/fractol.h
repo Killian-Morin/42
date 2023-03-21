@@ -21,6 +21,11 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -28,12 +33,16 @@ typedef struct	s_data {
 # include <math.h>
 # include <mlx.h>
 # include "../libft/libft.h"
-// # include "../mlx/mlx_int.h"
-// # include "../mlx/mlx_new_window.h"
-// # include "../mlx/mlx_opengl.h"
-// # include "../mlx/mlx_png.h"
 
+/* main.c */
+int		main(int argc, char **argv);
 void    ft_start_fractol(char *fractal);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/* keyboard.c */
+int		ft_keyboard(int keycode, t_vars *vars);
+
+/* mouse.c */
+int		ft_mouse(int mousecode, t_vars *vars);
 
 #endif
