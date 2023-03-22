@@ -13,6 +13,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
+# define WIDTH 1920
+# define HEIGHT 1080
+
+typedef struct s_complex {
+	double	x;
+	double	y;
+}				t_complex;
+
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -37,12 +45,18 @@ typedef struct s_vars {
 /* main.c */
 int		main(int argc, char **argv);
 void    ft_start_fractol(char *fractal);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+void	ft_mandelbrot(t_data img);
 
 /* keyboard.c */
 int		ft_keyboard(int keycode, t_vars *vars);
 
 /* mouse.c */
 int		ft_mouse(int mousecode, t_vars *vars);
+
+/* utils.c */
+int		ft_exit(void);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int 	ft_absolute(int n);
 
 #endif
