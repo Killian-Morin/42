@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,35 @@
 
 #include "../includes/fractol.h"
 
-void	ft_mandelbrot(t_data img)
+void    ft_julia(t_data img)
 {
-	t_complex	c;
-	t_complex	z;
-	double		temp;
-	int			i;
-	int			col;
-	int			row;
+    t_complex   c;
+    t_complex   new;
+    t_complex   old;
+	int		    i;
+	int		    col;
+	int		    row;
 
+    c.x = -0.7;
+    c.y = 0.27;
 	col = 0;
 	while (col++ != HEIGHT)
 	{
 		row = 0;
 		while (row++ != WIDTH)
 		{
-			c.x = (col - WIDTH / 2.0) * 6.0 / WIDTH;
-			c.y = (row - HEIGHT / 2.0) * 6.0 / WIDTH;
-			z.x = 0;
-			z.y = 0;
-			i = 0;
-			while ((z.x * z.x) + (z.y * z.y) <= 4 && i++ <= 100)
-			{
-				temp = (z.x * z.x) - (z.y * z.y) + c.x;
-				z.y = (2 * z.x * z.y) + c.y;
-				z.x = temp;
-			}
+            new.x = 1.5 * (col - WIDTH / 2) / (0.5 * WIDTH);
+            new.y = (row - HEIGHT / 2) / (0.5 * HEIGHT);
+            i = 0;
+            while (i++ != 100)
+            {
+                old.x = new.x;
+                old.y = old.y;
+                new.x = old.x * old.x - old.y * old.y + c.x;
+                new.y = 2 * old.x * old.y + c.y;
+                if((new.x * new.x + new.y * new.y) > 4)
+                    break;
+            }
 			if (i < 100)
 				my_mlx_pixel_put(&img, col, row, 0x0);
 			else

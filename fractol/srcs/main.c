@@ -12,34 +12,6 @@
 
 #include "../includes/fractol.h"
 
-void	ft_draw(t_data img)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y++ != 10)
-	{
-		x = 0;
-		while (x++ != 10)
-			my_mlx_pixel_put(&img, x, y, 0xffd700);
-	}
-	y = 0;
-	while (y++ != 10)
-	{
-		x = 50;
-		while (x++ != 60)
-			my_mlx_pixel_put(&img, x, y, 0xffd700);
-	}
-	y = 50;
-	while (y++ != 54)
-	{
-		x = 0;
-		while (x++ != 60)
-			my_mlx_pixel_put(&img, x, y, 0xffd700);
-	}
-}
-
 void	ft_start_fractol(char *fractal)
 {
 	t_data	img;
@@ -50,9 +22,11 @@ void	ft_start_fractol(char *fractal)
 	img.img = mlx_new_image(ptr.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	// ft_draw(img);
-	ft_mandelbrot(img);
-	mlx_put_image_to_window(ptr.mlx, ptr.win, img.img, 910, 540);
+	if (ft_strncmp(fractal, "Mandelbrot", 11) == 0)
+		ft_mandelbrot(img);
+	else if (ft_strncmp(fractal, "Julia", 6) == 0)
+		ft_julia(img);
+	mlx_put_image_to_window(ptr.mlx, ptr.win, img.img, 0, 0);
 	mlx_key_hook(ptr.win, ft_keyboard, &ptr);
 	mlx_hook(ptr.win, 17, 0, ft_exit, EXIT_SUCCESS);
 	// mlx_mouse_hook(ptr.win, ft_mouse, &ptr);

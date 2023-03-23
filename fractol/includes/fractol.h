@@ -13,8 +13,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 920
+# define HEIGHT 540
 
 typedef struct s_complex {
 	double	x;
@@ -46,7 +46,11 @@ typedef struct s_vars {
 int		main(int argc, char **argv);
 void    ft_start_fractol(char *fractal);
 
+/* mandelbrot.c */
 void	ft_mandelbrot(t_data img);
+
+/* julia.c */
+void    ft_julia(t_data img);
 
 /* keyboard.c */
 int		ft_keyboard(int keycode, t_vars *vars);

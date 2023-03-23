@@ -35,9 +35,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int ft_absolute(int n)
+int	ft_absolute(int n)
 {
-    if (n < 0)
-        return (-n);
-    return (n);
+	if (n < 0)
+		return (-n);
+	return (n);
 }
