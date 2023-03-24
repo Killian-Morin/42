@@ -18,30 +18,30 @@ void	ft_mandelbrot(t_data img)
 	t_complex	z;
 	double		temp;
 	int			i;
-	int			col;
-	int			row;
+	int			x;
+	int			y;
 
-	col = 0;
-	while (col++ != HEIGHT)
+	x = 0;
+	while (x++ != WIDTH)
 	{
-		row = 0;
-		while (row++ != WIDTH)
+		y = 0;
+		while (y++ != HEIGHT)
 		{
-			c.x = (col - WIDTH / 2.0) * 6.0 / WIDTH;
-			c.y = (row - HEIGHT / 2.0) * 6.0 / WIDTH;
-			z.x = 0;
-			z.y = 0;
+			c.re = (x - WIDTH / 2.0) * 4.0 / WIDTH;
+			c.im = (y - HEIGHT / 2.0) * 4.0 / WIDTH;
+			z.re = 0;
+			z.im = 0;
 			i = 0;
-			while ((z.x * z.x) + (z.y * z.y) <= 4 && i++ <= 100)
+			while (z.re * z.re + z.im * z.im <= 4 && i++ != MAX_ITER)
 			{
-				temp = (z.x * z.x) - (z.y * z.y) + c.x;
-				z.y = (2 * z.x * z.y) + c.y;
-				z.x = temp;
+				temp = z.re * z.re - z.im * z.im + c.re;
+				z.im = 2 * z.re * z.im + c.im;
+				z.re = temp;
 			}
-			if (i < 100)
-				my_mlx_pixel_put(&img, col, row, 0x0);
+			if (i < MAX_ITER)
+				my_mlx_pixel_put(&img, x, y, ft_color(i));
 			else
-				my_mlx_pixel_put(&img, col, row, 0xffd700);
+				my_mlx_pixel_put(&img, x, y, 0x0);
 		}
 	}
 }

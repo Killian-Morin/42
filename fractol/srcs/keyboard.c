@@ -24,6 +24,10 @@ int	ft_keyboard(int keycode, t_vars *vars)
 /*
 int ft_keyboard(int keycode, t_vars *vars)
 {
+    if (keycode == 0)//a
+        changer le c.re de julia
+    if (keycode == 2)//d
+        changer le c.im de julia
     if (keycode == 123)//left arrow
         deplacer vers la gauche x--
     if (keycode == 124)//right arrow
