@@ -18,17 +18,17 @@ void	ft_mandelbrot(t_data img)
 	t_complex	z;
 	double		temp;
 	int			i;
-	int			x;
-	int			y;
+	t_pos		pos;
 
-	x = 0;
-	while (x++ != WIDTH)
+	pos.x = 0;
+	pos.zoom = 0.8;
+	while (pos.x++ != WIDTH)
 	{
-		y = 0;
-		while (y++ != HEIGHT)
+		pos.y = 0;
+		while (pos.y++ != HEIGHT)
 		{
-			c.re = (x - WIDTH / 2.0) * 4.0 / WIDTH;
-			c.im = (y - HEIGHT / 2.0) * 4.0 / WIDTH;
+			c.re = 1.5 * (pos.x - WIDTH / 2) / (0.5 * pos.zoom * WIDTH);
+			c.im = (pos.y - HEIGHT / 2) / (0.5 * pos.zoom * HEIGHT);
 			z.re = 0;
 			z.im = 0;
 			i = 0;
@@ -39,9 +39,9 @@ void	ft_mandelbrot(t_data img)
 				z.re = temp;
 			}
 			if (i < MAX_ITER)
-				my_mlx_pixel_put(&img, x, y, ft_color(i));
+				my_mlx_pixel_put(&img, pos.x, pos.y, ft_color(i));
 			else
-				my_mlx_pixel_put(&img, x, y, 0x0);
+				my_mlx_pixel_put(&img, pos.x, pos.y, 0x0);
 		}
 	}
 }

@@ -29,7 +29,7 @@ void	ft_start_fractol(char *fractal)
 	mlx_put_image_to_window(ptr.mlx, ptr.win, img.img, 0, 0);
 	mlx_key_hook(ptr.win, ft_keyboard, &ptr);
 	mlx_hook(ptr.win, 17, 0, ft_exit, EXIT_SUCCESS);
-	// mlx_mouse_hook(ptr.win, ft_mouse, &ptr);
+	mlx_mouse_hook(ptr.win, ft_mouse, &ptr);
 	mlx_loop(ptr.mlx);
 }
 

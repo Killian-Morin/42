@@ -12,16 +12,13 @@
 
 #include "../includes/fractol.h"
 
-int	ft_mouse(int mousecode, t_vars *vars)
+int	ft_mouse(int mousecode)
 {
+	t_pos	pos;
+
+	if (mousecode == 4)
+		pos.zoom++;
+	if (mousecode == 5)
+		pos.zoom--;
 	return (0);
 }
-/*
-int ft_mouse(int mousecode, t_vars *vars)
-{
-    if (mousecode == 4)
-        zoom;
-    if (mousecode == 5)
-        dezoom;
-    return (0);
-}*/
