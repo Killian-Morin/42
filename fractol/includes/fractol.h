@@ -25,14 +25,6 @@
 # include <mlx.h>
 # include "../libft/libft.h"
 
-typedef struct s_pos {
-	int		x;
-	int		y;
-	double	zoom;
-	double	move_x;
-	double	move_y;
-}				t_pos;
-
 typedef struct s_complex {
 	double	re;
 	double	im;
@@ -65,7 +57,7 @@ void		ft_julia(t_data img);
 int			ft_keyboard(int keycode, t_vars *vars);
 
 /* mouse.c */
-int			ft_mouse(int mousecode);
+int			ft_mouse(int mousecode, t_vars *vars);
 
 /* utils.c */
 int			ft_exit(void);
