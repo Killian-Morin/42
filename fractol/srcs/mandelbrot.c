@@ -12,36 +12,35 @@
 
 #include "../includes/fractol.h"
 
-void	ft_mandelbrot(t_data img)
+void	ft_mandelbrot(t_f *p)
 {
-	t_complex	c;
-	t_complex	z;
 	double		temp;
 	int			i;
-	int			x;
-	int			y;
 
-	x = 0;
-	while (x++ != WIDTH)
+	p->x = 0;
+	p->move_x = 0;
+	p->move_y = 0;
+	while (p->x++ != WIDTH)
 	{
-		y = 0;
-		while (y++ != HEIGHT)
+		p->y = 0;
+		while (p->y++ != HEIGHT)
 		{
-			c.re = (x - WIDTH / 2.0) * 4.0 / WIDTH;
-			c.im = (y - HEIGHT / 2.0) * 4.0 / WIDTH;
-			z.re = 0;
-			z.im = 0;
+			p->c_re = 1.5 * (p->x - WIDTH / 2) / (0.5 * p->zoom * WIDTH) + p->move_x;
+			p->c_im = (p->y - HEIGHT / 2) / (0.5 * p->zoom * HEIGHT) + p->move_y;
+			p->re = 0;
+			p->im = 0;
 			i = 0;
-			while (z.re * z.re + z.im * z.im <= 4 && i++ != MAX_ITER)
+			while (p->re * p->re + p->im * p->im <= 4 && i++ != MAX_ITER)
 			{
-				temp = z.re * z.re - z.im * z.im + c.re;
-				z.im = 2 * z.re * z.im + c.im;
-				z.re = temp;
+				temp = p->re * p->re - p->im * p->im + p->c_re;
+				p->im = 2 * p->re * p->im + p->c_im;
+				p->re = temp;
 			}
 			if (i < MAX_ITER)
-				my_mlx_pixel_put(&img, x, y, ft_color(i));
+				my_mlx_pixel_put(p, p->x, p->y, ft_color(i));
 			else
-				my_mlx_pixel_put(&img, x, y, 0x0);
+				my_mlx_pixel_put(p, p->x, p->y, 0x0);
 		}
 	}
+	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 }

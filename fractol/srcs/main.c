@@ -12,28 +12,24 @@
 
 #include "../includes/fractol.h"
 
-void	ft_start_fractol(char *fractal)
+void	hooks(t_f *p)
 {
-	t_vars	ptr;
-
-	ptr.mlx = mlx_init();
-	ptr.win = mlx_new_window(ptr.mlx, WIDTH, HEIGHT, fractal);
-	ptr.img.img = mlx_new_image(ptr.mlx, WIDTH, HEIGHT);
-	ptr.img.addr = mlx_get_data_addr(ptr.img.img, &ptr.img.bits_per_pixel, &ptr.img.line_length,
-			&ptr.img.endian);
-	ptr.pos.zoom = 1.0;
-	if (ft_strncmp(fractal, "Mandelbrot", 11) == 0)
-		ft_mandelbrot(ptr);
-	else if (ft_strncmp(fractal, "Julia", 6) == 0)
-		ft_julia(ptr);
-	mlx_put_image_to_window(ptr.mlx, ptr.win, ptr.img.img, 0, 0);
-	mlx_key_hook(ptr.win, ft_keyboard, &ptr);
-	mlx_mouse_hook(ptr.win, ft_mouse, &ptr);
-	mlx_hook(ptr.win, 17, 0, ft_exit, EXIT_SUCCESS);
-	mlx_loop(ptr.mlx);
+	mlx_key_hook(p->win, ft_keyboard, p);
+	mlx_mouse_hook(p->win, ft_mouse, p);
+	mlx_hook(p->win, 17, 0, ft_exit, EXIT_SUCCESS);
 }
 
-int	main(int argc, char **argv)
+void	init_fractol(t_f *p)
+{
+	p->mlx = mlx_init();
+	p->win = mlx_new_window(p->mlx, WIDTH, HEIGHT, p->name);
+	p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
+	p->addr = mlx_get_data_addr(p->img, &p->bits_per_pixel,
+			&p->line_lenght, &p->endian);
+	p->zoom = 0.8;
+}
+
+void	check_arg(int argc, char **argv)
 {
 	if (argc == 1)
 	{
@@ -41,14 +37,30 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("List of avalaible parameters:\nMandelbrot\nJulia\n", 1);
 		exit(EXIT_SUCCESS);
 	}
-	if (ft_strncmp(argv[1], "Mandelbrot", 11) == 0
-		|| ft_strncmp(argv[1], "Julia", 6) == 0)
-		ft_start_fractol(argv[1]);
-	else
+	else if (ft_strncmp(argv[1], "Mandelbrot", 11) != 0
+		&& ft_strncmp(argv[1], "Julia", 6) != 0)
 	{
 		ft_putstr_fd("Sorry invalid parameters.\n", 1);
 		ft_putstr_fd("List of avalaible parameters:\nMandelbrot\nJulia\n", 1);
 		exit(EXIT_SUCCESS);
 	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_f	*p;
+
+	check_arg(argc, argv);
+	p = malloc(sizeof(t_f));
+	if (!p)
+		return (EXIT_FAILURE);
+	p->name = argv[1];
+	init_fractol(p);
+	if (ft_strncmp(p->name, "Mandelbrot", 11) == 0)
+		ft_mandelbrot(p);
+	if (ft_strncmp(p->name, "Julia", 6) == 0)
+		ft_julia(p);
+	hooks(p);
+	mlx_loop(p->mlx);
 	return (0);
 }

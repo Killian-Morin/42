@@ -12,37 +12,35 @@
 
 #include "../includes/fractol.h"
 
-void	ft_julia(t_data img)
+void	ft_julia(t_f *p)
 {
-	t_complex	c;
-	t_complex	new;
-	t_complex	old;
-	int			i;
-	int			x;
-	int			y;
+	double	temp;
+	int		i;
 
-	c.re = 0.0;
-	c.im = 0.3;
-	x = 0;
-	while (x++ != WIDTH)
+	p->c_re = -0.7;
+	p->c_im = 0.27015;
+	p->x = 0;
+	p->move_x = 0;
+	p->move_y = 0;
+	while (p->x++ != WIDTH)
 	{
-		y = 0;
-		while (y++ != HEIGHT)
+		p->y = 0;
+		while (p->y++ != HEIGHT)
 		{
-			new.re = (x - WIDTH / 2.0) * 4.0 / WIDTH;
-			new.im = (y - HEIGHT / 2.0) * 4.0 / WIDTH;
+			p->re = 1.5 * (p->x - WIDTH / 2) / (0.5 * p->zoom * WIDTH) + p->move_x;
+			p->im = (p->y - HEIGHT / 2) / (0.5 * p->zoom * HEIGHT) + p->move_y;
 			i = 0;
-			while (new.re * new.re + new.im * new.im <= 4 && i++ != MAX_ITER)
+			while (p->re * p->re + p->im * p->im <= 4 && i++ != MAX_ITER)
 			{
-				old.re = new.re;
-				old.im = new.im;
-				new.re = old.re * old.re - old.im * old.im + c.re;
-				new.im = 2 * old.re * old.im + c.im;
+				temp = p->re * p->re - p->im * p->im + p->c_re;
+				p->im = 2 * p->re * p->im + p->c_im;
+				p->re = temp;
 			}
 			if (i < MAX_ITER)
-				my_mlx_pixel_put(&img, x, y, ft_color(i));
+				my_mlx_pixel_put(p, p->x, p->y, ft_color(i));
 			else
-				my_mlx_pixel_put(&img, x, y, 0x0);
+				my_mlx_pixel_put(p, p->x, p->y, 0x0);
 		}
 	}
+	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 }

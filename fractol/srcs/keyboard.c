@@ -12,11 +12,11 @@
 
 #include "../includes/fractol.h"
 
-int	ft_keyboard(int keycode, t_vars *vars)
+int	ft_keyboard(int keycode, t_f *p)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_window(p->mlx, p->win);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

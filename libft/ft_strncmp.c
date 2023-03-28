@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:19:00 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/20 15:19:27 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/25 09:59:00 by kmorin            #+#    #+#             */
+/*   Updated: 2022/10/27 11:01:11 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "libft.h"
 
-int	ft_mouse(int mousecode, t_f *p)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (mousecode == 1)
-	{
-		p->zoom += 0.05;
-	}
-	if (mousecode == 2)
-	{
-		p->zoom -= 0.05;
-	}
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (i < (n - 1) && s1[i] && s1[i] == s2[i])
+		i++;
+	if (n == 0)
+		return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
