@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:19:00 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/20 15:19:27 by kmorin           ###   ########.fr       */
+/*   Created: 2022/10/26 10:07:55 by kmorin            #+#    #+#             */
+/*   Updated: 2022/11/07 09:44:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "libft.h"
 
-int	ft_mouse(int mousecode, t_f *p)
+int	ft_atoi(const char	*str)
 {
-	if (mousecode == 4 || mousecode == 5)
+	int	i;
+	int	res;
+	int	signe;
+
+	i = 0;
+	res = 0;
+	signe = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ' || str[i] == '+')
+		i++;
+	if (str[i] == '-')
 	{
-		if (mousecode == 4)
-			p->zoom *= 0.8;
-		else
-			p->zoom /= 0.8;
+		signe = signe * -1;
+		i++;
 	}
-	if (!ft_strncmp(p->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(p);
-	if (!ft_strncmp(p->name, "Julia", 5))
-		ft_julia_start(p);
-	return (0);
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		res = res * 10 + (str[i] - 48);
+		i++;
+	}
+	return (res * signe);
 }

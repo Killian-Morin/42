@@ -1,6 +1,6 @@
 NAME = libft.a
 
-SRC = ft_putstr_fd.c ft_strlen.c ft_strncmp.c
+SRC = ft_putstr_fd.c ft_strlen.c ft_strncmp.c ft_atoi.c
 
 HEADER = libft.h
 

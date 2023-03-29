@@ -21,6 +21,7 @@
 int	ft_exit(void)
 {
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 /*
@@ -33,13 +34,6 @@ void	my_mlx_pixel_put(t_f *p, int x, int y, int color)
 
 	dst = p->addr + (y * p->line_lenght + x * (p->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	ft_absolute(int n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
 }
 
 /* 
@@ -67,4 +61,21 @@ int	ft_color(int count)
 	tab[14] = 0x995700;
 	tab[15] = 0x6a3403;
 	return (tab[count % 16]);
+}
+
+/*
+	another color set with 7 colors
+*/
+int	ft_other_color_set(int count)
+{
+	int	tab[7];
+
+	tab[0] = 0xFE0000;
+	tab[1] = 0xFF7900;
+	tab[2] = 0xFFFF0B;
+	tab[3] = 0x22DB13;
+	tab[4] = 0x2430FF;
+	tab[5] = 0x660092;
+	tab[6] = 0xC800F9;
+	return (tab[count % 7]);
 }

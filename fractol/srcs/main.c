@@ -38,7 +38,7 @@ void	check_arg(int argc, char **argv)
 		exit(EXIT_SUCCESS);
 	}
 	else if (ft_strncmp(argv[1], "Mandelbrot", 11) != 0
-		&& ft_strncmp(argv[1], "Julia", 6) != 0)
+		&& ft_strncmp(argv[1], "Julia", 5) != 0)
 	{
 		ft_putstr_fd("Sorry invalid parameters.\n", 1);
 		ft_putstr_fd("List of avalaible parameters:\nMandelbrot\nJulia\n", 1);
@@ -55,11 +55,15 @@ int	main(int argc, char **argv)
 	if (!p)
 		return (EXIT_FAILURE);
 	p->name = argv[1];
+	if (argv[2])
+		p->max_iter = ft_atoi(argv[2]);
+	else
+		p->max_iter = 300;
 	init_fractol(p);
-	if (ft_strncmp(p->name, "Mandelbrot", 11) == 0)
-		ft_mandelbrot(p);
-	if (ft_strncmp(p->name, "Julia", 6) == 0)
-		ft_julia(p);
+	if (!ft_strncmp(p->name, "Mandelbrot", 11))
+		ft_mandelbrot_start(p);
+	if (!ft_strncmp(p->name, "Julia", 5))
+		ft_julia_start(p);
 	hooks(p);
 	mlx_loop(p->mlx);
 	return (0);

@@ -19,8 +19,17 @@ int	ft_keyboard(int keycode, t_f *p)
 		mlx_destroy_window(p->mlx, p->win);
 		exit(EXIT_SUCCESS);
 	}
+	if (keycode == 123)
+		p->move_x -= 2.0;
+	if (keycode == 124)
+		p->move_x += 2.0;
+	if (keycode == 125)
+		p->move_y -= 2.0;
+	if (keycode == 126)
+		p->move_y += 2.0;
 	return (0);
 }
+
 /*
 int ft_keyboard(int keycode, t_vars *vars)
 {
@@ -29,16 +38,8 @@ int ft_keyboard(int keycode, t_vars *vars)
     if (keycode == 2)//d
         changer le c.im de julia
 	if (keycode == 69)
-		pos.zoom++;
+		pos.zoom += 0.5;
 	if (keycode == 78)
-		pos.zoom--;
-	if (keycode == 123)
-		pos.move_x--;
-	if (keycode == 124)
-		pos.move_x++;
-	if (keycode == 125)
-		pos.move_y--;
-	if (keycode == 126)
-		pos.move_y++;
+		pos.zoom -= 0.5;
     return (0);
 }*/
