@@ -19,27 +19,48 @@ int	ft_keyboard(int keycode, t_f *p)
 		mlx_destroy_window(p->mlx, p->win);
 		exit(EXIT_SUCCESS);
 	}
+	if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126)
+		ft_move_key(keycode, p);
+	if (keycode == 15)
+	{
+		mlx_clear_window(p->mlx, p->win);
+		p->zoom = 0.8;
+		p->move_x = 0.0;
+		p->move_y = 0.0;
+		if (!ft_strncmp(p->name, "Mandelbrot", 11))
+			ft_mandelbrot_start(p);
+		if (!ft_strncmp(p->name, "Julia", 5))
+			ft_julia_start(p);
+		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	}
+	return (0);
+}
+
+int	ft_move_key(int keycode, t_f *p)
+{
 	if (keycode == 123)
-		p->move_x -= 2.0;
-	if (keycode == 124)
-		p->move_x += 2.0;
-	if (keycode == 125)
-		p->move_y -= 2.0;
-	if (keycode == 126)
-		p->move_y += 2.0;
+		p->move_x -= 0.05;
+	else if (keycode == 124)
+		p->move_x += 0.05;
+	else if (keycode == 125)
+		p->move_y += 0.05;
+	else if (keycode == 126)
+		p->move_y -= 0.05;
+	mlx_clear_window(p->mlx, p->win);
+	if (!ft_strncmp(p->name, "Mandelbrot", 11))
+		ft_mandelbrot_start(p);
+	if (!ft_strncmp(p->name, "Julia", 5))
+		ft_julia_start(p);
+	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	return (0);
 }
 
 /*
 int ft_keyboard(int keycode, t_vars *vars)
 {
-    if (keycode == 0)//a
-        changer le c.re de julia
-    if (keycode == 2)//d
-        changer le c.im de julia
 	if (keycode == 69)
-		pos.zoom += 0.5;
+		ft_zoom();
 	if (keycode == 78)
-		pos.zoom -= 0.5;
+		ft_zoom();
     return (0);
 }*/

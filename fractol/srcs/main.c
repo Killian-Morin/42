@@ -15,7 +15,8 @@
 void	hooks(t_f *p)
 {
 	mlx_key_hook(p->win, ft_keyboard, p);
-	mlx_mouse_hook(p->win, ft_mouse, p);
+	mlx_mouse_hook(p->win, ft_zoom, p);
+	// mlx_hook(p->win, 6, 0, ft_change_julia, p);
 	mlx_hook(p->win, 17, 0, ft_exit, EXIT_SUCCESS);
 }
 
@@ -27,6 +28,8 @@ void	init_fractol(t_f *p)
 	p->addr = mlx_get_data_addr(p->img, &p->bits_per_pixel,
 			&p->line_lenght, &p->endian);
 	p->zoom = 0.8;
+	p->move_x = 0.0;
+	p->move_y = 0.0;
 }
 
 void	check_arg(int argc, char **argv)
@@ -58,12 +61,18 @@ int	main(int argc, char **argv)
 	if (argv[2])
 		p->max_iter = ft_atoi(argv[2]);
 	else
-		p->max_iter = 300;
+		p->max_iter = 50;
 	init_fractol(p);
 	if (!ft_strncmp(p->name, "Mandelbrot", 11))
+	{
 		ft_mandelbrot_start(p);
+		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	}
 	if (!ft_strncmp(p->name, "Julia", 5))
+	{
 		ft_julia_start(p);
+		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	}
 	hooks(p);
 	mlx_loop(p->mlx);
 	return (0);

@@ -34,7 +34,7 @@ typedef struct s_f {
 	int		line_lenght;
 	int		endian;
 	int		max_iter;
-	int		i;
+	int		nb_iter;
 	double	x;
 	double	y;
 	double	zoom;
@@ -64,9 +64,11 @@ void		ft_julia(t_f *p);
 
 /* keyboard.c */
 int			ft_keyboard(int keycode, t_f *p);
+int			ft_move_key(int keycode, t_f *p);
 
 /* mouse.c */
-int			ft_mouse(int mousecode, t_f *p);
+int			ft_zoom(int mousecode, t_f *p);
+int			ft_change_julia(t_f *p);
 
 /* utils.c */
 int			ft_exit(void);
