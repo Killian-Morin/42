@@ -14,8 +14,8 @@
 
 void	hooks(t_f *p)
 {
-	mlx_key_hook(p->win, ft_keyboard, p);
-	mlx_mouse_hook(p->win, ft_zoom, p);
+	mlx_hook(p->win, 2, 0, ft_keyboard, p);
+	mlx_hook(p->win, 4, 0, ft_zoom, p);
 	// mlx_hook(p->win, 6, 0, ft_change_julia, p);
 	mlx_hook(p->win, 17, 0, ft_exit, EXIT_SUCCESS);
 }

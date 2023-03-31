@@ -14,12 +14,19 @@
 
 int	ft_zoom(int mousecode, t_f *p)
 {
-	if (mousecode == 4 || mousecode == 5)
+	if (mousecode == 4)
 	{
-		if (mousecode == 4)
-			p->zoom *= 0.8;
-		else
-			p->zoom /= 0.8;
+		p->zoom *= 1.1;
+		mlx_clear_window(p->mlx, p->win);
+		if (!ft_strncmp(p->name, "Mandelbrot", 11))
+			ft_mandelbrot_start(p);
+		if (!ft_strncmp(p->name, "Julia", 5))
+			ft_julia_start(p);
+		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	}
+	if (mousecode == 5)
+	{
+		p->zoom /= 1.1;
 		mlx_clear_window(p->mlx, p->win);
 		if (!ft_strncmp(p->name, "Mandelbrot", 11))
 			ft_mandelbrot_start(p);

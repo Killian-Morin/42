@@ -33,19 +33,39 @@ int	ft_keyboard(int keycode, t_f *p)
 			ft_julia_start(p);
 		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	}
+	if (keycode == 0)
+	{
+		p->zoom *= 1.1;
+		mlx_clear_window(p->mlx, p->win);
+		if (!ft_strncmp(p->name, "Mandelbrot", 11))
+			ft_mandelbrot_start(p);
+		if (!ft_strncmp(p->name, "Julia", 5))
+			ft_julia_start(p);
+		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	}
+	if (keycode == 2)
+	{
+		p->zoom /= 1.1;
+		mlx_clear_window(p->mlx, p->win);
+		if (!ft_strncmp(p->name, "Mandelbrot", 11))
+			ft_mandelbrot_start(p);
+		if (!ft_strncmp(p->name, "Julia", 5))
+			ft_julia_start(p);
+		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	}
 	return (0);
 }
 
 int	ft_move_key(int keycode, t_f *p)
 {
 	if (keycode == 123)
-		p->move_x -= 0.05;
-	else if (keycode == 124)
-		p->move_x += 0.05;
-	else if (keycode == 125)
-		p->move_y += 0.05;
-	else if (keycode == 126)
-		p->move_y -= 0.05;
+		p->move_x -= 0.05 / p->zoom;
+	if (keycode == 124)
+		p->move_x += 0.05 / p->zoom;
+	if (keycode == 125)
+		p->move_y += 0.05 / p->zoom;
+	if (keycode == 126)
+		p->move_y -= 0.05 / p->zoom;
 	mlx_clear_window(p->mlx, p->win);
 	if (!ft_strncmp(p->name, "Mandelbrot", 11))
 		ft_mandelbrot_start(p);
