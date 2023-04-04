@@ -18,6 +18,7 @@
 
 # define EVENT_KEY_DOWN 2
 # define EVENT_MOUSE_DOWN 4
+# define EVENT_MOUSE_MOVE 6
 # define EVENT_RED_CROSS 17
 
 # define ZOOM_MOUSE 4
@@ -83,7 +84,7 @@ int			ft_move_key(int keycode, t_f *p);
 
 /* mouse.c */
 int			ft_mouse(int mousecode, int x, int y, t_f *p);
-int			ft_change_julia(t_f *p);
+int			ft_change_julia(int x, int y, t_f *p);
 void		ft_zoom_in(t_f *p);
 void		ft_zoom_out(t_f *p);
 
