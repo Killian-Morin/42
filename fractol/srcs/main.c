@@ -14,10 +14,10 @@
 
 void	hooks(t_f *p)
 {
-	mlx_hook(p->win, 2, 0, ft_keyboard, p);
-	mlx_hook(p->win, 4, 0, ft_zoom, p);
+	mlx_hook(p->win, EVENT_KEY_DOWN, 0, ft_keyboard, p);
+	mlx_hook(p->win, EVENT_MOUSE_DOWN, 0, ft_mouse, p);
 	// mlx_hook(p->win, 6, 0, ft_change_julia, p);
-	mlx_hook(p->win, 17, 0, ft_exit, EXIT_SUCCESS);
+	mlx_hook(p->win, EVENT_RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
 }
 
 void	init_fractol(t_f *p)

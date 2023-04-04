@@ -23,7 +23,6 @@ void	ft_mandelbrot_start(t_f *p)
 			p->nb_iter = 0;
 			p->re = 0;
 			p->im = 0;
-			p->move_x = -0.25;
 			ft_mandelbrot(p);
 			p->x++;
 		}

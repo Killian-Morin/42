@@ -14,14 +14,15 @@
 
 int	ft_keyboard(int keycode, t_f *p)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 	{
 		mlx_destroy_window(p->mlx, p->win);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126)
+	if (keycode == ARROW_LEFT || keycode == ARROW_RIGHT || keycode == ARROW_DOWN
+		|| keycode == ARROW_UP)
 		ft_move_key(keycode, p);
-	if (keycode == 15)
+	if (keycode == RESET)
 	{
 		mlx_clear_window(p->mlx, p->win);
 		p->zoom = 0.8;
@@ -33,38 +34,22 @@ int	ft_keyboard(int keycode, t_f *p)
 			ft_julia_start(p);
 		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	}
-	if (keycode == 0)
-	{
-		p->zoom *= 1.1;
-		mlx_clear_window(p->mlx, p->win);
-		if (!ft_strncmp(p->name, "Mandelbrot", 11))
-			ft_mandelbrot_start(p);
-		if (!ft_strncmp(p->name, "Julia", 5))
-			ft_julia_start(p);
-		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
-	}
-	if (keycode == 2)
-	{
-		p->zoom /= 1.1;
-		mlx_clear_window(p->mlx, p->win);
-		if (!ft_strncmp(p->name, "Mandelbrot", 11))
-			ft_mandelbrot_start(p);
-		if (!ft_strncmp(p->name, "Julia", 5))
-			ft_julia_start(p);
-		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
-	}
+	if (keycode == PLUS_KEYPAD)
+		ft_zoom_in(p);
+	if (keycode == MINUS_KEYPAD)
+		ft_zoom_out(p);
 	return (0);
 }
 
 int	ft_move_key(int keycode, t_f *p)
 {
-	if (keycode == 123)
+	if (keycode == ARROW_LEFT)
 		p->move_x -= 0.05 / p->zoom;
-	if (keycode == 124)
+	if (keycode == ARROW_RIGHT)
 		p->move_x += 0.05 / p->zoom;
-	if (keycode == 125)
+	if (keycode == ARROW_DOWN)
 		p->move_y += 0.05 / p->zoom;
-	if (keycode == 126)
+	if (keycode == ARROW_UP)
 		p->move_y -= 0.05 / p->zoom;
 	mlx_clear_window(p->mlx, p->win);
 	if (!ft_strncmp(p->name, "Mandelbrot", 11))
@@ -74,13 +59,3 @@ int	ft_move_key(int keycode, t_f *p)
 	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	return (0);
 }
-
-/*
-int ft_keyboard(int keycode, t_vars *vars)
-{
-	if (keycode == 69)
-		ft_zoom();
-	if (keycode == 78)
-		ft_zoom();
-    return (0);
-}*/

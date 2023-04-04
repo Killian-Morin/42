@@ -16,6 +16,21 @@
 # define WIDTH 1280
 # define HEIGHT 720
 
+# define EVENT_KEY_DOWN 2
+# define EVENT_MOUSE_DOWN 4
+# define EVENT_RED_CROSS 17
+
+# define ZOOM_MOUSE 4
+# define DEZOOM_MOUSE 5
+# define RESET 15
+# define ESC 53
+# define PLUS_KEYPAD 69
+# define MINUS_KEYPAD 78
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+# define ARROW_DOWN 125
+# define ARROW_UP 126
+
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -67,8 +82,10 @@ int			ft_keyboard(int keycode, t_f *p);
 int			ft_move_key(int keycode, t_f *p);
 
 /* mouse.c */
-int			ft_zoom(int mousecode, t_f *p);
+int			ft_mouse(int mousecode, int x, int y, t_f *p);
 int			ft_change_julia(t_f *p);
+void		ft_zoom_in(t_f *p);
+void		ft_zoom_out(t_f *p);
 
 /* utils.c */
 int			ft_exit(void);
