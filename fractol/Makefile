@@ -8,6 +8,8 @@ OBJ_PATH = ./objs/
 OBJ_FILES = ${SRC_FILES:.c=.o}
 OBJ = ${addprefix ${OBJ_PATH}, ${OBJ_FILES}}
 
+HEADER = ./includes/fractol.h
+
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
@@ -26,7 +28,7 @@ ${OBJ_PATH}:
 	mkdir ${OBJ_PATH}
 
 ${OBJ_PATH}%.o: ${SRC_PATH}%.c
-	${CC} ${CFLAGS} -I ${MLX_PATH} -I ${LIB_PATH} -I ./includes -o $@ -c $<
+	${CC} ${CFLAGS} -I ${MLX_PATH} -I ${LIB_PATH} -I ${HEADER} -o $@ -c $<
 
 ${LIB_MAKE}:
 	@make -C ${LIB_PATH}

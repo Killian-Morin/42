@@ -13,8 +13,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1024
+# define HEIGHT 576
 
 # define EVENT_KEY_DOWN 2
 # define EVENT_MOUSE_DOWN 4
@@ -63,32 +63,45 @@ typedef struct s_f {
 	double	c_im;
 }				t_f;
 
-/* main.c */
+/*
+main.c
+*/
 int			main(int argc, char **argv);
 void		init_fractol(t_f *p);
 void		check_arg(int argc, char **argv);
 void		hooks(t_f *p);
 
-/* mandelbrot.c */
+/*
+mandelbrot.c
+*/
 void		ft_mandelbrot_start(t_f *p);
 void		ft_mandelbrot(t_f *p);
 
-/* julia.c */
+/*
+julia.c
+*/
 void		ft_julia_start(t_f *p);
 void		which_julia(t_f *p);
 void		ft_julia(t_f *p);
 
-/* keyboard.c */
+/*
+keyboard.c
+*/
 int			ft_keyboard(int keycode, t_f *p);
 int			ft_move_key(int keycode, t_f *p);
+void		ft_reset_fractal(t_f *p);
 
-/* mouse.c */
+/*
+mouse.c
+*/
 int			ft_mouse(int mousecode, int x, int y, t_f *p);
 int			ft_change_julia(int x, int y, t_f *p);
 void		ft_zoom_in(t_f *p);
 void		ft_zoom_out(t_f *p);
 
-/* utils.c */
+/*
+utils.c
+*/
 int			ft_exit(void);
 void		my_mlx_pixel_put(t_f *p, int x, int y, int color);
 int			ft_color(int count);

@@ -12,9 +12,27 @@
 
 #include "../includes/fractol.h"
 
+void	which_julia(t_f *p)
+{
+	if (!ft_strncmp(p->name, "Julia1", 6))
+	{
+		p->c_re = -0.2321;
+		p->c_im = -0.835;
+	}
+	else if (!ft_strncmp(p->name, "Julia2", 6))
+	{
+		p->c_re = -0.3842;
+		p->c_im = -0.70176;
+	}
+	else
+	{
+		p->c_re = 0.0;
+		p->c_im = 0.0;
+	}
+}
+
 void	ft_julia_start(t_f *p)
 {
-	which_julia(p);
 	p->y = 0;
 	while (p->y != HEIGHT)
 	{
@@ -26,25 +44,6 @@ void	ft_julia_start(t_f *p)
 			p->x++;
 		}
 		p->y++;
-	}
-}
-
-void	which_julia(t_f *p)
-{
-	if (!ft_strncmp(p->name, "Julia1", 7))
-	{
-		p->c_re = -0.2321;
-		p->c_im = -0.835;
-	}
-	else if (!ft_strncmp(p->name, "Julia2", 7))
-	{
-		p->c_re = -0.3842;
-		p->c_im = -0.70176;
-	}
-	else
-	{
-		p->c_re = -0.7;
-		p->c_im = 0.27;
 	}
 }
 

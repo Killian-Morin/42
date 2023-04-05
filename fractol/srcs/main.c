@@ -16,7 +16,7 @@ void	hooks(t_f *p)
 {
 	mlx_hook(p->win, EVENT_KEY_DOWN, 0, ft_keyboard, p);
 	mlx_hook(p->win, EVENT_MOUSE_DOWN, 0, ft_mouse, p);
-	// mlx_hook(p->win, EVENT_MOUSE_MOVE, 0, ft_change_julia, p);
+	mlx_hook(p->win, EVENT_MOUSE_MOVE, 0, ft_change_julia, p);
 	mlx_hook(p->win, EVENT_RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
 }
 
@@ -30,6 +30,7 @@ void	init_fractol(t_f *p)
 	p->zoom = 0.8;
 	p->move_x = 0.0;
 	p->move_y = 0.0;
+	mlx_mouse_move(p->win, WIDTH / 2, HEIGHT / 2);
 }
 
 void	check_arg(int argc, char **argv)
@@ -64,15 +65,13 @@ int	main(int argc, char **argv)
 		p->max_iter = 50;
 	init_fractol(p);
 	if (!ft_strncmp(p->name, "Mandelbrot", 11))
-	{
 		ft_mandelbrot_start(p);
-		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
-	}
 	if (!ft_strncmp(p->name, "Julia", 5))
 	{
+		which_julia(p);
 		ft_julia_start(p);
-		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	}
+	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	hooks(p);
 	mlx_loop(p->mlx);
 	return (0);

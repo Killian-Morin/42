@@ -26,7 +26,6 @@ int	ft_mouse(int mousecode, int x, int y, t_f *p)
 void	ft_zoom_in(t_f *p)
 {
 	p->zoom *= 1.1;
-	p->max_iter += 10;
 	mlx_clear_window(p->mlx, p->win);
 	if (!ft_strncmp(p->name, "Mandelbrot", 11))
 		ft_mandelbrot_start(p);
@@ -48,25 +47,12 @@ void	ft_zoom_out(t_f *p)
 
 int	ft_change_julia(int x, int y, t_f *p)
 {
-	(void)x;
-	(void)y;
 	if (!ft_strncmp(p->name, "Julia", 5))
 	{
-		p->c_re += 0.01;
-		p->c_im += 0.01;
+		p->c_re = (double)x;
+		p->c_im = (double)y;
 		mlx_clear_window(p->mlx, p->win);
-		p->y = 0;
-		while (p->y != HEIGHT)
-		{
-			p->x = 0;
-			while (p->x != WIDTH)
-			{
-				p->nb_iter = 0;
-				ft_julia(p);
-				p->x++;
-			}
-			p->y++;
-		}
+		ft_julia_start(p);
 		mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
 	}
 	return (0);
