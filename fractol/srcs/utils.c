@@ -28,11 +28,11 @@ int	ft_exit(void)
     to use instead of mlx_pixel_put | mimic its behaviour
     calculate the offset of the pixels to align them correctly
 */
-void	my_mlx_pixel_put(t_f *p, int x, int y, int color)
+void	my_mlx_pixel_put(t_fractal *f, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = p->addr + (y * p->line_lenght + x * (p->bits_per_pixel / 8));
+	dst = f->addr + (y * f->line_lenght + x * (f->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 

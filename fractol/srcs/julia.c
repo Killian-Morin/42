@@ -12,54 +12,54 @@
 
 #include "../includes/fractol.h"
 
-void	which_julia(t_f *p)
+void	which_julia(t_fractal *f)
 {
-	if (!ft_strncmp(p->name, "Julia1", 6))
+	if (!ft_strncmp(f->name, "Julia1", 6))
 	{
-		p->c_re = -0.2321;
-		p->c_im = -0.835;
+		f->c_re = -0.2321;
+		f->c_im = -0.835;
 	}
-	else if (!ft_strncmp(p->name, "Julia2", 6))
+	else if (!ft_strncmp(f->name, "Julia2", 6))
 	{
-		p->c_re = -0.3842;
-		p->c_im = -0.70176;
+		f->c_re = -0.3842;
+		f->c_im = -0.70176;
 	}
 	else
 	{
-		p->c_re = 0.0;
-		p->c_im = 0.0;
+		f->c_re = 0.0;
+		f->c_im = 0.0;
 	}
 }
 
-void	ft_julia_start(t_f *p)
+void	ft_julia_start(t_fractal *f)
 {
-	p->y = 0;
-	while (p->y != HEIGHT)
+	f->pixel_y = 0;
+	while (f->pixel_y != HEIGHT)
 	{
-		p->x = 0;
-		while (p->x != WIDTH)
+		f->pixel_x = 0;
+		while (f->pixel_x != WIDTH)
 		{
-			p->nb_iter = 0;
-			ft_julia(p);
-			p->x++;
+			f->nb_iter = 0;
+			ft_julia(f);
+			f->pixel_x++;
 		}
-		p->y++;
+		f->pixel_y++;
 	}
 }
 
-void	ft_julia(t_f *p)
+void	ft_julia(t_fractal *f)
 {
-	p->re = 1.5 * (p->x - WIDTH / 2) / (0.5 * p->zoom * WIDTH) + p->move_x;
-	p->im = (p->y - HEIGHT / 2) / (0.5 * p->zoom * HEIGHT) + p->move_y;
-	while (p->re * p->re + p->im * p->im <= 4 && p->nb_iter != p->max_iter)
+	f->re = 1.5 * (f->pixel_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
+	f->im = (f->pixel_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
+	while (f->re * f->re + f->im * f->im <= 4 && f->nb_iter != f->max_iter)
 	{
-		p->temp = p->re * p->re - p->im * p->im + p->c_re;
-		p->im = 2 * p->re * p->im + p->c_im;
-		p->re = p->temp;
-		p->nb_iter++;
+		f->temp = f->re * f->re - f->im * f->im + f->c_re;
+		f->im = 2 * f->re * f->im + f->c_im;
+		f->re = f->temp;
+		f->nb_iter++;
 	}
-	if (p->nb_iter < p->max_iter)
-		my_mlx_pixel_put(p, p->x, p->y, ft_color(p->nb_iter));
+	if (f->nb_iter < f->max_iter)
+		my_mlx_pixel_put(f, f->pixel_x, f->pixel_y, ft_color(f->nb_iter));
 	else
-		my_mlx_pixel_put(p, p->x, p->y, 0x0);
+		my_mlx_pixel_put(f, f->pixel_x, f->pixel_y, 0x0);
 }

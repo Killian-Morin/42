@@ -40,7 +40,7 @@
 # include <mlx.h>
 # include "../libft/libft.h"
 
-typedef struct s_f {
+typedef struct s_fractal {
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -51,59 +51,59 @@ typedef struct s_f {
 	int		endian;
 	int		max_iter;
 	int		nb_iter;
-	double	x;
-	double	y;
 	double	zoom;
 	double	temp;
+	double	pixel_x;
+	double	pixel_y;
 	double	move_x;
 	double	move_y;
 	double	re;
 	double	im;
 	double	c_re;
 	double	c_im;
-}				t_f;
+}				t_fractal;
 
 /*
 main.c
 */
 int			main(int argc, char **argv);
-void		init_fractol(t_f *p);
+void		init_fractol(t_fractal *f);
 void		check_arg(int argc, char **argv);
-void		hooks(t_f *p);
+void		hooks(t_fractal *f);
 
 /*
 mandelbrot.c
 */
-void		ft_mandelbrot_start(t_f *p);
-void		ft_mandelbrot(t_f *p);
+void		ft_mandelbrot_start(t_fractal *f);
+void		ft_mandelbrot(t_fractal *f);
 
 /*
 julia.c
 */
-void		ft_julia_start(t_f *p);
-void		which_julia(t_f *p);
-void		ft_julia(t_f *p);
+void		ft_julia_start(t_fractal *f);
+void		which_julia(t_fractal *f);
+void		ft_julia(t_fractal *f);
 
 /*
 keyboard.c
 */
-int			ft_keyboard(int keycode, t_f *p);
-int			ft_move_key(int keycode, t_f *p);
-void		ft_reset_fractal(t_f *p);
+int			ft_keyboard(int keycode, t_fractal *f);
+int			ft_move_key(int keycode, t_fractal *f);
+void		ft_reset_fractal(t_fractal *f);
 
 /*
 mouse.c
 */
-int			ft_mouse(int mousecode, int x, int y, t_f *p);
-int			ft_change_julia(int x, int y, t_f *p);
-void		ft_zoom_in(t_f *p);
-void		ft_zoom_out(t_f *p);
+int			ft_mouse(int mousecode, int x, int y, t_fractal *f);
+int			ft_change_julia(int x, int y, t_fractal *f);
+void		ft_zoom_in(t_fractal *f);
+void		ft_zoom_out(t_fractal *f);
 
 /*
 utils.c
 */
 int			ft_exit(void);
-void		my_mlx_pixel_put(t_f *p, int x, int y, int color);
+void		my_mlx_pixel_put(t_fractal *f, int x, int y, int color);
 int			ft_color(int count);
 
 #endif

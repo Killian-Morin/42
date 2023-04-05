@@ -12,58 +12,58 @@
 
 #include "../includes/fractol.h"
 
-int	ft_keyboard(int keycode, t_f *p)
+int	ft_keyboard(int keycode, t_fractal *f)
 {
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(p->mlx, p->win);
+		mlx_destroy_window(f->mlx, f->win);
 		exit(EXIT_SUCCESS);
 	}
 	if (keycode == ARROW_LEFT || keycode == ARROW_RIGHT || keycode == ARROW_DOWN
 		|| keycode == ARROW_UP)
-		ft_move_key(keycode, p);
+		ft_move_key(keycode, f);
 	if (keycode == RESET)
-		ft_reset_fractal(p);
+		ft_reset_fractal(f);
 	if (keycode == PLUS_KEYPAD)
-		ft_zoom_in(p);
+		ft_zoom_in(f);
 	if (keycode == MINUS_KEYPAD)
-		ft_zoom_out(p);
+		ft_zoom_out(f);
 	return (0);
 }
 
-void	ft_reset_fractal(t_f *p)
+void	ft_reset_fractal(t_fractal *f)
 {
-	mlx_clear_window(p->mlx, p->win);
-	p->zoom = 0.8;
-	p->move_x = 0.0;
-	p->move_y = 0.0;
-	if (!ft_strncmp(p->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(p);
-	if (!ft_strncmp(p->name, "Julia", 5))
+	mlx_clear_window(f->mlx, f->win);
+	f->zoom = 0.8;
+	f->move_x = 0.0;
+	f->move_y = 0.0;
+	if (!ft_strncmp(f->name, "Mandelbrot", 11))
+		ft_mandelbrot_start(f);
+	if (!ft_strncmp(f->name, "Julia", 5))
 	{
-		p->c_re = 0.0;
-		p->c_im = 0.0;
-		ft_julia_start(p);
+		f->c_re = 0.0;
+		f->c_im = 0.0;
+		ft_julia_start(f);
 	}
-	mlx_mouse_move(p->win, WIDTH / 2, HEIGHT / 2);
-	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
-int	ft_move_key(int keycode, t_f *p)
+int	ft_move_key(int keycode, t_fractal *f)
 {
 	if (keycode == ARROW_LEFT)
-		p->move_x -= 0.1 / p->zoom;
+		f->move_x -= 0.1 / f->zoom;
 	if (keycode == ARROW_RIGHT)
-		p->move_x += 0.1 / p->zoom;
+		f->move_x += 0.1 / f->zoom;
 	if (keycode == ARROW_DOWN)
-		p->move_y += 0.1 / p->zoom;
+		f->move_y += 0.1 / f->zoom;
 	if (keycode == ARROW_UP)
-		p->move_y -= 0.1 / p->zoom;
-	mlx_clear_window(p->mlx, p->win);
-	if (!ft_strncmp(p->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(p);
-	if (!ft_strncmp(p->name, "Julia", 5))
-		ft_julia_start(p);
-	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
+		f->move_y -= 0.1 / f->zoom;
+	mlx_clear_window(f->mlx, f->win);
+	if (!ft_strncmp(f->name, "Mandelbrot", 11))
+		ft_mandelbrot_start(f);
+	if (!ft_strncmp(f->name, "Julia", 5))
+		ft_julia_start(f);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
 }

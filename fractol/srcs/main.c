@@ -12,25 +12,33 @@
 
 #include "../includes/fractol.h"
 
-void	hooks(t_f *p)
+void	hooks(t_fractal *f)
 {
-	mlx_hook(p->win, EVENT_KEY_DOWN, 0, ft_keyboard, p);
-	mlx_hook(p->win, EVENT_MOUSE_DOWN, 0, ft_mouse, p);
-	mlx_hook(p->win, EVENT_MOUSE_MOVE, 0, ft_change_julia, p);
-	mlx_hook(p->win, EVENT_RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
+	mlx_hook(f->win, EVENT_KEY_DOWN, 0, ft_keyboard, f);
+	mlx_hook(f->win, EVENT_MOUSE_DOWN, 0, ft_mouse, f);
+	mlx_hook(f->win, EVENT_MOUSE_MOVE, 0, ft_change_julia, f);
+	mlx_hook(f->win, EVENT_RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
 }
 
-void	init_fractol(t_f *p)
+void	init_fractol(t_fractal *f)
 {
-	p->mlx = mlx_init();
-	p->win = mlx_new_window(p->mlx, WIDTH, HEIGHT, p->name);
-	p->img = mlx_new_image(p->mlx, WIDTH, HEIGHT);
-	p->addr = mlx_get_data_addr(p->img, &p->bits_per_pixel,
-			&p->line_lenght, &p->endian);
-	p->zoom = 0.8;
-	p->move_x = 0.0;
-	p->move_y = 0.0;
-	mlx_mouse_move(p->win, WIDTH / 2, HEIGHT / 2);
+	f->mlx = mlx_init();
+	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, f->name);
+	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
+	f->addr = mlx_get_data_addr(f->img, &f->bits_per_pixel,
+			&f->line_lenght, &f->endian);
+	f->zoom = 0.8;
+	f->move_x = 0.0;
+	f->move_y = 0.0;
+	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
+	if (!ft_strncmp(f->name, "Mandelbrot", 11))
+		ft_mandelbrot_start(f);
+	if (!ft_strncmp(f->name, "Julia", 5))
+	{
+		which_julia(f);
+		ft_julia_start(f);
+	}
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
 void	check_arg(int argc, char **argv)
@@ -52,27 +60,19 @@ void	check_arg(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_f	*p;
+	t_fractal	*f;
 
 	check_arg(argc, argv);
-	p = malloc(sizeof(t_f));
-	if (!p)
+	f = malloc(sizeof(t_fractal));
+	if (!f)
 		return (EXIT_FAILURE);
-	p->name = argv[1];
+	f->name = argv[1];
 	if (argv[2])
-		p->max_iter = ft_atoi(argv[2]);
+		f->max_iter = ft_atoi(argv[2]);
 	else
-		p->max_iter = 50;
-	init_fractol(p);
-	if (!ft_strncmp(p->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(p);
-	if (!ft_strncmp(p->name, "Julia", 5))
-	{
-		which_julia(p);
-		ft_julia_start(p);
-	}
-	mlx_put_image_to_window(p->mlx, p->win, p->img, 0, 0);
-	hooks(p);
-	mlx_loop(p->mlx);
+		f->max_iter = 50;
+	init_fractol(f);
+	hooks(f);
+	mlx_loop(f->mlx);
 	return (0);
 }
