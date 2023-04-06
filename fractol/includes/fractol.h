@@ -55,8 +55,8 @@ typedef struct s_fractal {
 	int		mouse_lock;
 	double	zoom;
 	double	temp;
-	double	pixel_x;
-	double	pixel_y;
+	double	pxl_x;
+	double	pxl_y;
 	double	move_x;
 	double	move_y;
 	double	x_min;
@@ -97,14 +97,15 @@ void		julia_init(t_fractal *f);
 int			ft_keyboard(int keycode, t_fractal *f);
 int			ft_move_key(int keycode, t_fractal *f);
 void		ft_reset_fractal(t_fractal *f);
+void		ft_change_iter_max(int keycode, t_fractal *f);
 
 /*
 	mouse.c
 */
 int			ft_mouse(int mousecode, int x, int y, t_fractal *f);
 int			ft_change_julia(int x, int y, t_fractal *f);
-void		ft_zoom_in(t_fractal *f);
-void		ft_zoom_out(t_fractal *f);
+void		ft_zoom_in(int x, int y, t_fractal *f);
+void		ft_zoom_out(int x, int y, t_fractal *f);
 
 /*
 	utils.c

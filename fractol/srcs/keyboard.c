@@ -25,10 +25,12 @@ int	ft_keyboard(int keycode, t_fractal *f)
 		ft_move_key(keycode, f);
 	if (keycode == RESET)
 		ft_reset_fractal(f);
-	if (keycode == PLUS_KEYPAD)
-		ft_zoom_in(f);
-	if (keycode == MINUS_KEYPAD)
-		ft_zoom_out(f);
+	if (keycode == 0 || keycode == 2)
+		ft_change_iter_max(keycode, f);
+	// if (keycode == PLUS_KEYPAD)
+	// 	ft_zoom_in(f);
+	// if (keycode == MINUS_KEYPAD)
+	// 	ft_zoom_out(f);
 	return (0);
 }
 
@@ -38,15 +40,32 @@ void	ft_reset_fractal(t_fractal *f)
 	f->zoom = 0.8;
 	f->move_x = 0.0;
 	f->move_y = 0.0;
+	f->mouse_lock = 1;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
+	{
+		mandelbrot_init(f);
 		mandelbrot_iter(f);
+	}
 	if (!ft_strncmp(f->name, "Julia", 5))
 	{
-		f->c_re = 0.0;
-		f->c_im = 0.0;
+		julia_init(f);
 		julia_iter(f);
 	}
 	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
+}
+
+void	ft_change_iter_max(int keycode, t_fractal *f)
+{
+	if (keycode == 0)
+		f->max_iter -= 10;
+	if (keycode == 2)
+		f->max_iter += 10;
+	mlx_clear_window(f->mlx, f->win);
+	if (!ft_strncmp(f->name, "Mandelbrot", 11))
+		mandelbrot_iter(f);
+	if (!ft_strncmp(f->name, "Julia", 5))
+		julia_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 

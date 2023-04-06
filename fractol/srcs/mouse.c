@@ -14,17 +14,22 @@
 
 int	ft_mouse(int mousecode, int x, int y, t_fractal *f)
 {
-	(void)x;
-	(void)y;
 	if (mousecode == ZOOM_MOUSE)
-		ft_zoom_in(f);
+		ft_zoom_in(x, y, f);
 	if (mousecode == DEZOOM_MOUSE)
-		ft_zoom_out(f);
+		ft_zoom_out(x, y, f);
 	return (0);
 }
 
-void	ft_zoom_in(t_fractal *f)
+void	ft_zoom_in(int x, int y, t_fractal *f)
 {
+	double	nw;
+	double	nh;
+
+	nw = (f->x_max - f->x_min) * (f->zoom * 1.1);
+	nh = (f->y_max - f->y_min) * (f->zoom * 1.1);
+	f->move_x -= ((double)x / WIDTH) * (nw);
+	f->move_y -= ((double)y / HEIGHT) * (nh);
 	f->zoom *= 1.1;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
@@ -34,9 +39,16 @@ void	ft_zoom_in(t_fractal *f)
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
-void	ft_zoom_out(t_fractal *f)
+void	ft_zoom_out(int x, int y, t_fractal *f)
 {
-	f->zoom /= 1.1;
+	double	nw;
+	double	nh;
+
+	nw = (f->x_max - f->x_min) * (f->zoom * 0.9);
+	nh = (f->y_max - f->y_min) * (f->zoom * 0.9);
+	f->move_x -= ((double)x / WIDTH) * (nw);
+	f->move_y -= ((double)y / HEIGHT) * (nh);
+	f->zoom *= 0.9;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 		mandelbrot_iter(f);

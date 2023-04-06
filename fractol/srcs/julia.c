@@ -37,24 +37,24 @@ void	julia_init(t_fractal *f)
 
 void	julia_iter(t_fractal *f)
 {
-	f->pixel_y = 0;
-	while (f->pixel_y != HEIGHT)
+	f->pxl_y = 0;
+	while (f->pxl_y != HEIGHT)
 	{
-		f->pixel_x = 0;
-		while (f->pixel_x != WIDTH)
+		f->pxl_x = 0;
+		while (f->pxl_x != WIDTH)
 		{
 			f->nb_iter = 0;
 			julia(f);
-			f->pixel_x++;
+			f->pxl_x++;
 		}
-		f->pixel_y++;
+		f->pxl_y++;
 	}
 }
 
 void	julia(t_fractal *f)
 {
-	f->re = 1.5 * (f->pixel_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
-	f->im = (f->pixel_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
+	f->re = 1.5 * (f->pxl_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
+	f->im = (f->pxl_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
 	while (f->re * f->re + f->im * f->im <= 4 && f->nb_iter != f->max_iter)
 	{
 		f->temp = f->re * f->re - f->im * f->im + f->c_re;
@@ -63,7 +63,7 @@ void	julia(t_fractal *f)
 		f->nb_iter++;
 	}
 	if (f->nb_iter < f->max_iter)
-		my_mlx_pixel_put(f, f->pixel_x, f->pixel_y, ft_color(f->nb_iter));
+		my_mlx_pixel_put(f, f->pxl_x, f->pxl_y, ft_color(f->nb_iter));
 	else
-		my_mlx_pixel_put(f, f->pixel_x, f->pixel_y, 0x0);
+		my_mlx_pixel_put(f, f->pxl_x, f->pxl_y, 0x0);
 }
