@@ -12,8 +12,12 @@
 
 #include "../includes/fractol.h"
 
-void	which_julia(t_fractal *f)
+void	julia_init(t_fractal *f)
 {
+	f->x_min = -2.0;
+	f->x_max = 2.0;
+	f->y_min = -2.0;
+	f->y_max = 2.0;
 	if (!ft_strncmp(f->name, "Julia1", 6))
 	{
 		f->c_re = -0.2321;
@@ -26,12 +30,12 @@ void	which_julia(t_fractal *f)
 	}
 	else
 	{
-		f->c_re = 0.0;
-		f->c_im = 0.0;
+		f->c_re = 0.285;
+		f->c_im = 0.01;
 	}
 }
 
-void	ft_julia_start(t_fractal *f)
+void	julia_iter(t_fractal *f)
 {
 	f->pixel_y = 0;
 	while (f->pixel_y != HEIGHT)
@@ -40,14 +44,14 @@ void	ft_julia_start(t_fractal *f)
 		while (f->pixel_x != WIDTH)
 		{
 			f->nb_iter = 0;
-			ft_julia(f);
+			julia(f);
 			f->pixel_x++;
 		}
 		f->pixel_y++;
 	}
 }
 
-void	ft_julia(t_fractal *f)
+void	julia(t_fractal *f)
 {
 	f->re = 1.5 * (f->pixel_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
 	f->im = (f->pixel_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;

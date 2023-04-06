@@ -30,14 +30,18 @@ void	init_fractol(t_fractal *f)
 	f->zoom = 0.8;
 	f->move_x = 0.0;
 	f->move_y = 0.0;
-	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
+	f->mouse_lock = 1;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(f);
+	{
+		mandelbrot_init(f);
+		mandelbrot_iter(f);
+	}
 	if (!ft_strncmp(f->name, "Julia", 5))
 	{
-		which_julia(f);
-		ft_julia_start(f);
+		julia_init(f);
+		julia_iter(f);
 	}
+	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 

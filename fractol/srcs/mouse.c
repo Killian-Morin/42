@@ -28,9 +28,9 @@ void	ft_zoom_in(t_fractal *f)
 	f->zoom *= 1.1;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(f);
+		mandelbrot_iter(f);
 	if (!ft_strncmp(f->name, "Julia", 5))
-		ft_julia_start(f);
+		julia_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
@@ -39,20 +39,20 @@ void	ft_zoom_out(t_fractal *f)
 	f->zoom /= 1.1;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
-		ft_mandelbrot_start(f);
+		mandelbrot_iter(f);
 	if (!ft_strncmp(f->name, "Julia", 5))
-		ft_julia_start(f);
+		julia_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
 int	ft_change_julia(int x, int y, t_fractal *f)
 {
-	if (!ft_strncmp(f->name, "Julia", 5))
+	if (!ft_strncmp(f->name, "Julia", 5) && f->mouse_lock == 1)
 	{
-		f->c_re = (double)x;
-		f->c_im = (double)y;
+		f->c_re = 1.5 * (x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
+		f->c_im = (y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
 		mlx_clear_window(f->mlx, f->win);
-		ft_julia_start(f);
+		julia_iter(f);
 		mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	}
 	return (0);

@@ -12,7 +12,16 @@
 
 #include "../includes/fractol.h"
 
-void	ft_mandelbrot_start(t_fractal *f)
+void	mandelbrot_init(t_fractal *f)
+{
+	f->move_x = -0.5;
+	f->x_min = -2.1;
+	f->x_max = 0.6;
+	f->y_min = -1.2;
+	f->y_max = 1.2;
+}
+
+void	mandelbrot_iter(t_fractal *f)
 {
 	f->pixel_y = 0;
 	while (f->pixel_y != HEIGHT)
@@ -23,14 +32,14 @@ void	ft_mandelbrot_start(t_fractal *f)
 			f->nb_iter = 0;
 			f->re = 0;
 			f->im = 0;
-			ft_mandelbrot(f);
+			mandelbrot(f);
 			f->pixel_x++;
 		}
 		f->pixel_y++;
 	}
 }
 
-void	ft_mandelbrot(t_fractal *f)
+void	mandelbrot(t_fractal *f)
 {
 	f->c_re = 1.5 * (f->pixel_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
 	f->c_im = (f->pixel_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;

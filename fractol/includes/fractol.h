@@ -24,6 +24,7 @@
 # define ZOOM_MOUSE 4
 # define DEZOOM_MOUSE 5
 # define RESET 15
+# define LOCK_MOUSE 37
 # define ESC 53
 # define PLUS_KEYPAD 69
 # define MINUS_KEYPAD 78
@@ -51,12 +52,17 @@ typedef struct s_fractal {
 	int		endian;
 	int		max_iter;
 	int		nb_iter;
+	int		mouse_lock;
 	double	zoom;
 	double	temp;
 	double	pixel_x;
 	double	pixel_y;
 	double	move_x;
 	double	move_y;
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
 	double	re;
 	double	im;
 	double	c_re;
@@ -64,7 +70,7 @@ typedef struct s_fractal {
 }				t_fractal;
 
 /*
-main.c
+	main.c
 */
 int			main(int argc, char **argv);
 void		init_fractol(t_fractal *f);
@@ -72,27 +78,28 @@ void		check_arg(int argc, char **argv);
 void		hooks(t_fractal *f);
 
 /*
-mandelbrot.c
+	mandelbrot.c
 */
-void		ft_mandelbrot_start(t_fractal *f);
-void		ft_mandelbrot(t_fractal *f);
+void		mandelbrot_iter(t_fractal *f);
+void		mandelbrot(t_fractal *f);
+void		mandelbrot_init(t_fractal *f);
 
 /*
-julia.c
+	julia.c
 */
-void		ft_julia_start(t_fractal *f);
-void		which_julia(t_fractal *f);
-void		ft_julia(t_fractal *f);
+void		julia_iter(t_fractal *f);
+void		julia(t_fractal *f);
+void		julia_init(t_fractal *f);
 
 /*
-keyboard.c
+	keyboard.c
 */
 int			ft_keyboard(int keycode, t_fractal *f);
 int			ft_move_key(int keycode, t_fractal *f);
 void		ft_reset_fractal(t_fractal *f);
 
 /*
-mouse.c
+	mouse.c
 */
 int			ft_mouse(int mousecode, int x, int y, t_fractal *f);
 int			ft_change_julia(int x, int y, t_fractal *f);
@@ -100,7 +107,7 @@ void		ft_zoom_in(t_fractal *f);
 void		ft_zoom_out(t_fractal *f);
 
 /*
-utils.c
+	utils.c
 */
 int			ft_exit(void);
 void		my_mlx_pixel_put(t_fractal *f, int x, int y, int color);
