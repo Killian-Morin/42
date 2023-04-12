@@ -30,7 +30,6 @@ void	init_fractol(t_fractal *f)
 	f->zoom = 0.8;
 	f->move_x = 0.0;
 	f->move_y = 0.0;
-	f->mouse_lock = 1;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 	{
 		mandelbrot_init(f);

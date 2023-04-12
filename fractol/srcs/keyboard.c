@@ -27,10 +27,6 @@ int	ft_keyboard(int keycode, t_fractal *f)
 		ft_reset_fractal(f);
 	if (keycode == 0 || keycode == 2)
 		ft_change_iter_max(keycode, f);
-	// if (keycode == PLUS_KEYPAD)
-	// 	ft_zoom_in(f);
-	// if (keycode == MINUS_KEYPAD)
-	// 	ft_zoom_out(f);
 	return (0);
 }
 
@@ -40,7 +36,8 @@ void	ft_reset_fractal(t_fractal *f)
 	f->zoom = 0.8;
 	f->move_x = 0.0;
 	f->move_y = 0.0;
-	f->mouse_lock = 1;
+	f->mouse_lock = 0;
+	f->max_iter = 50;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 	{
 		mandelbrot_init(f);

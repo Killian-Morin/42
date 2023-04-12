@@ -23,13 +23,8 @@ int	ft_mouse(int mousecode, int x, int y, t_fractal *f)
 
 void	ft_zoom_in(int x, int y, t_fractal *f)
 {
-	double	nw;
-	double	nh;
-
-	nw = (f->x_max - f->x_min) * (f->zoom * 1.1);
-	nh = (f->y_max - f->y_min) * (f->zoom * 1.1);
-	f->move_x -= ((double)x / WIDTH) * (nw);
-	f->move_y -= ((double)y / HEIGHT) * (nh);
+	f->move_x = (double)x + WIDTH / 2;
+	f->move_y = (double)y + HEIGHT / 2;
 	f->zoom *= 1.1;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
@@ -41,13 +36,8 @@ void	ft_zoom_in(int x, int y, t_fractal *f)
 
 void	ft_zoom_out(int x, int y, t_fractal *f)
 {
-	double	nw;
-	double	nh;
-
-	nw = (f->x_max - f->x_min) * (f->zoom * 0.9);
-	nh = (f->y_max - f->y_min) * (f->zoom * 0.9);
-	f->move_x -= ((double)x / WIDTH) * (nw);
-	f->move_y -= ((double)y / HEIGHT) * (nh);
+	f->move_x = (double)x - WIDTH / 2;
+	f->move_y = (double)y - HEIGHT / 2;
 	f->zoom *= 0.9;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))

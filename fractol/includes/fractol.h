@@ -23,11 +23,9 @@
 
 # define ZOOM_MOUSE 4
 # define DEZOOM_MOUSE 5
+# define LOCK_MOUSE 3
 # define RESET 15
-# define LOCK_MOUSE 37
 # define ESC 53
-# define PLUS_KEYPAD 69
-# define MINUS_KEYPAD 78
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 # define ARROW_DOWN 125
@@ -59,10 +57,10 @@ typedef struct s_fractal {
 	double	pxl_y;
 	double	move_x;
 	double	move_y;
-	double	x_min;
-	double	x_max;
-	double	y_min;
-	double	y_max;
+	double	min_re;
+	double	max_re;
+	double	min_im;
+	double	max_im;
 	double	re;
 	double	im;
 	double	c_re;

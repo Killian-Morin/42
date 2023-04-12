@@ -15,10 +15,10 @@
 void	mandelbrot_init(t_fractal *f)
 {
 	f->move_x = -0.5;
-	f->x_min = -2.1;
-	f->x_max = 0.6;
-	f->y_min = -1.2;
-	f->y_max = 1.2;
+	f->min_re = -2.0;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
+	f->max_im = 2.0;
 }
 
 void	mandelbrot_iter(t_fractal *f)
@@ -43,7 +43,7 @@ void	mandelbrot(t_fractal *f)
 {
 	f->c_re = 1.5 *(f->pxl_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
 	f->c_im = (f->pxl_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
-	while (f->re * f->re + f->im * f->im <= 4 && f->nb_iter != f->max_iter)
+	while (f->re * f->re + f->im * f->im < 4 && f->nb_iter != f->max_iter)
 	{
 		f->temp = f->re * f->re - f->im * f->im + f->c_re;
 		f->im = 2 * f->re * f->im + f->c_im;

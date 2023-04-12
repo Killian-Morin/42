@@ -14,10 +14,11 @@
 
 void	julia_init(t_fractal *f)
 {
-	f->x_min = -2.0;
-	f->x_max = 2.0;
-	f->y_min = -2.0;
-	f->y_max = 2.0;
+	f->min_re = -2.0;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
+	f->max_im = 2.0;
+	f->mouse_lock = 0;
 	if (!ft_strncmp(f->name, "Julia1", 6))
 	{
 		f->c_re = -0.2321;
@@ -55,7 +56,7 @@ void	julia(t_fractal *f)
 {
 	f->re = 1.5 * (f->pxl_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
 	f->im = (f->pxl_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
-	while (f->re * f->re + f->im * f->im <= 4 && f->nb_iter != f->max_iter)
+	while (f->re * f->re + f->im * f->im < 4 && f->nb_iter != f->max_iter)
 	{
 		f->temp = f->re * f->re - f->im * f->im + f->c_re;
 		f->im = 2 * f->re * f->im + f->c_im;
