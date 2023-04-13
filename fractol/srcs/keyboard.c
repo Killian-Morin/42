@@ -69,13 +69,13 @@ void	ft_change_iter_max(int keycode, t_fractal *f)
 int	ft_move_key(int keycode, t_fractal *f)
 {
 	if (keycode == ARROW_LEFT)
-		f->move_x -= 0.1 / f->zoom;
+		f->move_x -= f->zoom * 0.1;
 	if (keycode == ARROW_RIGHT)
-		f->move_x += 0.1 / f->zoom;
+		f->move_x += f->zoom * 0.1;
 	if (keycode == ARROW_DOWN)
-		f->move_y += 0.1 / f->zoom;
+		f->move_y += f->zoom * 0.1;
 	if (keycode == ARROW_UP)
-		f->move_y -= 0.1 / f->zoom;
+		f->move_y -= f->zoom * 0.1;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 		mandelbrot_iter(f);

@@ -104,6 +104,7 @@ int			ft_mouse(int mousecode, int x, int y, t_fractal *f);
 int			ft_change_julia(int x, int y, t_fractal *f);
 void		ft_zoom_in(int x, int y, t_fractal *f);
 void		ft_zoom_out(int x, int y, t_fractal *f);
+void		ft_zoom(int x, int y, t_fractal *f, double nz);
 
 /*
 	utils.c
