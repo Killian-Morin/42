@@ -26,8 +26,8 @@ void	julia_init(t_fractal *f)
 	}
 	else if (!ft_strncmp(f->name, "Julia2", 6))
 	{
-		f->c_re = -0.3842;
-		f->c_im = -0.70176;
+		f->c_re = -0.77146;
+		f->c_im = -0.10119;
 	}
 	else
 	{

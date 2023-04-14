@@ -64,18 +64,7 @@ int	ft_color(int count)
 }
 
 /*
-	another color set with 7 colors
+	color set:
+	0x559597, 0xd0e1b8, 0x9c9b86, 0x87c9ac, 0x44444c
+	0xFE0000, 0xFF7900, 0xFFFF0B, 0x22DB13, 0x2430FF, 0x660092, 0xC800F9
 */
-int	ft_other_color_set(int count)
-{
-	int	tab[7];
-
-	tab[0] = 0xFE0000;
-	tab[1] = 0xFF7900;
-	tab[2] = 0xFFFF0B;
-	tab[3] = 0x22DB13;
-	tab[4] = 0x2430FF;
-	tab[5] = 0x660092;
-	tab[6] = 0xC800F9;
-	return (tab[count % 7]);
-}
