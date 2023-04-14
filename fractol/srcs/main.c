@@ -27,9 +27,10 @@ void	init_fractol(t_fractal *f)
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	f->addr = mlx_get_data_addr(f->img, &f->bits_per_pixel,
 			&f->line_lenght, &f->endian);
-	f->zoom = 0.8;
-	f->move_x = 0.0;
-	f->move_y = 0.0;
+	f->min_re = -2.0;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
+	f->max_im = 2.0;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 	{
 		mandelbrot_init(f);

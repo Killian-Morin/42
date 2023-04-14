@@ -14,10 +14,9 @@
 
 void	julia_init(t_fractal *f)
 {
-	f->min_re = -2.0;
-	f->max_re = 2.0;
-	f->min_im = -2.0;
-	f->max_im = 2.0;
+	f->zoom = 0.8;
+	f->move_y = 0.4;
+	f->move_x = 0.4;
 	f->mouse_lock = 0;
 	if (!ft_strncmp(f->name, "Julia1", 6))
 	{
@@ -26,13 +25,18 @@ void	julia_init(t_fractal *f)
 	}
 	else if (!ft_strncmp(f->name, "Julia2", 6))
 	{
-		f->c_re = -0.77146;
-		f->c_im = -0.10119;
+		f->c_re = 0.285;
+		f->c_im = 0.01;
+	}
+	else if (!ft_strncmp(f->name, "Julia3", 6))
+	{
+		f->c_re = -0.3842;
+		f->c_im = -0.70176;
 	}
 	else
 	{
-		f->c_re = 0.285;
-		f->c_im = 0.01;
+		f->c_re = -0.77146;
+		f->c_im = -0.10119;
 	}
 }
 
@@ -54,10 +58,10 @@ void	julia_iter(t_fractal *f)
 void	julia(t_fractal *f)
 {
 	f->nb_iter = 0;
-	f->re = 1.5 *((f->pxl_x / WIDTH) * (f->max_re - f->min_re)) * f->zoom + f->min_re + f->move_x;
-	// f->re = 1.5 * (f->pxl_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
-	f->im = ((f->pxl_y / HEIGHT) * (f->max_im - f->min_im)) * f->zoom + f->min_im + f->move_y;
-	// f->im = (f->pxl_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
+	f->re = ((f->pxl_x / WIDTH) * (f->max_re - f->min_re))
+		* f->zoom + f->min_re + f->move_x;
+	f->im = ((f->pxl_y / HEIGHT) * (f->max_im - f->min_im))
+		* f->zoom + f->min_im + f->move_y;
 	while (f->re * f->re + f->im * f->im < 4 && f->nb_iter != f->max_iter)
 	{
 		f->temp = f->re * f->re - f->im * f->im + f->c_re;

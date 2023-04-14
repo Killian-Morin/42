@@ -23,6 +23,9 @@
 
 # define ZOOM_MOUSE 4
 # define DEZOOM_MOUSE 5
+
+# define ITER_MAX_DEC 0
+# define ITER_MAX_INC 2
 # define LOCK_MOUSE 3
 # define RESET 15
 # define ESC 53
@@ -102,9 +105,7 @@ void		ft_change_iter_max(int keycode, t_fractal *f);
 */
 int			ft_mouse(int mousecode, int x, int y, t_fractal *f);
 int			ft_change_julia(int x, int y, t_fractal *f);
-void		ft_zoom_in(int x, int y, t_fractal *f);
-void		ft_zoom_out(int x, int y, t_fractal *f);
-void		ft_zoom(int x, int y, t_fractal *f, double nz);
+void		ft_zoom(int x, int y, t_fractal *f, double zoom);
 
 /*
 	utils.c

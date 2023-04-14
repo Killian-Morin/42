@@ -67,4 +67,42 @@ int	ft_color(int count)
 	color set:
 	0x559597, 0xd0e1b8, 0x9c9b86, 0x87c9ac, 0x44444c
 	0xFE0000, 0xFF7900, 0xFFFF0B, 0x22DB13, 0x2430FF, 0x660092, 0xC800F9
+
+	functions for colors with bases
+	base red:
+	void	color_red(int count)
+	{
+		int	r;
+		int	g;
+		int	b;
+
+		r = 255 % count;
+		g = 0 % count;
+		b = 0 % count;
+		return ()
+	}
+	base green:
+	void	color_green(int count)
+	{
+		int	r;
+		int	g;
+		int	b;
+
+		r = 0 % count;
+		g = 255 % count;
+		b = 0 % count;
+		return ()
+	}
+	base blue:
+	void	color_blue(int count)
+	{
+		int	r;
+		int	g;
+		int	b;
+
+		r = 0 % count;
+		g = 0 % count;
+		b = 255 % count;
+		return ()
+	}
 */

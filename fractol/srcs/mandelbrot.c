@@ -14,11 +14,9 @@
 
 void	mandelbrot_init(t_fractal *f)
 {
-	f->move_x = -0.5;
-	f->min_re = -2.0;
-	f->max_re = 2.0;
-	f->min_im = -2.0;
-	f->max_im = 2.0;
+	f->zoom = 0.6;
+	f->move_x = 0.5;
+	f->move_y = 0.8;
 }
 
 void	mandelbrot_iter(t_fractal *f)
@@ -39,12 +37,14 @@ void	mandelbrot_iter(t_fractal *f)
 void	mandelbrot(t_fractal *f)
 {
 	f->nb_iter = 0;
-	f->re = 0;
-	f->im = 0;
-	f->c_re = 1.5 *((f->pxl_x / WIDTH) * (f->max_re - f->min_re)) * f->zoom + f->min_re + f->move_x;
-	// f->c_re = 1.5 *(f->pxl_x - WIDTH / 2) / (0.5 * f->zoom * WIDTH) + f->move_x;
-	f->c_im = ((f->pxl_y / HEIGHT) * (f->max_im - f->min_im)) * f->zoom + f->min_im + f->move_y;
-	// f->c_im = (f->pxl_y - HEIGHT / 2) / (0.5 * f->zoom * HEIGHT) + f->move_y;
+	f->re = ((f->pxl_x / WIDTH) * (f->max_re - f->min_re))
+		* f->zoom + f->min_re + f->move_x;
+	f->im = ((f->pxl_y / HEIGHT) * (f->max_im - f->min_im))
+		* f->zoom + f->min_im + f->move_y;
+	f->c_re = ((f->pxl_x / WIDTH) * (f->max_re - f->min_re))
+		* f->zoom + f->min_re + f->move_x;
+	f->c_im = ((f->pxl_y / HEIGHT) * (f->max_im - f->min_im))
+		* f->zoom + f->min_im + f->move_y;
 	while (f->re * f->re + f->im * f->im < 4 && f->nb_iter != f->max_iter)
 	{
 		f->temp = f->re * f->re - f->im * f->im + f->c_re;
