@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:19:00 by kmorin            #+#    #+#             */
 /*   Updated: 2023/03/20 15:19:27 by kmorin           ###   ########.fr       */
@@ -34,7 +34,7 @@ void	ft_zoom(int x, int y, t_fractal *f, double zoom)
 	nh = 4.0 * (f->zoom * zoom);
 	f->zoom *= zoom;
 	f->move_x -= ((double)x / WIDTH) * (nw - w);
-	f->move_y -= ((double)y / HEIGHT) * (nw - w);
+	f->move_y -= ((double)y / HEIGHT) * (nh - h);
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 		mandelbrot_iter(f);

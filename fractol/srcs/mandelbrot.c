@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:12:00 by kmorin            #+#    #+#             */
 /*   Updated: 2023/03/20 09:12:27 by kmorin           ###   ########.fr       */
@@ -53,7 +53,7 @@ void	mandelbrot(t_fractal *f)
 		f->nb_iter++;
 	}
 	if (f->nb_iter < f->max_iter)
-		my_mlx_pixel_put(f, f->pxl_x, f->pxl_y, ft_color(f->nb_iter));
+		my_mlx_pixel_put(f, f->pxl_x, f->pxl_y, ft_determine_color(f));
 	else
 		my_mlx_pixel_put(f, f->pxl_x, f->pxl_y, 0x0);
 }

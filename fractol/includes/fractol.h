@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                         :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
 /*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
@@ -54,6 +54,7 @@ typedef struct s_fractal {
 	int		max_iter;
 	int		nb_iter;
 	int		mouse_lock;
+	int		signal_color;
 	double	zoom;
 	double	temp;
 	double	pxl_x;
@@ -99,6 +100,7 @@ int			ft_keyboard(int keycode, t_fractal *f);
 int			ft_move_key(int keycode, t_fractal *f);
 void		ft_reset_fractal(t_fractal *f);
 void		ft_change_iter_max(int keycode, t_fractal *f);
+void		ft_change_color(int keycode, t_fractal *f);
 
 /*
 	mouse.c
@@ -112,6 +114,15 @@ void		ft_zoom(int x, int y, t_fractal *f, double zoom);
 */
 int			ft_exit(void);
 void		my_mlx_pixel_put(t_fractal *f, int x, int y, int color);
-int			ft_color(int count);
+int			ft_determine_color(t_fractal *f);
+
+/*
+	color.c
+*/
+int			color_palette_one(t_fractal *f);
+int			color_palette_two(t_fractal *f);
+int			color_palette_three(t_fractal *f);
+int			color_palette_four(t_fractal *f);
+int			color_palette_five(t_fractal *f);
 
 #endif

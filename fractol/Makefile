@@ -1,7 +1,7 @@
 NAME = fractol
 
 SRC_PATH = ./srcs/
-SRC_FILES = julia.c keyboard.c main.c mandelbrot.c mouse.c utils.c
+SRC_FILES = julia.c keyboard.c main.c mandelbrot.c mouse.c utils.c color.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/

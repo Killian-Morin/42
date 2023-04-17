@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:12:00 by kmorin            #+#    #+#             */
 /*   Updated: 2023/03/20 09:12:27 by kmorin           ###   ########.fr       */
@@ -31,6 +31,7 @@ void	init_fractol(t_fractal *f)
 	f->max_re = 2.0;
 	f->min_im = -2.0;
 	f->max_im = 2.0;
+	f->signal_color = 1;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 	{
 		mandelbrot_init(f);
