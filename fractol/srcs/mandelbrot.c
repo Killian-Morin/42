@@ -14,9 +14,9 @@
 
 void	mandelbrot_init(t_fractal *f)
 {
-	f->zoom = 0.6;
-	f->move_x = 0.5;
-	f->move_y = 0.8;
+	f->zoom = 0.7;
+	f->move_x = 0;
+	f->move_y = 0.6;
 }
 
 void	mandelbrot_iter(t_fractal *f)

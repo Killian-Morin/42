@@ -20,14 +20,13 @@ int	ft_keyboard(int keycode, t_fractal *f)
 		f->mouse_lock = 0;
 	else if (keycode == LOCK_MOUSE && f->mouse_lock == 0)
 		f->mouse_lock = 1;
-	if (keycode == ARROW_LEFT || keycode == ARROW_RIGHT || keycode == ARROW_DOWN
-		|| keycode == ARROW_UP)
+	if (keycode >= ARROW_LEFT && keycode <= ARROW_UP)
 		ft_move_key(keycode, f);
 	if (keycode == RESET)
 		ft_reset_fractal(f);
-	if (keycode == 0 || keycode == 2)
+	if (keycode == ITER_MAX_DEC || keycode == ITER_MAX_INC)
 		ft_change_iter_max(keycode, f);
-	if (keycode >= 18 && keycode <= 23)
+	if (keycode >= DIGIT_1 && keycode <= DIGIT_5)
 		ft_change_color(keycode, f);
 	return (0);
 }
@@ -86,15 +85,15 @@ void	ft_change_iter_max(int keycode, t_fractal *f)
 
 void	ft_change_color(int keycode, t_fractal *f)
 {
-	if (keycode == 18)
+	if (keycode == DIGIT_1)
 		f->signal_color = 1;
-	if (keycode == 19)
+	if (keycode == DIGIT_2)
 		f->signal_color = 2;
-	if (keycode == 20)
+	if (keycode == DIGIT_3)
 		f->signal_color = 3;
-	if (keycode == 21)
+	if (keycode == DIGIT_4)
 		f->signal_color = 4;
-	if (keycode == 23)
+	if (keycode == DIGIT_5)
 		f->signal_color = 5;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
