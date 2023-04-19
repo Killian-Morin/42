@@ -13,8 +13,8 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 1024
-# define HEIGHT 576
+# define WIDTH 820
+# define HEIGHT 656
 
 # define EVENT_KEY_DOWN 2
 # define EVENT_MOUSE_DOWN 4
