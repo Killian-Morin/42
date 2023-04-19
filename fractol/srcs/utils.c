@@ -38,13 +38,13 @@ void	my_mlx_pixel_put(t_fractal *f, int x, int y, int color)
 
 int	ft_determine_color(t_fractal *f)
 {
-	if (f->signal_color == 1)
-		return (color_palette_one(f));
-	if (f->signal_color == 2)
+	if (f->color_palette == 2)
 		return (color_palette_two(f));
-	if (f->signal_color == 3)
+	if (f->color_palette == 3)
 		return (color_palette_three(f));
-	if (f->signal_color == 4)
+	if (f->color_palette == 4)
 		return (color_palette_four(f));
-	return (color_palette_five(f));
+	if (f->color_palette == 5)
+		return (color_palette_five(f));
+	return (color_palette_one(f));
 }

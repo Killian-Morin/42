@@ -1,7 +1,7 @@
 NAME = fractol
 
 SRC_PATH = ./srcs/
-SRC_FILES = julia.c keyboard.c main.c mandelbrot.c mouse.c utils.c color.c
+SRC_FILES = julia.c keyboard.c main.c mandelbrot.c mouse.c utils.c color.c burningship.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
@@ -16,7 +16,7 @@ RM = rm -rf
 
 LIB_PATH = ./libft/
 LIB_MAKE = ${addprefix ${LIB_PATH}, libft.a}
-LIB_FLAG = -L ${LIB_PATH} -l ft -l pthread
+LIB_FLAG = -L ${LIB_PATH} -l ft
 
 MLX_PATH = ./mlx/
 MLX_MAKE = ${addprefix ${MLX_PATH}, mlx.a}

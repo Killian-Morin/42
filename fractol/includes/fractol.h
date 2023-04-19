@@ -59,7 +59,7 @@ typedef struct s_fractal {
 	int		max_iter;
 	int		nb_iter;
 	int		mouse_lock;
-	int		signal_color;
+	int		color_palette;
 	double	zoom;
 	double	temp;
 	double	pxl_x;
@@ -80,6 +80,7 @@ typedef struct s_fractal {
 	main.c
 */
 int			main(int argc, char **argv);
+void		init_mlx(t_fractal *f);
 void		init_fractol(t_fractal *f);
 void		check_arg(int argc, char **argv);
 void		hooks(t_fractal *f);
@@ -97,6 +98,13 @@ void		mandelbrot_init(t_fractal *f);
 void		julia_iter(t_fractal *f);
 void		julia(t_fractal *f);
 void		julia_init(t_fractal *f);
+
+/*
+	burningship.c
+*/
+void		burning_ship_iter(t_fractal *f);
+void		burning_ship(t_fractal *f);
+void		burning_ship_init(t_fractal *f);
 
 /*
 	keyboard.c

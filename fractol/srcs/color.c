@@ -163,4 +163,64 @@ int	color_palette_five(t_fractal *f)
 		b = 255 % count;
 		return ()
 	}
+
+	attempt for smooth coloring
+
+	with a var in the struct that changes with a keycode
+	this var is checked in ft_determine_color to chose which type of color
+	log_temp: sqrt of inner term removed using log simplification rules
+	rearranging the potential funciton, dividing log_temp by log(2),
+	instead of log(N = 1<<8), where N is a chosen bailout radius
+	because we want the entier palette to range from the center to radius 2,
+	not our bailout radius
+	https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set
+	#Continuous_(smooth)_coloring
+
+	int	ft_smooth_coloring(t_fractal *f)
+	{
+		double	log_temp;
+		double	nu;
+		int		color1;
+		int		color2;
+		int		color;
+
+		log_temp = log(f->re * f->re + f->im * f->im) / 2;
+		nu = log(log_temp / log(2)) / log(2);
+		f->nb_iter = f->nb_iter + 1 - nu;
+		if (f->signal_color == 1)
+		{
+			color1 = color_palette_one(f);
+			f->nb_iter += 1;
+			color2 = color_palette_one(f);
+		}
+		if (f->signal_color == 2)
+		{
+			color1 = color_palette_two(f);
+			f->nb_iter += 1;
+			color2 = color_palette_two(f);
+		}
+		if (f->signal_color == 3)
+		{
+			color1 = color_palette_three(f);
+			f->nb_iter += 1;
+			color2 = color_palette_three(f);
+		}
+		if (f->signal_color == 4)
+		{
+			color1 = color_palette_four(f);
+			f->nb_iter += 1;
+			color2 = color_palette_four(f);
+		}
+		color1 = color_palette_five(f);
+		f->nb_iter += 1;
+		color2 = color_palette_five(f);
+		color = lerp(color1, color2, f->nb_iter % 1);
+		return (color);
+	}
+
+	int lerp(int v0, int v1, int t)
+	{
+		return v0 + t * (v1 - v0);
+	}
+
 */

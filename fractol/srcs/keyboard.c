@@ -46,6 +46,8 @@ int	ft_move_key(int keycode, t_fractal *f)
 		mandelbrot_iter(f);
 	if (!ft_strncmp(f->name, "Julia", 5))
 		julia_iter(f);
+	if (!ft_strncmp(f->name, "Burningship", 12))
+		burning_ship_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (0);
 }
@@ -55,18 +57,7 @@ void	ft_reset_fractal(t_fractal *f)
 	mlx_clear_window(f->mlx, f->win);
 	f->mouse_lock = 0;
 	f->max_iter = 50;
-	if (!ft_strncmp(f->name, "Mandelbrot", 11))
-	{
-		mandelbrot_init(f);
-		mandelbrot_iter(f);
-	}
-	if (!ft_strncmp(f->name, "Julia", 5))
-	{
-		julia_init(f);
-		julia_iter(f);
-	}
-	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
-	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
+	init_fractol(f);
 }
 
 void	ft_change_iter_max(int keycode, t_fractal *f)
@@ -80,25 +71,29 @@ void	ft_change_iter_max(int keycode, t_fractal *f)
 		mandelbrot_iter(f);
 	if (!ft_strncmp(f->name, "Julia", 5))
 		julia_iter(f);
+	if (!ft_strncmp(f->name, "Burningship", 12))
+		burning_ship_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
 void	ft_change_color(int keycode, t_fractal *f)
 {
 	if (keycode == DIGIT_1)
-		f->signal_color = 1;
+		f->color_palette = 1;
 	if (keycode == DIGIT_2)
-		f->signal_color = 2;
+		f->color_palette = 2;
 	if (keycode == DIGIT_3)
-		f->signal_color = 3;
+		f->color_palette = 3;
 	if (keycode == DIGIT_4)
-		f->signal_color = 4;
+		f->color_palette = 4;
 	if (keycode == DIGIT_5)
-		f->signal_color = 5;
+		f->color_palette = 5;
 	mlx_clear_window(f->mlx, f->win);
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 		mandelbrot_iter(f);
 	if (!ft_strncmp(f->name, "Julia", 5))
 		julia_iter(f);
+	if (!ft_strncmp(f->name, "Burningship", 12))
+		burning_ship_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }

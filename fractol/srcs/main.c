@@ -20,18 +20,21 @@ void	hooks(t_fractal *f)
 	mlx_hook(f->win, EVENT_RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
 }
 
-void	init_fractol(t_fractal *f)
+void	init_mlx(t_fractal *f)
 {
 	f->mlx = mlx_init();
 	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, f->name);
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	f->addr = mlx_get_data_addr(f->img, &f->bits_per_pixel,
 			&f->line_lenght, &f->endian);
+}
+
+void	init_fractol(t_fractal *f)
+{
 	f->min_re = -2.0;
 	f->max_re = 2.0;
 	f->min_im = -2.0;
 	f->max_im = 2.0;
-	f->signal_color = 1;
 	if (!ft_strncmp(f->name, "Mandelbrot", 11))
 	{
 		mandelbrot_init(f);
@@ -42,6 +45,11 @@ void	init_fractol(t_fractal *f)
 		julia_init(f);
 		julia_iter(f);
 	}
+	if (!ft_strncmp(f->name, "Burningship", 12))
+	{
+		burning_ship_init(f);
+		burning_ship_iter(f);
+	}
 	mlx_mouse_move(f->win, WIDTH / 2, HEIGHT / 2);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
@@ -51,14 +59,17 @@ void	check_arg(int argc, char **argv)
 	if (argc == 1)
 	{
 		ft_putstr_fd("Needs at least one parameter.\n", 1);
-		ft_putstr_fd("List of avalaible parameters:\nMandelbrot\nJulia\n", 1);
+		ft_putstr_fd("List of avalaible parameters:\n", 1);
+		ft_putstr_fd("Mandelbrot\nJulia\nBurningship\n", 1);
 		exit(EXIT_SUCCESS);
 	}
 	else if (ft_strncmp(argv[1], "Mandelbrot", 11) != 0
-		&& ft_strncmp(argv[1], "Julia", 5) != 0)
+		&& ft_strncmp(argv[1], "Julia", 5) != 0
+		&& ft_strncmp(argv[1], "Burningship", 12) != 0)
 	{
 		ft_putstr_fd("Sorry invalid parameters.\n", 1);
-		ft_putstr_fd("List of avalaible parameters:\nMandelbrot\nJulia\n", 1);
+		ft_putstr_fd("List of avalaible parameters:\n", 1);
+		ft_putstr_fd("Mandelbrot\nJulia\nBurningship\n", 1);
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -76,6 +87,7 @@ int	main(int argc, char **argv)
 		f->max_iter = ft_atoi(argv[2]);
 	else
 		f->max_iter = 50;
+	init_mlx(f);
 	init_fractol(f);
 	hooks(f);
 	mlx_loop(f->mlx);

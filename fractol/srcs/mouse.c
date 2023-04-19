@@ -40,6 +40,8 @@ void	ft_zoom(int x, int y, t_fractal *f, double zoom)
 		mandelbrot_iter(f);
 	if (!ft_strncmp(f->name, "Julia", 5))
 		julia_iter(f);
+	if (!ft_strncmp(f->name, "Burningship", 12))
+		burning_ship_iter(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
 
