@@ -91,5 +91,6 @@ int	main(int argc, char **argv)
 	init_fractol(f);
 	hooks(f);
 	mlx_loop(f->mlx);
+	free(f);
 	return (0);
 }
