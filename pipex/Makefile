@@ -1,12 +1,12 @@
 NAME = pipex
 
 SRC_PATH = ./srcs/
-SRC_FILES = 
+SRC_FILES = main.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
 OBJ_FILES = ${SRC_FILES:.c=.o}
-OBJ = ${addprefix ${OBJ_PATH, ${OBJ_FILES}}}
+OBJ = ${addprefix ${OBJ_PATH}, ${OBJ_FILES}}
 
 HEADER = ./includes/pipex.h
 
@@ -38,6 +38,7 @@ clean:
 
 fclean: clean
 	${RM} ${NAME}
+	${RM} *.txt
 	make -C ${LIB_PATH} fclean
 
 re: fclean all

@@ -13,9 +13,16 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <fctnl.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "libft.h"
+
+/*
+    main.c
+*/
+int 	main(int argc, char **argv, char **env);
+void	start(char **argv, char **env);
 
 #endif
