@@ -1,7 +1,7 @@
 NAME = pipex
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c
+SRC_FILES = main.c pipe.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
