@@ -44,7 +44,7 @@ void		parent_process(t_pipex *p, int fd[2], char **env);
 /*
 	utils.c
 */
-void    ft_error(void);
-void	ft_find_path(t_pipex *p, char **env);
+void		ft_error(void);
+void		ft_find_path(t_pipex *p, char **env);
 
 #endif

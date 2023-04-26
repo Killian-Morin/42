@@ -17,19 +17,19 @@
     for the case where the command is not found
     might add in argument the command passed to put it in the error message
 */
-void    ft_error(void)
+void	ft_error(void)
 {
-    ft_putstr_fd("zsh: command not found: ", 25);
+	ft_putstr_fd("zsh: command not found: ", 25);
 }
 
-void    ft_find_path(t_pipex *p, char **env)
+void	ft_find_path(t_pipex *p, char **env)
 {
-    int i;
+	int	i;
 
-    i = 4;
-    while (!ft_strncmp(env[i], "PATH=", 6))
-    {
-        i++;
-    }
-    p->path = ft_substr(env[i], 5, 1000);
+	i = 4;
+	while (!ft_strncmp(env[i], "PATH=", 6))
+	{
+		i++;
+	}
+	p->path = ft_substr(env[i], 5, 1000);
 }
