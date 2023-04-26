@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 09:45:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/04/20 09:45:00 by kmorin           ###   ########.fr       */
+/*   Created: 2023/04/26 09:45:27 by kmorin            #+#    #+#             */
+/*   Updated: 2023/04/26 09:45:00 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	check_arg(int argc)
+/*
+    function if necessary that will display the error message,
+    for the case where the command is not found
+    might add in argument the command passed to put it in the error message
+*/
+void    ft_error(void)
 {
-	if (argc != 5)
-	{
-		ft_putstr_fd("Sorry, not the right numbers of parameters\n", 2);
-		exit(EXIT_FAILURE);
-	}
+    ft_putstr_fd("zsh: command not found: ", 25);
 }
 
-int	main(int argc, char **argv, char **env)
+void    ft_find_path(t_pipex *p, char **env)
 {
-	t_pipex	*p;
+    int i;
 
-	check_arg(argc);
-	p = malloc(sizeof(p));
-	if (!p)
-		return (EXIT_FAILURE);
-	p->av = argv;
-	init_fd(p, env);
-	return (0);
+    i = 4;
+    while (!ft_strncmp(env[i], "PATH=", 6))
+    {
+        i++;
+    }
+    p->path = ft_substr(env[i], 5, 1000);
 }

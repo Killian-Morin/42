@@ -1,7 +1,7 @@
 NAME = pipex
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c pipe.c
+SRC_FILES = main.c pipe.c utils.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
@@ -38,7 +38,7 @@ clean:
 
 fclean: clean
 	${RM} ${NAME}
-	${RM} *.txt
+	# ${RM} *.txt
 	make -C ${LIB_PATH} fclean
 
 re: fclean all
