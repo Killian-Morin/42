@@ -23,6 +23,7 @@
 typedef struct s_pipex {
 	int		fd_infile;
 	int		fd_outfile;
+	int		fd[2];
 	char	*path;
 	char	**av;
 }		t_pipex;
@@ -38,8 +39,8 @@ void		check_arg(int argc);
 */
 void		init_fd(t_pipex *p, char **env);
 void		pipex(t_pipex *p, char **env);
-void		child_process(t_pipex *p, int fd[2], char **env);
-void		parent_process(t_pipex *p, int fd[2], char **env);
+void		child_process(t_pipex *p, char **env);
+void		parent_process(t_pipex *p, char **env);
 
 /*
 	utils.c

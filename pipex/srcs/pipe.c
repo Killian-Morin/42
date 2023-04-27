@@ -21,51 +21,52 @@
 void	init_fd(t_pipex *p, char **env)
 {
 	p->fd_infile = open(p->av[1], O_RDONLY);
-	if (access(p->av[4], F_OK) == 0)
-		p->fd_outfile = open(p->av[4], O_WRONLY);
-	else
-		p->fd_outfile = open(p->av[4], O_CREAT);
+	p->fd_outfile = open(p->av[4], O_WRONLY | O_CREAT, 0777);
 	if (p->fd_infile < 0 || p->fd_outfile < 0)
-		return (perror("Error when opening a file"));
-	ft_find_path(p, env);
+		return (perror("Error when opening a file\n"));
+	// ft_find_path(p, env);
 	// printf("%s\n", p->path);
 	pipex(p, env);
 }
 
 void	pipex(t_pipex *p, char **env)
 {
-	int		fd[2];
 	pid_t	parent;
 
-	pipe(fd);
+	if (pipe(p->fd) == -1)
+		return (perror("Error when opening the pipe: \n"));
 	parent = fork();
 	if (parent == -1)
-		return (perror("Error during the fork: "));
+		return (perror("Error during the fork: \n"));
 	if (parent == 0)
-		child_process(p, fd, env);
+		child_process(p, env);
 	else
-		parent_process(p, fd, env);
+		parent_process(p, env);
 }
 
-void	child_process(t_pipex *p, int fd[2], char **env)
+void	child_process(t_pipex *p, char **env)
 {
 	(void)env;
 	dup2(p->fd_infile, STDIN_FILENO);
-	dup2(fd[1], STDOUT_FILENO);
-	close(fd[0]);
-	close(p->fd_infile);
+	dup2(p->fd[1], STDOUT_FILENO);
+	close(p->fd[0]);
+	close(p->fd_outfile);
 	execve(p->path, p->av, env);
+	close(p->fd[1]);
 }
 
-void	parent_process(t_pipex *p, int fd[2], char **env)
+void	parent_process(t_pipex *p, char **env)
 {
 	int	stat_loc;
 
 	(void)env;
 	waitpid(-1, &stat_loc, 0);//wait for the child process
 	dup2(p->fd_outfile, STDOUT_FILENO);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[1]);
-	close(p->fd_outfile);
+	dup2(p->fd[0], STDIN_FILENO);
+	// printf("infile: %d\n fd[1]: %d\n", p->fd_infile, p->fd[1]);
+	// printf("outfile: %d\n fd[0]: %d\n", p->fd_outfile, p->fd[0]);
+	close(p->fd[1]);
+	close(p->fd_infile);
 	execve(p->path, p->av, env);
+	close(p->fd[0]);
 }

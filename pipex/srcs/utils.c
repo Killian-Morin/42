@@ -25,11 +25,12 @@ void	ft_error(void)
 void	ft_find_path(t_pipex *p, char **env)
 {
 	int	i;
+	char	*tmp;
 
-	i = 4;
-	while (!ft_strncmp(env[i], "PATH=", 6))
-	{
+	i = 0;
+	tmp = "PATH=";
+	while (env[i] != tmp)
 		i++;
-	}
-	p->path = ft_substr(env[i], 5, 1000);
+	printf("%d\n", i);
+	p->path = ft_substr(env[i], 5, 1);
 }
