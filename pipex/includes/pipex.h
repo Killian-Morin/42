@@ -21,11 +21,12 @@
 # include "../libft/libft.h"
 
 typedef struct s_pipex {
-	int		fd_infile;
-	int		fd_outfile;
+	int		infile;
+	int		outfile;
 	int		fd[2];
 	char	*path;
 	char	**av;
+	pid_t	pid;
 }		t_pipex;
 
 /*

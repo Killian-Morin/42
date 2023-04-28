@@ -24,7 +24,7 @@ void	ft_error(void)
 
 void	ft_find_path(t_pipex *p, char **env)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 
 	i = 0;
