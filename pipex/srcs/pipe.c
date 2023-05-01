@@ -12,24 +12,18 @@
 
 #include "../includes/pipex.h"
 
-/*
-	with this manner
-	maybe make a function exec previous to that one
-	with a struct with all var needed for the prog (fd_1/2, the cmd)
-	in this function I initialize all variables needed
-*/
-void	init_fd(t_pipex *p, char **env)
+void	start(t_pipex *p, char **argv, char **env)
 {
-	p->infile = open(p->av[1], O_RDONLY);
-	p->outfile = open(p->av[4], O_WRONLY | O_CREAT, 0777);
+	unlink(argv[4]);
+	p->infile = open(argv[1], O_RDONLY);
+	p->outfile = open(argv[4], O_WRONLY | O_CREAT, 00644);
 	if (p->infile < 0 || p->outfile < 0)
-		return (perror("Error when opening a file\n"));
-	// ft_find_path(p, env);
-	// printf("%s\n", p->path);
-	pipex(p, env);
+		return (perror("Error when opening a file: \n"));
+	get_path(p, env);
+	pipex(p, argv, env);
 }
 
-void	pipex(t_pipex *p, char **env)
+void	pipex(t_pipex *p, char **argv, char **env)
 {
 	if (pipe(p->fd) == -1)
 		return (perror("Error when opening the pipe: \n"));
@@ -37,32 +31,53 @@ void	pipex(t_pipex *p, char **env)
 	if (p->pid == -1)
 		return (perror("Error during the fork: \n"));
 	if (p->pid == 0)
-		child_process(p, env);
+		child_process(p, argv, env);
 	else
-		parent_process(p, env);
+		parent_process(p, argv, env);
 	close(p->fd[0]);
 	close(p->fd[1]);
+	close(p->infile);
+	close(p->outfile);
 }
 
-void	child_process(t_pipex *p, char **env)
+void	child_process(t_pipex *p, char **argv, char **env)
 {
+	int		i;
+	char	*cmd;
+
+	i = 0;
 	dup2(p->infile, STDIN_FILENO);
 	dup2(p->fd[1], STDOUT_FILENO);
 	close(p->fd[0]);
-	close(p->fd[1]);
 	close(p->outfile);
-	execve(p->path, p->av, env);
+	get_av(p, argv, 2);
+	while (p->my_paths[i++])
+	{
+		cmd = ft_strjoin(p->my_paths[i], argv[2]);
+		execve(cmd, p->cmd_arg, env);
+		free(cmd);
+	}
 }
 
-void	parent_process(t_pipex *p, char **env)
+/*
+	the parent process waits for the child process => waitpid()
+*/
+void	parent_process(t_pipex *p, char **argv, char **env)
 {
-	waitpid(p->pid, NULL, 0);//wait for the child process
+	int		i;
+	char	*cmd;
+
+	i = 0;
+	waitpid(p->pid, NULL, 0);
 	dup2(p->outfile, STDOUT_FILENO);
 	dup2(p->fd[0], STDIN_FILENO);
-	// printf("infile: %d\n fd[1]: %d\n", p->infile, p->fd[1]);
-	// printf("outfile: %d\n fd[0]: %d\n", p->outfile, p->fd[0]);
 	close(p->fd[1]);
-	close(p->fd[0]);
 	close(p->infile);
-	execve(p->path, p->av, env);
+	get_av(p, argv, 3);
+	while (p->my_paths[i++])
+	{
+		cmd = ft_strjoin(p->my_paths[i], argv[3]);
+		execve(cmd, p->cmd_arg, env);
+		free(cmd);
+	}
 }

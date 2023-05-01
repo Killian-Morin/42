@@ -12,25 +12,13 @@
 
 #include "../includes/pipex.h"
 
-/*
-    function if necessary that will display the error message,
-    for the case where the command is not found
-    might add in argument the command passed to put it in the error message
-*/
-void	ft_error(void)
+void	get_path(t_pipex *p, char **env)
 {
-	ft_putstr_fd("zsh: command not found: ", 25);
+	p->path_env = ft_substr(env[4], 5, 100);
+	p->my_paths = ft_split_path(p->path_env, ':');
 }
 
-void	ft_find_path(t_pipex *p, char **env)
+void	get_av(t_pipex *p, char **argv, int ac)
 {
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	tmp = "PATH=";
-	while (env[i] != tmp)
-		i++;
-	printf("%d\n", i);
-	p->path = ft_substr(env[i], 5, 1);
+	p->cmd_arg = ft_split(argv[ac], ' ');
 }

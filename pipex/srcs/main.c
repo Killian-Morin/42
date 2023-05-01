@@ -26,10 +26,9 @@ int	main(int argc, char **argv, char **env)
 	t_pipex	*p;
 
 	check_arg(argc);
-	p = malloc(sizeof(p));
+	p = malloc(sizeof(t_pipex));
 	if (!p)
 		return (EXIT_FAILURE);
-	p->av = argv;
-	init_fd(p, env);
+	start(p, argv, env);
 	return (0);
 }

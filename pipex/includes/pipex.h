@@ -24,8 +24,9 @@ typedef struct s_pipex {
 	int		infile;
 	int		outfile;
 	int		fd[2];
-	char	*path;
-	char	**av;
+	char	*path_env;
+	char	**my_paths;
+	char	**cmd_arg;
 	pid_t	pid;
 }		t_pipex;
 
@@ -38,15 +39,25 @@ void		check_arg(int argc);
 /*
 	pipe.c
 */
-void		init_fd(t_pipex *p, char **env);
-void		pipex(t_pipex *p, char **env);
-void		child_process(t_pipex *p, char **env);
-void		parent_process(t_pipex *p, char **env);
+void		start(t_pipex *p, char **argv, char **env);
+void		pipex(t_pipex *p, char **argv, char **env);
+void		child_process(t_pipex *p, char **argv, char **env);
+void		parent_process(t_pipex *p, char **argv, char **env);
 
 /*
 	utils.c
 */
-void		ft_error(void);
-void		ft_find_path(t_pipex *p, char **env);
+void		get_path(t_pipex *p, char **env);
+void		get_av(t_pipex *p, char **argv, int ac);
+
+/*
+	ft_split_path.c
+	add a '/' at the end of each paths
+*/
+char		**ft_split_path(char const *s, char c);
+char		**ft_fill_tab_path(char *src, char c, char **bigstr, int *len);
+char		**ft_free_path(char **bigstr, int i, int *len);
+int			*ft_cara_par_str_path(char *src, char c, int nbmot);
+int			ft_countmot_path(char *src, char c);
 
 #endif
