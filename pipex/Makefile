@@ -38,7 +38,6 @@ clean:
 
 fclean: clean
 	${RM} ${NAME}
-	# ${RM} *.txt
 	make -C ${LIB_PATH} fclean
 
 re: fclean all

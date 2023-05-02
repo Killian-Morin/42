@@ -22,3 +22,23 @@ void	get_av(t_pipex *p, char **argv, int ac)
 {
 	p->cmd_arg = ft_split(argv[ac], ' ');
 }
+
+void	clean(t_pipex *p)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (p->my_paths[i])
+		free(p->my_paths[i++]);
+	free(p->my_paths);
+	while (p->cmd_arg[k])
+		free(p->cmd_arg[k++]);
+	free(p->cmd_arg);
+	free(p->path_env);
+	close(p->infile);
+	close(p->outfile);
+	close(p->fd[0]);
+	close(p->fd[1]);
+}

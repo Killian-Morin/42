@@ -34,7 +34,7 @@ typedef struct s_pipex {
     main.c
 */
 int			main(int argc, char **argv, char **env);
-void		check_arg(int argc);
+void		check_arg(char **argv);
 
 /*
 	pipe.c
@@ -49,6 +49,7 @@ void		parent_process(t_pipex *p, char **argv, char **env);
 */
 void		get_path(t_pipex *p, char **env);
 void		get_av(t_pipex *p, char **argv, int ac);
+void		clean(t_pipex *p);
 
 /*
 	ft_split_path.c
