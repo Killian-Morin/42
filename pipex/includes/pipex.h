@@ -39,7 +39,7 @@ void		check_arg(char **argv);
 /*
 	pipe.c
 */
-void		start(t_pipex *p, char **argv, char **env);
+void		init_pipex(t_pipex *p, char **argv, char **env);
 void		pipex(t_pipex *p, char **argv, char **env);
 void		child_process(t_pipex *p, char **argv, char **env);
 void		parent_process(t_pipex *p, char **argv, char **env);
@@ -47,9 +47,10 @@ void		parent_process(t_pipex *p, char **argv, char **env);
 /*
 	utils.c
 */
-void		get_path(t_pipex *p, char **env);
-void		get_av(t_pipex *p, char **argv, int ac);
 void		clean(t_pipex *p);
+void		fd_close_all(t_pipex *p);
+void		error_function(char *str, int err);
+void		get_paths(t_pipex *p, char **env);
 
 /*
 	ft_split_path.c

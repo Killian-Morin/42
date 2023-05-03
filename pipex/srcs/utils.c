@@ -12,15 +12,33 @@
 
 #include "../includes/pipex.h"
 
-void	get_path(t_pipex *p, char **env)
+void	get_paths(t_pipex *p, char **env)
 {
-	p->path_env = ft_substr(env[4], 5, 100);
-	p->my_paths = ft_split_path(p->path_env, ':');
+	int	i;
+
+	i = 0;
+	while (env[i++])
+	{
+		if (ft_strnstr(env[i], "PATH=", 5) == env[i])
+		{
+			p->path_env = ft_substr(env[i], 5, ft_strlen(env[i]));
+			p->my_paths = ft_split_path(p->path_env, ':');
+		}
+	}
 }
 
-void	get_av(t_pipex *p, char **argv, int ac)
+void	error_function(char *str, int err)
 {
-	p->cmd_arg = ft_split(argv[ac], ' ');
+	perror(str);
+	exit(err);
+}
+
+void	fd_close_all(t_pipex *p)
+{
+	close(p->infile);
+	close(p->outfile);
+	close(p->fd[0]);
+	close(p->fd[1]);
 }
 
 void	clean(t_pipex *p)
@@ -37,8 +55,5 @@ void	clean(t_pipex *p)
 		free(p->cmd_arg[k++]);
 	free(p->cmd_arg);
 	free(p->path_env);
-	close(p->infile);
-	close(p->outfile);
-	close(p->fd[0]);
-	close(p->fd[1]);
+	fd_close_all(p);
 }
