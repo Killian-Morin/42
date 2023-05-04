@@ -54,5 +54,6 @@ void	clean(t_pipex *p)
 	while (p->cmd_arg[k])
 		free(p->cmd_arg[k++]);
 	free(p->cmd_arg);
+	free(p);
 	fd_close_all(p);
 }

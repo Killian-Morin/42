@@ -39,9 +39,6 @@ void	check_files(char **argv)
 	}
 }
 
-/*
-	might replace exit(EXIT_FAILURE) by return (1)
-*/
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	*p;
@@ -49,7 +46,7 @@ int	main(int argc, char **argv, char **env)
 	if (argc != 5)
 	{
 		ft_putstr_fd("Sorry, not enough parameters\n", 2);
-		return (0);
+		return (1);
 	}
 	check_files(argv);
 	p = malloc(sizeof(t_pipex));

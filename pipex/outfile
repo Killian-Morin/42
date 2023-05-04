@@ -1,13 +1,1 @@
-Makefile
-ft_putstr_fd.c
-ft_putstr_fd.o
-ft_split.c
-ft_split.o
-ft_strjoin.c
-ft_strjoin.o
-ft_strlen.c
-ft_strlen.o
-ft_strnstr.c
-ft_strnstr.o
-libft.a
-libft.h
+       9      74     521
