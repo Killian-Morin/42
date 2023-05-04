@@ -18,7 +18,7 @@ void	init_pipex(t_pipex *p, char **argv, char **env)
 	p->outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (p->infile < 0 || p->outfile < 0)
 		error_function("Error when opening a file", 0);
-	get_paths(p, env);
+	p->my_paths = get_paths(env);
 }
 
 void	pipex(t_pipex *p, char **argv, char **env)

@@ -24,7 +24,6 @@ typedef struct s_pipex {
 	int		infile;
 	int		outfile;
 	int		fd[2];
-	char	*path_env;
 	char	**my_paths;
 	char	**cmd_arg;
 	pid_t	pid;
@@ -50,7 +49,7 @@ void		parent_process(t_pipex *p, char **argv, char **env);
 void		clean(t_pipex *p);
 void		fd_close_all(t_pipex *p);
 void		error_function(char *str, int err);
-void		get_paths(t_pipex *p, char **env);
+char		**get_paths(char **env);
 
 /*
 	ft_split_path.c
