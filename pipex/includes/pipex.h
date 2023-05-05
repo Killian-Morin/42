@@ -48,7 +48,7 @@ void		parent_process(t_pipex *p, char **argv, char **env);
 */
 void		clean(t_pipex *p);
 void		fd_close_all(t_pipex *p);
-void		error_function(char *str, int err);
+void		error(char *str);
 char		**get_paths(char **env);
 
 /*

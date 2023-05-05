@@ -16,7 +16,7 @@ void	check_files(char **argv)
 {
 	if (access(argv[1], F_OK) == -1)
 	{
-		ft_putstr_fd("zsh: no such file or directory: ", 2);
+		ft_putstr_fd("no such file or directory: ", 2);
 		ft_putstr_fd(argv[1], 2);
 		ft_putstr_fd("\n", 2);
 		open(argv[4], O_TRUNC);
@@ -24,7 +24,7 @@ void	check_files(char **argv)
 	}
 	if (access(argv[1], R_OK) == -1)
 	{
-		ft_putstr_fd("zsh: permission denied: ", 2);
+		ft_putstr_fd("permission denied: ", 2);
 		ft_putstr_fd(argv[1], 2);
 		ft_putstr_fd("\n", 2);
 		open(argv[4], O_TRUNC);
@@ -32,7 +32,7 @@ void	check_files(char **argv)
 	}
 	if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) == -1)
 	{
-		ft_putstr_fd("zsh: permission denied: ", 2);
+		ft_putstr_fd("permission denied: ", 2);
 		ft_putstr_fd(argv[4], 2);
 		ft_putstr_fd("\n", 2);
 		exit(EXIT_FAILURE);

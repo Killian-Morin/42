@@ -27,10 +27,10 @@ char	**get_paths(char **env)
 	return (NULL);
 }
 
-void	error_function(char *str, int err)
+void	error(char *str)
 {
 	perror(str);
-	exit(err);
+	exit(0);
 }
 
 void	fd_close_all(t_pipex *p)
@@ -54,6 +54,6 @@ void	clean(t_pipex *p)
 	while (p->cmd_arg[k])
 		free(p->cmd_arg[k++]);
 	free(p->cmd_arg);
-	free(p);
 	fd_close_all(p);
+	free(p);
 }
