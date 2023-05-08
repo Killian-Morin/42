@@ -112,6 +112,9 @@ char	**ft_split_path(char const *s, char c)
 	carastrnb = ft_cara_par_str_path(src, c, nbmot);
 	bigstr = malloc(sizeof(char *) * nbmot);
 	if (!bigstr)
+	{
+		free(carastrnb);
 		return (NULL);
+	}
 	return (ft_fill_tab_path(src, c, bigstr, carastrnb));
 }

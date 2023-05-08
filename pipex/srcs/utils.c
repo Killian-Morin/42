@@ -30,7 +30,13 @@ char	**get_paths(char **env)
 void	error(char *str)
 {
 	perror(str);
-	exit(0);
+	exit(EXIT_FAILURE);
+}
+
+void	fd_close_two(int fd1, int fd2)
+{
+	close(fd1);
+	close(fd2);
 }
 
 void	fd_close_all(t_pipex *p)

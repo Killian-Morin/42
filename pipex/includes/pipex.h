@@ -40,16 +40,17 @@ void		check_arg(char **argv);
 */
 void		init_pipex(t_pipex *p, char **argv, char **env);
 void		pipex(t_pipex *p, char **argv, char **env);
-void		child_process(t_pipex *p, char **argv, char **env);
-void		parent_process(t_pipex *p, char **argv, char **env);
+void		child_process(t_pipex *p, char **env);
+void		parent_process(t_pipex *p, char **env);
 
 /*
 	utils.c
 */
+char		**get_paths(char **env);
 void		clean(t_pipex *p);
 void		fd_close_all(t_pipex *p);
+void		fd_close_two(int fd1, int fd2);
 void		error(char *str);
-char		**get_paths(char **env);
 
 /*
 	ft_split_path.c
