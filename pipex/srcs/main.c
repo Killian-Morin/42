@@ -52,8 +52,7 @@ int	main(int argc, char **argv, char **env)
 	p = malloc(sizeof(t_pipex));
 	if (!p)
 		exit(EXIT_FAILURE);
-	init_pipex(p, argv, env);
+	init(p, argv, env);
 	pipex(p, argv, env);
-	clean(p);
 	return (0);
 }

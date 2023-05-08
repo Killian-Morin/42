@@ -27,12 +27,6 @@ char	**get_paths(char **env)
 	return (NULL);
 }
 
-void	error(char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
-}
-
 void	fd_close_two(int fd1, int fd2)
 {
 	close(fd1);
@@ -47,18 +41,19 @@ void	fd_close_all(t_pipex *p)
 	close(p->fd[1]);
 }
 
-void	clean(t_pipex *p)
+void	clean_char_tab(char **str)
 {
 	int	i;
-	int	k;
 
 	i = 0;
-	k = 0;
-	while (p->my_paths[i])
-		free(p->my_paths[i++]);
-	free(p->my_paths);
-	while (p->cmd_arg[k])
-		free(p->cmd_arg[k++]);
+	while (str[i] != NULL)
+		free(str[i++]);
+	free(str);
+}
+
+void	clean(t_pipex *p)
+{
+	clean_char_tab(p->my_paths);
 	free(p->cmd_arg);
 	fd_close_all(p);
 	free(p);

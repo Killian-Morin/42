@@ -12,7 +12,7 @@
 
 #include "../includes/pipex.h"
 
-void	init_pipex(t_pipex *p, char **argv, char **env)
+void	init(t_pipex *p, char **argv, char **env)
 {
 	p->infile = open(argv[1], O_RDONLY);
 	p->outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -27,31 +27,30 @@ void	init_pipex(t_pipex *p, char **argv, char **env)
 void	pipex(t_pipex *p, char **argv, char **env)
 {
 	if (pipe(p->fd) == -1)
-	{
-		fd_close_all(p);
-		free(p);
-		error("Error when opening the pipe");
-	}
-	p->pid = fork();
-	if (p->pid == -1)
-	{
-		fd_close_all(p);
-		free(p);
-		error("Error during the fork");
-	}
-	else if (p->pid == 0)
+		error_intermediate(p, "Error during the pipe");
+	p->pid_child1 = fork();
+	if (p->pid_child1 == -1)
+		error_intermediate(p, "Error during the fork");
+	else if (p->pid_child1 == 0)
 	{
 		p->cmd_arg = ft_split(argv[2], ' ');
-		child_process(p, env);
+		child_one(p, env);
 	}
-	else
+	p->pid_child2 = fork();
+	if (p->pid_child2 == -1)
+		error_intermediate(p, "Error during the fork");
+	else if (p->pid_child2 == 0)
 	{
 		p->cmd_arg = ft_split(argv[3], ' ');
-		parent_process(p, env);
+		child_two(p, env);
 	}
+	fd_close_two(p->fd[0], p->fd[1]);
+	waitpid(p->pid_child1, NULL, 0);
+	waitpid(p->pid_child2, NULL, 0);
+	clean(p);
 }
 
-void	child_process(t_pipex *p, char **env)
+void	child_one(t_pipex *p, char **env)
 {
 	int		i;
 	char	*cmd;
@@ -75,16 +74,14 @@ void	child_process(t_pipex *p, char **env)
 			error("Error with execve");
 		}
 	}
-	free(cmd);
 }
 
-void	parent_process(t_pipex *p, char **env)
+void	child_two(t_pipex *p, char **env)
 {
 	int		i;
 	char	*cmd;
 
 	i = 0;
-	waitpid(p->pid, NULL, 0);
 	if (dup2(p->fd[0], STDIN_FILENO) == -1
 		|| dup2(p->outfile, STDOUT_FILENO) == -1)
 	{
@@ -103,5 +100,4 @@ void	parent_process(t_pipex *p, char **env)
 			error("Error with execve");
 		}
 	}
-	free(cmd);
 }

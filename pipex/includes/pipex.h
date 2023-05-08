@@ -26,7 +26,8 @@ typedef struct s_pipex {
 	int		fd[2];
 	char	**my_paths;
 	char	**cmd_arg;
-	pid_t	pid;
+	pid_t	pid_child1;
+	pid_t	pid_child2;
 }		t_pipex;
 
 /*
@@ -38,19 +39,25 @@ void		check_arg(char **argv);
 /*
 	pipe.c
 */
-void		init_pipex(t_pipex *p, char **argv, char **env);
+void		init(t_pipex *p, char **argv, char **env);
 void		pipex(t_pipex *p, char **argv, char **env);
-void		child_process(t_pipex *p, char **env);
-void		parent_process(t_pipex *p, char **env);
+void		child_one(t_pipex *p, char **env);
+void		child_two(t_pipex *p, char **env);
+
+/*
+	errors.c
+*/
+void		error(char *str);
+void		error_intermediate(t_pipex *p, char *str);
 
 /*
 	utils.c
 */
 char		**get_paths(char **env);
 void		clean(t_pipex *p);
+void		clean_char_tab(char **str);
 void		fd_close_all(t_pipex *p);
 void		fd_close_two(int fd1, int fd2);
-void		error(char *str);
 
 /*
 	ft_split_path.c
