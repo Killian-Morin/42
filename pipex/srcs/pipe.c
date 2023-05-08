@@ -22,6 +22,11 @@ void	init(t_pipex *p, char **argv, char **env)
 		error("Error when opening a file");
 	}
 	p->my_paths = get_paths(env);
+	if (p->my_paths == NULL)
+	{
+		free(p);
+		error("Error due to the path not found");
+	}
 }
 
 void	pipex(t_pipex *p, char **argv, char **env)
@@ -67,7 +72,10 @@ void	child_one(t_pipex *p, char **env)
 	{
 		cmd = ft_strjoin(p->my_paths[i], p->cmd_arg[0]);
 		if (access(cmd, X_OK & F_OK) == -1)
+		{
 			free(cmd);
+			error("Command not found");
+		}
 		else if (execve(cmd, p->cmd_arg, env) == -1)
 		{
 			clean(p);
@@ -93,7 +101,10 @@ void	child_two(t_pipex *p, char **env)
 	{
 		cmd = ft_strjoin(p->my_paths[i], p->cmd_arg[0]);
 		if (access(cmd, X_OK & F_OK) == -1)
+		{
 			free(cmd);
+			error("Command not found");
+		}
 		else if (execve(cmd, p->cmd_arg, env) == -1)
 		{
 			clean(p);
