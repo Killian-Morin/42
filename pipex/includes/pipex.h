@@ -49,6 +49,7 @@ void		child_two(t_pipex *p, char **env);
 */
 void		error(char *str);
 void		error_intermediate(t_pipex *p, char *str);
+void		is_last_path(t_pipex *p, char *cmd, int i);
 
 /*
 	utils.c

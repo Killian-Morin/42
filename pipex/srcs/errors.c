@@ -25,3 +25,9 @@ void	error_intermediate(t_pipex *p, char *str)
 	free(p);
 	error(str);
 }
+
+void	is_last_path(t_pipex *p, char *cmd, int i)
+{
+	if (access(cmd, X_OK & F_OK) == -1 && p->my_paths[i + 1] == NULL)
+		error("Command not found");
+}
