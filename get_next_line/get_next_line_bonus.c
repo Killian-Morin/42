@@ -100,18 +100,18 @@ char	*gnl_stock(int fd, char *stock)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stock;
+	static char	*stock[4096];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stock = gnl_stock(fd, stock);
-	if (!stock)
+	stock[fd] = gnl_stock(fd, stock[fd]);
+	if (!stock[fd])
 		return (NULL);
-	line = gnl_line(stock);
-	stock = gnl_update_stock(stock);
+	line = gnl_line(stock[fd]);
+	stock[fd] = gnl_update_stock(stock[fd]);
 	return (line);
 }
-
+/*
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -126,15 +126,27 @@ int	main(void)
 	fd1 = open("test.txt", O_RDONLY);
 	fd2 = open("test2.txt", O_RDONLY);
 	fd3 = open("test3.txt", O_RDONLY);
-	i = 1;
-	while (i != 5)
+	i = 0;
+	while (i != 3)
 	{
 		line = get_next_line(fd1);
 		printf("%s", line);
 		free(line);
+		i++;
+	}
+	printf("\n\tnext fd\t\n");
+	i = 0;
+	while (i != 1)
+	{
 		line = get_next_line(fd2);
 		printf("%s", line);
 		free(line);
+		i++;
+	}
+	printf("\n\tnext fd\t\n");
+	i = 0;
+	while (i != 7)
+	{
 		line = get_next_line(fd3);
 		printf("%s", line);
 		free(line);
@@ -144,4 +156,4 @@ int	main(void)
 	close(fd2);
 	close(fd3);
 	return (0);
-}
+}*/
