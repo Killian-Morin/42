@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c
+SRC_FILES = main.c utils.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
@@ -23,7 +23,7 @@ ${OBJ_PATH}%.o: ${SRC_PATH}%.c
 	${CC} ${CFLAGS} -I ${HEADER} -o $@ -c $<
 
 ${NAME}: ${OBJ}
-	${CC} ${CFLAGS} ${OBJ} -pthread -o ${NAME}
+	${CC} ${CFLAGS} ${OBJ} -lpthread -o ${NAME}
 
 clean:
 	${RM} ${OBJ_PATH}
