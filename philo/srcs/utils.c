@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 13:38:31 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 15:54:48 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ long int	get_time(void)
 	when using leaks -atExit -- have no leaks for the moment
 
 	with 3 malloc for table, time and one for each philo
+
+	add the function to destroy the mutex.
 */
 void	ft_free(t_table *table)
 {
@@ -71,6 +73,7 @@ void	ft_free(t_table *table)
 	{
 		tmp = table->philo_prime;
 		table->philo_prime = table->philo_prime->next;
+		pthread_mutex_destroy(&tmp->fork);
 		free(tmp);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 13:28:36 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 15:48:56 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@
 	init meal_ate for the number of meal ate to see if meal_to_eat reached,
 	init time with the time from table->time,
 	next and prev will be init later,
-	init table with table.
+	init table with table,
+	create a mutex for the fork,
+		if an error occur from the creation of a mutex, will writes the error
+		and return until the main to free all and stop the program here.
 */
 t_philo	*init_philo(t_table *t, int i)
 {
@@ -45,6 +48,11 @@ t_philo	*init_philo(t_table *t, int i)
 	cur->next = NULL;
 	cur->prev = NULL;
 	cur->table = t;
+	if (pthread_mutex_init(&cur->fork, NULL) != 0)
+	{
+		printf("Error during the creation of a mutex\n");
+		return (NULL);
+	}
 	return (cur);
 }
 

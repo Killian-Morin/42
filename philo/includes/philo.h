@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 13:10:24 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 15:46:00 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,14 @@ t_table		*init_table(char **av);
 t_time		*init_time(int ac, char **av);
 t_philo		*init_philo(t_table *t, int i);
 
-/*	create.c */
-void		philo_spawn(t_table *t);
+/*	setup.c	*/
+int			philo_spawn(t_table *t);
 void		philo_sit_at_table(t_table *t, t_philo *philo);
+void		link_fork(t_table *t);
+int			create_thread(t_table *t);
+
+/*	routine.c	*/
+void		*routine(void *philo);
 
 /*	utils.c	*/
 int			ft_atoi(char *str);
