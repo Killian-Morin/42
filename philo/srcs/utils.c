@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/23 15:29:04 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 13:38:31 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	ft_atoi(char *str)
 	return (res * signe);
 }
 
+/*
+	get the value, then converts it to milliseconds:
+		with *1000 for the seconds and
+		with /1000 for the microseconds
+	add both and return the converted time to milliseconds.
+*/
 long int	get_time(void)
 {
 	struct timeval	tmp;
@@ -48,4 +54,26 @@ long int	get_time(void)
 	microsecond = tmp.tv_usec / 1000;
 	time = second + microsecond;
 	return (time);
+}
+
+/*
+	when using leaks -atExit -- have no leaks for the moment
+
+	with 3 malloc for table, time and one for each philo
+*/
+void	ft_free(t_table *table)
+{
+	int		i;
+	t_philo	*tmp;
+
+	i = 1;
+	while (i <= table->nbr_philo)
+	{
+		tmp = table->philo_prime;
+		table->philo_prime = table->philo_prime->next;
+		free(tmp);
+		i++;
+	}
+	free(table->time);
+	free(table);
 }

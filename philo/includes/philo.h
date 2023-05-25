@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/23 15:42:17 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 13:10:24 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 /*
 memset, printf, malloc, free, write, usleep, gettimeofday
 pthread_create, pthread_detach, pthread_join,
-pthread_mutex_init, pthread_mutex_destroy,pthread_mutex_lock,
+pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock,
 pthread_mutex_unlock
 */
 
@@ -36,7 +36,7 @@ typedef struct s_time {
 }				t_time;
 
 typedef struct s_philo {
-	int					num;
+	int					id;
 	int					state;
 	int					meal_ate;
 	long int			time_last_meal;
@@ -56,19 +56,22 @@ typedef struct s_table {
 	t_philo	*philo_prime;
 }				t_table;
 
-/*  main.c  */
+/*	main.c	*/
 int			main(int ac, char **av);
 int			check_args(int ac, char **av);
 
 /*	init.c	*/
 t_table		*init_table(char **av);
 t_time		*init_time(int ac, char **av);
-void		philo_spawn(t_table *t);
 t_philo		*init_philo(t_table *t, int i);
+
+/*	create.c */
+void		philo_spawn(t_table *t);
 void		philo_sit_at_table(t_table *t, t_philo *philo);
 
-/*  utils.c */
+/*	utils.c	*/
 int			ft_atoi(char *str);
 long int	get_time(void);
+void		ft_free(t_table *table);
 
 #endif

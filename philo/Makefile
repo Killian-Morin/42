@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c init.c utils.c
+SRC_FILES = main.c init.c create.c utils.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/

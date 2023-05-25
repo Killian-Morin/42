@@ -6,65 +6,61 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/23 16:00:16 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 13:28:36 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void    philo_sit_at_table(t_table *t, t_philo *philo)
-{
-    t_philo *tmp;
+/*
+	for all malloc of structures:
+		sizeof() with the size of the struct itself and
+		not the variable which is a pointer to struct.
+	
+	might need a cast to the type of the variable (a pointer to struct),
+	before the malloc (t_strut *)malloc...
+	Thus far works just fine but in case of a problem try this solution.
+*/
 
-    if (t->philo_prime == NULL)
-        t->philo_prime = philo;
-    else
-    {
-        tmp = t->philo_prime;
-        while (tmp->next)
-            tmp = tmp->next;
-        philo->prev = tmp;
-        tmp->next = philo;
-    }    
-}
-
+/*
+	init id with the number of the philo,
+	init state for death (?),
+	init meal_ate for the number of meal ate to see if meal_to_eat reached,
+	init time with the time from table->time,
+	next and prev will be init later,
+	init table with table.
+*/
 t_philo	*init_philo(t_table *t, int i)
 {
 	t_philo		*cur;
 
-	cur = malloc(sizeof(cur));
+	cur = malloc(sizeof(t_philo));
 	if (!cur)
 		return (NULL);
-	cur->num = i;
+	cur->id = i;
 	cur->state = -1;
 	cur->meal_ate = 0;
 	cur->time_last_meal = t->time->start_time;
-    cur->time = t->time;
-    cur->next = NULL;
-    cur->prev = NULL;
-    cur->table = t;
+	cur->time = t->time;
+	cur->next = NULL;
+	cur->prev = NULL;
+	cur->table = t;
 	return (cur);
 }
 
-void    philo_spawn(t_table *t)
-{
-    int i;
-    t_philo *philo;
-
-    i = 1;
-    while (i != t->nbr_philo)
-    {
-        philo = init_philo(t, i);
-        philo_sit_at_table(t, philo);
-        i++;
-    }
-}
-
+/*
+	init die_time with the third av converted to int
+	init eat_time with the fourth av converted to int
+	init sleep_time with the fifth av converted to int
+	if there is a sixth av then
+		init meal_to_eat with it
+		else init at -1
+*/
 t_time	*init_time(int ac, char **av)
 {
 	t_time	*time;
 
-	time = malloc(sizeof(time));
+	time = malloc(sizeof(t_time));
 	if (!time)
 		return (NULL);
 	time->die_time = ft_atoi(av[2]);
@@ -74,15 +70,20 @@ t_time	*init_time(int ac, char **av)
 		time->meal_to_eat = ft_atoi(av[5]);
 	else
 		time->meal_to_eat = -1;
-	time->start_time = get_time();
 	return (time);
 }
 
+/*
+	init nbr_philo with the second av converted to int
+	init philo_dead is a signal to indicate if one of the philo of the table died
+	time will be init later
+	philo_prime is the philo with the id = 1, it will be init later
+*/
 t_table	*init_table(char **av)
 {
 	t_table	*table;
 
-	table = malloc(sizeof(table));
+	table = malloc(sizeof(t_table));
 	if (!table)
 		return (NULL);
 	table->nbr_philo = ft_atoi(av[1]);

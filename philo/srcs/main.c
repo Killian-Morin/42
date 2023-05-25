@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/23 15:55:41 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/25 13:58:07 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ int	main(int ac, char **av)
 	table = init_table(av);
 	table->time = init_time(ac, av);
 	philo_spawn(table);
+	ft_free(table);
 }
