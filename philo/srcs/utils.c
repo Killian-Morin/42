@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 15:54:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/26 12:46:52 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,6 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (res * signe);
-}
-
-/*
-	get the value, then converts it to milliseconds:
-		with *1000 for the seconds and
-		with /1000 for the microseconds
-	add both and return the converted time to milliseconds.
-*/
-long int	get_time(void)
-{
-	struct timeval	tmp;
-	long int		time;
-	long int		second;
-	long int		microsecond;
-
-	gettimeofday(&tmp, NULL);
-	second = tmp.tv_sec * 1000;
-	microsecond = tmp.tv_usec / 1000;
-	time = second + microsecond;
-	return (time);
 }
 
 /*

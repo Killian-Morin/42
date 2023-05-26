@@ -6,12 +6,18 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 15:46:00 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:15:46 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+# define DEAD 0
+# define EAT 1
+# define SLEEP 2
+# define THINK 3
+# define TAKE_FORK 4
 
 # include <string.h>
 # include <stdio.h>
@@ -59,6 +65,7 @@ typedef struct s_table {
 /*	main.c	*/
 int			main(int ac, char **av);
 int			check_args(int ac, char **av);
+int			join_thread(t_table *t);
 
 /*	init.c	*/
 t_table		*init_table(char **av);
@@ -66,17 +73,29 @@ t_time		*init_time(int ac, char **av);
 t_philo		*init_philo(t_table *t, int i);
 
 /*	setup.c	*/
-int			philo_spawn(t_table *t);
-void		philo_sit_at_table(t_table *t, t_philo *philo);
-void		link_fork(t_table *t);
-int			create_thread(t_table *t);
+int			setup_each_philo(t_table *t);
+void		setup_philo_around_table(t_table *t, t_philo *philo);
+void		setup_fork_next(t_table *t);
+int			setup_thread(t_table *t);
 
 /*	routine.c	*/
 void		*routine(void *philo);
+void		cycle_for_one_philo(t_philo *philo);
+
+/*	change_state.c	*/
+void		change_fork(t_philo *philo);
+void		change_eat(t_philo *philo);
+void		change_sleep(t_philo *philo);
+void		change_think(t_philo *philo);
+void		change_die(t_philo *philo);
+
+/*	time.c	*/
+long int	get_time(void);
+long int	get_time_pass(long int start, long int end);
+void		custom_sleep(long int duration);
 
 /*	utils.c	*/
 int			ft_atoi(char *str);
-long int	get_time(void);
 void		ft_free(t_table *table);
 
 #endif

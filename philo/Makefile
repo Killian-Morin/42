@@ -1,7 +1,7 @@
 NAME = philo
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c init.c setup.c routine.c utils.c
+SRC_FILES = main.c init.c setup.c routine.c utils.c change_state.c time.c
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/
@@ -20,10 +20,10 @@ ${OBJ_PATH}:
 	mkdir ${OBJ_PATH}
 
 ${OBJ_PATH}%.o: ${SRC_PATH}%.c
-	${CC} ${CFLAGS} -I ${HEADER} -pthread -o $@ -c $<
+	${CC} ${CFLAGS} -pthread -I ${HEADER}  -o $@ -c $<
 
 ${NAME}: ${OBJ}
-	${CC} ${CFLAGS} ${OBJ} -pthread -o ${NAME}
+	${CC} ${CFLAGS} -pthread ${OBJ} -o ${NAME}
 
 clean:
 	${RM} ${OBJ_PATH}

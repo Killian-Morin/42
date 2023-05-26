@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 15:48:56 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/26 13:27:19 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 /*
 	init id with the number of the philo,
-	init state for death (?),
+	init state signal the action currently done (eat, sleep, think or dead),
 	init meal_ate for the number of meal ate to see if meal_to_eat reached,
 	init time with the time from table->time,
 	next and prev will be init later,

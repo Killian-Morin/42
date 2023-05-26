@@ -6,11 +6,33 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/25 16:19:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:24:32 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+/*
+	For each philo, join/wait for it to finish.
+	If an error occur with the function, will writes the error and return
+	until the main to free all and stop the program here.
+*/
+int	join_thread(t_table *t)
+{
+	t_philo	*philo;
+
+	philo = t->philo_prime;
+	while (philo)
+	{
+		if (pthread_join(philo->thread, NULL) != 0)
+		{
+			printf("Error while waiting for a thread\n");
+			return (-1);
+		}
+		philo = philo->next;
+	}
+	return (0);
+}
 
 int	check_args(int ac, char **av)
 {
@@ -32,6 +54,10 @@ int	check_args(int ac, char **av)
 		return (0);
 }
 
+/*
+	might need to do here a while (1) after the initialization of the threads
+	to do until a philo dies, all meal are ate or infinite
+*/
 int	main(int ac, char **av)
 {
 	t_table	*table;
@@ -40,18 +66,19 @@ int	main(int ac, char **av)
 		return (-1);
 	table = init_table(av);
 	table->time = init_time(ac, av);
-	if (philo_spawn(table) == -1)
+	if (setup_each_philo(table) == -1)
 	{
 		ft_free(table);
 		return (-1);
 	}
-	if (create_thread(table) == -1)
+	if (table->nbr_philo == 1)
+		cycle_for_one_philo(table->philo_prime);
+	else if (setup_thread(table) == -1)
 	{
 		ft_free(table);
 		return (-1);
 	}
-	if (pthread_join(table->philo_prime->thread, NULL) != 0)
-		return (-1);
+	join_thread(table);
 	ft_free(table);
 	return (0);
 }
