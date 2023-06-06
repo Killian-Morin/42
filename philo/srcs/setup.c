@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:06:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/26 15:17:31 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/06 15:05:15 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ void	setup_philo_around_table(t_table *t, t_philo *philo)
 	
 	the while will call for each philo:
 		init_philo to init some var of the struct: the structs already init,
-        	the int/long int with common value for each philo or its id and
-			the mutex for his fork that his lock in the loop.
+        	the int/long int with common value for each philo or its id.
 		philo_sit_at_table() will init next and prev of the philo just created
 */
 int	setup_each_philo(t_table *t)
@@ -108,7 +107,6 @@ int	setup_each_philo(t_table *t)
 	while (i <= t->nbr_philo)
 	{
 		philo = init_philo(t, i);
-		pthread_mutex_lock(&philo->fork);
 		if (philo == NULL)
 			return (-1);
 		setup_philo_around_table(t, philo);

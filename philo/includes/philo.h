@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/26 15:15:46 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/06 13:15:27 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,16 @@ int			setup_thread(t_table *t);
 void		*routine(void *philo);
 void		cycle_for_one_philo(t_philo *philo);
 
-/*	change_state.c	*/
-void		change_fork(t_philo *philo);
-void		change_eat(t_philo *philo);
-void		change_sleep(t_philo *philo);
-void		change_think(t_philo *philo);
-void		change_die(t_philo *philo);
+/*	routine_utils.c	*/
+int			check_if_time_to_die(t_philo *philo);
+int			check_all_meals(t_table *table);
+
+/*	action.c	*/
+void		philo_take_fork(t_philo *philo);
+void		philo_eat(t_philo *philo);
+void		philo_think(t_philo *philo);
+void		philo_sleep(t_philo *philo);
+void		philo_die(t_philo *philo);
 
 /*	time.c	*/
 long int	get_time(void);

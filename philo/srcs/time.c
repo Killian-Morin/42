@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:46:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/26 15:01:02 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/06 15:46:09 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ long int	get_time(void)
 
 /*
 	time_to_wait is the total time to wait, precised by either time_to_die,
-	time_to_eat or time_to_sleep.
+	time_to_eat or time_to_sleep in milliseconds.
 	time_now get the actual time.
 	timer get the time pass between now and the init of start_time (usually 0).
 	the while is for doing the usleep the right amount of time,

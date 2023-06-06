@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/26 15:24:32 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/06 12:31:22 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ int	main(int ac, char **av)
 		return (-1);
 	}
 	if (table->nbr_philo == 1)
+	{
 		cycle_for_one_philo(table->philo_prime);
+		ft_free(table);
+		return (0);
+	}
 	else if (setup_thread(table) == -1)
 	{
 		ft_free(table);

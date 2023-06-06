@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/05/26 15:23:22 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/06 15:26:51 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,24 @@
 */
 void	cycle_for_one_philo(t_philo *philo)
 {
-	change_fork(philo);
+	philo->state = TAKE_FORK;
+	printf("%ld %d has taken a fork\n",
+		get_time_pass(philo->time->start_time, get_time()), philo->id);
 	custom_sleep(philo->time->die_time);
-	change_die(philo);
+	philo_die(philo);
+}
+
+/*
+	makes eating the philo with even id
+	while the other one sleep during the meal
+	they just wait for the others philo to finish their meal (no message print)
+*/
+void	start_eating(t_philo *philo)
+{
+	if (philo->id % 2 == 0)
+		philo_eat(philo);
+	else
+		custom_sleep(philo->time->eat_time);
 }
 
 /*
@@ -36,8 +51,21 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	start_eating(philo);
+	if (check_if_time_to_die(philo) == 1)
+	{
+		philo_die(philo);
+		return (NULL);
+	}
 	while (1)
 	{
+		if (philo->table->philo_dead == 0 && check_all_meals(philo->table) == 0
+			&& philo->time_last_meal < philo->time->die_time)
+		{
+			philo_eat(philo);
+			philo_sleep(philo);
+			philo_think(philo);
+		}
 		break ;
 	}
 	return (NULL);
