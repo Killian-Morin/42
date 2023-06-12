@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/06 15:26:51 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/12 17:58:39 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,28 @@ void	cycle_for_one_philo(t_philo *philo)
 }
 
 /*
-	makes eating the philo with even id
-	while the other one sleep during the meal
-	they just wait for the others philo to finish their meal (no message print)
-*/
-void	start_eating(t_philo *philo)
-{
-	if (philo->id % 2 == 0)
-		philo_eat(philo);
-	else
-		custom_sleep(philo->time->eat_time);
-}
-
-/*
 	depending on the rank of the philo (pair or impair) start to eat now or
-	wait a bit -> need to do function.
-	in the loop, check if possible to do something (a philo is not already 
-	dead), if possible then eat, sleep and think else if not possible to do
-	something then break;
+	wait a bit.
+	in the loop, check if possible to do something: a philo is not already 
+	dead, all philo did not eat all necessary meals to end the simulation or
+	if the philo eat before the time_to_die.
+	if all those conditions are filled the eat, sleep and think,
+	else if even one of those conditions is not filled then break.
+
+	change the position of the check_if_time_to_die from after
+	start_eating to out of the while (1), that way it is suppose to philo_die.
 */
 void	*routine(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	start_eating(philo);
-	if (check_if_time_to_die(philo) == 1)
-	{
-		philo_die(philo);
-		return (NULL);
-	}
+	if (philo->id % 2 == 0)
+		custom_sleep(philo->time->eat_time / 2);
 	while (1)
 	{
-		if (philo->table->philo_dead == 0 && check_all_meals(philo->table) == 0
-			&& philo->time_last_meal < philo->time->die_time)
+		if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1
+			&& check_time_to_die_reached(philo) == 0)
 		{
 			philo_eat(philo);
 			philo_sleep(philo);
@@ -68,5 +56,7 @@ void	*routine(void *arg)
 		}
 		break ;
 	}
+	if (check_time_to_die_reached(philo) == 1 || philo->table->philo_dead == 1)
+		philo_die(philo);
 	return (NULL);
 }

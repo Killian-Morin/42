@@ -6,60 +6,60 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:50 by killian           #+#    #+#             */
-/*   Updated: 2023/06/06 17:01:20 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/12 18:00:12 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	philo_take_fork(t_philo *philo)
+int	philo_take_fork(t_philo *philo, pthread_mutex_t *fork)
 {
-	if (philo->table->philo_dead == 0 && philo->prev->state != EAT
-		&& philo->next->state != EAT)
+	if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1
+		&& pthread_mutex_lock(fork) == 0)
 	{
 		philo->state = TAKE_FORK;
-		pthread_mutex_lock(&philo->fork);
-		printf("%ld %d has taken a fork\n",
+		printf("%ld\t%d has taken a fork\n",
 			get_time_pass(philo->time->start_time, get_time()), philo->id);
+		return (1);
 	}
+	return (0);
 }
 
 void	philo_eat(t_philo *philo)
 {
-	philo_take_fork(philo);
-	if (philo->table->philo_dead == 0 && ((philo->next->state != TAKE_FORK
-				&& philo->prev->state != TAKE_FORK)
-			|| (philo->next->state != EAT
-				&& philo->prev->state != EAT)))
+	if (philo_take_fork(philo, &philo->fork) == 1
+		&& philo_take_fork(philo, philo->next_fork) == 1)
 	{
-		pthread_mutex_lock(philo->next_fork);
-		philo->state = EAT;
-		printf("%ld %d is eating\n", get_time_pass(philo->time->start_time,
-				get_time()), philo->id);
-		philo->meal_ate += 1;
-		philo->time_last_meal = 0;
-		pthread_mutex_unlock(&philo->fork);
-		pthread_mutex_unlock(philo->next_fork);
-		custom_sleep(philo->time->eat_time);
+		if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1)
+		{
+			philo->state = EAT;
+			printf("%ld\t%d is eating\n", get_time_pass(philo->time->start_time,
+					get_time()), philo->id);
+			philo->meal_ate += 1;
+			philo->time_last_meal = 0;
+			custom_sleep(philo->time->eat_time);
+		}	
 	}
+	pthread_mutex_unlock(&philo->fork);
+	pthread_mutex_unlock(philo->next_fork);
 }
 
 void	philo_think(t_philo *philo)
 {
-    if (philo->table->philo_dead == 0 && check_if_time_to_die(philo) == 0)
+	if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1)
 	{
 		philo->state = THINK;
-		printf("%ld %d is thinking\n", get_time_pass(philo->time->start_time,
+		printf("%ld\t%d is thinking\n", get_time_pass(philo->time->start_time,
 				get_time()), philo->id);
 	}
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	if (philo->table->philo_dead == 0 && check_if_time_to_die(philo) == 0)
+	if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1)
 	{
 		philo->state = SLEEP;
-		printf("%ld %d is sleeping\n", get_time_pass(philo->time->start_time,
+		printf("%ld\t%d is sleeping\n", get_time_pass(philo->time->start_time,
 				get_time()), philo->id);
 		custom_sleep(philo->time->sleep_time);
 	}
@@ -67,11 +67,11 @@ void	philo_sleep(t_philo *philo)
 
 void	philo_die(t_philo *philo)
 {
-	if (philo->table->philo_dead == 0 && check_if_time_to_die(philo) == 0)
+	if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1)
 	{
 		philo->state = DEAD;
-		philo->table->philo_dead = 1;
-		printf("%ld %d died\n", get_time_pass(philo->time->start_time,
+		philo->table->philo_dead += 1;
+		printf("%ld\t%d died\n", get_time_pass(philo->time->start_time,
 				get_time()), philo->id);
 	}
 }

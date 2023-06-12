@@ -6,17 +6,18 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/06 13:41:26 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/12 14:46:45 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 /*
-	check for the philo passed in parameter if his last meal if older than
-	the time to die then return 1 else return 0
+	check for the philo passed in parameter if the time of
+	his last meal is greater, thus older than the time to die then return 1
+	else return 0
 */
-int	check_if_time_to_die(t_philo *philo)
+int	check_time_to_die_reached(t_philo *philo)
 {
 	if (philo->time_last_meal >= philo->time->die_time)
 		return (1);
@@ -25,19 +26,15 @@ int	check_if_time_to_die(t_philo *philo)
 }
 
 /*
-	checks if all the philo have reached the number of meal_to_eat
+	The return value will be utilized to check if we can do an action:
+	return 1 will indicate that we need to do the action since the nb of meals
+	was not specified (-1) or that the number of meals is not reached for him,
+	return 0 will indicate that we don't need to do the action
 */
-int	check_all_meals(t_table *table)
+int	check_meals_reached(t_philo *philo)
 {
-	t_philo	*tmp;
-
-	tmp = table->philo_prime;
-	while (tmp)
-	{
-		if (tmp->meal_ate == tmp->time->meal_to_eat)
-			tmp = tmp->next;
-		else
-			return (1);
-	}
+	if (philo->time->meal_to_eat == -1
+		|| philo->meal_ate < philo->time->meal_to_eat)
+		return (1);
 	return (0);
 }

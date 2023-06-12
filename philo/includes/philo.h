@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/06 13:15:27 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/12 14:49:00 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ void		*routine(void *philo);
 void		cycle_for_one_philo(t_philo *philo);
 
 /*	routine_utils.c	*/
-int			check_if_time_to_die(t_philo *philo);
-int			check_all_meals(t_table *table);
+int			check_time_to_die_reached(t_philo *philo);
+int			check_meals_reached(t_philo *philo);
 
 /*	action.c	*/
-void		philo_take_fork(t_philo *philo);
+int			philo_take_fork(t_philo *philo, pthread_mutex_t *fork);
 void		philo_eat(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_sleep(t_philo *philo);
