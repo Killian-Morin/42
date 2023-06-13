@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/06 13:45:17 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:19:34 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_philo	*init_philo(t_table *t, int i)
 	cur->id = i;
 	cur->state = -1;
 	cur->meal_ate = 0;
-	cur->time_last_meal = 0;
+	cur->time_last_meal = get_time();
 	cur->time = t->time;
 	cur->next = NULL;
 	cur->prev = NULL;

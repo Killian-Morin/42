@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/12 14:49:00 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:32:38 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int			setup_thread(t_table *t);
 /*	routine.c	*/
 void		*routine(void *philo);
 void		cycle_for_one_philo(t_philo *philo);
+int			checker_continue_routine(t_table *t);
 
 /*	routine_utils.c	*/
 int			check_time_to_die_reached(t_philo *philo);
@@ -101,5 +102,6 @@ void		custom_sleep(long int duration);
 /*	utils.c	*/
 int			ft_atoi(char *str);
 void		ft_free(t_table *table);
+int			all_meals_reached(t_table *table);
 
 #endif

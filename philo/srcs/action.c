@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:50 by killian           #+#    #+#             */
-/*   Updated: 2023/06/12 18:00:12 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:18:08 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	philo_eat(t_philo *philo)
 			printf("%ld\t%d is eating\n", get_time_pass(philo->time->start_time,
 					get_time()), philo->id);
 			philo->meal_ate += 1;
-			philo->time_last_meal = 0;
+			philo->time_last_meal = get_time();
 			custom_sleep(philo->time->eat_time);
 		}	
 	}

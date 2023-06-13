@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/12 14:21:49 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:28:05 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 	For each philo, join/wait for it to finish.
-	If an error occur with the function, will writes the error and return
-	until the main to free all and stop the program here.
+	If an error occur with the function, will writes the error, free the main
+	struct and return to the main that will return with an error.
 */
 int	join_thread(t_table *t)
 {
@@ -27,6 +27,7 @@ int	join_thread(t_table *t)
 		if (pthread_join(philo->thread, NULL) != 0)
 		{
 			printf("Error while waiting for a thread\n");
+			ft_free(t);
 			return (-1);
 		}
 		philo = philo->next;
@@ -74,15 +75,12 @@ int	main(int ac, char **av)
 	if (table->nbr_philo == 1)
 	{
 		cycle_for_one_philo(table->philo_prime);
-		ft_free(table);
 		return (0);
 	}
 	else if (setup_thread(table) == -1)
-	{
-		ft_free(table);
 		return (-1);
-	}
-	join_thread(table);
+	if (checker_continue_routine(table) == -1)
+		return (-1);
 	ft_free(table);
 	return (0);
 }

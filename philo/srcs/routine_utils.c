@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/12 14:46:45 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:11:27 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 */
 int	check_time_to_die_reached(t_philo *philo)
 {
-	if (philo->time_last_meal >= philo->time->die_time)
+	if (get_time_pass(philo->time_last_meal, get_time())
+		>= philo->time->die_time)
 		return (1);
 	else
 		return (0);

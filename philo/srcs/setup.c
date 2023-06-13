@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:06:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/06 15:05:15 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:16:08 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	setup_thread(t_table *t)
 		if (pthread_create(&philo->thread, NULL, &routine, philo) != 0)
 		{
 			printf("Error during the creation of a thread\n");
+			ft_free(t);
 			return (-1);
 		}
 		philo = philo->next;

@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/12 17:58:39 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:07:26 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,21 @@
 void	cycle_for_one_philo(t_philo *philo)
 {
 	philo->state = TAKE_FORK;
-	printf("%ld %d has taken a fork\n",
+	printf("%ld\t%d has taken a fork\n",
 		get_time_pass(philo->time->start_time, get_time()), philo->id);
 	custom_sleep(philo->time->die_time);
 	philo_die(philo);
+	ft_free(philo->table);
 }
 
 /*
-	depending on the rank of the philo (pair or impair) start to eat now or
-	wait a bit.
+	depending on the rank of the philo (even or not) sleep a bit or directly
+	start the loop.
 	in the loop, check if possible to do something: a philo is not already 
 	dead, all philo did not eat all necessary meals to end the simulation or
 	if the philo eat before the time_to_die.
-	if all those conditions are filled the eat, sleep and think,
+	if all those conditions are filled then eat, sleep and think,
 	else if even one of those conditions is not filled then break.
-
-	change the position of the check_if_time_to_die from after
-	start_eating to out of the while (1), that way it is suppose to philo_die.
 */
 void	*routine(void *arg)
 {
@@ -54,9 +52,34 @@ void	*routine(void *arg)
 			philo_sleep(philo);
 			philo_think(philo);
 		}
-		break ;
+		else
+			break ;
 	}
-	if (check_time_to_die_reached(philo) == 1 || philo->table->philo_dead == 1)
-		philo_die(philo);
 	return (NULL);
+}
+
+int	checker_continue_routine(t_table *t)
+{
+	t_philo	*philo;
+
+	philo = t->philo_prime;
+	while (1)
+	{
+		if (check_time_to_die_reached(philo) == 1)
+		{
+			philo_die(philo);
+			break ;
+		}
+		else if (all_meals_reached(t) == 0)
+			break ;
+		philo = philo->next;
+		if (!philo)
+			philo = t->philo_prime;
+	}
+	if (join_thread(t) == -1)
+	{
+		ft_free(t);
+		return (-1);
+	}
+	return (0);
 }
