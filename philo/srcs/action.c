@@ -6,12 +6,20 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:50 by killian           #+#    #+#             */
-/*   Updated: 2023/06/14 13:55:35 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:06:49 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/*
+	will check if the fork is valid and if it can safely lock the fork
+	so that no other philo can take it,
+	then if he can do the action, print the message
+	and return with the fork locked in theorically all cases
+	(since the fork is normally not null and we can lock it, 
+	unless it has already been lock).
+*/
 int	philo_take_fork(t_philo *philo, pthread_mutex_t *fork)
 {
 	if (fork != NULL && pthread_mutex_lock(fork) == 0)
@@ -26,6 +34,12 @@ int	philo_take_fork(t_philo *philo, pthread_mutex_t *fork)
 	return (0);
 }
 
+/*
+	will check if the philo can take his fork and the next one,
+	then if he can do the action, will write the message, update some var
+	and sleep for the precised amount of time.
+	will then unlock the forks that he used.
+*/
 void	philo_eat(t_philo *philo)
 {
 	if (philo_take_fork(philo, &philo->fork)

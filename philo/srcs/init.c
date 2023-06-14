@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 13:49:46 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 18:03:17 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@
 
 /*
 	init id with the number of the philo,
-	init state signal the action currently done (eat, sleep, think or dead),
-	init meal_ate for the number of meal ate to see if meal_to_eat reached,
+	init meal_ate for the number of meal ate will serve to meal_to_eat reached,
 	init time with the time from table->time,
-	next and prev will be init later,
+	next will be init later,
 	init table with table,
 	create a mutex for the fork,
 		if an error occur from the creation of a mutex, will writes the error
@@ -45,7 +44,6 @@ t_philo	*init_philo(t_table *t, int i)
 	cur->time_last_meal = get_time();
 	cur->time = t->time;
 	cur->next = NULL;
-	cur->prev = NULL;
 	cur->table = t;
 	if (pthread_mutex_init(&cur->fork, NULL) != 0)
 	{
@@ -61,7 +59,7 @@ t_philo	*init_philo(t_table *t, int i)
 	init sleep_time with the fifth av converted to int
 	if there is a sixth av then
 		init meal_to_eat with it
-		else init at -1
+	else init at -1
 */
 t_time	*init_time(int ac, char **av)
 {
@@ -82,9 +80,9 @@ t_time	*init_time(int ac, char **av)
 
 /*
 	init nbr_philo with the second av converted to int
-	init philo_dead is a signal to indicate if one of the philo of the table died
+	init philo_dead is a signal to indicate if a philo of the table died
 	time will be init later
-	philo_prime is the philo with the id = 1, it will be init later
+	philo_prime will be init later with the philo with the id = 1
 */
 t_table	*init_table(char **av)
 {

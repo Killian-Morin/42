@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 12:46:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/06 15:46:09 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:32:59 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /*
 	return the time passed between the two arg
-    start is usually the start_time / the time at which I begin to create
-    the philos
+	start is usually the start_time / the time at which I begin to create
+	the philos
 */
 long int	get_time_pass(long int start, long int end)
 {
@@ -45,13 +45,12 @@ long int	get_time(void)
 /*
 	time_to_wait is the total time to wait, precised by either time_to_die,
 	time_to_eat or time_to_sleep in milliseconds.
-	time_now get the actual time.
+	time_now get the current time.
 	timer get the time pass between now and the init of start_time (usually 0).
 	the while is for doing the usleep the right amount of time,
-	the while exit when timer reach time_to_wait, meaning we usleep the right
+	it exit when timer reach time_to_wait, meaning we usleep the right
 	amount of milliseconds.
-
-	not sure if the / 10 is necessary, work fine without with timing OK.
+	Serves to usleep the right amount of milliseconds.
 */
 void	custom_sleep(long int time_to_wait)
 {

@@ -6,16 +6,15 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/14 14:08:20 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 18:08:47 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 /*
-	check for the philo passed in parameter if the time of
-	his last meal is greater, thus older than the time to die then return 1
-	else return 0
+	return 1 if the time passed since the last meal is greater than time_to_die
+	return 0 otherwise
 */
 int	check_time_to_die_reached(t_philo *philo)
 {
@@ -26,10 +25,11 @@ int	check_time_to_die_reached(t_philo *philo)
 }
 
 /*
-	The return value will be utilized to check if we can do an action:
-	return 1 will indicate that we need to do the action since the nb of meals
-	was not specified (-1) or that the number of meals is not reached for him,
-	return 0 will indicate that we don't need to do the action
+	return 1 if there are a number of meals to reach,
+	and that the current philo didn't reach it.
+
+	return 0 if there are no number of meals to reach,
+	or the philo already ate enough.
 */
 int	check_meals_reached(t_philo *philo)
 {
@@ -39,6 +39,12 @@ int	check_meals_reached(t_philo *philo)
 	return (0);
 }
 
+/*
+	check if all philo ate enough to reach meal_to_eat.
+	if a philo didn't eat enough then return 0 and will probably do the action
+
+	if all philo ate enough then return 1 and will not do the action
+*/
 int	all_philo_ate_enough(t_table *table)
 {
 	t_philo	*philo;
@@ -53,6 +59,12 @@ int	all_philo_ate_enough(t_table *table)
 	return (1);
 }
 
+/*
+	a philo can make an action (return 1) if no philo is already dead (== 0)
+	and if all philos didn't ate enough.
+	if one of those two conditions is false,
+	then return 0 and will not do the action.
+*/
 int	check_can_make_action(t_philo *philo)
 {
 	if (philo->table->philo_dead == 0 && !all_philo_ate_enough(philo->table))

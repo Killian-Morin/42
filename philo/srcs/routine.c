@@ -6,16 +6,14 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 14:03:42 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:58:08 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 /*
-	doing a simple usleep(time_to_wait * 1000) to convert to seconds
-	is less precise than custom_sleep,
-	there is always a little delay for the message died (02, 05 ...)
-	but it is much smaller and easier
+	printf the message for fork, then sleep for time needed to die,
+	then killing the philo and free all.
 */
 void	cycle_for_one_philo(t_philo *philo)
 {
@@ -56,32 +54,34 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-int	checker_continue_routine(t_table *t)
+/*
+	check if need to stop the routine:
+	if for a philo his last_meal is greater than time_to_die then die and break
+	if all philos ate enough times so print a custom message and break
+
+	if not the case check the next philo and if we are at the end of the philo
+	we rebegin at the first philo.
+*/
+void	checker_end_of_routine(t_table *t)
 {
 	t_philo	*philo;
 
 	philo = t->philo_prime;
 	while (1)
 	{
-		if (check_time_to_die_reached(philo) == 1)
+		if (check_time_to_die_reached(philo))
 		{
 			philo_die(philo);
 			break ;
 		}
-		else if (all_philo_ate_enough(t) == 1)
+		else if (all_philo_ate_enough(t))
 		{
 			printf("Awesome ! All %d philosophers ate %d meals\n", t->nbr_philo,
 				t->time->meal_to_eat);
 			break ;
 		}
 		philo = philo->next;
-		if (!philo)
+		if (philo == NULL)
 			philo = t->philo_prime;
 	}
-	if (join_thread(t) == -1)
-	{
-		ft_free_all(t);
-		return (-1);
-	}
-	return (0);
 }

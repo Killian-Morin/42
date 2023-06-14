@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 13:43:30 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 18:02:03 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	ft_atoi(char *str)
 }
 
 /*
-	with malloc for table, time and one for each philo
+	a malloc for table, time and one for each philo so theorically
+	for each philo: will destroy the mutex of his fork, detach his thread
+	and free his struct.
+	free a single time the struct time and the struct table.
 */
 void	ft_free_all(t_table *table)
 {
@@ -50,6 +53,7 @@ void	ft_free_all(t_table *table)
 		tmp = table->philo_prime;
 		table->philo_prime = table->philo_prime->next;
 		pthread_mutex_destroy(&tmp->fork);
+		pthread_detach(tmp->thread);
 		free(tmp);
 		i++;
 	}

@@ -6,18 +6,12 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 13:49:26 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 18:00:36 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-
-# define DEAD 0
-# define EAT 1
-# define SLEEP 2
-# define THINK 3
-# define TAKE_FORK 4
 
 # include <string.h>
 # include <stdio.h>
@@ -25,13 +19,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
-
-/*
-memset, printf, malloc, free, write, usleep, gettimeofday
-pthread_create, pthread_detach, pthread_join,
-pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock,
-pthread_mutex_unlock
-*/
 
 typedef struct s_time {
 	int			die_time;
@@ -50,7 +37,6 @@ typedef struct s_philo {
 	pthread_mutex_t		*next_fork;
 	t_time				*time;
 	struct s_philo		*next;
-	struct s_philo		*prev;
 	struct s_table		*table;
 }				t_philo;
 
@@ -80,7 +66,7 @@ int			setup_thread(t_table *t);
 /*	routine.c	*/
 void		*routine(void *philo);
 void		cycle_for_one_philo(t_philo *philo);
-int			checker_continue_routine(t_table *t);
+void		checker_end_of_routine(t_table *t);
 
 /*	routine_utils.c	*/
 int			check_time_to_die_reached(t_philo *philo);
