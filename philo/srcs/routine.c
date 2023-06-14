@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/13 16:07:26 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 14:03:42 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@
 */
 void	cycle_for_one_philo(t_philo *philo)
 {
-	philo->state = TAKE_FORK;
 	printf("%ld\t%d has taken a fork\n",
 		get_time_pass(philo->time->start_time, get_time()), philo->id);
 	custom_sleep(philo->time->die_time);
 	philo_die(philo);
-	ft_free(philo->table);
+	ft_free_all(philo->table);
 }
 
 /*
@@ -45,8 +44,7 @@ void	*routine(void *arg)
 		custom_sleep(philo->time->eat_time / 2);
 	while (1)
 	{
-		if (philo->table->philo_dead == 0 && check_meals_reached(philo) == 1
-			&& check_time_to_die_reached(philo) == 0)
+		if (check_can_make_action(philo))
 		{
 			philo_eat(philo);
 			philo_sleep(philo);
@@ -70,15 +68,19 @@ int	checker_continue_routine(t_table *t)
 			philo_die(philo);
 			break ;
 		}
-		else if (all_meals_reached(t) == 0)
+		else if (all_philo_ate_enough(t) == 1)
+		{
+			printf("Awesome ! All %d philosophers ate %d meals\n", t->nbr_philo,
+				t->time->meal_to_eat);
 			break ;
+		}
 		philo = philo->next;
 		if (!philo)
 			philo = t->philo_prime;
 	}
 	if (join_thread(t) == -1)
 	{
-		ft_free(t);
+		ft_free_all(t);
 		return (-1);
 	}
 	return (0);

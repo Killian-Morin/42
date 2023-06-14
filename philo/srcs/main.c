@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/13 14:28:05 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 14:02:34 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	join_thread(t_table *t)
 		if (pthread_join(philo->thread, NULL) != 0)
 		{
 			printf("Error while waiting for a thread\n");
-			ft_free(t);
+			ft_free_all(t);
 			return (-1);
 		}
 		philo = philo->next;
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	table->time = init_time(ac, av);
 	if (setup_each_philo(table) == -1)
 	{
-		ft_free(table);
+		ft_free_all(table);
 		return (-1);
 	}
 	if (table->nbr_philo == 1)
@@ -81,6 +81,6 @@ int	main(int ac, char **av)
 		return (-1);
 	if (checker_continue_routine(table) == -1)
 		return (-1);
-	ft_free(table);
+	ft_free_all(table);
 	return (0);
 }

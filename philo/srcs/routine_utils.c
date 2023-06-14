@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/13 14:11:27 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 14:08:20 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	check_time_to_die_reached(t_philo *philo)
 	if (get_time_pass(philo->time_last_meal, get_time())
 		>= philo->time->die_time)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 /*
@@ -36,6 +35,27 @@ int	check_meals_reached(t_philo *philo)
 {
 	if (philo->time->meal_to_eat == -1
 		|| philo->meal_ate < philo->time->meal_to_eat)
+		return (1);
+	return (0);
+}
+
+int	all_philo_ate_enough(t_table *table)
+{
+	t_philo	*philo;
+
+	philo = table->philo_prime;
+	while (philo)
+	{
+		if (check_meals_reached(philo))
+			return (0);
+		philo = philo->next;
+	}
+	return (1);
+}
+
+int	check_can_make_action(t_philo *philo)
+{
+	if (philo->table->philo_dead == 0 && !all_philo_ate_enough(philo->table))
 		return (1);
 	return (0);
 }
