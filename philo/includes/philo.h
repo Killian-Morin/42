@@ -6,7 +6,7 @@
 /*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 18:00:36 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/14 18:15:15 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ typedef struct s_table {
 }				t_table;
 
 /*	main.c	*/
-int			main(int ac, char **av);
-int			check_args(int ac, char **av);
 int			join_thread(t_table *t);
+int			check_args(int ac, char **av);
+int			main(int ac, char **av);
 
 /*	init.c	*/
-t_table		*init_table(char **av);
-t_time		*init_time(int ac, char **av);
 t_philo		*init_philo(t_table *t, int i);
+t_time		*init_time(int ac, char **av);
+t_table		*init_table(char **av);
 
 /*	setup.c	*/
-int			setup_each_philo(t_table *t);
-void		setup_philo_around_table(t_table *t, t_philo *philo);
-void		setup_fork_next(t_table *t);
 int			setup_thread(t_table *t);
+void		setup_fork_next(t_table *t);
+void		setup_philo_around_table(t_table *t, t_philo *philo);
+int			setup_each_philo(t_table *t);
 
 /*	routine.c	*/
-void		*routine(void *philo);
 void		cycle_for_one_philo(t_philo *philo);
+void		*routine(void *philo);
 void		checker_end_of_routine(t_table *t);
 
 /*	routine_utils.c	*/
@@ -82,8 +82,8 @@ void		philo_sleep(t_philo *philo);
 void		philo_die(t_philo *philo);
 
 /*	time.c	*/
-long int	get_time(void);
 long int	get_time_pass(long int start, long int end);
+long int	get_time(void);
 void		custom_sleep(long int duration);
 
 /*	utils.c	*/
