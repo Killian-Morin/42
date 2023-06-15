@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:06:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 18:04:34 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/15 09:04:03 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	setup_philo_around_table(t_table *t, t_philo *philo)
 {
 	t_philo	*tmp;
 
-	if (t->philo_prime == NULL)
+	if (!t->philo_prime)
 		t->philo_prime = philo;
 	else
 	{
@@ -103,7 +103,7 @@ int	setup_each_philo(t_table *t)
 	while (i <= t->nbr_philo)
 	{
 		philo = init_philo(t, i);
-		if (philo == NULL)
+		if (!philo)
 			return (1);
 		setup_philo_around_table(t, philo);
 		i++;

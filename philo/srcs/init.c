@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 18:03:17 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/15 09:26:36 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 /*
 	init id with the number of the philo,
 	init meal_ate for the number of meal ate will serve to meal_to_eat reached,
+	init time_last_meal with the current time,
 	init time with the time from table->time,
 	next will be init later,
 	init table with table,

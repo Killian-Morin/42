@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 17:58:08 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/15 10:51:09 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*routine(void *arg)
 /*
 	check if need to stop the routine:
 	if for a philo his last_meal is greater than time_to_die then die and break
-	if all philos ate enough times so print a custom message and break
+	if all philos ate enough times break, the custom message will be print later
 
 	if not the case check the next philo and if we are at the end of the philo
 	we rebegin at the first philo.
@@ -75,11 +75,7 @@ void	checker_end_of_routine(t_table *t)
 			break ;
 		}
 		else if (all_philo_ate_enough(t))
-		{
-			printf("Awesome ! All %d philosophers ate %d meals\n", t->nbr_philo,
-				t->time->meal_to_eat);
 			break ;
-		}
 		philo = philo->next;
 		if (philo == NULL)
 			philo = t->philo_prime;
