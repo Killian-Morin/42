@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 11:19:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:22:38 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ typedef struct s_philo {
 }				t_philo;
 
 typedef struct s_table {
-	int			nbr_philo;
-	int			philo_dead;
-	int			meal_to_eat;
-	int			die_time;
-	int			eat_time;
-	int			sleep_time;
-	long int	start_time;
-	t_philo		*philo_prime;
+	int				nbr_philo;
+	int				meal_to_eat;
+	int				philo_dead;
+	int				die_time;
+	int				eat_time;
+	int				sleep_time;
+	long int		start_time;
+	pthread_mutex_t	mutex_meal_to_eat;
+	pthread_mutex_t	mutex_philo_dead;
+	t_philo			*philo_prime;
 }				t_table;
 
 /*	main.c	*/

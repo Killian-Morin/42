@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/15 11:04:20 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:28:04 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,14 @@ int	check_time_to_die_reached(t_philo *philo)
 */
 int	check_meals_reached(t_philo *philo)
 {
-	if (philo->table->meal_to_eat == -1
-		|| philo->meal_ate < philo->table->meal_to_eat)
-		return (1);
+	if (pthread_mutex_lock(&philo->table->mutex_meal_to_eat) == 0)
+	{
+		if (philo->table->meal_to_eat == -1
+			|| philo->meal_ate < philo->table->meal_to_eat)
+			return (1);
+		return (0);
+	}
+	pthread_mutex_unlock(&philo->table->mutex_meal_to_eat);
 	return (0);
 }
 
@@ -67,7 +72,12 @@ int	all_philo_ate_enough(t_table *table)
 */
 int	check_can_make_action(t_philo *philo)
 {
-	if (philo->table->philo_dead == 0 && !all_philo_ate_enough(philo->table))
-		return (1);
+	if (pthread_mutex_lock(&philo->table->mutex_philo_dead) == 0)
+	{
+		if (philo->table->philo_dead == 0 && !all_philo_ate_enough(philo->table))
+			return (1);
+		return (0);
+	}
+	pthread_mutex_unlock(&philo->table->mutex_philo_dead);
 	return (0);
 }

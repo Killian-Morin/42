@@ -11,7 +11,7 @@ OBJ = ${addprefix ${OBJ_PATH}, ${OBJ_FILES}}
 HEADER = ./includes/philo.h
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread -fsanitize=thread
 RM = rm -rf
 
 all: ${OBJ_PATH} ${NAME}
@@ -20,10 +20,10 @@ ${OBJ_PATH}:
 	mkdir ${OBJ_PATH}
 
 ${OBJ_PATH}%.o: ${SRC_PATH}%.c
-	${CC} ${CFLAGS} -pthread -I ${HEADER}  -o $@ -c $<
+	${CC} ${CFLAGS} -I ${HEADER} -o $@ -c $<
 
 ${NAME}: ${OBJ}
-	${CC} ${CFLAGS} -pthread ${OBJ} -o ${NAME}
+	${CC} ${CFLAGS} ${OBJ} -o ${NAME}
 
 clean:
 	${RM} ${OBJ_PATH}
