@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:50 by killian           #+#    #+#             */
-/*   Updated: 2023/06/15 11:05:12 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/15 12:51:46 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	philo_eat(t_philo *philo)
 	{
 		if (check_can_make_action(philo))
 		{
-			printf("%ld\t%d is eating\n", get_time_pass(philo->table->start_time,
-					get_time()), philo->id);
+			printf("%ld\t%d is eating\n",
+				get_time_pass(philo->table->start_time, get_time()), philo->id);
 			philo->meal_ate += 1;
 			philo->time_last_meal = get_time();
 			custom_sleep(philo->table->eat_time);
-		}	
+		}
 	}
 	pthread_mutex_unlock(&philo->fork);
 	pthread_mutex_unlock(philo->next_fork);
@@ -62,8 +62,8 @@ void	philo_think(t_philo *philo)
 {
 	if (check_can_make_action(philo))
 	{
-		printf("%ld\t%d is thinking\n", get_time_pass(philo->table->start_time,
-				get_time()), philo->id);
+		printf("%ld\t%d is thinking\n",
+			get_time_pass(philo->table->start_time, get_time()), philo->id);
 	}
 }
 
@@ -71,8 +71,8 @@ void	philo_sleep(t_philo *philo)
 {
 	if (check_can_make_action(philo))
 	{
-		printf("%ld\t%d is sleeping\n", get_time_pass(philo->table->start_time,
-				get_time()), philo->id);
+		printf("%ld\t%d is sleeping\n",
+			get_time_pass(philo->table->start_time, get_time()), philo->id);
 		custom_sleep(philo->table->sleep_time);
 	}
 }
@@ -82,7 +82,7 @@ void	philo_die(t_philo *philo)
 	if (check_can_make_action(philo))
 	{
 		philo->table->philo_dead += 1;
-		printf("%ld\t%d died\n", get_time_pass(philo->table->start_time,
-				get_time()), philo->id);
+		printf("%ld\t%d died\n",
+			get_time_pass(philo->table->start_time, get_time()), philo->id);
 	}
 }
