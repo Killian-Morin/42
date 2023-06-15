@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 09:35:07 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/15 11:19:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 	For each philo/thread, join/wait for it to finish.
 	If an error occur with the function, will writes the error, free all
 	and return to the main that will return with an error.
+	Will check if all philosophers ate sufficient amount of meals, if yes will
+	print a message, else will do nothing.
 */
 int	join_thread(t_table *t)
 {
@@ -34,7 +36,7 @@ int	join_thread(t_table *t)
 	}
 	if (all_philo_ate_enough(t))
 		printf("Awesome ! All %d philosophers ate %d meals\n", t->nbr_philo,
-			t->time->meal_to_eat);
+			t->meal_to_eat);
 	return (0);
 }
 
@@ -67,8 +69,9 @@ int	main(int ac, char **av)
 
 	if (check_args(ac, av))
 		return (-1);
-	table = init_table(av);
-	table->time = init_time(ac, av);
+	table = init_table(ac, av);
+	if (!table)
+		return (-1);
 	if (setup_each_philo(table))
 	{
 		ft_free_all(table);
@@ -76,7 +79,7 @@ int	main(int ac, char **av)
 	}
 	if (table->nbr_philo == 1)
 	{
-		cycle_for_one_philo(table->philo_prime);
+		case_for_one_philo(table->philo_prime);
 		return (0);
 	}
 	else if (setup_thread(table))

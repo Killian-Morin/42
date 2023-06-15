@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:06:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 09:04:03 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/15 11:04:42 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	setup_each_philo(t_table *t)
 	t_philo	*philo;
 
 	i = 1;
-	t->time->start_time = get_time();
+	t->start_time = get_time();
 	while (i <= t->nbr_philo)
 	{
 		philo = init_philo(t, i);

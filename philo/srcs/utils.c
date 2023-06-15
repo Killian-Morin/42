@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/14 18:02:03 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/15 11:04:56 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ void	ft_free_all(t_table *table)
 		free(tmp);
 		i++;
 	}
-	free(table->time);
 	free(table);
 }

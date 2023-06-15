@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 10:51:09 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/15 11:19:51 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 	printf the message for fork, then sleep for time needed to die,
 	then killing the philo and free all.
 */
-void	cycle_for_one_philo(t_philo *philo)
+void	case_for_one_philo(t_philo *philo)
 {
 	printf("%ld\t%d has taken a fork\n",
-		get_time_pass(philo->time->start_time, get_time()), philo->id);
-	custom_sleep(philo->time->die_time);
+		get_time_pass(philo->table->start_time, get_time()), philo->id);
+	custom_sleep(philo->table->die_time);
 	philo_die(philo);
 	ft_free_all(philo->table);
 }
@@ -39,7 +39,7 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		custom_sleep(philo->time->eat_time / 2);
+		custom_sleep(philo->table->eat_time / 2);
 	while (1)
 	{
 		if (check_can_make_action(philo))
