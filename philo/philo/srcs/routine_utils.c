@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/15 16:28:04 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:55:46 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,21 @@
 */
 int	check_time_to_die_reached(t_philo *philo)
 {
-	if (get_time_pass(philo->time_last_meal, get_time())
-		>= philo->table->die_time)
-		return (1);
-	return (0);
-}
-
-/*
-	return 1 if there are a number of meals to reach,
-	and that the current philo didn't reach it.
-
-	return 0 if there are no number of meals to reach,
-	or the philo already ate enough.
-*/
-int	check_meals_reached(t_philo *philo)
-{
-	if (pthread_mutex_lock(&philo->table->mutex_meal_to_eat) == 0)
+	if (pthread_mutex_lock(&philo->mutex_time_last_meal) == 0)
 	{
-		if (philo->table->meal_to_eat == -1
-			|| philo->meal_ate < philo->table->meal_to_eat)
+		if (get_time_pass(philo->time_last_meal, get_time())
+			>= philo->table->die_time)
 			return (1);
-		return (0);
 	}
-	pthread_mutex_unlock(&philo->table->mutex_meal_to_eat);
+	pthread_mutex_unlock(&philo->mutex_time_last_meal);
 	return (0);
 }
 
 /*
-	check if all philo ate enough to reach meal_to_eat.
-	if a philo didn't eat enough then return 0 and will probably do the action
-
-	if all philo ate enough then return 1 and will not do the action
+	check if all philo ate enough to reach meal_to_eat (if defined).
+	if a philo didn't eat enough or if meal_to_eat isn't defined
+	then return 1 to indicate that it is safe to do another iteration.
+	if all philo ate enough then return 0 to indicate that we can stop here.
 */
 int	all_philo_ate_enough(t_table *table)
 {
@@ -57,11 +41,16 @@ int	all_philo_ate_enough(t_table *table)
 	philo = table->philo_prime;
 	while (philo)
 	{
-		if (check_meals_reached(philo))
-			return (0);
+		if (pthread_mutex_lock(&philo->mutex_meal_ate) == 0
+			&& (philo->table->meal_to_eat == -1
+				|| philo->meal_ate < philo->table->meal_to_eat))
+		{
+			pthread_mutex_unlock(&philo->mutex_meal_ate);
+			return (1);
+		}
 		philo = philo->next;
 	}
-	return (1);
+	return (0);
 }
 
 /*
@@ -74,10 +63,11 @@ int	check_can_make_action(t_philo *philo)
 {
 	if (pthread_mutex_lock(&philo->table->mutex_philo_dead) == 0)
 	{
-		if (philo->table->philo_dead == 0 && !all_philo_ate_enough(philo->table))
+		if (philo->table->philo_dead == 0 && all_philo_ate_enough(philo->table))
+		{
+			pthread_mutex_unlock(&philo->table->mutex_philo_dead);
 			return (1);
-		return (0);
+		}
 	}
-	pthread_mutex_unlock(&philo->table->mutex_philo_dead);
 	return (0);
 }

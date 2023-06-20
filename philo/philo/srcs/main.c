@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 11:19:57 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:52:15 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ int	join_thread(t_table *t)
 		}
 		philo = philo->next;
 	}
-	if (all_philo_ate_enough(t))
-		printf("Awesome ! All %d philosophers ate %d meals\n", t->nbr_philo,
-			t->meal_to_eat);
 	return (0);
 }
 
@@ -85,8 +82,8 @@ int	main(int ac, char **av)
 	else if (setup_thread(table))
 		return (-1);
 	checker_end_of_routine(table);
-	if (join_thread(table))
-		return (-1);
+	// if (join_thread(table))
+	// 	return (-1);
 	ft_free_all(table);
 	return (0);
 }

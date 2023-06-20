@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 11:04:56 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/20 14:07:03 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,22 @@ void	ft_free_all(t_table *table)
 		tmp = table->philo_prime;
 		table->philo_prime = table->philo_prime->next;
 		pthread_mutex_destroy(&tmp->fork);
+		pthread_mutex_destroy(&tmp->mutex_meal_ate);
+		pthread_mutex_destroy(&tmp->mutex_time_last_meal);
 		pthread_detach(tmp->thread);
 		free(tmp);
 		i++;
 	}
+	pthread_mutex_destroy(&table->mutex_philo_dead);
+	free(table);
+}
+
+void	ft_free_for_one(t_table *table)
+{
+	pthread_mutex_destroy(&table->philo_prime->fork);
+	pthread_mutex_destroy(&table->philo_prime->mutex_meal_ate);
+	pthread_mutex_destroy(&table->philo_prime->mutex_time_last_meal);
+	pthread_mutex_destroy(&table->mutex_philo_dead);
+	free(table->philo_prime);
 	free(table);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 12:43:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 16:24:04 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/20 12:07:06 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ t_philo	*init_philo(t_table *t, int i)
 	cur->time_last_meal = get_time();
 	cur->next = NULL;
 	cur->table = t;
-	if (pthread_mutex_init(&cur->fork, NULL) != 0)
+	if (pthread_mutex_init(&cur->fork, NULL) != 0
+		|| pthread_mutex_init(&cur->mutex_time_last_meal, NULL) != 0
+		|| pthread_mutex_init(&cur->mutex_meal_ate, NULL) != 0)
 	{
 		printf("Error during the creation of a mutex\n");
 		return (NULL);
@@ -61,24 +63,19 @@ t_table	*init_table(int ac, char **av)
 	if (!table)
 		return (NULL);
 	table->nbr_philo = ft_atoi(av[1]);
-	if (pthread_mutex_init(&table->mutex_meal_to_eat, NULL) != 0
-		|| pthread_mutex_init(&table->mutex_philo_dead, NULL) != 0)
+	if (pthread_mutex_init(&table->mutex_philo_dead, NULL) != 0)
 	{
 		printf("Error during the creation of a mutex\n");
 		return (NULL);
 	}
-	pthread_mutex_lock(&table->mutex_philo_dead);
 	table->philo_dead = 0;
-	pthread_mutex_unlock(&table->mutex_philo_dead);
 	table->die_time = ft_atoi(av[2]);
 	table->eat_time = ft_atoi(av[3]);
 	table->sleep_time = ft_atoi(av[4]);
-	pthread_mutex_lock(&table->mutex_meal_to_eat);
 	if (ac == 6)
 		table->meal_to_eat = ft_atoi(av[5]);
 	else
 		table->meal_to_eat = -1;
-	pthread_mutex_unlock(&table->mutex_meal_to_eat);
 	table->philo_prime = NULL;
 	return (table);
 }

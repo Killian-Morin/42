@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/15 16:22:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/20 16:44:49 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_philo {
 	int					meal_ate;
 	long int			time_last_meal;
 	pthread_t			thread;
+	pthread_mutex_t		mutex_meal_ate;
+	pthread_mutex_t		mutex_time_last_meal;
 	pthread_mutex_t		fork;
 	pthread_mutex_t		*next_fork;
 	struct s_philo		*next;
@@ -39,7 +41,6 @@ typedef struct s_table {
 	int				eat_time;
 	int				sleep_time;
 	long int		start_time;
-	pthread_mutex_t	mutex_meal_to_eat;
 	pthread_mutex_t	mutex_philo_dead;
 	t_philo			*philo_prime;
 }				t_table;
@@ -66,7 +67,6 @@ void		checker_end_of_routine(t_table *t);
 
 /*	routine_utils.c	*/
 int			check_time_to_die_reached(t_philo *philo);
-int			check_meals_reached(t_philo *philo);
 int			all_philo_ate_enough(t_table *table);
 int			check_can_make_action(t_philo *philo);
 
@@ -85,5 +85,6 @@ void		custom_sleep(long int duration);
 /*	utils.c	*/
 int			ft_atoi(char *str);
 void		ft_free_all(t_table *table);
+void		ft_free_for_one(t_table *table);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:50 by killian           #+#    #+#             */
-/*   Updated: 2023/06/15 12:51:46 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/20 15:27:08 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,16 @@ void	philo_eat(t_philo *philo)
 	if (philo_take_fork(philo, &philo->fork)
 		&& philo_take_fork(philo, philo->next_fork))
 	{
-		if (check_can_make_action(philo))
+		if (check_can_make_action(philo)
+			&& pthread_mutex_lock(&philo->mutex_meal_ate) == 0
+			&& pthread_mutex_lock(&philo->mutex_time_last_meal) == 0)
 		{
 			printf("%ld\t%d is eating\n",
 				get_time_pass(philo->table->start_time, get_time()), philo->id);
 			philo->meal_ate += 1;
 			philo->time_last_meal = get_time();
+			pthread_mutex_unlock(&philo->mutex_time_last_meal);
+			pthread_mutex_unlock(&philo->mutex_meal_ate);
 			custom_sleep(philo->table->eat_time);
 		}
 	}
@@ -79,10 +83,12 @@ void	philo_sleep(t_philo *philo)
 
 void	philo_die(t_philo *philo)
 {
-	if (check_can_make_action(philo))
+	if (check_can_make_action(philo)
+		&& pthread_mutex_lock(&philo->table->mutex_philo_dead) == 0)
 	{
 		philo->table->philo_dead += 1;
 		printf("%ld\t%d died\n",
 			get_time_pass(philo->table->start_time, get_time()), philo->id);
+		pthread_mutex_unlock(&philo->table->mutex_philo_dead);
 	}
 }
