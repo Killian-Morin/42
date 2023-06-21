@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:44:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/20 17:01:51 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/21 15:08:00 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ void	checker_end_of_routine(t_table *t)
 			philo_die(philo);
 			break ;
 		}
-		else if (!all_philo_ate_enough(t))
+		else if (ate_enough_for_end(philo))
 		{
 			printf("Awesome ! All %d philosophers ate %d meals\n", t->nbr_philo,
 				t->meal_to_eat);
 			break ;
 		}
 		philo = philo->next;
-		if (philo == NULL)
+		if (!philo)
 			philo = t->philo_prime;
 	}
 }

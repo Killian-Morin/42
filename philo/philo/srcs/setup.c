@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:06:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/20 12:14:25 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/21 15:10:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	setup_thread(t_table *t)
 void	setup_fork_next(t_table *t)
 {
 	t_philo	*philo;
-	t_philo	*tmp;
 
 	philo = t->philo_prime;
 	while (philo->next)
@@ -57,10 +56,7 @@ void	setup_fork_next(t_table *t)
 		philo = philo->next;
 	}
 	if (t->nbr_philo > 1)
-	{
-		tmp = t->philo_prime;
-		philo->next_fork = &tmp->fork;
-	}
+		philo->next_fork = &t->philo_prime->fork;
 	else
 		philo->next_fork = NULL;
 }

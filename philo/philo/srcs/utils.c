@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/20 14:07:03 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/21 10:37:34 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ int	ft_atoi(char *str)
 	and free his struct.
 	free a single time the struct time and the struct table.
 */
-void	ft_free_all(t_table *table)
+void	ft_free_all(t_table *t)
 {
 	int		i;
 	t_philo	*tmp;
 
 	i = 1;
-	while (i <= table->nbr_philo)
+	while (i <= t->nbr_philo)
 	{
-		tmp = table->philo_prime;
-		table->philo_prime = table->philo_prime->next;
+		tmp = t->philo_prime;
+		t->philo_prime = t->philo_prime->next;
 		pthread_mutex_destroy(&tmp->fork);
 		pthread_mutex_destroy(&tmp->mutex_meal_ate);
 		pthread_mutex_destroy(&tmp->mutex_time_last_meal);
@@ -59,16 +59,16 @@ void	ft_free_all(t_table *table)
 		free(tmp);
 		i++;
 	}
-	pthread_mutex_destroy(&table->mutex_philo_dead);
-	free(table);
+	pthread_mutex_destroy(&t->mutex_philo_dead);
+	free(t);
 }
 
-void	ft_free_for_one(t_table *table)
+void	ft_free_for_one(t_table *t)
 {
-	pthread_mutex_destroy(&table->philo_prime->fork);
-	pthread_mutex_destroy(&table->philo_prime->mutex_meal_ate);
-	pthread_mutex_destroy(&table->philo_prime->mutex_time_last_meal);
-	pthread_mutex_destroy(&table->mutex_philo_dead);
-	free(table->philo_prime);
-	free(table);
+	pthread_mutex_destroy(&t->philo_prime->fork);
+	pthread_mutex_destroy(&t->philo_prime->mutex_meal_ate);
+	pthread_mutex_destroy(&t->philo_prime->mutex_time_last_meal);
+	pthread_mutex_destroy(&t->mutex_philo_dead);
+	free(t->philo_prime);
+	free(t);
 }

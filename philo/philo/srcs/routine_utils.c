@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 12:09:12 by killian           #+#    #+#             */
-/*   Updated: 2023/06/20 16:55:46 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/21 15:07:50 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	check_time_to_die_reached(t_philo *philo)
 	then return 1 to indicate that it is safe to do another iteration.
 	if all philo ate enough then return 0 to indicate that we can stop here.
 */
-int	all_philo_ate_enough(t_table *table)
+int	all_philo_ate_enough(t_table *t)
 {
 	t_philo	*philo;
 
-	philo = table->philo_prime;
+	philo = t->philo_prime;
 	while (philo)
 	{
 		if (pthread_mutex_lock(&philo->mutex_meal_ate) == 0
@@ -70,4 +70,24 @@ int	check_can_make_action(t_philo *philo)
 		}
 	}
 	return (0);
+}
+
+int	ate_enough_for_end(t_philo *philo)
+{
+	while (philo)
+	{
+		if (pthread_mutex_lock(&philo->mutex_meal_ate))
+		{
+			if (philo->meal_ate <= philo->table->meal_to_eat)
+			{
+				pthread_mutex_unlock(&philo->mutex_meal_ate);
+				printf("la\n");
+				return (0);
+			}
+			else
+				philo = philo->next;
+		}
+		philo = philo->next;
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:33:17 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/20 16:52:15 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/21 15:10:33 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,28 @@ int	check_args(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_table	*table;
+	t_table	*t;
 
 	if (check_args(ac, av))
 		return (-1);
-	table = init_table(ac, av);
-	if (!table)
+	t = init_table(ac, av);
+	if (!t)
 		return (-1);
-	if (setup_each_philo(table))
+	if (setup_each_philo(t))
 	{
-		ft_free_all(table);
+		ft_free_all(t);
 		return (-1);
 	}
-	if (table->nbr_philo == 1)
+	if (t->nbr_philo == 1)
 	{
-		case_for_one_philo(table->philo_prime);
+		case_for_one_philo(t->philo_prime);
 		return (0);
 	}
-	else if (setup_thread(table))
+	else if (setup_thread(t))
 		return (-1);
-	checker_end_of_routine(table);
-	// if (join_thread(table))
-	// 	return (-1);
-	ft_free_all(table);
+	checker_end_of_routine(t);
+	if (join_thread(t))
+		return (1);
+	ft_free_all(t);
 	return (0);
 }
