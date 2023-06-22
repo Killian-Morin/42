@@ -1,7 +1,15 @@
 NAME = philo
 
 SRC_PATH = ./srcs/
-SRC_FILES = main.c init.c setup.c routine.c routine_utils.c utils.c action.c time.c
+SRC_FILES = main.c \
+			init.c \
+			utils.c \
+			time.c \
+			simulation.c \
+			cycle.c \
+			cycle_utils.c \
+			action.c \
+
 SRC = ${addprefix ${SRC_PATH}, ${SRC_FILES}}
 
 OBJ_PATH = ./objs/

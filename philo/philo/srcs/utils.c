@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/22 13:19:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/21 10:37:34 by kmorin           ###   ########.fr       */
+/*   Created: 2023/06/22 11:32:10 by kmorin            #+#    #+#             */
+/*   Updated: 2023/06/22 16:12:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ int	ft_atoi(char *str)
 	return (res * signe);
 }
 
-/*
-	a malloc for table, time and one for each philo so theorically
-	for each philo: will destroy the mutex of his fork, detach his thread
-	and free his struct.
-	free a single time the struct time and the struct table.
-*/
 void	ft_free_all(t_table *t)
 {
 	int		i;
@@ -50,25 +44,25 @@ void	ft_free_all(t_table *t)
 	i = 1;
 	while (i <= t->nbr_philo)
 	{
-		tmp = t->philo_prime;
-		t->philo_prime = t->philo_prime->next;
-		pthread_mutex_destroy(&tmp->fork);
-		pthread_mutex_destroy(&tmp->mutex_meal_ate);
-		pthread_mutex_destroy(&tmp->mutex_time_last_meal);
+		tmp = t->first_philo;
+		t->first_philo = t->first_philo->next;
+		pthread_mutex_destroy(&tmp->m_fork);
+		pthread_mutex_destroy(&tmp->m_meal_ate);
+		pthread_mutex_destroy(&tmp->m_time_last_meal);
 		pthread_detach(tmp->thread);
 		free(tmp);
 		i++;
 	}
-	pthread_mutex_destroy(&t->mutex_philo_dead);
+	pthread_mutex_destroy(&t->m_nbr_death);
 	free(t);
 }
 
 void	ft_free_for_one(t_table *t)
 {
-	pthread_mutex_destroy(&t->philo_prime->fork);
-	pthread_mutex_destroy(&t->philo_prime->mutex_meal_ate);
-	pthread_mutex_destroy(&t->philo_prime->mutex_time_last_meal);
-	pthread_mutex_destroy(&t->mutex_philo_dead);
-	free(t->philo_prime);
+	pthread_mutex_destroy(&t->first_philo->m_fork);
+	pthread_mutex_destroy(&t->first_philo->m_meal_ate);
+	pthread_mutex_destroy(&t->first_philo->m_time_last_meal);
+	pthread_mutex_destroy(&t->m_nbr_death);
+	free(t->first_philo);
 	free(t);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 13:30:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/21 13:25:11 by kmorin           ###   ########.fr       */
+/*   Created: 2023/06/22 11:32:07 by kmorin            #+#    #+#             */
+/*   Updated: 2023/06/22 15:53:07 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,67 +25,68 @@ typedef struct s_philo {
 	int					meal_ate;
 	long int			time_last_meal;
 	pthread_t			thread;
-	pthread_mutex_t		mutex_meal_ate;
-	pthread_mutex_t		mutex_time_last_meal;
-	pthread_mutex_t		fork;
-	pthread_mutex_t		*next_fork;
+	pthread_mutex_t		m_meal_ate;
+	pthread_mutex_t		m_time_last_meal;
+	pthread_mutex_t		m_fork;
+	pthread_mutex_t		*m_next_fork;
 	struct s_philo		*next;
 	struct s_table		*table;
 }				t_philo;
 
 typedef struct s_table {
 	int				nbr_philo;
-	int				meal_to_eat;
-	int				philo_dead;
 	int				die_time;
 	int				eat_time;
 	int				sleep_time;
+	int				meal_to_eat;
+	int				nbr_death;
 	long int		start_time;
-	pthread_mutex_t	mutex_philo_dead;
-	t_philo			*philo_prime;
+	t_philo			*first_philo;
+	pthread_mutex_t	m_nbr_death;
 }				t_table;
 
-/*	main.c	*/
-int			join_thread(t_table *t);
+/* main.c */
 int			check_args(int ac, char **av);
 int			main(int ac, char **av);
 
-/*	init.c	*/
+/* init.c */
 t_philo		*init_philo(t_table *t, int i);
+void		init_next_philo(t_table *t, t_philo *philo);
+void		init_next_fork(t_table *t);
+int			init_all_philo(t_table *t);
 t_table		*init_table(int ac, char **av);
 
-/*	setup.c	*/
-int			setup_thread(t_table *t);
-void		setup_fork_next(t_table *t);
-void		setup_philo_around_table(t_table *t, t_philo *philo);
-int			setup_each_philo(t_table *t);
-
-/*	routine.c	*/
-void		case_for_one_philo(t_philo *philo);
-void		*routine(void *philo);
-void		checker_end_of_routine(t_table *t);
-
-/*	routine_utils.c	*/
-int			check_time_to_die_reached(t_philo *philo);
-int			all_philo_ate_enough(t_table *t);
-int			check_can_make_action(t_philo *philo);
-int			ate_enough_for_end(t_philo *philo);
-
-/*	action.c	*/
-int			philo_take_fork(t_philo *philo, pthread_mutex_t *fork);
-void		philo_eat(t_philo *philo);
-void		philo_think(t_philo *philo);
-void		philo_sleep(t_philo *philo);
-void		philo_die(t_philo *philo);
-
-/*	time.c	*/
-long int	get_time_pass(long int start, long int end);
-long int	get_time(void);
-void		custom_sleep(long int duration);
-
-/*	utils.c	*/
+/* utils.c */
 int			ft_atoi(char *str);
 void		ft_free_all(t_table *t);
 void		ft_free_for_one(t_table *t);
+
+/* time.c */
+long int	get_time_pass(long int start, long int end);
+long int	get_time(void);
+void		custom_sleep(long int time_to_wait);
+
+/* simulation.c */
+void		simulation_for_one(t_philo *philo);
+void		start_simulation(t_table *t);
+void		infinite_loop(t_table *t, t_philo **philo);
+void		join_thread(t_table *t);
+void		checker_for_philos(t_table *t);
+
+/* cycle.c */
+void		start_thread(t_table *t);
+void		*cycle(void *arg);
+
+/* cycle_utils.c */
+int			can_make_action(t_philo *philo);
+int			check_meal_to_eat_reached(t_table *t);
+int			time_to_die_reached(t_philo *philo);
+
+/* action.c */
+int			philo_take_fork(t_philo *philo, pthread_mutex_t *fork);
+void		philo_eat(t_philo *philo);
+void		philo_sleep(t_philo *philo);
+void		philo_think(t_philo *philo);
+void		philo_die(t_philo *philo);
 
 #endif
