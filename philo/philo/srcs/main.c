@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:32:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/22 15:54:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/23 10:17:59 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/*
+	check only if they are valid arguments, it does not initialize anything
+*/
 int	check_args(int ac, char **av)
 {
 	if (ac != 5 && ac != 6)

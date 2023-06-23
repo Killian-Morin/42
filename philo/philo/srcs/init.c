@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:32:12 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/22 15:52:54 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/23 10:16:51 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/*
+	init id with the number of the philo,
+	init meal_ate for the number of meal ate will serve to meal_to_eat reached,
+	init time_last_meal with the current time,
+	thread will be init later,
+	init the mutex for the vars,
+		that needs protections/access via different threads.
+	next will be init later,
+	init table with table,
+		(if an error occur from the creation of a mutex, will writes the error
+		and return until the main to free all and stop the program here.)
+*/
 t_philo	*init_philo(t_table *t, int i)
 {
 	t_philo	*cur;
@@ -31,6 +43,11 @@ t_philo	*init_philo(t_table *t, int i)
 	return (cur);
 }
 
+/*
+	init the next of the philo passed in arg
+	if first_philo is not init it's the first call/philo, thus init first_philo
+	iterate to the last philo that has his next init to the philo sent in arg.
+*/
 void	init_next_philo(t_table *t, t_philo *philo)
 {
 	t_philo	*tmp;
@@ -46,6 +63,13 @@ void	init_next_philo(t_table *t, t_philo *philo)
 	}
 }
 
+/*
+	iterate through all philo to init their next_fork
+	with the address of their next philo fork's.
+	if only one philo, no other fork so his next_fork points to NULL.
+	else the next_fork of the last philo needs to points to the fork
+		of the first philo
+*/
 void	init_next_fork(t_table *t)
 {
 	t_philo	*tmp;
@@ -62,6 +86,14 @@ void	init_next_fork(t_table *t)
 		tmp->m_next_fork = &t->first_philo->m_fork;
 }
 
+/*
+	init now, at the creation of the philos, start_time in milliseconds.
+	
+	the while will call for each philo:
+		init_philo() to init all var of his struct,
+		init_next_philo() will init his var next (to indicate the next philo).
+	init_fork_next() will init the next_fork for each philo.
+*/
 int	init_all_philo(t_table *t)
 {
 	int		i;
@@ -81,6 +113,18 @@ int	init_all_philo(t_table *t)
 	return (0);
 }
 
+/*
+	init nbr_philo with the second av converted to int
+	init die_time with the third av converted to int
+	init eat_time with the fourth av converted to int
+	init sleep_time with the fifth av converted to int
+	if there is a sixth av then
+		init meal_to_eat with it
+	else init at -1
+	init philo_dead is a signal to indicate if a philo of the table died
+	philo_prime will be init later with the philo with the id = 1
+	init the mutex that will protect the signal to indicate a death.
+*/
 t_table	*init_table(int ac, char **av)
 {
 	t_table	*t;

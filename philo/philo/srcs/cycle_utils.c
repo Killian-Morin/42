@@ -3,21 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   cycle_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:42:24 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/22 16:06:16 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/23 15:37:47 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/*
+	if can lock the var checked (nbr_death),
+	if there has been no death and all philo didn't ate enough
+		unlock the var checked and return 1 (do the action)
+	else
+		unlock the var checked and return 0 (don't do the action)
+*/
 int	can_make_action(t_philo *philo)
 {
 	if (!pthread_mutex_lock(&philo->table->m_nbr_death))
 	{
 		if (philo->table->nbr_death == 0
-			&& check_meal_to_eat_reached(philo->table))
+			&& meal_to_eat_reached(philo->table))
 		{
 			pthread_mutex_unlock(&philo->table->m_nbr_death);
 			return (1);
@@ -27,7 +34,15 @@ int	can_make_action(t_philo *philo)
 	return (0);
 }
 
-int	check_meal_to_eat_reached(t_table *t)
+/*
+	for all philo, if can lock the var checked (meal_ate),
+	if a philo didn't eat enough or if meal_to_eat isn't defined
+		unlock the var checked and return 1
+	else
+		unlock the var checked and pass to the next philo
+	if all philo ate enough then return 0.
+*/
+int	meal_to_eat_reached(t_table *t)
 {
 	t_philo	*philo;
 
@@ -48,6 +63,13 @@ int	check_meal_to_eat_reached(t_table *t)
 	return (0);
 }
 
+/*
+	if can lock the var checked (time_last_meal),
+	if the time passed since the last meal is greater than time_to_die
+		unlock the var checked and return 1,
+	else
+		unlock the var checked and return 0
+*/
 int	time_to_die_reached(t_philo *philo)
 {
 	if (!pthread_mutex_lock(&philo->m_time_last_meal))

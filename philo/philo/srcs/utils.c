@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:32:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/22 16:12:41 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/23 10:36:10 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ int	ft_atoi(char *str)
 	return (res * signe);
 }
 
+/*
+	a malloc for table, time and one for each philo so need for each philo to:
+	destroy the mutex of his variables that needed to be protected,
+		detach his thread
+	and free his struct.
+	once all philos are cleared:
+	destroy the mutex of the struct table and free it.
+*/
 void	ft_free_all(t_table *t)
 {
 	int		i;
@@ -49,7 +57,7 @@ void	ft_free_all(t_table *t)
 		pthread_mutex_destroy(&tmp->m_fork);
 		pthread_mutex_destroy(&tmp->m_meal_ate);
 		pthread_mutex_destroy(&tmp->m_time_last_meal);
-		pthread_detach(tmp->thread);
+		// pthread_detach(tmp->thread);
 		free(tmp);
 		i++;
 	}

@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:17:25 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/22 16:09:31 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/06/23 10:09:33 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/*
+	will check if it can safely lock the fork to deny its access by another
+	then if he can do the action, print the message
+	and return with the fork locked (unless it is already lock) by another.
+*/
 int	philo_take_fork(t_philo *philo, pthread_mutex_t *fork)
 {
 	if (!pthread_mutex_lock(fork))
@@ -26,6 +31,13 @@ int	philo_take_fork(t_philo *philo, pthread_mutex_t *fork)
 	return (0);
 }
 
+/*
+	will check if the philo can take his fork and the next one,
+	then if he can do the action and lock the mutex for the var used here,
+	will write the message, update those var, unlock the mutex for those var
+	and sleep for the precised amount of time.
+	will unlock the forks that he used whether or not he can do the action.
+*/
 void	philo_eat(t_philo *philo)
 {
 	if (philo_take_fork(philo, &philo->m_fork)
