@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:32:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/23 10:36:10 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/24 09:25:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,10 @@ void	ft_free_all(t_table *t)
 		pthread_mutex_destroy(&tmp->m_fork);
 		pthread_mutex_destroy(&tmp->m_meal_ate);
 		pthread_mutex_destroy(&tmp->m_time_last_meal);
-		// pthread_detach(tmp->thread);
+		pthread_detach(tmp->thread);
 		free(tmp);
 		i++;
 	}
 	pthread_mutex_destroy(&t->m_nbr_death);
-	free(t);
-}
-
-void	ft_free_for_one(t_table *t)
-{
-	pthread_mutex_destroy(&t->first_philo->m_fork);
-	pthread_mutex_destroy(&t->first_philo->m_meal_ate);
-	pthread_mutex_destroy(&t->first_philo->m_time_last_meal);
-	pthread_mutex_destroy(&t->m_nbr_death);
-	free(t->first_philo);
 	free(t);
 }

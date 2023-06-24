@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:32:07 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/23 15:39:08 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/24 09:25:31 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void		philo_sleep(t_philo *philo);
 void		philo_think(t_philo *philo);
 void		philo_die(t_philo *philo);
 
-/* cycle.c */
-void		start_thread(t_table *t);
-void		*cycle(void *arg);
-
 /* cycle_utils.c */
 int			can_make_action(t_philo *philo);
 int			meal_to_eat_reached(t_table *t);
 int			time_to_die_reached(t_philo *philo);
+
+/* cycle.c */
+int			start_thread(t_table *t);
+void		*cycle(void *arg);
 
 /* init.c */
 t_philo		*init_philo(t_table *t, int i);
@@ -74,9 +74,9 @@ int			main(int ac, char **av);
 
 /* simulation.c */
 void		simulation_for_one(t_philo *philo);
-void		start_simulation(t_table *t);
-void		join_thread(t_table *t);
 void		checker_for_philos(t_table *t);
+int			join_thread(t_table *t);
+int			start_simulation(t_table *t);
 
 /* time.c */
 long int	get_time_pass(long int start, long int end);
@@ -86,6 +86,5 @@ void		custom_sleep(long int time_to_wait);
 /* utils.c */
 int			ft_atoi(char *str);
 void		ft_free_all(t_table *t);
-void		ft_free_for_one(t_table *t);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: killian <killian@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:32:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/06/23 10:17:59 by killian          ###   ########.fr       */
+/*   Updated: 2023/06/24 09:18:24 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	main(int ac, char **av)
 		ft_free_all(t);
 		return (1);
 	}
-	start_simulation(t);
+	if (start_simulation(t))
+		return (1);
 	ft_free_all(t);
 	return (0);
 }
