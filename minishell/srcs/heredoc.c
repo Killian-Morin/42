@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:50:56 by killian           #+#    #+#             */
-/*   Updated: 2023/09/20 15:23:18 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/09/22 11:46:16 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	init_heredoc(t_data *data, t_redirection *cur, t_command *cmd, int i)
 		return (1);
 	}
 	close(cmd[i].fd[1]);
-	free(cur->file_name);
+	cur->file_name = NULL;
 	cur->file_name = name;
 	return (0);
 }
