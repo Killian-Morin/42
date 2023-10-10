@@ -1,0 +1,9 @@
+a.out
+.DS_Store
+README.md
+42-EXAM
+*.gch
+*.pdf
+checker.c
+.vscode
+minishell
