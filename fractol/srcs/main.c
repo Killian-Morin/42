@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:12:00 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/20 09:12:27 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/10/23 18:18:19 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	hooks(t_fractal *f)
 {
-	mlx_hook(f->win, EVENT_KEY_DOWN, 0, ft_keyboard, f);
-	mlx_hook(f->win, EVENT_MOUSE_DOWN, 0, ft_mouse, f);
-	mlx_hook(f->win, EVENT_MOUSE_MOVE, 0, ft_change_julia, f);
-	mlx_hook(f->win, EVENT_RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
+	mlx_hook(f->win, KEY_PRESS, 0, ft_keyboard, f);
+	mlx_hook(f->win, MOUSE_DOWN, 0, ft_mouse, f);
+	mlx_hook(f->win, MOUSE_MOVE, 0, ft_change_julia, f);
+	mlx_hook(f->win, RED_CROSS, 0, ft_exit, EXIT_SUCCESS);
 }
 
 void	init_mlx(t_fractal *f)

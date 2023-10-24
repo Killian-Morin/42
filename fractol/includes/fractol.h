@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmorin <kmorin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:21:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:00 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/10/23 18:18:24 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # define WIDTH 820
 # define HEIGHT 656
 
-# define EVENT_KEY_DOWN 2
-# define EVENT_MOUSE_DOWN 4
-# define EVENT_MOUSE_MOVE 6
-# define EVENT_RED_CROSS 17
+# define KEY_PRESS 2
+# define MOUSE_DOWN 4
+# define MOUSE_MOVE 6
+# define RED_CROSS 17
 
 # define ZOOM_MOUSE 4
 # define DEZOOM_MOUSE 5
