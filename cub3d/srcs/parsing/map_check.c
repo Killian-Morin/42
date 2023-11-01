@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:02:52 by mdanchev          #+#    #+#             */
-/*   Updated: 2023/10/27 14:41:35 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/01 10:59:16 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	cara_checker(t_file *f)
 		x = 0;
 		while (x != f->map_max_x)
 		{
-			if (is_valid_char(f->map[y][x]) == true || f->map[y][x] == '-')
+			if (is_valid_char(f->map[y][x]) == true)
 				x++;
 			else
 			{
@@ -117,8 +117,8 @@ void	check_map(t_list *head_map, t_cub3d *data)
 	map_node = head_map;
 	get_map_size_list(map_node, &data->file);
 	copy_map(map_node, &data->file);
+	cara_checker(&data->file);
 	change_map(&data->file);
 	walls_checker(&data->file);
-	cara_checker(&data->file);
 	nb_player_checker(&data->file);
 }
