@@ -6,29 +6,43 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:37:59 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/02 15:30:19 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/03 18:06:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
+/*
+PHONEBOOK DISPLAY FORMAT
+/-------------------------------------------\
+|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|
+|----------|----------|----------|----------|
+|----------|----------|----------|----------|
+|----------|----------|----------|----------|
+\-------------------------------------------/
+*/
+
 int	main(void)
 {
-	PhoneBook	phonebook[8];
+	PhoneBook	phonebook;
 
 	std::string	input;
+	phonebook.set_NbContact(-1);
 	do
 	{
 		std::cout << "Enter a command [ADD, SEARCH, EXIT]" << std::endl << "> ";
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			std::cout << "add" << std::endl;
+			phonebook.add();
+			std::cin.clear();
 		}
 		else if (input == "SEARCH")
 		{
-			std::cout << "search" << std::endl;
+			phonebook.search();
+			std::cin.clear();
+			std::cin.ignore();
 		}
 		else if (input == "EXIT")
 		{
@@ -36,7 +50,10 @@ int	main(void)
 			return (0);
 		}
 		else
+		{
 			std::cout << "Invalid Command ! Try again." << std::endl;
-	} while (input != "EXIT" && std::cin.eof());
+			std::cin.clear();
+		}
+	} while (input != "EXIT" && !std::cin.eof());
 	return (0);
 }
