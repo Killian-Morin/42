@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:37:59 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/03 18:06:57 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/06 15:04:12 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 PHONEBOOK DISPLAY FORMAT
 /-------------------------------------------\
 |     INDEX|FIRST NAME| LAST NAME|  NICKNAME|
+|0123456789|0123456789|0123456789|0123456789|
 |----------|----------|----------|----------|
 |----------|----------|----------|----------|
 |----------|----------|----------|----------|
@@ -28,11 +29,12 @@ int	main(void)
 	PhoneBook	phonebook;
 
 	std::string	input;
-	phonebook.set_NbContact(-1);
-	do
+	while (1)
 	{
 		std::cout << "Enter a command [ADD, SEARCH, EXIT]" << std::endl << "> ";
-		std::getline(std::cin, input);
+		std::cin >> input;
+		phonebook.handleCtrlD();
+
 		if (input == "ADD")
 		{
 			phonebook.add();
@@ -46,14 +48,15 @@ int	main(void)
 		}
 		else if (input == "EXIT")
 		{
-			std::cout << "Bye !" << std::endl;
-			return (0);
+			std::cout << "Exit the phonebook." << std::endl << "Bye !" << std::endl;
+			break ;
 		}
 		else
 		{
-			std::cout << "Invalid Command ! Try again." << std::endl;
+			std::cout << RED << "Invalid Command ! Try again." << WHITE << std::endl;
 			std::cin.clear();
 		}
-	} while (input != "EXIT" && !std::cin.eof());
+		phonebook.handleCtrlD();
+	}
 	return (0);
 }

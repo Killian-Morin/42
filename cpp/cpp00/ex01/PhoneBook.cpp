@@ -6,13 +6,13 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:46:05 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/03 18:11:10 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/06 15:17:35 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook(void) : _nbContact(0), _oldestContact(0)
 {
 	std::cout << "PhoneBook constructor called" << std::endl;
 }
@@ -24,38 +24,50 @@ PhoneBook::~PhoneBook(void)
 
 int	PhoneBook::get_NbContact(void) const
 {
-	return this->_NbContact;
+	return this->_nbContact;
 }
 
 void	PhoneBook::set_NbContact(int i)
 {
-	this->_NbContact = i;
+	this->_nbContact = i;
 	return ;
+}
+
+void	PhoneBook::handleCtrlD(void) const
+{
+	if (std::cin.eof())
+	{
+		std::cout << std::endl << "Exit the phonebook (with ^D)." << std::endl;
+		exit (0);
+	}
 }
 
 void	PhoneBook::add(void)
 {
-	std::string	input;
-	int			index;
+	int	index;
 
-	if (this->get_NbContact() == 7)
+	if (this->_nbContact < 8)
 	{
-		// index = this->get_NbContact() + 1;
-		index = (index + 1 ) % 7;
+		index = this->_nbContact;
+		this->_nbContact++;
 	}
 	else
 	{
-		index = this->get_NbContact() + 1;
-		this->set_NbContact(index);
+		index = this->_oldestContact;
+		this->_oldestContact = (this->_oldestContact + 1) % 8;
 	}
 
+	std::string	input;
+	std::cin.ignore();
 	do
 	{
 		std::cout << "First Name: ";
 		std::getline(std::cin, input);
+		this->handleCtrlD();
 		if (input.empty())
 		{
-			std::cout << "This can't be null, please try again." << std::endl;
+			std::cout << RED << "This can't be null, please try again." << WHITE << std::endl;
+			std::cin.clear();
 		}
 	} while (input.empty());
 	this->_contact[index].set_FirstName(input);
@@ -64,9 +76,11 @@ void	PhoneBook::add(void)
 	{
 		std::cout << "Last Name: ";
 		std::getline(std::cin, input);
+		this->handleCtrlD();
 		if (input.empty())
 		{
-			std::cout << "This can't be null, please try again." << std::endl;
+			std::cout << RED << "This can't be null, please try again." << WHITE << std::endl;
+			std::cin.clear();
 		}
 	} while (input.empty());
 	this->_contact[index].set_LastName(input);
@@ -75,9 +89,11 @@ void	PhoneBook::add(void)
 	{
 		std::cout << "Nickname: ";
 		std::getline(std::cin, input);
+		this->handleCtrlD();
 		if (input.empty())
 		{
-			std::cout << "This can't be null, please try again." << std::endl;
+			std::cout << RED << "This can't be null, please try again." << WHITE << std::endl;
+			std::cin.clear();
 		}
 	} while (input.empty());
 	this->_contact[index].set_Nickname(input);
@@ -86,9 +102,11 @@ void	PhoneBook::add(void)
 	{
 		std::cout << "Phone Number: ";
 		std::getline(std::cin, input);
+		this->handleCtrlD();
 		if (input.empty())
 		{
-			std::cout << "This can't be null, please try again." << std::endl;
+			std::cout << RED << "This can't be null, please try again." << WHITE << std::endl;
+			std::cin.clear();
 		}
 	} while (input.empty());
 	this->_contact[index].set_PhoneNumber(input);
@@ -97,10 +115,10 @@ void	PhoneBook::add(void)
 	{
 		std::cout << "Darkest Secret: ";
 		std::getline(std::cin, input);
+		this->handleCtrlD();
 		if (input.empty())
 		{
-			std::cout << "This can't be null, please try again." << std::endl;
-			std::cin.ignore();
+			std::cout << RED << "This can't be null, please try again." << WHITE << std::endl;
 			std::cin.clear();
 		}
 	} while (input.empty());
@@ -109,16 +127,17 @@ void	PhoneBook::add(void)
 
 void	PhoneBook::search(void) const
 {
+	std::cout << "All contacts of the phonebook: " << std::endl;
 	std::string	line(43, '-');
 	std::cout << "/" << line << "\\" << std::endl;
 	std::cout << "|" << std::setw(10) << "INDEX";
 	std::cout << "|" << std::setw(10) << "FIRST NAME";
 	std::cout << "|" << std::setw(10) << "LAST NAME";
 	std::cout << "|" << std::setw(10) << "NICKNAME" << "|" << std::endl;
-	int	i = 0;
-	while (i <= this->get_NbContact())
+
+	for (int i = 0; i < this->_nbContact; i++)
 	{
-		std::cout << "|" << std::setw(10) << i;
+		std::cout << "|" << std::setw(10) << i + 1;
 		std::string	value;
 		value = this->_contact[i].get_FirstName();
 		if (value.size() >= 10)
@@ -141,38 +160,36 @@ void	PhoneBook::search(void) const
 			value.replace(9, 1, 1, '.');
 		}
 		std::cout << "|" << std::setw(10) << value << "|" << std::endl;
-		i++;
 	}
 	std::cout << "\\" << line << "/" << std::endl;
 
-	std::string	tmp;
-
-
-	std::cout << "Type an index to see all informations of it's contact" << std::endl << ">> ";
 	int	index;
-	if (!(std::cin >> index) && index < 0)
+	std::cout << "Type an index to see all informations of it's contact" << std::endl << ">> ";
+	if (!(std::cin >> index) || index < 0)
 	{
+		this->handleCtrlD();
+		std::cout << "Invalid input" << std::endl;
 		std::cin.clear();
-		std::cin.ignore();
-		return ;
+		return;
 	}
-	if (index < 0 || index > 7)
+	if (index > 0 && index <= this->_nbContact)
 	{
-		std::cout << "Sorry the index is not in range [0 to 7]" << std::endl;
-		std::cin.clear();
-		std::cin.ignore();
-		return ;
+		index -= 1;
+		Contact	current = this->_contact[index];
+		std::cout << "First Name: " << current.get_FirstName() << std::endl;
+		std::cout << "Last Name: " << current.get_LastName() << std::endl;
+		std::cout << "Nickname: " << current.get_Nickname() << std::endl;
+		std::cout << "Phone Number: " << current.get_PhoneNumber() << std::endl;
+		std::cout << "Darkest Secret: " << current.get_Secret() << std::endl;
 	}
-	if (index > this->_NbContact)
+	else if (index < 1 || index > 8)
+	{
+		std::cout << "Sorry the index is not in range [1 to 8]" << std::endl;
+		std::cin.clear();
+	}
+	else if (index > this->_nbContact)
 	{
 		std::cout << "Sorry this index is not yet registered" << std::endl;
 		std::cin.clear();
-		std::cin.ignore();
-		return ;
 	}
-	std::cout << "First Name: " << this->_contact[index].get_FirstName() << std::endl;
-	std::cout << "Last Name: " << this->_contact[index].get_LastName() << std::endl;
-	std::cout << "Nickname: " << this->_contact[index].get_Nickname() << std::endl;
-	std::cout << "Phone Number: " << this->_contact[index].get_PhoneNumber() << std::endl;
-	std::cout << "Darkest Secret: " << this->_contact[index].get_Secret() << std::endl;
 }

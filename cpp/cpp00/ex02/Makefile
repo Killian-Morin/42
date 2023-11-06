@@ -1,13 +1,13 @@
-NAME = PhoneBook
+NAME = Account
 
-CC = c++
+CC = g++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 RM = /bin/rm -rf
 
 BLUE = \033[0;34m
 RED = \033[0;31m
 
-SRC_FILES = Contact.cpp PhoneBook.cpp main.cpp
+SRC_FILES = Account.cpp tests.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:.cpp=.o}}
@@ -26,11 +26,11 @@ ${NAME}: ${OBJ_FILES}
 
 clean:
 	@(${RM} ${OBJ_DIR})
-	@echo "${RED}Clear objects files"
+	@echo "${RED}Clean objects files"
 
 fclean: clean
 	@(${RM} ${NAME})
-	@echo "${RED}Clear executable files"
+	@echo "${RED}Clean executable files"
 
 re: fclean all
 

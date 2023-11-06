@@ -6,12 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:46:02 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/03 15:45:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/06 14:59:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
+
+#define RED "\033[31m"
+#define WHITE "\033[37m"
 
 #include <string>
 #include <iomanip>
@@ -33,10 +36,12 @@ class PhoneBook {
 		void	add(void);
 		void	search(void) const;
 
+		void	handleCtrlD(void) const;
 
 	private:
 		Contact	_contact[8];
-		int		_NbContact;
+		int		_nbContact;
+		int		_oldestContact;
 };
 
 #endif

@@ -4,8 +4,8 @@ RM = rm -rf
 CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
-YELLOW = \033[0;93m
-MAGENTA = \033[0;95m
+BLUE = \033[0;34m
+RED = \033[0;31m
 
 SRC_FILES = megaphone.cpp
 
@@ -15,22 +15,22 @@ OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:.cpp=.o}}
 DIR_DUP = @mkdir -p ${@D}
 
 all: ${NAME}
-	@echo "${YELLOW}Compiled executable"
 
 ${NAME}: ${OBJ_FILES}
 	@(${CC} ${FLAGS} ${OBJ_FILES} -o ${NAME})
+	@echo "${BLUE}Compiled executable"
 
 ${OBJ_DIR}%.o: %.cpp
 	@${DIR_DUP}
 	@${CC} ${FLAGS} -c $< -o $@
 
 clean:
-	@echo "${MAGENTA}Clean objects files"
 	@(${RM} ${OBJ_DIR})
+	@echo "${RED}Clean objects files"
 
 fclean: clean
-	@echo "${MAGENTA}Clean executable file"
 	@(${RM} ${NAME})
+	@echo "${RED}Clean executable file"
 
 re: fclean all
 

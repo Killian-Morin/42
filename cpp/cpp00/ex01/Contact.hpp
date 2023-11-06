@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:45:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/03 14:15:07 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/06 13:17:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ class Contact {
 		std::string	_Nickname;
 		std::string	_PhoneNumber;
 		std::string	_Secret;
-		// int			_Index;
 };
 
 #endif
