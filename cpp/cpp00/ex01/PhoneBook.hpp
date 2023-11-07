@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:46:02 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/06 14:59:57 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/07 14:18:31 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PHONEBOOK_HPP
 
 #define RED "\033[31m"
+#define GREEN "\e[0;32m"
+#define BLUE "\e[0;34m"
+#define MAGENTA "\e[0;35m"
+#define CYAN "\e[0;36m"
 #define WHITE "\033[37m"
 
 #include <string>
@@ -30,13 +34,11 @@ class PhoneBook {
 		PhoneBook(void);
 		~PhoneBook(void);
 
-		int		get_NbContact(void) const;
-		void	set_NbContact(int i);
+		void	handleCtrlD(void) const;
+		int		notValidPhoneNumber(std::string input) const;
 
 		void	add(void);
 		void	search(void) const;
-
-		void	handleCtrlD(void) const;
 
 	private:
 		Contact	_contact[8];

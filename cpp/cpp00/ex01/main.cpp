@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:37:59 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/06 15:04:12 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/07 13:57:49 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(void)
 	std::string	input;
 	while (1)
 	{
-		std::cout << "Enter a command [ADD, SEARCH, EXIT]" << std::endl << "> ";
+		std::cout << BLUE << "Enter a command [ADD, SEARCH, EXIT]" << WHITE << std::endl << "> ";
 		std::cin >> input;
 		phonebook.handleCtrlD();
 

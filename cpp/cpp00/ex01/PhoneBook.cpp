@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:46:05 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/06 15:17:35 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/07 14:13:59 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ PhoneBook::~PhoneBook(void)
 	std::cout << "PhoneBook destructor called" << std::endl;
 }
 
-int	PhoneBook::get_NbContact(void) const
-{
-	return this->_nbContact;
-}
-
-void	PhoneBook::set_NbContact(int i)
-{
-	this->_nbContact = i;
-	return ;
-}
-
 void	PhoneBook::handleCtrlD(void) const
 {
 	if (std::cin.eof())
@@ -40,6 +29,25 @@ void	PhoneBook::handleCtrlD(void) const
 		std::cout << std::endl << "Exit the phonebook (with ^D)." << std::endl;
 		exit (0);
 	}
+}
+
+int	PhoneBook::notValidPhoneNumber(std::string input) const
+{
+	if (input[0] && input[0] == '+')
+	{
+		if (input.length() < 12)
+			return (1);
+	}
+	else if (input.length() != 10)
+		return (1);
+	for (int i = 0; input[i]; i++)
+	{
+		if (i == 0 && input[i] == '+')
+			i++;
+		if (!std::isdigit(input[i]))
+			return (1);
+	}
+	return (0);
 }
 
 void	PhoneBook::add(void)
@@ -108,7 +116,12 @@ void	PhoneBook::add(void)
 			std::cout << RED << "This can't be null, please try again." << WHITE << std::endl;
 			std::cin.clear();
 		}
-	} while (input.empty());
+		if (notValidPhoneNumber(input))
+		{
+			std::cout << RED << "This is not a valid Phone Number, please try again" << WHITE << std::endl;
+			std::cin.clear();
+		}
+	} while (input.empty() || notValidPhoneNumber(input));
 	this->_contact[index].set_PhoneNumber(input);
 
 	do
@@ -127,7 +140,7 @@ void	PhoneBook::add(void)
 
 void	PhoneBook::search(void) const
 {
-	std::cout << "All contacts of the phonebook: " << std::endl;
+	std::cout << MAGENTA << "All contacts of the phonebook: " << std::endl;
 	std::string	line(43, '-');
 	std::cout << "/" << line << "\\" << std::endl;
 	std::cout << "|" << std::setw(10) << "INDEX";
@@ -161,35 +174,40 @@ void	PhoneBook::search(void) const
 		}
 		std::cout << "|" << std::setw(10) << value << "|" << std::endl;
 	}
-	std::cout << "\\" << line << "/" << std::endl;
+	std::cout << "\\" << line << "/" << WHITE << std::endl;
 
 	int	index;
-	std::cout << "Type an index to see all informations of it's contact" << std::endl << ">> ";
+	if (this->_nbContact == 0)
+	{
+		std::cout << RED << "The phonebook is empty!" << WHITE << std::endl;
+		return ;
+	}
+	std::cout << GREEN << "Type an index to see all informations of it's contact" << std::endl << ">> " << WHITE;
 	if (!(std::cin >> index) || index < 0)
 	{
 		this->handleCtrlD();
-		std::cout << "Invalid input" << std::endl;
+		std::cout << RED << "Invalid input" << WHITE << std::endl;
 		std::cin.clear();
-		return;
+		return ;
 	}
 	if (index > 0 && index <= this->_nbContact)
 	{
 		index -= 1;
 		Contact	current = this->_contact[index];
-		std::cout << "First Name: " << current.get_FirstName() << std::endl;
+		std::cout << GREEN << "First Name: " << current.get_FirstName() << std::endl;
 		std::cout << "Last Name: " << current.get_LastName() << std::endl;
 		std::cout << "Nickname: " << current.get_Nickname() << std::endl;
 		std::cout << "Phone Number: " << current.get_PhoneNumber() << std::endl;
-		std::cout << "Darkest Secret: " << current.get_Secret() << std::endl;
+		std::cout << "Darkest Secret: " << current.get_Secret() << WHITE << std::endl;
 	}
 	else if (index < 1 || index > 8)
 	{
-		std::cout << "Sorry the index is not in range [1 to 8]" << std::endl;
+		std::cout << RED << "Sorry the index is not in range [1 to 8]" << WHITE << std::endl;
 		std::cin.clear();
 	}
 	else if (index > this->_nbContact)
 	{
-		std::cout << "Sorry this index is not yet registered" << std::endl;
+		std::cout << RED << "Sorry this index is not yet registered" << WHITE << std::endl;
 		std::cin.clear();
 	}
 }
