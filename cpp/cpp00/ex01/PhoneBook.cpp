@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:46:05 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/07 14:13:59 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/07 15:05:27 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	PhoneBook::notValidPhoneNumber(std::string input) const
 		if (input.length() < 12)
 			return (1);
 	}
-	else if (input.length() != 10)
+	else if (input.length() < 10)
 		return (1);
 	for (int i = 0; input[i]; i++)
 	{
