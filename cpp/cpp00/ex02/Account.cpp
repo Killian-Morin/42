@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 15:25:30 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/07 13:16:43 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/20 15:06:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	Account::_displayTimestamp(void)
 	std::tm 	timeinfo;
 	char		str[20];
 
-	now = std::time(nullptr);
+	now = std::time(NULL);
 	timeinfo = *std::localtime(&now);
 	std::strftime(str, 20, "[%Y%m%d_%H%M%S] ", &timeinfo);
 
