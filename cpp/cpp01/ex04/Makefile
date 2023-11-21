@@ -1,0 +1,39 @@
+NAME = a.out
+
+CC = g++
+FLAGS = -Wall -Werror -Wextra -std=c++98
+RM = /bin/rm -rf
+
+BLUE = \033[0;34m
+RED = \033[0;31m
+WHITE = \033[0;97m
+
+SRC_FILES = main.cpp Replace.cpp
+
+OBJ_DIR = ./objs/
+OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:.cpp=.o}}
+
+DIR_DUP = @mkdir -p ${@D}
+
+all: ${NAME}
+
+${OBJ_DIR}%.o: %.cpp
+	@${DIR_DUP}
+	@${CC} ${FLAGS} -c $< -o $@
+
+${NAME}: ${OBJ_FILES}
+	@${CC} ${FLAGS} ${OBJ_FILES} -o ${NAME}
+	@echo "${BLUE}Compiled executable${WHITE}"
+
+clean:
+	@(${RM} ${OBJ_DIR})
+	@echo "${RED}Clean objects files${WHITE}"
+
+fclean: clean
+	@(${RM} ${NAME})
+	@(${RM} *.replace)
+	@echo "${RED}Clean executable files${WHITE}"
+
+re: fclean all
+
+.PHONY: all clean fclean re

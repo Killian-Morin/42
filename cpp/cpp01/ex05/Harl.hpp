@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 16:38:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 11:53:38 by kmorin           ###   ########.fr       */
+/*   Created: 2023/11/21 15:31:13 by kmorin            #+#    #+#             */
+/*   Updated: 2023/11/21 15:37:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
-
-#include <iostream>
 #include <string>
-
-#include "Weapon.hpp"
+#include <iostream>
 
 #define RED "\033[31m"
+#define GREEN "\e[0;32m"
+#define BLUE "\e[0;34m"
+#define MAGENTA "\e[0;35m"
+#define CYAN "\e[0;36m"
 #define WHITE "\033[37m"
 
-class HumanB
+class Harl
 {
 	public:
-		HumanB(std::string name);
-		~HumanB();
+		Harl();
+		~Harl();
 
-		void	attack(void);
-
-		void	setWeapon(Weapon& weapon);
+		void	complain(std::string level);
 
 	private:
-		std::string	_name;
-		Weapon*		_weapon;
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
 };
-
-#endif

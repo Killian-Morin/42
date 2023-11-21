@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 16:38:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 11:53:38 by kmorin           ###   ########.fr       */
+/*   Created: 2023/11/21 15:31:16 by kmorin            #+#    #+#             */
+/*   Updated: 2023/11/21 15:58:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include "Harl.hpp"
 
-#include <iostream>
-#include <string>
-
-#include "Weapon.hpp"
-
-#define RED "\033[31m"
-#define WHITE "\033[37m"
-
-class HumanB
+int	main(void)
 {
-	public:
-		HumanB(std::string name);
-		~HumanB();
+	Harl		harl;
+	std::string	input;
 
-		void	attack(void);
+	do
+	{
+		std::cout << "Enter a level of complaint > ";
+		std::cin >> input;
 
-		void	setWeapon(Weapon& weapon);
+		harl.complain(input);
 
-	private:
-		std::string	_name;
-		Weapon*		_weapon;
-};
+		std::cin.clear();
+		std::cin.ignore();
+	} while (!input.compare("exit"));
 
-#endif
+	return (0);
+}

@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   Replace.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 16:38:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 11:53:38 by kmorin           ###   ########.fr       */
+/*   Created: 2023/11/21 14:42:21 by kmorin            #+#    #+#             */
+/*   Updated: 2023/11/21 14:47:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
-
-#include <iostream>
 #include <string>
-
-#include "Weapon.hpp"
+#include <iostream>
+#include <fstream>
 
 #define RED "\033[31m"
+#define GREEN "\e[0;32m"
+#define BLUE "\e[0;34m"
 #define WHITE "\033[37m"
 
-class HumanB
+class Replace
 {
 	public:
-		HumanB(std::string name);
-		~HumanB();
+		Replace(std::string file, std::string s1, std::string s2);
+		~Replace();
 
-		void	attack(void);
-
-		void	setWeapon(Weapon& weapon);
+		void	replace(void);
 
 	private:
-		std::string	_name;
-		Weapon*		_weapon;
+		std::string	_infile;
+		std::string	_outfile;
+		std::string	_s1;
+		std::string	_s2;
 };
-
-#endif

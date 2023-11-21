@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 16:38:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 11:53:38 by kmorin           ###   ########.fr       */
+/*   Created: 2023/11/21 11:54:48 by kmorin            #+#    #+#             */
+/*   Updated: 2023/11/21 14:58:19 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#include "Replace.hpp"
 
-#include <iostream>
-#include <string>
-
-#include "Weapon.hpp"
-
-#define RED "\033[31m"
-#define WHITE "\033[37m"
-
-class HumanB
+int	main(int ac, char **av)
 {
-	public:
-		HumanB(std::string name);
-		~HumanB();
+	if (ac != 4)
+	{
+		std::cout << RED << "Sorry, not the right amount of parameters: needs 3" << WHITE << std::endl;
+		return (1);
+	}
 
-		void	attack(void);
+	Replace	sed(av[1], av[2], av[3]);
+	sed.replace();
 
-		void	setWeapon(Weapon& weapon);
-
-	private:
-		std::string	_name;
-		Weapon*		_weapon;
-};
-
-#endif
+	return (0);
+}

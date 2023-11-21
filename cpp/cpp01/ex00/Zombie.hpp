@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:04:16 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/20 15:13:47 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/21 11:42:53 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@
 #define WHITE "\033[37m"
 
 class Zombie
-{	
+{
 	public:
 		Zombie(std::string tmp);
 		~Zombie();
-		
+
 		void		announce(void);
-		
+
 		Zombie();
-	
+
 	private:
 		std::string	_name;
 };
 
-Zombie* 	newZombie(std::string name);
-void 		randomChump(std::string name);
+Zombie*		newZombie(std::string name);
+void		randomChump(std::string name);
 
 #endif
