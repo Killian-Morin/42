@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:53:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/20 16:04:59 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 13:59:20 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 	std::cout << "memory address of string: " << GREEN << &string << WHITE << std::endl;
 	std::cout << "memory address of stringPTR: " << GREEN << &stringPTR << WHITE << std::endl;
 	std::cout << "memory address of stringREF: " << GREEN << &stringREF << WHITE << std::endl << std::endl;
-	
+
 	std::cout << "value of string: " << GREEN << string << WHITE << std::endl;
 	std::cout << "value of stringPTR: " << GREEN << stringPTR << WHITE << std::endl;
 	std::cout << "value of stringREF: " << GREEN << stringREF << WHITE << std::endl;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 15:31:07 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 13:32:39 by kmorin           ###   ########.fr       */
+/*   Created: 2023/11/22 11:07:53 by kmorin            #+#    #+#             */
+/*   Updated: 2023/11/22 14:33:05 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,24 @@ Harl::~Harl()
 
 void	Harl::exitHandler(std::string level) const
 {
-	if (level == "exit" || level == "EXIT")
+	if (level == "EXIT" || level == "exit")
 	{
-		std::cout << RED << std::endl << "Exit Harl." << WHITE << std::endl;
-		exit (0);
+		std::cout << RED << std::endl << "Exit Harl filter." << WHITE << std::endl;
+		exit(0);
 	}
+
 	if (std::cin.eof())
 	{
-		std::cout << RED << std::endl << "Exit Harl with ^D" << WHITE << std::endl;
+		std::cout << RED << std::endl << "Exit Harl filter with ^D." << WHITE << std::endl;
 		exit (0);
 	}
 }
 
 void	Harl::complain(std::string level)
 {
-	std::string	type[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-
 	//array of strings with the valid levels
+	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
 	//declaring the array of pointers to members methods
 	//the '&' to have the pointer to the method
 	void (Harl::*methods[])(void) = {
@@ -52,20 +53,38 @@ void	Harl::complain(std::string level)
 
 	//iterate max 4 times since 4 valid level
 	//if the input correspond to a valid level
-	//	call the method corresponding to it and return
+	//	break the loop to stop iterating the index at which we will start
+	//if the input does not correspond to a valid level
+	//	will go in the default in the switch loop to print an appropriate message
 	int	i = 0;
 	while (i < 4)
 	{
-		if (level == type[i])
-		{
-			(this->*methods[i])();
-			return ;
-		}
+		if (level == levels[i])
+			break;
 		i++;
 	}
 
-	//the input does not correspond to a valid level
-	std::cout << "[ Probably complaining about insignificant problems ]" << std::endl << std::endl;
+	//break only for the last case since we don't want to print the default
+	//and we called all methods below the valid one
+	switch (i)
+	{
+		case 0:
+			(this->*methods[i++])();
+
+		case 1:
+			(this->*methods[i++])();
+
+		case 2:
+			(this->*methods[i++])();
+
+		case 3:
+			(this->*methods[i])();
+			break;
+
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl << std::endl;
+			break;
+	}
 }
 
 void	Harl::_debug(void)

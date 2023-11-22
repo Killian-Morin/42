@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:34:03 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 11:54:01 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:13:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int main()
+int main(void)
 {
 	{
 		Weapon	club = Weapon("crude spiked club");

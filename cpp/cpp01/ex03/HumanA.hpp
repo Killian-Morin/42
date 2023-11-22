@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:23 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 10:27:45 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:17:20 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 #include "Weapon.hpp"
 
+//No default constructor since we have a reference attribut
+//this means that we need to init it in the constructor
 class HumanA
 {
 	public:

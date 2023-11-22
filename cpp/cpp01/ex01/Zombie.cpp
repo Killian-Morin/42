@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:17:03 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/20 15:52:11 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 13:56:18 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	Zombie::setName(std::string name)
 }
 
 // default constructor
+//since this->name has not yet been defined the var prints nothing (but the line still work)
 Zombie::Zombie()
 {
+	std::cout << CYAN << "Zombie " << this->_name << "has been created" << WHITE << std::endl;
 }

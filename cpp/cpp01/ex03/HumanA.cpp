@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 10:28:59 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:04:09 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ HumanA::~HumanA()
 
 void	HumanA::attack(void)
 {
-	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
+	std::cout << GREEN << this->_name << " attacks with their " << this->_weapon.getType() << WHITE << std::endl;
 }

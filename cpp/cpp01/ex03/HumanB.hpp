@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 11:53:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:18:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 
 #include "Weapon.hpp"
 
-#define RED "\033[31m"
-#define WHITE "\033[37m"
-
+//No default constructor even though it doesn't have a reference attribut
+//since I didn't create a setter for the name attribut
 class HumanB
 {
 	public:

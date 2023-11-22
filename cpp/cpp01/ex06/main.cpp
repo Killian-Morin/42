@@ -5,22 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 11:03:49 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 13:47:55 by kmorin           ###   ########.fr       */
+/*   Created: 2023/11/22 11:08:21 by kmorin            #+#    #+#             */
+/*   Updated: 2023/11/22 11:37:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
 int	main(void)
 {
-	Zombie	*tmp = newZombie("Allocated");
+	Harl		harl;
+	std::string	input;
 
-	tmp->announce();
+	while (1)
+	{
+		std::cout << "Enter a level of complaint > ";
+		std::cin >> input;
 
-	randomChump("random");
+		harl.exitHandler(input);
 
-	delete tmp;
+		harl.complain(input);
+
+		std::cin.clear();
+		std::cin.ignore();
+	}
 
 	return (0);
 }

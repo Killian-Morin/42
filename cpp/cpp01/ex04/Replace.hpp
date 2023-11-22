@@ -6,9 +6,13 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:21 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 14:47:39 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:23:08 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
+#ifndef REPLACE_HPP
+# define REPLACE_HPP
 
 #include <string>
 #include <iostream>
@@ -19,6 +23,7 @@
 #define BLUE "\e[0;34m"
 #define WHITE "\033[37m"
 
+//No default constructor since I didn't create a setter for the ≠ attributs
 class Replace
 {
 	public:
@@ -33,3 +38,5 @@ class Replace
 		std::string	_s1;
 		std::string	_s2;
 };
+
+#endif
