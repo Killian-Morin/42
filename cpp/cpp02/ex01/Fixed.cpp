@@ -6,16 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:45:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/23 16:45:59 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/27 16:30:34 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Fixed.hpp"
 
-const int Fixed::_bits = 8;
-
-Fixed::Fixed() : _value(0)
+Fixed::Fixed() : _fixedPointValue(0)
 {
 	std::cout << GREEN << "Default constructor called" << WHITE << std::endl;
 }
@@ -29,28 +27,54 @@ Fixed::Fixed(const Fixed& other)
 {
 	std::cout << BLUE << "Copy constructor called" << WHITE << std::endl;
 
-	this->_value = other.getRawBits();
+	this->_fixedPointValue = other.getRawBits();
 }
 
-Fixed& Fixed::operator=(Fixed& rhs)
+Fixed& Fixed::operator=(const Fixed& rhs)
 {
 	std::cout << CYAN << "Copy assignment operator called" << WHITE << std::endl;
 
-	this->_value = rhs.getRawBits();
+	this->_fixedPointValue = rhs.getRawBits();
 
 	return *this;
 }
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << MAGENTA << "getRawBits member function called" << WHITE << std::endl;
+	// std::cout << MAGENTA << "getRawBits member function called" << WHITE << std::endl;
 
-	return this->_value;
+	return this->_fixedPointValue;
 }
 
-void	Fixed::setRawBits(int const raw)
+void	Fixed::setRawBits(const int raw)
 {
-	std::cout << MAGENTA << "setRawBits member function called" << WHITE << std::endl;
+	// std::cout << MAGENTA << "setRawBits member function called" << WHITE << std::endl;
 
-	this->_value = raw;
+	this->_fixedPointValue = raw;
+}
+
+Fixed::Fixed(const int n) : _fixedPointValue(n << _fractionalBits)
+{
+	std::cout << YELLOW << "Int constructor called" << WHITE << std::endl;
+}
+
+Fixed::Fixed(const float n) : _fixedPointValue(std::roundf(n * (1 << _fractionalBits)))
+{
+	std::cout << YELLOW << "Float constructor called" << WHITE << std::endl;
+}
+
+int	Fixed::toInt(void) const
+{
+	return this->getRawBits() >> _fractionalBits;
+}
+
+float	Fixed::toFloat(void) const
+{
+	return std::roundf(this->getRawBits()) / (1 << _fractionalBits);
+}
+
+std::ostream&	operator<<(std::ostream& o, Fixed const& instance)
+{
+	o << instance.toFloat();
+	return o;
 }
