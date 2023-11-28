@@ -6,10 +6,9 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:45:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/27 16:30:34 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:42:29 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "Fixed.hpp"
 
@@ -34,9 +33,10 @@ Fixed& Fixed::operator=(const Fixed& rhs)
 {
 	std::cout << CYAN << "Copy assignment operator called" << WHITE << std::endl;
 
-	this->_fixedPointValue = rhs.getRawBits();
+	if (this != &rhs)
+		this->_fixedPointValue = rhs.getRawBits();
 
-	return *this;
+	return (*this);
 }
 
 int	Fixed::getRawBits(void) const
@@ -65,16 +65,16 @@ Fixed::Fixed(const float n) : _fixedPointValue(std::roundf(n * (1 << _fractional
 
 int	Fixed::toInt(void) const
 {
-	return this->getRawBits() >> _fractionalBits;
+	return (this->getRawBits() >> _fractionalBits);
 }
 
 float	Fixed::toFloat(void) const
 {
-	return std::roundf(this->getRawBits()) / (1 << _fractionalBits);
+	return (std::roundf(this->getRawBits()) / (1 << _fractionalBits));
 }
 
 std::ostream&	operator<<(std::ostream& o, Fixed const& instance)
 {
 	o << instance.toFloat();
-	return o;
+	return (o);
 }
