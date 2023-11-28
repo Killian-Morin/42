@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:23:47 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/28 16:42:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/28 17:57:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ bool	bsp(Point const a, Point const b, Point const c, Point const p)
 	Fixed	a3 = abs(area(b, c, p));
 	Fixed	total = abs(area(a, b, c));
 
-	return (total == a1 + a2 + a3);
+	if (total == a1 + a2 + a3)
+		return (true);
+	else if (a1 == 0 || a2 == 0 || a3 == 0)
+		std::cout << YELLOW << "The point is on the edge or on one of the summit of the triangle." << std::endl;
+	return (false);
 }
 
 /*
