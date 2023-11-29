@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:23:56 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/28 13:55:14 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/29 14:05:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ Point::Point(const float xValue, const float yValue) : _x(xValue), _y(yValue)
 	// std::cout << BLUE << "Constructor with parameters called" << WHITE << std::endl;
 }
 
-const Fixed&	Point::getX() const
+Fixed const	Point::getX() const
 {
-	return (_x);
+	return (this->_x);
 }
 
-const Fixed&	Point::getY() const
+Fixed const	Point::getY() const
 {
-	return (_y);
+	return (this->_y);
 }

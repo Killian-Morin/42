@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:34:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/27 11:34:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:35:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ class	Fixed {
 		void	setRawBits(int const raw);
 
 	private:
-		int					_value;
-		static const int	_bits;
+		int					_fixedPointValue;
+		static const int	_fractionalBits;
 };
 
 #endif

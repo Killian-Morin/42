@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 08:37:15 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/28 14:56:56 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:56:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ int main(void)
 	if (a.operator>(b))
 		std::cout << "a is greater than b (true)" << std::endl;
 	else
-		std::cout << "b is greater than b (false)" << std::endl;
+		std::cout << "b is greater than a (false)" << std::endl;
 	if (a.operator<(b) == true)
 		std::cout << "a is smaller than b (true)" << std::endl;
 	else
-		std::cout << "b is smaller than b (false)" << std::endl;
+		std::cout << "b is smaller than a (false)" << std::endl;
 	if (a.operator>=(b))
 		std::cout << "a is greater or equal than b (true)" << std::endl;
 	else
-		std::cout << "b is greater or equal than b (false)" << std::endl;
+		std::cout << "b is greater or equal than a (false)" << std::endl;
 	if (a.operator<=(b) == true)
 		std::cout << "a is smaller or equal than b (true)" << std::endl;
 	else
-		std::cout << "b is smaller or equal than b (false)" << std::endl;
+		std::cout << "b is smaller or equal than a (false)" << std::endl;
 	if (a.operator==(b))
 		std::cout << "a is equal to b (true)" << std::endl;
 	else
@@ -43,7 +43,7 @@ int main(void)
 	if (a.operator!=(b) == true)
 		std::cout << "a is different than b (true)" << std::endl << WHITE << std::endl;
 	else
-		std::cout << "b is not different than b (false)" << std::endl << WHITE << std::endl;
+		std::cout << "b is not different than a (false)" << std::endl << WHITE << std::endl;
 
 	Fixed		c(8);
 	Fixed const	d(12);
@@ -76,7 +76,7 @@ int main(void)
 	Fixed	g(12);
 	Fixed	h(32);
 	std::cout << GREEN << "MIN AND MAX:" << std::endl;
-	std::cout << "f: " << g << std::endl;
+	std::cout << "g: " << g << std::endl;
 	std::cout << "h: " << h << std::endl;
 	std::cout << Fixed::max(g, h) << std::endl;
 	std::cout << Fixed::min(g, h) << std::endl << std::endl;
