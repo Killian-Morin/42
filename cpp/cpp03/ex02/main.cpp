@@ -6,44 +6,26 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 12:35:06 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:20:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	bob("bob");
-	ClapTrap	joe("joe");
+	FragTrap	lee("lee");
 	std::cout << std::endl;
 
-	bob.attack("joe");
-	joe.takeDamage(bob.getAttackDamage());
+	lee.highFivesGuys();
 
-	// ClapTrap	rien;
+	// ScavTrap	chad("chad");
 	// std::cout << std::endl;
 
-
-	// rien.attack("joe");
-	// joe.takeDamage(10);
-
-	// joe.beRepaired(2);
-
-	// rien.setName("rien");
-
-	// rien.attack("joe");
-	// joe.takeDamage(1);
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.beRepaired(1);
-	// rien.attack("joe");
+	// ClapTrap	steve("steve");
+	// std::cout << std::endl;
 
 	return (0);
 }

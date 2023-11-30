@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:56 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 13:38:57 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/30 15:00:29 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,16 @@
 #define BLUE "\e[0;34m"
 #define MAGENTA "\e[0;35m"
 #define CYAN "\e[0;36m"
-#define WHITE "\e[37m"
+#define WHITE "\e[0;37m"
+
+#define YELLOWBOLD "\e[1;33m"
+
+#define YELLOWBACK "\e[43m"
+#define CYANBACK "\e[46m"
+#define WHITEBACK "\e[47m"
+
+#define CYANULINE "\e[4;36m"
+#define WHITEULINE "\e[4;37m"
 
 #define COLOR(text, color) color << text << RESET
 
@@ -49,7 +58,7 @@ class ClapTrap
 
 		void			printStatus(void);
 
-	private:
+	protected:
 		unsigned int	_hitPoints;
 		unsigned int	_energyPoints;
 		unsigned int	_attackDamage;

@@ -6,44 +6,35 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 12:35:06 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/11/30 15:42:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	bob("bob");
-	ClapTrap	joe("joe");
+	DiamondTrap	empty;
 	std::cout << std::endl;
+	empty.whoAmI();
+	empty.attack("moi");
 
-	bob.attack("joe");
-	joe.takeDamage(bob.getAttackDamage());
-
-	// ClapTrap	rien;
+	// DiamondTrap	joe("joe");
 	// std::cout << std::endl;
+	// joe.whoAmI();
 
+	// DiamondTrap	duplicate(joe);
+	// std::cout << std::endl;
+	// duplicate.whoAmI();
 
-	// rien.attack("joe");
-	// joe.takeDamage(10);
-
-	// joe.beRepaired(2);
-
-	// rien.setName("rien");
-
-	// rien.attack("joe");
-	// joe.takeDamage(1);
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.beRepaired(1);
-	// rien.attack("joe");
+	// DiamondTrap	copy;
+	// std::cout << std::endl;
+	// copy = joe;
+	// std::cout << std::endl;
+	// copy.whoAmI();
 
 	return (0);
 }
