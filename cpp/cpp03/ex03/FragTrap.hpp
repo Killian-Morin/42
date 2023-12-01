@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:40:53 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 14:51:03 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:24:04 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class FragTrap : virtual public ClapTrap
 		FragTrap& operator=(const FragTrap& rhs);
 
 		FragTrap(std::string name);
-
-		void	attack(const std::string& target);
 
 		void	highFivesGuys(void);
 

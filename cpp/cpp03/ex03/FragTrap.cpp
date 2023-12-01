@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:40:47 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 14:15:02 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:24:10 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,30 +59,6 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	this->_attackDamage = 30;
 	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
 	std::cout << COLOR(" name initializer constructor", BLUE) << std::endl;
-}
-
-void	FragTrap::attack(const std::string& target)
-{
-	if (this->_hitPoints == 0)
-	{
-		std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-		std::cout << COLOR(" is destroyed (no more hit points). He can't do any action.", YELLOW) << std::endl;
-		this->printStatus();
-		return ;
-	}
-	if (this->_energyPoints > 0)
-	{
-		this->_energyPoints -= 1;
-		std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-		std::cout << COLOR(" attacks ", YELLOW) << COLOR(target, YELLOWBACK);
-		std::cout << YELLOW << ", causing " << this->_attackDamage << " points of damage!" << WHITE << std::endl;
-	}
-	else
-	{
-		std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-		std::cout << COLOR(" has no more energy points left. He can't do any action.", YELLOW) << std::endl;
-	}
-	this->printStatus();
 }
 
 void	FragTrap::highFivesGuys(void)

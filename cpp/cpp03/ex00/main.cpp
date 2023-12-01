@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 12:35:06 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:10:14 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(void)
 	// ClapTrap	rien;
 	// std::cout << std::endl;
 
-
 	// rien.attack("joe");
 	// joe.takeDamage(10);
 
@@ -33,7 +32,6 @@ int	main(void)
 	// rien.setName("rien");
 
 	// rien.attack("joe");
-	// joe.takeDamage(1);
 	// rien.attack("joe");
 	// rien.attack("joe");
 	// rien.attack("joe");
@@ -42,7 +40,6 @@ int	main(void)
 	// rien.attack("joe");
 	// rien.attack("joe");
 	// rien.attack("joe");
-	// rien.beRepaired(1);
 	// rien.attack("joe");
 
 	return (0);

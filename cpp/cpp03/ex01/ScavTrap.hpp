@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:34:11 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 14:06:27 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:13:38 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class ScavTrap : public ClapTrap
 		ScavTrap(std::string name);
 
 		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 
 		void	guardGate(void);
 

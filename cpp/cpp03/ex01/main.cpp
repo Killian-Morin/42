@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 13:33:08 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:18:03 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int	main(void)
 	bob.attack("joe");
 	joe.takeDamage(bob.getAttackDamage());
 
-	joe.attack("bob");
+	// bob.takeDamage(1);
+	// bob.beRepaired(1);
 
-	bob.guardGate();
-	bob.guardGate();
+	// joe.attack("bob");
+
+	// bob.guardGate();
+	// bob.guardGate();
 
 	// ScavTrap	empty;
 	// empty.printStatus();

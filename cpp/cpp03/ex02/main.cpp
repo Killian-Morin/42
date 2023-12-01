@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 14:20:41 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:22:02 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 
 int	main(void)
 {
-	FragTrap	lee("lee");
+	FragTrap	bob("bob");
 	std::cout << std::endl;
 
-	lee.highFivesGuys();
+	bob.highFivesGuys();
 
-	// ScavTrap	chad("chad");
+	// ScavTrap	joe("joe");
 	// std::cout << std::endl;
 
-	// ClapTrap	steve("steve");
+	// ClapTrap	abc("abc");
 	// std::cout << std::endl;
 
 	return (0);

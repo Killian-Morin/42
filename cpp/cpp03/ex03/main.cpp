@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/30 15:42:41 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 13:30:20 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ int	main(void)
 	DiamondTrap	empty;
 	std::cout << std::endl;
 	empty.whoAmI();
-	empty.attack("moi");
+	// empty.attack("moi");
+	// empty.beRepaired(1);
+	// empty.takeDamage(1);
 
 	// DiamondTrap	joe("joe");
 	// std::cout << std::endl;
