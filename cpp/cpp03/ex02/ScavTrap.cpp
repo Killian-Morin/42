@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:34:03 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 13:18:49 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:35:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,4 @@ void	ScavTrap::printStatus(void)
 		std::cout << COLOR("normal mode.", WHITEULINE);
 	}
 	std::cout << std::endl << std::endl;
-}
-
-void	ScavTrap::takeDamage(unsigned int amount)
-{
-	ClapTrap::takeDamage(amount);
-}
-
-void	ScavTrap::beRepaired(unsigned int amount)
-{
-	ClapTrap::beRepaired(amount);
 }

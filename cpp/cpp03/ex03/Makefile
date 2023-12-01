@@ -11,7 +11,7 @@ WHITE = \033[0;97m
 SRC_FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
 OBJ_DIR = ./objs/
-OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:.cpp=.o}}
+OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:%.cpp=%.o}}
 
 DIR_DUP = @mkdir -p ${@D}
 

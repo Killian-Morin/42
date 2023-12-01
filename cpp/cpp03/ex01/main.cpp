@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 13:18:03 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:34:25 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(void)
 	bob.attack("joe");
 	joe.takeDamage(bob.getAttackDamage());
 
-	// bob.takeDamage(1);
-	// bob.beRepaired(1);
+	bob.takeDamage(1);
+	bob.beRepaired(1);
 
 	// joe.attack("bob");
 
