@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:58 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/04 14:04:15 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 13:53:25 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,49 @@
 #define CYAN "\e[0;36m"
 #define WHITE "\e[0;37m"
 
+#define BLACKBOLD "\e[46m"
+
 #define COLOR(text, color) color << text << RESET
+
+#define MSG_SEP "************************************"
+#define SEP() std::cout << COLOR(MSG_SEP, BLACKBOLD) << std::endl;
+
+class Animal {
+
+	public:
+		Animal(void);
+		Animal(const Animal& src);
+		Animal& operator=(const Animal& rhs);
+		virtual ~Animal(void);
+
+		virtual void	makeSound(void) const;
+
+		std::string	getType(void) const;
+
+	protected:
+		std::string	_type;
+
+};
+
+/* ************************************************************************** */
+/*                                                                            */
+/* ************************************************************************** */
+
+class WrongAnimal {
+
+	public:
+		WrongAnimal(void);
+		WrongAnimal(const WrongAnimal& src);
+		WrongAnimal& operator=(const WrongAnimal& rhs);
+		virtual ~WrongAnimal(void);
+
+		void	makeSound(void) const;
+
+		std::string	getType(void) const;
+
+	protected:
+		std::string	_type;
+
+};
 
 #endif

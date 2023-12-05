@@ -6,11 +6,13 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/04 14:04:23 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:04:35 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 int main()
 {
@@ -18,12 +20,40 @@ int main()
 	const Animal *j = new Dog();
 	const Animal *i = new Cat();
 
+	std::cout << std::endl;
+
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
+
+	std::cout << std::endl;
 
 	i->makeSound(); // will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
+
+	std::cout << std::endl;
+
+	delete meta;
+	delete j;
+	delete i;
+
+	/*const WrongAnimal* k = new WrongAnimal();
+	const WrongAnimal* l = new WrongCat();
+
+	std::cout << std::endl;
+
+	std::cout << k->getType() << " " << std::endl;
+	std::cout << l->getType() << " " << std::endl;
+
+	std::cout << std::endl;
+
+	k->makeSound();
+	l->makeSound();
+
+	std::cout << std::endl;
+
+	delete k;
+	delete l;*/
 
 	return 0;
 }

@@ -1,7 +1,7 @@
 NAME = Zoo
 
 CC = g++
-FLAGS = -Wall -Werror -Wextra -std=c++98
+FLAGS = -Wall -Werror -Wextra -std=c++98 #-g3 -fsanitize=address
 RM = /bin/rm -rf
 
 BLUE = \033[0;34m
@@ -35,4 +35,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+leaks: all
+	leaks -atExit -- ./${NAME}
+
+.PHONY: all clean fclean re leaks
