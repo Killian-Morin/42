@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:04:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/20 15:52:21 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:27:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Zombie::Zombie(std::string tmp) : _name(tmp)
 	std::cout << CYAN << "Zombie " << this->_name << " has been created" << WHITE << std::endl;
 }
 
-Zombie::~Zombie()
+Zombie::~Zombie(void)
 {
 	std::cout << RED << "Zombie " << this->_name << " has been destroyed" << WHITE << std::endl;
 }
@@ -28,6 +28,7 @@ void	Zombie::announce(void)
 }
 
 // default constructor
-Zombie::Zombie()
+Zombie::Zombie(void)
 {
+	std::cout << COLOR("Default constructor called", GREEN) << WHITE << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:47 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:02:59 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:33:58 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 
+#define RESET "\e[0m"
 #define RED "\033[31m"
 #define GREEN "\e[0;32m"
 #define YELLOW "\e[0;33m"
@@ -25,11 +26,13 @@
 #define CYAN "\e[0;36m"
 #define WHITE "\033[37m"
 
+#define COLOR(text, color) color << text << RESET
+
 class Weapon
 {
 	public:
 		Weapon(std::string type);
-		~Weapon();
+		~Weapon(void);
 
 		const std::string&	getType(void);
 		void				setType(std::string newType);

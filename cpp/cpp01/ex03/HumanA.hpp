@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:23 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:17:20 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:32:24 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanA
 {
 	public:
 		HumanA(std::string name, Weapon& weapon);
-		~HumanA();
+		~HumanA(void);
 
 		void	attack(void);
 

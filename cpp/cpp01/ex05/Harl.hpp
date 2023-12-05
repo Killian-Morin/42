@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:31:13 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:29:24 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:37:06 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <iostream>
 
+#define RESET "\e[0m"
 #define RED "\033[31m"
 #define GREEN "\e[0;32m"
 #define BLUE "\e[0;34m"
@@ -24,11 +25,13 @@
 #define CYAN "\e[0;36m"
 #define WHITE "\033[37m"
 
+#define COLOR(text, color) color << text << RESET
+
 class Harl
 {
 	public:
-		Harl();
-		~Harl();
+		Harl(void);
+		~Harl(void);
 
 		void	exitHandler(std::string level) const;
 

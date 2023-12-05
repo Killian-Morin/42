@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:21:54 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:39:26 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ Replace::Replace(std::string file, std::string s1, std::string s2) : _infile(fil
 	this->_outfile = _infile + ".replace";
 }
 
-Replace::~Replace()
+Replace::~Replace(void)
 {
+	// std::cout << COLOR("Default destructor called", RED) << std::endl;
 }
 
 void	Replace::replace(void)

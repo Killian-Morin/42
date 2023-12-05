@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:15:30 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:34:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ HumanB::HumanB(std::string name) : _name(name)
 	this->_weapon = NULL;
 }
 
-HumanB::~HumanB()
+HumanB::~HumanB(void)
 {
-	// std::cout << "HumanB destructor called" << std::endl;
+	// std::cout << COLOR("HumanB Default destructor called", RED) << WHITE << std::endl;
 }
 
 void	HumanB::attack(void)

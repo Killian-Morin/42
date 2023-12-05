@@ -6,20 +6,20 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:07:53 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:33:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:38:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl()
+Harl::Harl(void)
 {
-	// std::cout << "Harl default constructor" << std::endl << std::endl;
+	// std::cout << COLOR("Harl Default constructor called", GREEN) << std::endl;
 }
 
-Harl::~Harl()
+Harl::~Harl(void)
 {
-	// std::cout << std::endl << "Harl default destructor" << std::endl;
+	// std::cout << COLOR("Harl Default destructor called", RED) << std::endl;
 }
 
 void	Harl::exitHandler(std::string level) const

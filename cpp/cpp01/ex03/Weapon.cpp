@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:37 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/21 10:20:07 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:34:49 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ Weapon::Weapon(std::string type) : _type(type)
 {
 }
 
-Weapon::~Weapon()
+Weapon::~Weapon(void)
 {
-	// std::cout << "Weapon destructor is called" << std::endl;
+	// std::cout << COLOR("Weapon Default destructor called", RED) << WHITE << std::endl;
 }
 
 const std::string& Weapon::getType(void)

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:18:30 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:33:14 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanB
 {
 	public:
 		HumanB(std::string name);
-		~HumanB();
+		~HumanB(void);
 
 		void	attack(void);
 
