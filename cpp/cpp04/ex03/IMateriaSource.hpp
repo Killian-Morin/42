@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:18:54 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 16:19:27 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/06 10:56:49 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 #include "AMateria.hpp"
 
-class IMateriaSource
-{
+class IMateriaSource {
+
 	public:
 		virtual ~IMateriaSource() {}
 		virtual void learnMateria(AMateria*) = 0;

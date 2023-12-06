@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:17:30 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 16:18:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/06 15:13:55 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 #include "AMateria.hpp"
 
-class ICharacter
-{
+class	AMateria;
+
+class ICharacter {
+
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;

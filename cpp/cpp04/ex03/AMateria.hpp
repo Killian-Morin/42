@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:36 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 16:57:32 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:13:49 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@
 
 #define CYANBACKG "\e[46m"
 
+#define MAGENTAULINE "\e[4;35m"
+
 #define COLOR(text, color) color << text << RESET
 
-class AMateria
-{
+class ICharacter;
+
+class AMateria {
+
 	public:
 		AMateria(void);
 		AMateria(const AMateria &src);
@@ -41,7 +45,7 @@ class AMateria
 		virtual ~AMateria(void);
 
 		std::string const &	getType() const;
-		virtual AMateria*	clone() const = 0;
+		virtual AMateria*	clone() const = 0;//not implemented since virtual pure function
 		virtual void		use(ICharacter& target);
 
 	protected:

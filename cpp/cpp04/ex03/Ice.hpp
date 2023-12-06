@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:26:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 16:33:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/06 11:30:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class Ice : public AMateria {
 		Ice(void);
 		Ice(const Ice & src);
 		Ice&	operator=(Ice const & rhs);
-		virtual ~Ice();
+		virtual ~Ice(void);
 
-		AMateria*	clone() const;
-		void		use(ICharacter& target);
+		virtual AMateria*	clone() const;
+		virtual void		use(ICharacter& target);
 };
 
 #endif
