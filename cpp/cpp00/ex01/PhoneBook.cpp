@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:46:05 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/07 15:05:27 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:19:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,21 +153,21 @@ void	PhoneBook::search(void) const
 		std::cout << "|" << std::setw(10) << i + 1;
 		std::string	value;
 		value = this->_contact[i].get_FirstName();
-		if (value.size() >= 10)
+		if (value.size() > 10)
 		{
 			value.erase(9, value.npos);
 			value.replace(9, 1, 1, '.');
 		}
 		std::cout << "|" << std::setw(10) << value;
 		value = this->_contact[i].get_LastName();
-		if (value.size() >= 10)
+		if (value.size() > 10)
 		{
 			value.erase(9, value.npos);
 			value.replace(9, 1, 1, '.');
 		}
 		std::cout << "|" << std::setw(10) << value;
 		value = this->_contact[i].get_Nickname();
-		if (value.size() >= 10)
+		if (value.size() > 10)
 		{
 			value.erase(9, value.npos);
 			value.replace(9, 1, 1, '.');
