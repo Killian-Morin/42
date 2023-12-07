@@ -6,11 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:24 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:11:50 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:39:10 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
+
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
 
 Dog::Dog(void) : AAnimal()
 {
@@ -33,7 +37,7 @@ Dog&	Dog::operator=(const Dog& rhs)
 	if (this != &rhs)
 	{
 		this->_type = rhs._type;
-		this->_brain = rhs._brain;
+		this->_brain = new Brain(*rhs._brain);
 	}
 	std::cout << COLOR("Dog 🐶", YELLOW);
 	std::cout << COLOR(" assignement operator called", BLUE) << std::endl;
@@ -47,10 +51,14 @@ Dog::~Dog(void)
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
 
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
+
 void	Dog::makeSound(void) const
 {
 	std::cout << COLOR("Dog 🐶", YELLOW);
-	std::cout << COLOR(" makes a sound: bark 🐶", MAGENTA) << std::endl;
+	std::cout << COLOR(" makes a sound: Woof!", MAGENTA) << std::endl;
 }
 
 std::string	Dog::getIdea(int index) const

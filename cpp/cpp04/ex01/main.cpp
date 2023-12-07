@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:06:39 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:47:52 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-int main()
+int main(void)
 {
 	const Animal* j = new Dog();
 	const Animal* k = new Cat();
@@ -55,7 +55,9 @@ int main()
 		delete array[i];
 	}*/
 
-	/*Cat basic;
+	/*
+	//Test to see if it's a deep copy or shallow copy
+	Cat basic;
 	basic.setIdea("oui", 1);
 	std::cout << std::endl;
 
@@ -69,11 +71,13 @@ int main()
 	}
 
 	//We can still manipulate the content of the brain of basic
-	std::cout << std::endl << "basic.getIdea -> " << basic.getIdea(1) << std::endl << std::endl;
+	std::cout << std::endl << "basic.getIdea -> " << basic.getIdea(1) << std::endl << std::endl;*/
 
-	//Set of destructors call for basic after this line, since we will be out of the main.*/
+	//Set of destructors call for basic after this line, since we will be out of the main.
 
-	/*Cat *catPTR = new Cat();
+	/*
+	//Another test to see if it's a deep copy or shallow copy but I prefer the one above
+	Cat *catPTR = new Cat();
 	catPTR->setIdea("myCatIdea", 0);
 	std::cout << "catPTR idea: " << catPTR->getIdea(0) << std::endl;
 

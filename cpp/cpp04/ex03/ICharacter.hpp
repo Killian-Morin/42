@@ -6,13 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:17:30 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/06 15:13:55 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 10:04:59 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
+
+#include <string>
 
 #include "AMateria.hpp"
 

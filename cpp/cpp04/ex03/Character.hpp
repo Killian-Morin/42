@@ -6,13 +6,16 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:38:22 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/06 16:41:34 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:52:06 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
+
+#include <iostream>
+#include <string>
 
 #include "ICharacter.hpp"
 
@@ -21,14 +24,14 @@ class Character : public ICharacter {
 	public:
 		Character(void);
 		Character(std::string const& name);
-		Character(const Character& src);
-		Character&	operator=(const Character& rhs);
-		~Character(void);
+		Character(Character const& src);
+		Character&	operator=(Character const& rhs);
+		virtual ~Character(void);
 
-		std::string const&	getName(void) const;
-		virtual void		equip(AMateria* m);
-		virtual void		unequip(int idx);
-		virtual void		use(int idx, ICharacter& target);
+		virtual std::string const&	getName(void) const;
+		virtual void				equip(AMateria* m);
+		virtual void				unequip(int idx);
+		virtual void				use(int idx, ICharacter& target);
 
 	private:
 		std::string	_name;

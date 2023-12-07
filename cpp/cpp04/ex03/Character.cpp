@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:42:36 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/06 16:52:35 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 15:42:21 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,53 @@ Character::Character(std::string const& name) : _name(name), _idxInventory(0), _
 	std::cout << COLOR("Character parametric constructor called.", BLUE) << std::endl;
 }
 
-Character::Character(const Character& src)
+Character::Character(Character const& src)
 {
 	this->_name = src._name;
 	for (int i = 0; i < 4; i++)
-		this->_inventory[i] = src._inventory[i];
+	{
+		delete this->_inventory[i];
+		if (src._inventory[i] != NULL)
+			this->_inventory[i] = src._inventory[i]->clone();
+		else
+			this->_inventory[i] = NULL;
+	}
 	this->_idxInventory = src._idxInventory;
 	for (int i = 0; i < 4; i++)
-		this->_unequipedInventory[i] = src._unequipedInventory[i];
+	{
+		delete this->_inventory[i];
+		if (src._unequipedInventory[i] != NULL)
+			this->_unequipedInventory[i] = src._unequipedInventory[i]->clone();
+		else
+			this->_unequipedInventory[i] = NULL;
+	}
 	this->_idxUnequiped = src._idxUnequiped;
 
 	std::cout << COLOR("Character copy constructor called.", BLUE) << std::endl;
 }
 
-Character&	Character::operator=(const Character& rhs)
+Character&	Character::operator=(Character const& rhs)
 {
 	if (this != &rhs)
 	{
 		this->_name = rhs._name;
 		for (int i = 0; i < 4; i++)
-			this->_inventory[i] = rhs._inventory[i];
+		{
+			delete this->_inventory[i];
+			if (rhs._inventory[i] != NULL)
+				this->_inventory[i] = rhs._inventory[i]->clone();
+			else
+				this->_inventory[i] = NULL;
+		}
 		this->_idxInventory = rhs._idxInventory;
 		for (int i = 0; i < 4; i++)
-			this->_unequipedInventory[i] = rhs._unequipedInventory[i];
+		{
+			delete this->_unequipedInventory[i];
+			if (rhs._unequipedInventory[i] != NULL)
+				this->_unequipedInventory[i] = rhs._unequipedInventory[i]->clone();
+			else
+				this->_unequipedInventory[i] = NULL;
+		}
 		this->_idxUnequiped = rhs._idxUnequiped;
 	}
 
@@ -95,77 +119,83 @@ void	Character::equip(AMateria* m)
 	{
 		std::cout << "❌ " << COLOR(this->_name, MAGENTA) << \
 			COLOR("'s inventory is full, couldn't equip this Materia.", RED) << std::endl;
+		delete m;
 	}
 	else
 	{
-		this->_idxInventory++;
-		// delete this->_inventory[i]; //check for PH
 		this->_inventory[this->_idxInventory] = m;
+		this->_idxInventory++;
 		std::cout << "🎉 " << COLOR(this->_name, MAGENTA) << \
-			COLOR(": equiped the Materia of type ", YELLOW) << COLOR(m->getType(), MAGENTA) << "." << std::endl;
+			COLOR(": equiped the Materia of type ", YELLOW) << \
+			COLOR(this->_inventory[this->_idxInventory - 1]->getType(), MAGENTA) << "." << std::endl;
 	}
 }
 
 void	Character::unequip(int idx)
 {
-	if (idx < 0 || idx > 4)
+	if (this->_inventory[idx] == NULL)
 	{
 		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
-		if (this->_inventory[idx] == NULL)
-			std::cout << COLOR(": no Materia equiped at this index of the inventory, range is 0 - " \
-				<< this->_idxInventory << ".", RED) << std::endl;
-		else
-			std::cout << COLOR(": the index is not within range of the inventory (0 - 4).", RED) << std::endl;
+		std::cout << COLOR(": no Materia equiped at this index of the inventory, range is 0 - " \
+			<< this->_idxInventory << ".", RED) << std::endl;
+		return ;
 	}
-	else
+	if (idx >= 0 && idx < 4)
 	{
 		this->_idxInventory--;
 		handleUnequipedInventory(idx);
+		return ;
+	}
+	else
+	{
+		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
+		std::cout << COLOR(": the index is not within range of the inventory (0 - 3).", RED) << std::endl;
 	}
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (idx < 0 || idx > 4)
-	{
-		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
-		std::cout << COLOR(": the index is not within range of the inventory (0 - 4)." \
-		"We can't use any Materia.", RED) << std::endl;
-	}
-	if (this->_inventory[idx])
+	if (idx >= 0 && idx < 4)
 	{
 		this->_inventory[idx]->use(target);
 		std::cout << "🎉 " << COLOR(this->_name, MAGENTA) << \
 			COLOR(": uses ", YELLOW) << COLOR(this->_inventory[idx]->getType(), MAGENTA) << COLOR(".", YELLOW) << std::endl;
+		return ;
 	}
-	else
+	else if (idx >= 4)
 	{
 		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
-		std::cout << COLOR(": no Materia to use at this index of the inventory, range is 0 - " \
-		<< this->_idxInventory << ".", RED) << std::endl;
+		std::cout << COLOR(": the index is not within range of the inventory (0 - 3)." \
+			" We can't use any Materia.", RED) << std::endl;
+	}
+	else if (this->_inventory[idx] == NULL)
+	{
+		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
+		std::cout << COLOR(": no Materia to use at this index of the inventory, range is 0 - " << \
+			this->_idxInventory << ".", RED) << std::endl;
 	}
 }
 
 void	Character::handleUnequipedInventory(int idx)
 {
-	if (this->_idxUnequiped < 4)
+	if (this->_idxUnequiped == 4)
 	{
-		this->_idxUnequiped++;
-		this->_unequipedInventory[this->_idxUnequiped] = this->_inventory[idx];
+		delete this->_unequipedInventory[0];
+		for (int i = 0; i < this->_idxUnequiped - 1; i++)
+			this->_unequipedInventory[i] = this->_unequipedInventory[i + 1];
+		this->_unequipedInventory[this->_idxUnequiped - 1] = this->_inventory[idx];
 		this->_inventory[idx] = NULL;
 		std::cout << "🎉 " << COLOR(this->_name, MAGENTA) << \
 			COLOR(": unequiped the Materia ", YELLOW) << \
-			COLOR(this->_unequipedInventory[this->_idxUnequiped]->getType(), MAGENTA) << COLOR(".", YELLOW) << std::endl;
+			COLOR(this->_unequipedInventory[this->_idxUnequiped - 1]->getType(), MAGENTA) << COLOR(".", YELLOW) << std::endl;
 	}
 	else
 	{
-		delete this->_unequipedInventory[3];
-		for (int i = 2; i > 0; i--)
-			this->_unequipedInventory[i + 1] = this->_unequipedInventory[i];
-		this->_unequipedInventory[0] = this->_inventory[idx];
-		this->_inventory[idx] = NULL;
 		std::cout << "🎉 " << COLOR(this->_name, MAGENTA) << \
 			COLOR(": unequiped the Materia ", YELLOW) << \
-			COLOR(this->_unequipedInventory[0]->getType(), MAGENTA) << COLOR(".", YELLOW) << std::endl;
+			COLOR(this->_inventory[idx]->getType(), MAGENTA) << COLOR(".", YELLOW) << std::endl;
+		this->_unequipedInventory[this->_idxUnequiped] = this->_inventory[idx];
+		this->_inventory[idx] = NULL;
+		this->_idxUnequiped++;
 	}
 }

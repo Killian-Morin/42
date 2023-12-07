@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:28:45 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/06 17:18:41 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 09:55:48 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,32 @@
 
 Cure::Cure(void) : AMateria("cure")
 {
-	std::cout << COLOR("Cure default constructor called.", BLUE) << std::endl;
+	std::cout << COLOR("* ", BLUE) << COLOR("Cure", GREEN) << \
+		COLOR(": default constructor called *", BLUE) << std::endl;
 }
 
-Cure::Cure(const Cure &src)
+Cure::Cure(Cure const& src) : AMateria(src)
 {
-	(void)src;
-	std::cout << COLOR("Cure copy constructor called.", BLUE) << std::endl;
+	*this = src;
+	std::cout << COLOR("* ", BLUE) << COLOR("Cure", GREEN) << \
+		COLOR(": copy constructor called *", BLUE) << std::endl;
 }
 
-Cure& Cure::operator=(const Cure &rhs)
+Cure& Cure::operator=(Cure const& rhs)
 {
 	if (this != &rhs)
 	{
+		this->_type = rhs._type;
 	}
-	std::cout << COLOR("Cure assignation operator called.", BLUE) << std::endl;
+	std::cout << COLOR("* ", BLUE) << COLOR("Cure", GREEN) << \
+		COLOR(": assignation operator called *", BLUE) << std::endl;
 	return *this;
 }
 
 Cure::~Cure(void)
 {
-	std::cout << COLOR("Cure destructor called.", RED) << std::endl;
+	std::cout << COLOR("* ", BLUE) << COLOR("Cure", GREEN) << \
+		COLOR(": destructor called *", RED) << std::endl;
 }
 
 /* ************************************************************************** */
@@ -52,6 +57,8 @@ AMateria* Cure::clone(void) const
 
 void Cure::use(ICharacter& target)
 {
-	std::cout << COLOR(_type, MAGENTA) << COLOR(" * heals ", GREEN) << COLOR(target.getName(), MAGENTA) \
+	std::string	curType = this->_type;
+	curType[0] = toupper(curType[0]);
+	std::cout << COLOR(curType, MAGENTA) << COLOR(": * heals ", GREEN) << COLOR(target.getName(), MAGENTA) \
 		<< COLOR("'s wounds *", GREEN) << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:04:35 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 12:57:15 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-int main()
+int main(void)
 {
 	const Animal *meta = new Animal();
 	const Animal *j = new Dog();
@@ -22,8 +22,8 @@ int main()
 
 	std::cout << std::endl;
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
+	std::cout << "j is a " << j->getType() << " " << std::endl;
+	std::cout << "i is a " << i->getType() << " " << std::endl;
 
 	std::cout << std::endl;
 
@@ -42,8 +42,8 @@ int main()
 
 	std::cout << std::endl;
 
-	std::cout << k->getType() << " " << std::endl;
-	std::cout << l->getType() << " " << std::endl;
+	std::cout << "k is a " << k->getType() << " " << std::endl;
+	std::cout << "l is a " << l->getType() << " " << std::endl;
 
 	std::cout << std::endl;
 

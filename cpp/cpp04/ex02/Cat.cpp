@@ -6,11 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:18 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:12:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:38:19 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
 
 Cat::Cat(void) : AAnimal()
 {
@@ -33,7 +37,7 @@ Cat&	Cat::operator=(const Cat& rhs)
 	if (this != &rhs)
 	{
 		this->_type = rhs._type;
-		this->_brain = rhs._brain;
+		this->_brain = new Brain(*rhs._brain);
 	}
 	std::cout << COLOR("Cat 🐈", GREEN);
 	std::cout << COLOR(" assignement operator called", BLUE) << std::endl;
@@ -47,10 +51,14 @@ Cat::~Cat(void)
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
 
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
+
 void	Cat::makeSound(void) const
 {
 	std::cout << COLOR("Cat 🐈", GREEN);
-	std::cout << COLOR(" makes a sound: meow 🐈", MAGENTA) << std::endl;
+	std::cout << COLOR(" makes a sound: Meow!", MAGENTA) << std::endl;
 }
 
 std::string	Cat::getIdea(int index) const
@@ -64,7 +72,7 @@ void	Cat::setIdea(std::string idea, int index)
 }
 
 /* ************************************************************************** */
-/*                                                                            */
+/*                                 WRONG CAT                                  */
 /* ************************************************************************** */
 
 WrongCat::WrongCat(void) : WrongAAnimal()
@@ -100,5 +108,5 @@ WrongCat::~WrongCat(void)
 void	WrongCat::makeSound(void) const
 {
 	std::cout << COLOR("WrongCat 🐈", GREEN);
-	std::cout << COLOR(" makes a sound: meow 🐈", MAGENTA) << std::endl;
+	std::cout << COLOR(" makes a sound: Meow!", MAGENTA) << std::endl;
 }

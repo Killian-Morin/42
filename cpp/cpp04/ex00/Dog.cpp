@@ -6,11 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:24 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 11:13:59 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:05:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
+
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
 
 Dog::Dog(void) : Animal()
 {
@@ -42,8 +46,12 @@ Dog::~Dog(void)
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
 
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
+
 void	Dog::makeSound(void) const
 {
 	std::cout << COLOR("Dog 🐶", YELLOW);
-	std::cout << COLOR(" makes a sound: bark 🐶", MAGENTA) << std::endl;
+	std::cout << COLOR(" makes a sound: Woof!", MAGENTA) << std::endl;
 }

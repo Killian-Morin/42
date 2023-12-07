@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:58 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 13:53:25 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 12:51:48 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,7 @@
 
 #include <iostream>
 
-#define RESET "\e[0m"
-#define RED "\e[0;31m"
-#define GREEN "\e[0;32m"
-#define YELLOW "\e[0;33m"
-#define BLUE "\e[0;34m"
-#define MAGENTA "\e[0;35m"
-#define CYAN "\e[0;36m"
-#define WHITE "\e[0;37m"
-
-#define BLACKBOLD "\e[46m"
-
-#define COLOR(text, color) color << text << RESET
-
-#define MSG_SEP "************************************"
-#define SEP() std::cout << COLOR(MSG_SEP, BLACKBOLD) << std::endl;
+#include "Color.hpp"
 
 class Animal {
 

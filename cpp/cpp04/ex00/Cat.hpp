@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:21 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 11:22:27 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:53:34 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Cat : public Animal {
 		virtual ~Cat(void);
 
 		virtual void	makeSound(void) const;
+
 };
 
 /* ************************************************************************** */
@@ -40,6 +41,7 @@ class WrongCat : public WrongAnimal {
 		virtual ~WrongCat(void);
 
 		void	makeSound(void) const;
+
 };
 
 #endif

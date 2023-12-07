@@ -8,7 +8,12 @@ BLUE = \033[0;34m
 RED = \033[0;31m
 WHITE = \033[0;97m
 
-SRC_FILES = main.cpp AMateria.cpp Cure.cpp Ice.cpp Character.cpp MateriaSource.cpp
+SRC_FILES = main.cpp \
+			AMateria.cpp \
+			Cure.cpp \
+			Ice.cpp \
+			Character.cpp \
+			MateriaSource.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:%.cpp=%.o}}
@@ -35,7 +40,7 @@ fclean: clean
 
 re: fclean all
 
-leaks: all
+leaks: re
 	leaks -atExit -- ./${NAME}
 
 .PHONY: all clean fclean re leaks

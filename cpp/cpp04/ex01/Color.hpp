@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Color.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 16:26:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 10:06:13 by kmorin           ###   ########.fr       */
+/*   Created: 2023/12/07 10:01:55 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/07 12:52:47 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef CURE_HPP
-#define CURE_HPP
+#ifndef COLOR_HPP
+#define COLOR_HPP
 
-#include <string>
+#include <iostream>
 
-#include "AMateria.hpp"
-#include "IMateriaSource.hpp"
+#define RESET "\e[0m"
+#define RED "\e[0;31m"
+#define GREEN "\e[0;32m"
+#define YELLOW "\e[0;33m"
+#define BLUE "\e[0;34m"
+#define MAGENTA "\e[0;35m"
+#define CYAN "\e[0;36m"
+#define WHITE "\e[0;37m"
 
-class Cure : public AMateria {
+#define CYANBACKG "\e[46m"
 
-	public:
-		Cure(void);
-		Cure(Cure const& src);
-		Cure&	operator=(Cure const& rhs);
-		virtual ~Cure(void);
+#define YELLOWULINE "\e[4;33m"
+#define MAGENTAULINE "\e[4;35m"
 
-		virtual AMateria*	clone() const;
-		virtual void		use(ICharacter& target);
-
-};
+#define COLOR(text, color) color << text << RESET
 
 #endif

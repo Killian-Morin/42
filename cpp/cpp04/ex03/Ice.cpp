@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:28:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/06 17:19:20 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 09:56:58 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,32 @@
 
 Ice::Ice(void) : AMateria("ice")
 {
-	std::cout << COLOR("Ice default constructor called.", BLUE) << std::endl;
+	std::cout << COLOR("* ", BLUE) << COLOR("Ice", CYAN) << \
+		COLOR(": default constructor called *", BLUE) << std::endl;
 }
 
-Ice::Ice(const Ice &src)
+Ice::Ice(Ice const& src) : AMateria(src)
 {
-	(void)src;
-	std::cout << COLOR("Ice copy constructor called.", BLUE) << std::endl;
+	*this = src;
+	std::cout << COLOR("* ", BLUE) << COLOR("Ice", CYAN) << \
+		COLOR(": copy constructor called *", BLUE) << std::endl;
 }
 
-Ice& Ice::operator=(const Ice &rhs)
+Ice& Ice::operator=(Ice const& rhs)
 {
 	if (this != &rhs)
 	{
+		this->_type = rhs._type;
 	}
-	std::cout << COLOR("Ice assignation operator called.", BLUE) << std::endl;
+	std::cout << COLOR("* ", BLUE) << COLOR("Ice", CYAN) << \
+		COLOR(": assignation operator called *", BLUE) << std::endl;
 	return *this;
 }
 
 Ice::~Ice(void)
 {
-	std::cout << COLOR("Ice destructor called.", RED) << std::endl;
+	std::cout << COLOR("* ", BLUE) << COLOR("Ice", CYAN) << \
+		COLOR(": destructor called *", RED) << std::endl;
 }
 
 /* ************************************************************************** */
@@ -52,6 +57,8 @@ AMateria* Ice::clone(void) const
 
 void Ice::use(ICharacter& target)
 {
-	std::cout << COLOR(_type, MAGENTA) << COLOR(" * shoots an ice bolt at ", CYAN) << COLOR(target.getName(), MAGENTA) \
-	<< COLOR(" *", CYAN) << std::endl;
+	std::string	curType = this->_type;
+	curType[0] = toupper(curType[0]);
+	std::cout << COLOR(curType, MAGENTA) << COLOR(": * shoots an ice bolt at ", CYAN) << COLOR(target.getName(), MAGENTA) \
+		<< COLOR(" *", CYAN) << std::endl;
 }

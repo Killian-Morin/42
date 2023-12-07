@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:34:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:10:01 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:53:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "AAnimal.hpp"
 
 class Brain {
+
 	public:
 		Brain(void);
 		Brain(const Brain& src);

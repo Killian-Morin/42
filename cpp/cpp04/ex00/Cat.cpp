@@ -6,11 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:18 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 11:24:49 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:12:58 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
 
 Cat::Cat(void) : Animal()
 {
@@ -42,14 +46,18 @@ Cat::~Cat(void)
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
 
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
+
 void	Cat::makeSound(void) const
 {
 	std::cout << COLOR("Cat 🐈", GREEN);
-	std::cout << COLOR(" makes a sound: meow 🐈", MAGENTA) << std::endl;
+	std::cout << COLOR(" makes a sound: Meow!", MAGENTA) << std::endl;
 }
 
 /* ************************************************************************** */
-/*                                                                            */
+/*                                  WRONG CAT                                 */
 /* ************************************************************************** */
 
 WrongCat::WrongCat(void) : WrongAnimal()
@@ -85,5 +93,5 @@ WrongCat::~WrongCat(void)
 void	WrongCat::makeSound(void) const
 {
 	std::cout << COLOR("WrongCat 🐈", GREEN);
-	std::cout << COLOR(" makes a sound: meow 🐈", MAGENTA) << std::endl;
+	std::cout << COLOR(" makes a sound: Meow!", MAGENTA) << std::endl;
 }

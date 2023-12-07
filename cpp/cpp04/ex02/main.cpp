@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:20:31 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:48:02 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 int main()
 {
-	//const AAnimal test;
+	//Test to check if we can instantiate the AAnimal class without using a derived class
+	// const AAnimal test;
 
 	const AAnimal* j = new Dog();
 	const AAnimal* k = new Cat();
@@ -57,6 +58,8 @@ int main()
 		delete array[i];
 	}*/
 
+
+	//Test to see if it's a deep copy or shallow copy
 	/*Cat basic;
 	basic.setIdea("oui", 1);
 	std::cout << std::endl;
@@ -75,7 +78,9 @@ int main()
 
 	//Set of destructors call for basic after this line, since we will be out of the main.*/
 
-	/*Cat *catPTR = new Cat();
+	/*
+	//Another test to see if it's a deep copy or shallow copy but I prefer the one above
+	Cat *catPTR = new Cat();
 	catPTR->setIdea("myCatIdea", 0);
 	std::cout << "catPTR idea: " << catPTR->getIdea(0) << std::endl;
 

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:34 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/06 17:07:07 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:58:24 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ AMateria::AMateria(void)
 	std::cout << COLOR("AMateria default constructor called.", BLUE) << std::endl;
 }
 
-AMateria::AMateria(const AMateria &src)
+AMateria::AMateria(AMateria const& src) : _type(src._type)
 {
-	(void)src;
 	std::cout << COLOR("AMateria copy constructor called.", BLUE) << std::endl;
 }
 
@@ -32,10 +31,11 @@ AMateria::AMateria(std::string const & type) : _type(type)
 	std::cout << COLOR("AMateria parametric constructor called.", BLUE) << std::endl;
 }
 
-AMateria& AMateria::operator=(const AMateria &rhs)
+AMateria& AMateria::operator=(AMateria const& rhs)
 {
 	if (this != &rhs)
 	{
+		this->_type = rhs._type;
 	}
 	std::cout << COLOR("AMateria assignation operator called.", BLUE) << std::endl;
 	return *this;

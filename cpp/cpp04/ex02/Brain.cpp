@@ -6,11 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:34:08 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 14:19:25 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:35:15 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
+
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
 
 Brain::Brain(void)
 {
@@ -49,6 +53,10 @@ Brain::~Brain(void)
 	std::cout << COLOR("Brain 🧠", WHITE);
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
+
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
 
 std::string	Brain::getIdea(int index) const
 {

@@ -6,11 +6,15 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:55 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 11:23:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:12:11 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
 
 Animal::Animal(void) : _type("Animal_default")
 {
@@ -18,9 +22,8 @@ Animal::Animal(void) : _type("Animal_default")
 	std::cout << COLOR(" Default constructor ", BLUE) << std::endl;
 }
 
-Animal::Animal(const Animal& src)
+Animal::Animal(const Animal& src) : _type(src._type)
 {
-	this->_type = src._type;
 	std::cout << COLOR("Animal", CYAN);
 	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
 }
@@ -42,6 +45,10 @@ Animal::~Animal(void)
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
 
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
+
 std::string	Animal::getType(void) const
 {
 	return (this->_type);
@@ -53,7 +60,7 @@ void	Animal::makeSound(void) const
 }
 
 /* ************************************************************************** */
-/*                                                                            */
+/*                                WRONG ANIMAL                                */
 /* ************************************************************************** */
 
 WrongAnimal::WrongAnimal(void) : _type("WrongAnimal_default")
@@ -62,9 +69,8 @@ WrongAnimal::WrongAnimal(void) : _type("WrongAnimal_default")
 	std::cout << COLOR(" Default constructor ", BLUE) << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal& src)
+WrongAnimal::WrongAnimal(const WrongAnimal& src) : _type(src._type)
 {
-	this->_type = src._type;
 	std::cout << COLOR("WrongAnimal", CYAN);
 	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
 }

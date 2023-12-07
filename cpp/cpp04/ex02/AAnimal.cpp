@@ -12,15 +12,18 @@
 
 #include "AAnimal.hpp"
 
+/* ************************************************************************** */
+/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/* ************************************************************************** */
+
 AAnimal::AAnimal(void) : _type("AAnimal_default")
 {
 	std::cout << COLOR("AAnimal", CYAN);
 	std::cout << COLOR(" Default constructor ", BLUE) << std::endl;
 }
 
-AAnimal::AAnimal(const AAnimal& src)
+AAnimal::AAnimal(const AAnimal& src) : _type(src._type)
 {
-	this->_type = src._type;
 	std::cout << COLOR("AAnimal", CYAN);
 	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
 }
@@ -42,6 +45,10 @@ AAnimal::~AAnimal(void)
 	std::cout << COLOR(" Default destructor", RED) << std::endl;
 }
 
+/* ************************************************************************** */
+/*                              MEMBERS FUNCTIONS                             */
+/* ************************************************************************** */
+
 std::string	AAnimal::getType(void) const
 {
 	return (this->_type);
@@ -53,7 +60,7 @@ void	AAnimal::makeSound(void) const
 }
 
 /* ************************************************************************** */
-/*                                                                            */
+/*                                WRONG ANIMAL                                */
 /* ************************************************************************** */
 
 WrongAAnimal::WrongAAnimal(void) : _type("WrongAAnimal_default")
@@ -62,9 +69,8 @@ WrongAAnimal::WrongAAnimal(void) : _type("WrongAAnimal_default")
 	std::cout << COLOR(" Default constructor ", BLUE) << std::endl;
 }
 
-WrongAAnimal::WrongAAnimal(const WrongAAnimal& src)
+WrongAAnimal::WrongAAnimal(const WrongAAnimal& src) : _type(src._type)
 {
-	this->_type = src._type;
 	std::cout << COLOR("WrongAAnimal", CYAN);
 	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
 }

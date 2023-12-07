@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 11:40:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/07 13:53:40 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Dog : public Animal {
 		virtual ~Dog(void);
 
 		virtual void	makeSound(void) const;
+
 };
 
 #endif
