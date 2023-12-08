@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:28:49 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 15:42:41 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 11:53:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,6 @@ void	MateriaSource::learnMateria(AMateria* m)
 	{
 		this->_materias[this->_idxMaterias] = m;
 		this->_idxMaterias++;
-		// for (int i = 0; i < 4; i++)
-		// {
-		// 	if (this->_materias[i] == NULL)
-		// 	{
-		// 		this->_materias[i] = m;
-		// 		this->_idxMaterias++;
-		// 		break ;
-		// 	}
-		// }
 		std::cout << "🎉 " << COLOR("MateriaSource:", YELLOWULINE) << " " << \
 			COLOR(this->_materias[this->_idxMaterias - 1]->getType(), MAGENTA) << COLOR(" has been learned.", YELLOW) << std::endl;
 	}

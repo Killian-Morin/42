@@ -54,11 +54,6 @@ std::string	AAnimal::getType(void) const
 	return (this->_type);
 }
 
-void	AAnimal::makeSound(void) const
-{
-	std::cout << COLOR("Default AAnimal sound: ...", MAGENTA) << std::endl;
-}
-
 /* ************************************************************************** */
 /*                                WRONG ANIMAL                                */
 /* ************************************************************************** */

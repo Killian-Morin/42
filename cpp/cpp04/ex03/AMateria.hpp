@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:36 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 10:03:18 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 11:43:23 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class AMateria {
 		virtual ~AMateria(void);
 
 		std::string const &	getType() const;
+
 		virtual AMateria*	clone() const = 0;//not implemented since virtual pure function
 		virtual void		use(ICharacter& target);
 

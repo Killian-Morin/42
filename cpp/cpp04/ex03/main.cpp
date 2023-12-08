@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 15:44:55 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 12:09:53 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int main(void)
 
 	me->use(0, *bob);
 	me->use(1, *bob);
+	// me->use(2, *bob);
 
 	std::cout << std::endl;
 	delete bob;
@@ -78,16 +79,19 @@ int main(void)
 	for (int i = 0; i < 6; i++)
 		adventurer->equip(new Ice());
 	std::cout << std::endl;
+
 	std::cout << std::endl;
 	for (int i = 0; i < 6; i++)
 		adventurer->use(i, *adventurer);
 	std::cout << std::endl;
+
 	std::cout << std::endl;
 	// adventurer->unequip(1);
 	// adventurer->unequip(1);
 	for (int i = 0; i < 6; i++)
 		adventurer->unequip(i);
 	std::cout << std::endl;
+
 	delete adventurer;
 	*/
 
@@ -97,8 +101,10 @@ int main(void)
 	for (int i = 0; i < 4; i++)
 		book->learnMateria(new Cure());
 	std::cout << std::endl;
+
 	book->learnMateria(new Ice());
 	std::cout << std::endl;
+
 	delete book;
 	*/
 

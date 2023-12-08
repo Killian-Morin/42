@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:48:02 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 11:34:45 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int main()
 	delete j;//should not create a leak
 	delete k;
 
-	/*int	N = 4;
+	/*
+	int	N = 4;
 	AAnimal*	array[N];
 
 	for (int i = 0; i < N; i++)
@@ -56,11 +57,12 @@ int main()
 		if (i == N / 2)
 			std::cout << std::endl;
 		delete array[i];
-	}*/
+	}
+	*/
 
-
+	/*
 	//Test to see if it's a deep copy or shallow copy
-	/*Cat basic;
+	Cat basic;
 	basic.setIdea("oui", 1);
 	std::cout << std::endl;
 
@@ -76,7 +78,8 @@ int main()
 	//We can still manipulate the content of the brain of basic
 	std::cout << std::endl << "basic.getIdea -> " << basic.getIdea(1) << std::endl << std::endl;
 
-	//Set of destructors call for basic after this line, since we will be out of the main.*/
+	//Set of destructors call for basic after this line, since we will be out of the main.
+	*/
 
 	/*
 	//Another test to see if it's a deep copy or shallow copy but I prefer the one above
@@ -90,7 +93,8 @@ int main()
 	std::cout << std::endl;
 
 	delete catPTR;
-	delete catCOPY;*/
+	delete catCOPY;
+	*/
 
 	return 0;
 }

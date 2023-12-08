@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:34 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:58:24 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 12:00:36 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ std::string const & AMateria::getType(void) const
 
 void AMateria::use(ICharacter& target)
 {
-	std::cout << COLOR(_type, MAGENTA) << COLOR("* used ", RED) << COLOR("use(ICharacter& target) ", MAGENTAULINE) << \
-		COLOR("from a non-existing AMateria at ", RED) << COLOR(target.getName(), MAGENTA) << COLOR("*", RED) << std::endl;
+	std::cout << COLOR(_type, MAGENTA) << COLOR("* used a function from a non-existing AMateria at ", RED) << \
+		COLOR(target.getName(), MAGENTA) << COLOR(" *", RED) << std::endl;
 }

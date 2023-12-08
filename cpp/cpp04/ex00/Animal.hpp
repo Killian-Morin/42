@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:58 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 12:51:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 11:08:55 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Animal {
 
 		virtual void	makeSound(void) const;
 
-		std::string	getType(void) const;
+		std::string		getType(void) const;
 
 	protected:
 		std::string	_type;
@@ -47,7 +47,7 @@ class WrongAnimal {
 		WrongAnimal& operator=(const WrongAnimal& rhs);
 		virtual ~WrongAnimal(void);
 
-		void	makeSound(void) const;
+		void		makeSound(void) const;
 
 		std::string	getType(void) const;
 

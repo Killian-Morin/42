@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:42:36 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 15:42:21 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/08 12:06:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ Character::Character(Character const& src)
 	this->_idxInventory = src._idxInventory;
 	for (int i = 0; i < 4; i++)
 	{
-		delete this->_inventory[i];
+		delete this->_unequipedInventory[i];
 		if (src._unequipedInventory[i] != NULL)
 			this->_unequipedInventory[i] = src._unequipedInventory[i]->clone();
 		else
@@ -137,7 +137,7 @@ void	Character::unequip(int idx)
 	{
 		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
 		std::cout << COLOR(": no Materia equiped at this index of the inventory, range is 0 - " \
-			<< this->_idxInventory << ".", RED) << std::endl;
+			<< this->_idxInventory - 1 << ".", RED) << std::endl;
 		return ;
 	}
 	if (idx >= 0 && idx < 4)
@@ -155,6 +155,13 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
+	if (this->_inventory[idx] == NULL && idx >= 0 && idx < 4)
+	{
+		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
+		std::cout << COLOR(": no Materia to use at this index of the inventory, range is 0 - " << \
+			this->_idxInventory - 1 << ".", RED) << std::endl;
+		return ;
+	}
 	if (idx >= 0 && idx < 4)
 	{
 		this->_inventory[idx]->use(target);
@@ -162,17 +169,11 @@ void	Character::use(int idx, ICharacter& target)
 			COLOR(": uses ", YELLOW) << COLOR(this->_inventory[idx]->getType(), MAGENTA) << COLOR(".", YELLOW) << std::endl;
 		return ;
 	}
-	else if (idx >= 4)
+	else
 	{
 		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
 		std::cout << COLOR(": the index is not within range of the inventory (0 - 3)." \
 			" We can't use any Materia.", RED) << std::endl;
-	}
-	else if (this->_inventory[idx] == NULL)
-	{
-		std::cout << "❌ " << COLOR(this->_name, MAGENTA);
-		std::cout << COLOR(": no Materia to use at this index of the inventory, range is 0 - " << \
-			this->_idxInventory << ".", RED) << std::endl;
 	}
 }
 
