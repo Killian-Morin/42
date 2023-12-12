@@ -9,7 +9,12 @@ RED = \033[0;31m
 WHITE = \033[0;97m
 
 SRC_FILES = main.cpp \
-			Bureaucrat.cpp
+			AForm.cpp \
+			Bureaucrat.cpp \
+			PresidentialPardonForm.cpp \
+			RobotomyRequestForm.cpp \
+			ShrubberyCreationForm.cpp \
+			Intern.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:%.cpp=%.o}}
@@ -32,6 +37,7 @@ clean:
 
 fclean: clean
 	@(${RM} ${NAME})
+	@(${RM} *_shrubbery)
 	@echo "${RED}Clean executable files${WHITE}"
 
 re: fclean all

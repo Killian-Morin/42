@@ -9,7 +9,8 @@ RED = \033[0;31m
 WHITE = \033[0;97m
 
 SRC_FILES = main.cpp \
-			Bureaucrat.cpp
+			Bureaucrat.cpp \
+			Form.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:%.cpp=%.o}}

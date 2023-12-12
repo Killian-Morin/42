@@ -1,0 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/12 11:33:32 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/12 16:23:35 by kmorin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#pragma once
+#ifndef AFORM_HPP
+#define AFORM_HPP
+
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
+
+class AForm {
+
+	private:
+		const std::string	_name;
+		bool				_signed;
+		const int			_gradeToSign;
+		const int			_gradeToExec;
+
+		AForm(void);
+		AForm&	operator=(const AForm& rhs);
+
+		void				checkValidValue(int grade);
+
+	public:
+		//Canonical class functions
+		AForm(const AForm& src);
+		virtual ~AForm(void);
+		//Parametric Constructor
+		AForm(const std::string name, int gradeSign, int gradeExec);
+
+		//Member Functions
+		const std::string	getName(void) const;
+		bool				getSigned(void) const;
+		int					getGradeSign(void) const;
+		int					getGradeExec(void) const;
+
+		void				beSigned(Bureaucrat& bureaucrat);
+
+		virtual void		execute(Bureaucrat const & executor) const = 0;
+
+		//Nested Classes for my exceptions
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class NotSignedException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+};
+
+//Operator overload to print AForm class info
+std::ostream&	operator<<(std::ostream& o, const AForm& src);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:52:00 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 13:02:43 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 13:02:35 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(
 			COLOR(" Parametric constructor called", GREEN) << std::endl;
 }
 
-
 /* ************************************************************************** */
 /*                              MEMBERS FUNCTIONS                             */
 /* ************************************************************************** */
@@ -89,7 +88,7 @@ void	Bureaucrat::incGrade(void)
 		this->_grade--;
 	std::cout << COLOR("Bureaucrat ", YELLOW) << COLOR(this->getName(), BLUE) << \
 		COLOR(" incremented his grade from ", YELLOW) << COLOR(this->getGrade() + 1, GREEN) << \
-		COLOR(" to ", YELLOW) << COLOR(this->getGrade(), GREEN) << COLOR(".", YELLOW) << RESET << std::endl;
+		COLOR(" to ", YELLOW) << COLOR(this->getGrade(), GREEN) << RESET << std::endl;
 }
 
 /*
@@ -103,7 +102,19 @@ void	Bureaucrat::decGrade(void)
 		this->_grade++;
 	std::cout << COLOR("Bureaucrat ", YELLOW) << COLOR(this->getName(), BLUE) << \
 		COLOR(" decremented his grade from ", YELLOW) << COLOR(this->getGrade() - 1, GREEN) << \
-		COLOR(" to ", YELLOW) << COLOR(this->getGrade(), GREEN) << COLOR(".", YELLOW) << RESET << std::endl;
+		COLOR(" to ", YELLOW) << COLOR(this->getGrade(), GREEN) << RESET << std::endl;
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	try {
+		form.beSigned(*this);
+		std::cout << COLOR(this->getName(), BLUE) << " signed " << COLOR(form.getName(), MAGENTA) << "." << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << COLOR(this->getName(), BLUE) << " couldn't sign " << COLOR(form.getName(), MAGENTA) << \
+			" because " << e.what() << std::endl;
+	}
 }
 
 void	Bureaucrat::checkValidValue(int grade)
@@ -126,12 +137,12 @@ void	Bureaucrat::checkValidValue(int grade)
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return (RED "Grade too high !" RESET);
+	return (RED "Grade is too high !" RESET);
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return (RED "Grade too low !" RESET);
+	return (RED "Grade is too low !" RESET);
 }
 
 /* ************************************************************************** */

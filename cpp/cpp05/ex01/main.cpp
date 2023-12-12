@@ -6,17 +6,17 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 11:27:45 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 11:22:35 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-void	creationOK(void)
+void	creationformOK(void)
 {
 	try {
-		Bureaucrat	ok("ok", 23);
-		std::cout << ok << std::endl;
+		Form	form("test", 1, 1);
+		std::cout << form << std::endl;
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
@@ -24,12 +24,12 @@ void	creationOK(void)
 	std::cout << std::endl;
 }
 
-void	creationNO(void)
+void	creationformSignNO(void)
 {
 	try {
-		Bureaucrat	no("no", 0);
-		// Bureaucrat	no("no", 151);
-		std::cout << no << std::endl;
+		// Form	form("test", 0, 1);
+		Form	form("test", 151, 1);
+		std::cout << form << std::endl;
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
@@ -37,71 +37,50 @@ void	creationNO(void)
 	std::cout << std::endl;
 }
 
-void	incOK(void)
+void	creationformExecNO(void)
 {
-	Bureaucrat	bob("Bob", 150);
-	std::cout << std::endl;
-
-	std::cout << COLOR("Initial values: ", WHITE) << bob << std::endl;
-
 	try {
-		bob.incGrade();
+		// Form	form("test", 1, 151);
+		Form	form("test", 1, 0);
+		std::cout << form << std::endl;
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << COLOR("After values: ", WHITE) << bob << std::endl;
 	std::cout << std::endl;
 }
 
-void	decOK(void)
+void	signOK(void)
 {
-	Bureaucrat	bob("Bob", 1);
-	std::cout << std::endl;
-
-	std::cout << COLOR("Initial values: ", WHITE) << bob << std::endl;
-
 	try {
-		bob.decGrade();
+		Bureaucrat	bob("Bob", 150);
+		Form		form("1080p", 150, 1);
+		std::cout << bob << std::endl;
+		std::cout << form << std::endl;
+
+		bob.signForm(form);
+		std::cout << form << std::endl;
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << COLOR("After values: ", WHITE) << bob << std::endl;
 	std::cout << std::endl;
 }
 
-void	incNO(void)
+void	signNO(void)
 {
-	Bureaucrat	bob("Bob", 1);
-	std::cout << std::endl;
-
-	std::cout << COLOR("Initial values: ", WHITE) << bob << std::endl;
-
 	try {
-		bob.incGrade();
+		Bureaucrat	bob("Bob", 150);
+		Form		form("1080p", 149, 1);
+		std::cout << bob << std::endl;
+		std::cout << form << std::endl;
+
+		bob.signForm(form);
+		std::cout << form << std::endl;
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << COLOR("After values: ", WHITE) << bob << std::endl;
-	std::cout << std::endl;
-}
-
-void	decNO(void)
-{
-	Bureaucrat	bob("Bob", 150);
-	std::cout << std::endl;
-
-	std::cout << COLOR("Initial values: ", WHITE) << bob << std::endl;
-
-	try {
-		bob.decGrade();
-	}
-	catch (std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << COLOR("After values: ", WHITE) << bob << std::endl;
 	std::cout << std::endl;
 }
 
@@ -109,13 +88,12 @@ int	main(void)
 {
 	std::cout << std::endl;
 
-	creationOK();
-	creationNO();
+	creationformOK();
+	creationformSignNO();
+	creationformExecNO();
 
-	incOK();
-	decOK();
-	incNO();
-	decNO();
+	signOK();
+	signNO();
 
 	return (0);
 }

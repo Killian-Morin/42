@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 13:51:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 11:09:31 by kmorin           ###   ########.fr       */
+/*   Created: 2023/12/12 11:33:56 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/12 15:47:33 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <exception>
 #include <string>
 #include <iostream>
+
+#include "AForm.hpp"
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
@@ -31,7 +33,13 @@
 #define CYAN "\e[0;36m"
 #define WHITE "\e[0;37m"
 
+#define GREENUNDER "\e[4;32m"
+#define BLUEUNDER "\e[4;34m"
+#define MAGENTAUNDER "\e[4;35m"
+
 #define COLOR(text, color) color << text << RESET
+
+class AForm;
 
 class Bureaucrat {
 
@@ -57,6 +65,10 @@ class Bureaucrat {
 
 		void				incGrade(void);
 		void				decGrade(void);
+
+		void				signForm(AForm& AForm);
+
+		void				executeForm(AForm const & form);
 
 		//Nested Classes for my exceptions
 		class GradeTooHighException : public std::exception

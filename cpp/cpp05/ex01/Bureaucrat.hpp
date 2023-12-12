@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 11:09:31 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 10:41:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <exception>
 #include <string>
 #include <iostream>
+
+#include "Form.hpp"
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
@@ -32,6 +34,8 @@
 #define WHITE "\e[0;37m"
 
 #define COLOR(text, color) color << text << RESET
+
+class Form;
 
 class Bureaucrat {
 
@@ -57,6 +61,8 @@ class Bureaucrat {
 
 		void				incGrade(void);
 		void				decGrade(void);
+
+		void				signForm(Form& form);
 
 		//Nested Classes for my exceptions
 		class GradeTooHighException : public std::exception
