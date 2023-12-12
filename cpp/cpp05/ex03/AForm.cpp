@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:35:32 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 15:05:56 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 17:15:40 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ AForm::~AForm(void)
 }
 
 /* ************************************************************************** */
-/*                          PARAMETRIC CONSTRUCTORS                           */
+/*                           PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
 AForm::AForm(const std::string name, int gradeSign, int gradeExec) : _name(name), _signed(false), _gradeToSign(gradeSign), _gradeToExec(gradeExec)
@@ -91,10 +91,18 @@ int	AForm::getGradeExec(void) const
 void	AForm::beSigned(Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->getGradeSign())
+	{
+		if (this->getSigned() == true)
+			throw AForm::FormAlreadySignedException();
 		this->_signed = true;
+	}
 	else
 		throw AForm::GradeTooLowException();
 }
+
+/*
+	execute is a virtual pure so implementation is in each derived classes of Form
+*/
 
 void	AForm::checkValidValue(int grade)
 {
@@ -109,9 +117,6 @@ void	AForm::checkValidValue(int grade)
 		throw GradeTooLowException();
 	}
 }
-/*
-	execute is a virtual pure so implementation is in each derived classes of Form
-*/
 
 /* ************************************************************************** */
 /*                      NESTED CLASSES MEMBERS FUNCTIONS                      */
@@ -127,6 +132,11 @@ const char* AForm::GradeTooLowException::what() const throw()
 	return (RED "Grade is too low !" RESET);
 }
 
+const char* AForm::FormAlreadySignedException::what() const throw()
+{
+	return (RED "Form is already signed !" RESET);
+}
+
 const char* AForm::NotSignedException::what() const throw()
 {
 	return (RED "Form is not signed. It cannot be executed." RESET);
@@ -136,17 +146,17 @@ const char* AForm::NotSignedException::what() const throw()
 /*                             EXTERNAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-std::ostream&	operator<<(std::ostream& o, const AForm& src)
+std::ostream&	operator<<(std::ostream& o, const AForm& f)
 {
-	if (src.getSigned() == true)
-		o << COLOR(src.getName(), MAGENTA) << COLOR(" AForm is ", CYAN) << COLOR("signed", GREEN) <<
-			COLOR(", his required grade to sign it is ", CYAN) << COLOR(src.getGradeSign(), GREEN) << \
-			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(src.getGradeExec(), GREEN) << \
+	if (f.getSigned() == true)
+		o << COLOR(f.getName(), MAGENTA) << COLOR(" Form is ", CYAN) << COLOR("signed", GREEN) <<
+			COLOR(", his required grade to sign it is ", CYAN) << COLOR(f.getGradeSign(), GREEN) << \
+			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(f.getGradeExec(), GREEN) << \
 			COLOR(".", CYAN) << RESET;
 	else
-		o << COLOR(src.getName(), MAGENTA) << COLOR(" AForm is ", CYAN) << COLOR("not signed", GREEN) <<
-			COLOR(", his required grade to sign it is ", CYAN) << COLOR(src.getGradeSign(), GREEN) << \
-			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(src.getGradeExec(), GREEN) << \
+		o << COLOR(f.getName(), MAGENTA) << COLOR(" Form is ", CYAN) << COLOR("not signed", GREEN) <<
+			COLOR(", his required grade to sign it is ", CYAN) << COLOR(f.getGradeSign(), GREEN) << \
+			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(f.getGradeExec(), GREEN) << \
 			COLOR(".", CYAN) << RESET;
 	return (o);
 }

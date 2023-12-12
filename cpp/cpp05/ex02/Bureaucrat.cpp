@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 13:23:28 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 17:11:12 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ Bureaucrat::~Bureaucrat(void)
 }
 
 /* ************************************************************************** */
-/*                          PARAMETRIC CONSTRUCTORS                           */
+/*                           PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:49:53 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 13:02:39 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 16:45:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ Form::~Form(void)
 }
 
 /* ************************************************************************** */
-/*                          PARAMETRIC CONSTRUCTORS                           */
+/*                          PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
 Form::Form(const std::string name, int gradeSign, int gradeExec) : _name(name), _signed(false), _gradeToSign(gradeSign), _gradeToExec(gradeExec)
@@ -91,7 +91,11 @@ int	Form::getGradeExec(void) const
 void	Form::beSigned(Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->getGradeSign())
+	{
+		if (this->getSigned() == true)
+			throw Form::FormAlreadySignedException();
 		this->_signed = true;
+	}
 	else
 		throw Form::GradeTooLowException();
 }
@@ -124,21 +128,26 @@ const char* Form::GradeTooLowException::what() const throw()
 	return (RED "Grade is too low !" RESET);
 }
 
+const char* Form::FormAlreadySignedException::what() const throw()
+{
+	return (RED "Form is already signed !" RESET);
+}
+
 /* ************************************************************************** */
 /*                             EXTERNAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-std::ostream&	operator<<(std::ostream& o, const Form& src)
+std::ostream&	operator<<(std::ostream& o, const Form& f)
 {
-	if (src.getSigned() == true)
-		o << COLOR(src.getName(), MAGENTA) << COLOR(" Form is ", CYAN) << COLOR("signed", GREEN) <<
-			COLOR(", his required grade to sign it is ", CYAN) << COLOR(src.getGradeSign(), GREEN) << \
-			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(src.getGradeExec(), GREEN) << \
+	if (f.getSigned() == true)
+		o << COLOR(f.getName(), MAGENTA) << COLOR(" Form is ", CYAN) << COLOR("signed", GREEN) <<
+			COLOR(", his required grade to sign it is ", CYAN) << COLOR(f.getGradeSign(), GREEN) << \
+			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(f.getGradeExec(), GREEN) << \
 			COLOR(".", CYAN) << RESET;
 	else
-		o << COLOR(src.getName(), MAGENTA) << COLOR(" Form is ", CYAN) << COLOR("not signed", GREEN) <<
-			COLOR(", his required grade to sign it is ", CYAN) << COLOR(src.getGradeSign(), GREEN) << \
-			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(src.getGradeExec(), GREEN) << \
+		o << COLOR(f.getName(), MAGENTA) << COLOR(" Form is ", CYAN) << COLOR("not signed", GREEN) <<
+			COLOR(", his required grade to sign it is ", CYAN) << COLOR(f.getGradeSign(), GREEN) << \
+			COLOR(" and his required grade to execute it is ", CYAN) << COLOR(f.getGradeExec(), GREEN) << \
 			COLOR(".", CYAN) << RESET;
 	return (o);
 }

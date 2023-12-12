@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:32 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 16:23:27 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 17:14:16 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,22 @@ class AForm {
 		virtual void		execute(Bureaucrat const & executor) const = 0;
 
 		//Nested Classes for my exceptions
-		class GradeTooHighException : public std::exception
-		{
+		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
 
-		class GradeTooLowException : public std::exception
-		{
+		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
 
-		class NotSignedException : public std::exception
-		{
+		class FormAlreadySignedException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class NotSignedException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
@@ -70,6 +72,6 @@ class AForm {
 };
 
 //Operator overload to print AForm class info
-std::ostream&	operator<<(std::ostream& o, const AForm& src);
+std::ostream&	operator<<(std::ostream& o, const AForm& f);
 
 #endif

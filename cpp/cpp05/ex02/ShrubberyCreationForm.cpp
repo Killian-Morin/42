@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 15:10:33 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 17:11:23 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 }
 
 /* ************************************************************************** */
-/*                          PARAMETRIC CONSTRUCTORS                           */
+/*                           PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)

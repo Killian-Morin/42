@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:53 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 15:10:26 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/12 17:12:46 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 }
 
 /* ************************************************************************** */
-/*                          PARAMETRIC CONSTRUCTORS                           */
+/*                           PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
