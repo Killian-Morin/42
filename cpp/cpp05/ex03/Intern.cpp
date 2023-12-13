@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:40:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 16:26:52 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/13 11:08:04 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Intern::~Intern(void)
 
 AForm*	Intern::makeForm(std::string formName, std::string target)
 {
-	std::string	forms[] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+	std::string	forms[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 
 	AForm*	(Intern::*methods[])(const std::string) = {
 		&Intern::makeShrubberyCreationForm,
@@ -68,11 +68,11 @@ AForm*	Intern::makeForm(std::string formName, std::string target)
 		}
 	}
 
-	std::cout << COLOR("Error: Unknown form name.", RED) << "You can choose between: " << \
-		COLOR("ShrubberyCreationForm", MAGENTAUNDER) << ", " << \
-		COLOR("RobotomyRequestForm", MAGENTAUNDER) << ", " << \
-		COLOR("PresidentialPardonForm", MAGENTAUNDER) << std::endl;
-	return (NULL);
+	std::cout << COLOR("Error: Unknown form name.", RED) << " You can choose between: " << \
+		COLOR("shrubbery creation", MAGENTAUNDER) << ", " << \
+		COLOR("robotomy request", MAGENTAUNDER) << ", " << \
+		COLOR("presidential pardon", MAGENTAUNDER) << std::endl;
+	exit(0);
 }
 
 AForm*	Intern::makeShrubberyCreationForm(std::string target)

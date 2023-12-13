@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 17:17:17 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/13 10:36:11 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ void	creationOK(void)
 	try {
 		std::cout << "Test for creating a Bureaucrat with a valid grade: " << std::endl;
 		Bureaucrat	ok("ok", 23);
+
+		std::cout << ok << std::endl;
 	}
 	catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << "Creation was successful, it didn't raise an exception !" << std::endl;
 	std::cout << std::endl;
 }
 

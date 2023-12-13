@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 11:09:31 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/13 10:53:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,12 @@ class Bureaucrat {
 		void				decGrade(void);
 
 		//Nested Classes for my exceptions
-		class GradeTooHighException : public std::exception
-		{
+		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char*	what() const throw();
 		};
 
-		class GradeTooLowException : public std::exception
-		{
+		class GradeTooLowException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
