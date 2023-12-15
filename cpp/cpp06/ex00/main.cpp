@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:55:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/14 17:29:24 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/15 14:35:02 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(void)
 	// ScalarConverter::convert("-42");
 	// std::cout << std::endl;
 
-	/*	FLOAT	*/
+	// /*	FLOAT	*/
 
 	// std::cout << "Conversion of a float '0.0f':" << std::endl;
 	// ScalarConverter::convert("0.0f");
@@ -54,15 +54,7 @@ int	main(void)
 	// ScalarConverter::convert("-42.0f");
 	// std::cout << std::endl;
 
-	// std::cout << "Conversion of a float pseudo literal '-inff':" << std::endl;
-	// ScalarConverter::convert("-inff");
-	// std::cout << std::endl;
-
-	// std::cout << "Conversion of a float pseudo literal '+inff':" << std::endl;
-	// ScalarConverter::convert("+inff");
-	// std::cout << std::endl;
-
-	/*	DOUBLE	*/
+	/*	DOUBLE	actually the same as for the int */
 
 	// std::cout << "Conversion of a double '0.0':" << std::endl;
 	// ScalarConverter::convert("0.0");
@@ -76,16 +68,30 @@ int	main(void)
 	// ScalarConverter::convert("-42.0");
 	// std::cout << std::endl;
 
-	// std::cout << "Conversion of a double pseudo literal '-inf':" << std::endl;
+	/*	PSEUDO LITERALS	*/
+
+	// std::cout << "Conversion of a pseudo literal 'nanf':" << std::endl;
+	// ScalarConverter::convert("nanf");
+	// std::cout << std::endl;
+
+	// std::cout << "Conversion of a pseudo literal '-inff':" << std::endl;
+	// ScalarConverter::convert("-inff");
+	// std::cout << std::endl;
+
+	// std::cout << "Conversion of a pseudo literal '+inff':" << std::endl;
+	// ScalarConverter::convert("+inff");
+	// std::cout << std::endl;
+
+	// std::cout << "Conversion of a pseudo literal 'nan':" << std::endl;
+	// ScalarConverter::convert("nan");
+	// std::cout << std::endl;
+
+	// std::cout << "Conversion of a pseudo literal '-inf':" << std::endl;
 	// ScalarConverter::convert("-inf");
 	// std::cout << std::endl;
 
-	// std::cout << "Conversion of a double pseudo literal '+inf':" << std::endl;
+	// std::cout << "Conversion of a pseudo literal '+inf':" << std::endl;
 	// ScalarConverter::convert("+inf");
-	// std::cout << std::endl;
-
-	// std::cout << "Conversion of a double pseudo literal 'nan':" << std::endl;
-	// ScalarConverter::convert("nan");
 	// std::cout << std::endl;
 
 	/*	INVALID INPUT	*/
@@ -105,6 +111,8 @@ int	main(void)
 	// std::cout << "Invalid input test with '0.0.':" << std::endl;
 	// ScalarConverter::convert("0.0.");
 	// std::cout << std::endl;
+
+	std::cout << std::endl;
 
 	return (0);
 }

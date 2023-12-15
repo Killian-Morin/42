@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 09:18:28 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 13:37:55 by kmorin           ###   ########.fr       */
+/*   Created: 2023/12/15 15:04:46 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/15 15:14:45 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef SCALAR_CONVERTER_HPP
-#define SCALAR_CONVERTER_HPP
+#ifndef BASE_HPP
+#define BASE_HPP
 
-#include <string>
-#include <iostream>
-#include <limits>
-#include <sstream>
 #include <iomanip>
+#include <string>
 
 #include "Color.hpp"
 
@@ -26,19 +23,19 @@
 # define SHOWMSG 0
 #endif
 
-class ScalarConverter {
-
-	private:
-		//Canonical class functions
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter& src);
-		ScalarConverter&	operator=(const ScalarConverter& rhs);
-		~ScalarConverter(void);
+class Base {
 
 	public:
-		//Member functions
-		static void	convert(const std::string& strToConvert);
+		virtual ~Base(void);
 
 };
+
+class A : public Base {};
+class B : public Base {};
+class C : public Base {};
+
+Base *	generate(void);
+void	identify(Base* p);
+void	identify(Base& p);
 
 #endif

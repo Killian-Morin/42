@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 09:18:28 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 13:37:55 by kmorin           ###   ########.fr       */
+/*   Created: 2023/12/15 14:41:16 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/15 15:02:22 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef SCALAR_CONVERTER_HPP
-#define SCALAR_CONVERTER_HPP
+#ifndef SERIALIZER_HPP
+#define SERIALIZER_HPP
 
-#include <string>
-#include <iostream>
-#include <limits>
-#include <sstream>
 #include <iomanip>
+#include <string>
 
 #include "Color.hpp"
 
@@ -26,18 +23,25 @@
 # define SHOWMSG 0
 #endif
 
-class ScalarConverter {
+struct Data {
+
+	int	_n;
+
+};
+
+class Serializer {
 
 	private:
 		//Canonical class functions
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter& src);
-		ScalarConverter&	operator=(const ScalarConverter& rhs);
-		~ScalarConverter(void);
+		Serializer(void);
+		Serializer(const Serializer& src);
+		Serializer&	operator=(const Serializer& rhs);
+		~Serializer(void);
 
 	public:
 		//Member functions
-		static void	convert(const std::string& strToConvert);
+		static uintptr_t	serialize(Data* ptr);
+		static Data*		deserialize(uintptr_t raw);
 
 };
 

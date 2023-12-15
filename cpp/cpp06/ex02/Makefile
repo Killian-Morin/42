@@ -1,4 +1,4 @@
-NAME = 
+NAME = base
 
 CC = g++
 FLAGS = -Wall -Werror -Wextra -std=c++98 #-g3 -fsanitize=address
@@ -9,6 +9,7 @@ RED = \033[0;31m
 WHITE = \033[0;97m
 
 SRC_FILES = main.cpp \
+			Base.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:%.cpp=%.o}}
