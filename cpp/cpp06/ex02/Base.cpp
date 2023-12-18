@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:05:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 15:28:30 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/18 10:46:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	identify(Base& p)
 		(void)dynamic_cast<A &>(p);
 		std::cout << COLOR("A", GREEN) << std::endl;
 	}
-	catch(const std::bad_cast& e) {
+	catch (const std::bad_cast& e) {
 		// std::cerr << e.what() << std::endl;
 	}
 
@@ -67,7 +67,7 @@ void	identify(Base& p)
 		(void)dynamic_cast<B &>(p);
 		std::cout << COLOR("B", YELLOW) << std::endl;
 	}
-	catch(const std::bad_cast& e) {
+	catch (const std::bad_cast& e) {
 		// std::cerr << e.what() << std::endl;
 	}
 
@@ -75,7 +75,7 @@ void	identify(Base& p)
 		(void)dynamic_cast<C &>(p);
 		std::cout << COLOR("C", MAGENTA) << std::endl;
 	}
-	catch(const std::bad_cast& e) {
+	catch (const std::bad_cast& e) {
 		// std::cerr << e.what() << std::endl;
 	}
 }

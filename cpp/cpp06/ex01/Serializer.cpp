@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:41:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 15:06:24 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/18 10:38:58 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /* ************************************************************************** */
 
 /*
-	Since Serializer needs to be non-instanciable,
+	Since Serializer has to be non-instanciable,
 	all its canonical functions are in private,
 	with no message in them since we can nothing with the class apart from
 	calling the static member function convert.

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:18:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 14:34:26 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/18 10:38:53 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /* ************************************************************************** */
 
 /*
-	Since ScalarConverter needs to be non-instanciable,
+	Since ScalarConverter has to be non-instanciable,
 	all its canonical functions are in private,
 	with no message in them since we can nothing with the class apart from
 	calling the static member function convert.
@@ -58,11 +58,6 @@ ScalarConverter::~ScalarConverter(void)
 	No printLiterarls since already done in the convert function for them
 */
 
-/*
-	1st if: Check if a 'f' at the end of input and removes it if there is one
-	2nd if: If there is a dot in the input (find returned a value != npos)
-		I change dot to indicate that there is one, else there is no dot
-*/
 void	printChar(char c, bool isPossible)
 {
 	if (!isPossible)
@@ -268,7 +263,7 @@ bool	isPseudoLiteral(const std::string& strToConvert)
 /*
 	Check if the input is empty
 	Check if the input is a single character or a pseudo literal
-
+	Check if the input is a string, that is has only valid character (digits, f, -, + and .)
 	Check for the number of sign, dot and 'f' in the input
 		return false if > 1
 */
