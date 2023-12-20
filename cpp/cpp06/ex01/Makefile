@@ -32,7 +32,6 @@ clean:
 
 fclean: clean
 	@(${RM} ${NAME})
-	@(${RM} *_shrubbery)
 	@echo "${RED}Clean executable files${WHITE}"
 
 re: fclean all
