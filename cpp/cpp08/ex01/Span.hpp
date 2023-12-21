@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 14:28:20 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/21 09:34:57 by kmorin           ###   ########.fr       */
+/*   Created: 2023/12/21 11:37:27 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/21 16:11:14 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef EASYFIND_HPP
-#define EASYFIND_HPP
+#ifndef SPAN_HPP
+#define SPAN_HPP
 
 #include <iostream>
 #include <algorithm>
 #include <exception>
-#include <vector>
 #include <deque>
-#include <list>
+
+#ifndef SHOWMSG
+# define SHOWMSG 0
+#endif
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -30,24 +32,39 @@
 #define CYAN "\e[0;36m"
 #define WHITE "\e[0;37m"
 
-#define GREENULINE "\e[4;32m"
-#define YELLOWULINE "\e[4;33m"
-#define BLUEULINE "\e[4;34m"
 #define MAGENTAULINE "\e[4;35m"
-#define CYANULINE "\e[4;36m"
 
 #define COLOR(text, color) color << text << RESET
 
-//Template Function
-template <typename T>
-void	easyfind(T&, int value);
+class Span {
 
-//Exception class
-class ParameterNotFoundException : public std::exception {
+	private:
+		std::deque<int> _container;
+		unsigned int _n;
+
+		Span(void);
+
 	public:
-		virtual const char* what() const throw();
+		//Canonical class functions
+		Span(const Span& src);
+		Span&	operator=(const Span& rhs);
+		~Span(void);
+
+		//Parametric Constructor
+		Span(unsigned int n);
+
+		//Member Functions
+		void	addNumber(int i);
+
+		int		shortestSpan(void) const;
+		int		longestSpan(void) const;
+
+		const unsigned int		getN(void) const;
+		const std::deque<int>	getContainer(void) const;
+
 };
 
-#include "easyfind.tpp"
+//Operator overload to print Span content
+std::ostream&	operator<<(std::ostream& o, const Span& span);
 
 #endif
