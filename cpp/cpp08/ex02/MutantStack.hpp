@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 11:37:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/22 15:43:15 by kmorin           ###   ########.fr       */
+/*   Created: 2023/12/22 15:40:05 by kmorin            #+#    #+#             */
+/*   Updated: 2023/12/22 16:02:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef SPAN_HPP
-#define SPAN_HPP
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
 
 #include <iostream>
 #include <algorithm>
-#include <exception>
-#include <deque>
+#include <stack>
+#include <vector>
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
@@ -32,44 +32,22 @@
 #define CYAN "\e[0;36m"
 #define WHITE "\e[0;37m"
 
-#define YELLOWULINE "\e[4;33m"
-#define MAGENTAULINE "\e[4;35m"
-#define CYANULINE "\e[4;36m"
-
-#define WHITEBACK "\e[47m"
-
 #define COLOR(text, color) color << text << RESET
 
-class Span {
+template < typename T, typename container = std::deque< T > >
+class MutantStack : public std::stack< T, container > {
 
 	private:
-		std::deque<int>	_container;
-		unsigned int _n;
-
-		Span(void);
 
 	public:
 		//Canonical class functions
-		Span(const Span& src);
-		Span&	operator=(const Span& rhs);
-		~Span(void);
-
-		//Parametric Constructor
-		Span(unsigned int n);
-
-		//Member Functions
-		void				addNumber(int i);
-		void				addNumber(std::deque<int>::iterator itBegin, std::deque<int>::iterator itEnd);
-
-		unsigned int		shortestSpan(void) const;
-		unsigned int		longestSpan(void) const;
-
-		unsigned int		getN(void) const;
-		std::deque<int>		getContainer(void) const;
+		MutantStack(void);
+		MutantStack(const MutantStack& src);
+		MutantStack&	operator=(const MutantStack& rhs);
+		~MutantStack(void);
 
 };
 
-//Operator overload to print Span content
-std::ostream&	operator<<(std::ostream& o, const Span& span);
+#include "MutantStack.tpp"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:37:23 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/21 16:17:29 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/22 15:29:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,55 @@ void	Span::addNumber(int i) {
 
 	if (this->_container.size() >= this->_n)
 		throw std::length_error(RED "Span if full !" WHITE);
-	else
-		this->_container.push_back(i);
 
+	this->_container.push_back(i);
 }
 
-int	Span::shortestSpan(void) const {
+void	Span::addNumber(std::deque<int>::iterator itBegin, std::deque<int>::iterator itEnd) {
 
+	if (this->_container.size() >= this->_n)
+		throw std::length_error(RED "Span if full !" WHITE);
 
+	this->_container.insert(this->_container.end(), itBegin, itEnd);
 }
 
-int	Span::longestSpan(void) const {
+unsigned int	Span::shortestSpan(void) const {
 
+	if (this->_container.empty())
+		throw std::out_of_range(RED "Span::shortestSpan: container is empty" RESET);
+	if (this->_container.size() == 1)
+		throw std::out_of_range(RED "Span::shortestSpan: container only has one element" RESET);
+
+	std::deque<int>	tmp = this->_container;
+	std::sort(tmp.begin(), tmp.end());
+
+	int	min = tmp[1] - tmp[0];
+
+	std::deque<int>::iterator	it;
+	for (it = tmp.begin(); it != tmp.end() -1; ++it) {
+		if (*(it + 1) - *it < min)
+			min = *(it + 1) - *it;
+	}
+
+	return (min);
 }
 
-const unsigned int	getN(void) const {
+unsigned int	Span::longestSpan(void) const {
+
+	if (this->_container.empty())
+		throw std::out_of_range(RED "Span::longestSpan: container is empty" RESET);
+	if (this->_container.size() == 1)
+		throw std::out_of_range(RED "Span::longestSpan: container only has one element" RESET);
+
+	return (*std::max_element(_container.begin(), _container.end()) - *std::min_element(_container.begin(), _container.end()));
+}
+
+unsigned int	Span::getN(void) const {
 
 	return (this->_n);
 }
 
-const std::deque<int<	getContainer(void) const {
+std::deque<int>	Span::getContainer(void) const {
 
 	return (this->_container);
 }
@@ -98,7 +127,12 @@ std::ostream&	operator<<(std::ostream& o, const Span& span) {
 
 	std::deque<int> tmp = span.getContainer();
 
-	for (std::deque<int>::iterator it = tmp.begin(); it != tmp.end(); it++)
-		o << *it << ", ";
+	for (std::deque<int>::iterator it = tmp.begin(); it != tmp.end(); ++it) {
+		if (it != tmp.end() - 1)
+			o << *it << ", ";
+		else
+			o << *it << ".";
+	}
 	o << std::endl;
+	return (o);
 }
