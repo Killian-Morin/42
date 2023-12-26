@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:28:18 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/21 10:44:21 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/26 15:51:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,16 @@ int	main(void) {
 
 	std::string	input;
 	while (1) {
+		
+		std::cout << COLOR("The container has the following values: ", BLUE);
+		for (int i = 0; i < N; i++) {
+			std::cout << COLOR(array[i], BLUEULINE);
+			if (i < 9)
+				std::cout << ", ";
+			else
+				std::cout << "." << std::endl;
+		}
+		std::cout << std::endl;
 
 		std::cout << COLOR("Enter an integer", BLUE)  << std::endl << "> ";
 		std::cin >> input;
@@ -97,16 +107,6 @@ int	main(void) {
 			std::cout << RED << "Exit easyfind." << std::endl << "Bye !" << RESET << std::endl;
 			break ;
 		}
-
-		std::cout << COLOR("The container will have the following values: ", BLUE);
-		for (int i = 0; i < N; i++) {
-			std::cout << COLOR(array[i], BLUEULINE);
-			if (i < 9)
-				std::cout << ", ";
-			else
-				std::cout << "." << std::endl;
-		}
-		std::cout << std::endl;
 
 		std::cout << COLOR(std::string(60, '='), WHITE) << std::endl << std::endl;
 

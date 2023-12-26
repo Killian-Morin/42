@@ -6,51 +6,132 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:40:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/22 15:42:38 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/26 16:54:20 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 
-int	main(void)
-{
-
-	return (0);
-}
-
-/*
-//main given in the subject
-int main() {
+void	subject_test(void) {
+	std::cout << MAGENTA << "\tSUBJECT TEST" << std::endl;
 
 	MutantStack<int> mstack;
 
-	mstack.push(5);
-	mstack.push(17);
+	mstack.push(5);//add 5 to the stack
+	mstack.push(17);//add 17 to the stack
+	//we have 17, 5
 
-	std::cout << mstack.top() << std::endl;
+	std::cout << "first element : " << mstack.top() << std::endl;
+	//the top element is 17
 
 	mstack.pop();
+	//remove the element at the top of the stack (17), only 5 left
 
-	std::cout << mstack.size() << std::endl;
+	std::cout << "size: " << mstack.size() << std::endl;
+	//the stack has a size of 1 since there is only the 5 left
 
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
+	mstack.push(3);//add 3 to the stack
+	mstack.push(5);//add 5 to the stack
+	mstack.push(737);//add 737 to the stack
 	//[...]
-	mstack.push(0);
+	mstack.push(0);//add 0 to the stack
+	//we have 0, 737, 5, 3, 5
 
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
 
+	++it;//increment the iterator, goes to the next element (2nd)
+	--it;//decrement the iteraotr, goes to the previous element (back to 1st)
+
+	std::cout << "Print all elements of the container: | ";
+	while (it != ite)
+	{
+		std::cout << *it << " | ";
+		++it;
+	}
+	std::stack<int> s(mstack);//create a new container of the same type, no error
+}
+
+void	list_test(void) {
+
+	std::cout << YELLOW << "\tLIST TEST" << std::endl;
+
+	std::list<int> l;
+
+	l.push_back(5);
+	l.push_back(17);
+
+	std::cout << "first element: " << l.back() << std::endl;
+
+	l.pop_back();
+
+	std::cout << "size: " << l.size() << std::endl;
+
+	l.push_back(3);
+	l.push_back(5);
+	l.push_back(737);
+	//[...]
+	l.push_back(0);
+
+	std::list<int>::iterator it = l.begin();
+	std::list<int>::iterator ite = l.end();
+
 	++it;
 	--it;
 
+	std::cout << "Print all elements of the container: | ";
 	while (it != ite)
 	{
-		std::cout << *it << std::endl;
+		std::cout << *it << " | ";
 		++it;
 	}
-	std::stack<int> s(mstack);
+	std::list<int> lst(l);
+}
+
+void	vector_test(void) {
+
+	std::cout << CYAN << "\tVECTOR TEST" << std::endl;
+
+	std::vector<int> v;
+
+	v.push_back(5);
+	v.push_back(17);
+
+	std::cout << "first element: " << v.back() << std::endl;
+
+	v.pop_back();
+
+	std::cout << "size: " << v.size() << std::endl;
+
+	v.push_back(3);
+	v.push_back(5);
+	v.push_back(737);
+	//[...]
+	v.push_back(0);
+
+	std::vector<int>::iterator it = v.begin();
+	std::vector<int>::iterator ite = v.end();
+
+	++it;
+	--it;
+	std::cout << "Print all elements of the container: | ";
+	while (it != ite)
+	{
+		std::cout << *it << " | ";
+		++it;
+	}
+	std::vector<int> vec(v);
+}
+
+int main(void) {
+
+	subject_test();
+	std::cout << std::endl << COLOR(std::string(60, '='), WHITE) << std::endl << std::endl;
+	list_test();
+	std::cout << std::endl << COLOR(std::string(60, '='), WHITE) << std::endl << std::endl;
+	vector_test();
+
+	std::cout << std::endl;
+	
 	return 0;
 }
-*/

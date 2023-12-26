@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:28:20 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/21 09:34:57 by kmorin           ###   ########.fr       */
+/*   Updated: 2023/12/26 15:59:02 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,39 @@
 
 #define COLOR(text, color) color << text << RESET
 
-//Template Function
-template <typename T>
-void	easyfind(T&, int value);
-
 //Exception class
 class ParameterNotFoundException : public std::exception {
 	public:
-		virtual const char* what() const throw();
+		virtual const char* what() const throw() {
+			
+			return (RED "Couldn't find the value in the array !" RESET);
+		}
 };
 
-#include "easyfind.tpp"
+//Template Function
+/*
+	method with an iterator, the one used here
+		create an iterator using, the template type that will be replaced by the type of the container
+		this iterator takes the result of the find algorithm
+		find return an iterator to end() if it didn't find a corresponding element
+		find return an iterator to the corresponding element of the container
+
+	method with ternary operand that compares the iterator that is returned by find
+*/
+template <typename T>
+void	easyfind(T& container, int value) {
+
+	typename T::iterator	it = std::find(container.begin(), container.end(), value);
+
+	if (it != container.end())
+		std::cout << COLOR("The value ", GREEN) << COLOR(value, GREENULINE) << \
+			COLOR(" is present in the container.", GREEN) << std::endl;
+	else
+		throw ParameterNotFoundException();
+
+	// std::find(container.begin(), container.end(), value) != container.end() ?
+		// std::cout << COLOR("The value ", GREEN) << COLOR(value, GREENULINE) << COLOR(" is present in the container.", GREEN) << std::endl :
+		// throw ParameterNotFoundException();
+}
 
 #endif
