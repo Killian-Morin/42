@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:40:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/26 16:54:20 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/04 12:56:46 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	subject_test(void) {
 
 	mstack.push(5);//add 5 to the stack
 	mstack.push(17);//add 17 to the stack
-	//we have 17, 5
+	//we have 5, 17
 
 	std::cout << "first element : " << mstack.top() << std::endl;
 	//the top element is 17
 
 	mstack.pop();
-	//remove the element at the top of the stack (17), only 5 left
+	//remove the element at the top of the stack / last added element (17), only 5 left
 
 	std::cout << "size: " << mstack.size() << std::endl;
 	//the stack has a size of 1 since there is only the 5 left
@@ -35,13 +35,13 @@ void	subject_test(void) {
 	mstack.push(737);//add 737 to the stack
 	//[...]
 	mstack.push(0);//add 0 to the stack
-	//we have 0, 737, 5, 3, 5
+	//we have 5, 3, 5, 737, 0
 
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
 
 	++it;//increment the iterator, goes to the next element (2nd)
-	--it;//decrement the iteraotr, goes to the previous element (back to 1st)
+	--it;//decrement the iterator, goes to the previous element (back to 1st)
 
 	std::cout << "Print all elements of the container: | ";
 	while (it != ite)
@@ -50,6 +50,7 @@ void	subject_test(void) {
 		++it;
 	}
 	std::stack<int> s(mstack);//create a new container of the same type, no error
+	std::cout << std::endl;
 }
 
 void	list_test(void) {
@@ -86,6 +87,7 @@ void	list_test(void) {
 		++it;
 	}
 	std::list<int> lst(l);
+	std::cout << std::endl;
 }
 
 void	vector_test(void) {
@@ -121,9 +123,12 @@ void	vector_test(void) {
 		++it;
 	}
 	std::vector<int> vec(v);
+	std::cout << std::endl;
 }
 
 int main(void) {
+
+	std::cout << std::endl;
 
 	subject_test();
 	std::cout << std::endl << COLOR(std::string(60, '='), WHITE) << std::endl << std::endl;
@@ -132,6 +137,6 @@ int main(void) {
 	vector_test();
 
 	std::cout << std::endl;
-	
+
 	return 0;
 }

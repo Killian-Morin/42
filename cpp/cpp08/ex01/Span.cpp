@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:37:23 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/22 15:29:39 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/04 14:47:43 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ Span::Span(unsigned int n) : _n(n) {
 void	Span::addNumber(int i) {
 
 	if (this->_container.size() >= this->_n)
-		throw std::length_error(RED "Span if full !" WHITE);
+		throw std::length_error(RED "Span is full !" WHITE);
 
 	this->_container.push_back(i);
 }
@@ -70,7 +70,7 @@ void	Span::addNumber(int i) {
 void	Span::addNumber(std::deque<int>::iterator itBegin, std::deque<int>::iterator itEnd) {
 
 	if (this->_container.size() >= this->_n)
-		throw std::length_error(RED "Span if full !" WHITE);
+		throw std::length_error(RED "Span is full !" WHITE);
 
 	this->_container.insert(this->_container.end(), itBegin, itEnd);
 }

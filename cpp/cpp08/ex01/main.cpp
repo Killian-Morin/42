@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:37:18 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/26 16:43:46 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/04 12:04:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	exceptionTest(void) {
 		test.addNumber(2);
 		test.addNumber(3);
 		test.addNumber(4);
-		
+
 		test.addNumber(5);
 
 		std::cout << test << std::endl;
@@ -123,7 +123,7 @@ void	exceptionTest(void) {
 	}
 
 	std::cout << std::endl;
-	
+
 	std::cout << COLOR("Span calling shortest/longest with no element test: ", GREEN) << std::endl;
 
 	try {
@@ -135,9 +135,9 @@ void	exceptionTest(void) {
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	
+
 	std::cout << std::endl;
-	
+
 	std::cout << COLOR("Span calling shortest/longest with one element added test: ", GREEN) << std::endl;
 
 	try {
@@ -151,7 +151,7 @@ void	exceptionTest(void) {
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-	
+
 	std::cout << std::endl;
 }
 
@@ -167,7 +167,7 @@ int	main(void) {
 	// longestTest();
 	// std::cout << COLOR(std::string(130, '='), WHITEBACK) << std::endl << std::endl;
 	// shortestTest();
-	
+
 	std::cout << std::endl;
 
 	// exceptionTest();
