@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:58:54 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/28 16:48:37 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/04 15:24:48 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,9 +175,9 @@ void	BitcoinExchange::handleLine(std::string& date, std::string& value) {
 
 		float	rate, result;
 		std::map<std::string, float>::iterator	it = this->_database.find(date);
-		if (it != this->_database.end()) {
+
+		if (it != this->_database.end())
 			rate = this->_database[date];
-		}
 		else {
 			std::map<std::string, float>::iterator	lower = this->_database.lower_bound(date);
 			if (lower == this->_database.end() || lower == this->_database.begin()) {
@@ -186,11 +186,6 @@ void	BitcoinExchange::handleLine(std::string& date, std::string& value) {
 			}
 			lower--;
 			rate = lower->second;
-		}
-
-		if (rate == -1) {
-			std::cout << COLOR("Error: date in database is not valid.", YELLOW) << std::endl;
-			return ;
 		}
 
 		result = rate * std::atof(value.c_str());
@@ -230,6 +225,8 @@ void	BitcoinExchange::run(char* av) {
 
 		handleLine(date, value);
 	}
+
+	file.close();
 }
 
 void	BitcoinExchange::showDatabase(void) const {

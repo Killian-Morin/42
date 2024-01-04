@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:54:18 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/29 16:44:09 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/04 15:40:06 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ RPN&	RPN::operator=(const RPN& rhs) {
 }
 
 RPN::~RPN(void) {
+
+	while (!this->_container.empty())
+		this->_container.pop();
 
 	if (SHOWMSG)
 		std::cout << COLOR("Defaut destructor called", RED) << std::endl;
@@ -85,7 +88,9 @@ bool	RPN::checker(const std::string& s) const {
 
 	//since spaces will always be on a even index
 	for (size_t i = 0; i < s.length(); i++) {
+
 		if (i % 2 == 0) {
+
 			if (!isdigit(s[i]) && s[i] != '+' && s[i] != '-' && s[i] != '*' && s[i] != '/') {
 				std::cout << COLOR("Error: expression is invalid (digit or operator not in correct place).", RED) << std::endl;
 				return (false);
@@ -98,6 +103,17 @@ bool	RPN::checker(const std::string& s) const {
 		else {
 			if (s[i] != ' ') {
 				std::cout << COLOR("Error: expression is invalid (space not in correct place).", RED) << std::endl;
+				return (false);
+			}
+		}
+	}
+
+	for (size_t i = 0; i < s.length(); i++) {
+
+		if (s[i] == '0') {
+
+			if (s[i + 2] == '/') {
+				std::cout << COLOR("Error: division by zero.", RED) << std::endl;
 				return (false);
 			}
 		}
@@ -117,6 +133,7 @@ void	RPN::run(const std::string& s) {
 		}
 
 		if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/') {
+
 			if (this->_container.size() < 2) {
 				std::cout << COLOR("Error: not enough numbers or operands.", RED) << std::endl;
 

@@ -1,6 +1,6 @@
 NAME = RPN
 
-CC = g++
+CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98 #-g3 -fsanitize=address
 RM = /bin/rm -rf
 
@@ -36,14 +36,11 @@ fclean: clean
 
 re: fclean all
 
-run: all
-	./${NAME}
-
 show: FLAGS += -D SHOWMSG=1
-show: re run
+show: re
 
 unshow: FLAGS += -D SHOWMSG=0
-unshow: re run
+unshow: re
 
 leaks: re
 	leaks -atExit -- ./${NAME}
