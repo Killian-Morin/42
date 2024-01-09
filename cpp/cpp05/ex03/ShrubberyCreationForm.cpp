@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 17:13:15 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:52:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,72 +16,67 @@
 /*                            CANONICAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), _target("default")
-{
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), _target("default") {
+
 	if (SHOWMSG)
-		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << \
-			COLOR(" Default constructor called", GREEN) << std::endl;
+		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << COLOR(" Default constructor called", GREEN) << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : AForm(src), _target(src._target)
-{
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : AForm(src), _target(src._target) {
+
 	if (SHOWMSG)
-		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << \
-			COLOR(" Copy constructor called", GREEN) << std::endl;
+		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << COLOR(" Copy constructor called", GREEN) << std::endl;
 }
 
-ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs)
-{
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) {
+
 	if (this != &rhs)
-	{
 		this->_target = rhs._target;
-	}
+
 	if (SHOWMSG)
-		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << \
-			COLOR(" Assignation operator called", GREEN) << std::endl;
+		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << COLOR(" Assignation operator called", GREEN) << std::endl;
+
 	return (*this);
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm(void)
-{
+ShrubberyCreationForm::~ShrubberyCreationForm(void) {
+
 	if (SHOWMSG)
-		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << \
-			COLOR(" Destructor called", RED) << std::endl;
+		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << COLOR(" Destructor called", RED) << std::endl;
 }
 
 /* ************************************************************************** */
 /*                           PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
-{
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
+
 	if (SHOWMSG)
-		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << \
-			COLOR(" Parametric constructor called", RED) << std::endl;
+		std::cout << COLOR("ShrubberyCreationForm", MAGENTAUNDER) << COLOR(" Parametric constructor called", RED) << std::endl;
 }
 
 /* ************************************************************************** */
 /*                        OVERLOADED HERITED FUNCTIONS                        */
 /* ************************************************************************** */
 
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
-{
+void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+
 	if (this->getSigned() == false)
 		throw AForm::NotSignedException();
+
 	if (executor.getGrade() > this->getGradeExec())
 		throw AForm::GradeTooLowException();
 	else
 	{
 		std::ofstream	tree;
 		tree.open(this->_target + "_shrubbery", std::ofstream::out);
-		if (!tree.good())
-		{
+		if (!tree.good()) {
 			std::cout << COLOR("Sorry ", RED) << COLOR(this->_target + "_shrubbery", GREENUNDER) << \
 				COLOR("couldn't be created.", RED) << std::endl;
 			return ;
 		}
-		std::string	line;
 
+		std::string	line;
 		tree << ".     .  .      +     .      .          ." << std::endl;
 		tree << "     .       .      .     #       .           ." << std::endl;
 		tree << "        .      .         ###            .      .      ." << std::endl;

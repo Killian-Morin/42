@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 17:16:37 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:07:46 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /* ************************************************************************** */
 
-void	creationformOK(void)
-{
+void	creationformOK(void) {
+
 	try {
 		std::cout << "Test for the creation of a form with valid grades: " << std::endl;
 		Form	form("test", 1, 1);
@@ -29,8 +29,8 @@ void	creationformOK(void)
 
 /* ************************************************************************** */
 
-void	creationformSignNO(void)
-{
+void	creationformSignNO(void) {
+
 	try {
 		std::cout << "Test for the creation of a form with invalid signing grades: " << std::endl;
 		// Form	form("test", 0, 1);
@@ -45,8 +45,8 @@ void	creationformSignNO(void)
 
 /* ************************************************************************** */
 
-void	creationformExecNO(void)
-{
+void	creationformExecNO(void) {
+
 	try {
 		std::cout << "Test for the creation of a form with invalid executing grades: " << std::endl;
 		// Form	form("test", 1, 151);
@@ -61,8 +61,8 @@ void	creationformExecNO(void)
 
 /* ************************************************************************** */
 
-void	signOK(void)
-{
+void	signOK(void) {
+
 	try {
 		std::cout << "Test for signing a form with a grade meeting the requirements: " << std::endl;
 		Bureaucrat	bob("Bob", 150);
@@ -81,8 +81,8 @@ void	signOK(void)
 
 /* ************************************************************************** */
 
-void	signNO(void)
-{
+void	signNO(void) {
+
 	try {
 		std::cout << "Test for signing a form with a signing grade not meeting the requirements: " << std::endl;
 		Bureaucrat	bob("Bob", 150);
@@ -101,8 +101,8 @@ void	signNO(void)
 
 /* ************************************************************************** */
 
-void	signDouble(void)
-{
+void	signDouble(void) {
+
 	try {
 		std::cout << "Test for signing an already signed form: " << std::endl;
 		Bureaucrat	bob("Bob", 1);
@@ -125,8 +125,8 @@ void	signDouble(void)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-int	main(void)
-{
+int	main(void) {
+
 	std::cout << std::endl;
 
 	creationformOK();

@@ -6,61 +6,74 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:34 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/08 12:00:36 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:44:35 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
 /* ************************************************************************** */
-/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/*                            CANONICAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-AMateria::AMateria(void)
-{
-	std::cout << COLOR("AMateria default constructor called.", BLUE) << std::endl;
+AMateria::AMateria(void) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("AMateria default constructor called.", GREEN) << std::endl;
 }
 
-AMateria::AMateria(AMateria const& src) : _type(src._type)
-{
-	std::cout << COLOR("AMateria copy constructor called.", BLUE) << std::endl;
+AMateria::AMateria(AMateria const& src) : _type(src._type) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("AMateria copy constructor called.", GREEN) << std::endl;
 }
 
-AMateria::AMateria(std::string const & type) : _type(type)
-{
-	std::cout << COLOR("AMateria parametric constructor called.", BLUE) << std::endl;
-}
+AMateria& AMateria::operator=(AMateria const& rhs) {
 
-AMateria& AMateria::operator=(AMateria const& rhs)
-{
 	if (this != &rhs)
-	{
 		this->_type = rhs._type;
-	}
-	std::cout << COLOR("AMateria assignation operator called.", BLUE) << std::endl;
+
+	if (SHOWMSG)
+		std::cout << COLOR("AMateria assignation operator called.", GREEN) << std::endl;
+
 	return *this;
 }
 
-AMateria::~AMateria(void)
-{
-	std::cout << COLOR("AMateria destructor called.", RED) << std::endl;
+AMateria::~AMateria(void) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("AMateria destructor called.", RED) << std::endl;
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                           PARAMETRIC CONSTRUCTOR                           */
 /* ************************************************************************** */
 
-std::string const & AMateria::getType(void) const
-{
+AMateria::AMateria(std::string const & type) : _type(type) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("AMateria Parametric constructor called.", GREEN) << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                   GETTER                                   */
+/* ************************************************************************** */
+
+std::string const & AMateria::getType(void) const {
+
 	return (this->_type);
 }
+
+/* ************************************************************************** */
+/*                              MEMBER FUNCTIONS                             */
+/* ************************************************************************** */
 
 /*
 	No implementation of clone() since it's a virtual pure function
 */
 
-void AMateria::use(ICharacter& target)
-{
+void AMateria::use(ICharacter& target) {
+
 	std::cout << COLOR(_type, MAGENTA) << COLOR("* used a function from a non-existing AMateria at ", RED) << \
 		COLOR(target.getName(), MAGENTA) << COLOR(" *", RED) << std::endl;
 }

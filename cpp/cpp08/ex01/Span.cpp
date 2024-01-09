@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:37:23 by kmorin            #+#    #+#             */
-/*   Updated: 2024/01/04 14:47:43 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:09:16 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ Span::Span(unsigned int n) : _n(n) {
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                               MEMBER FUNCTIONS                             */
 /* ************************************************************************** */
 
 void	Span::addNumber(int i) {
@@ -106,6 +106,10 @@ unsigned int	Span::longestSpan(void) const {
 	return (*std::max_element(_container.begin(), _container.end()) - *std::min_element(_container.begin(), _container.end()));
 }
 
+/* ************************************************************************** */
+/*                                   GETTERS                                  */
+/* ************************************************************************** */
+
 unsigned int	Span::getN(void) const {
 
 	return (this->_n);
@@ -117,7 +121,7 @@ std::deque<int>	Span::getContainer(void) const {
 }
 
 /* ************************************************************************** */
-/*                             EXTERNAL FUNCTIONS                             */
+/*                               EXTRA FUNCTION                               */
 /* ************************************************************************** */
 
 std::ostream&	operator<<(std::ostream& o, const Span& span) {

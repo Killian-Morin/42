@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:59:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/28 15:38:26 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:10:48 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -64,7 +64,6 @@ class BitcoinExchange {
 		//Member Functions
 		void							run(char* av);
 		void							showDatabase(void) const;
-
 };
 
-#endif
+#endif //BITCOINEXCHANGE_HPP

@@ -6,14 +6,13 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:53:31 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/19 15:27:47 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:03:31 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
-int	main(void)
-{
+int	main(void) {
 
 	std::cout << std::endl;
 

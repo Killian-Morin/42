@@ -6,18 +6,18 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:05:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/18 10:46:28 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:00:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 
 /* ************************************************************************** */
-/*                            CANONICAL FUNCTIONS                             */
+/*                               CLASS FUNCTION                               */
 /* ************************************************************************** */
 
-Base::~Base(void)
-{
+Base::~Base(void) {
+
 	if (SHOWMSG)
 		std::cout << COLOR("Base ", BLUE) << COLOR("Default constructor called", RED) << std::endl;
 }
@@ -26,8 +26,8 @@ Base::~Base(void)
 /*                             EXTERNAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-Base*	generate(void)
-{
+Base*	generate(void) {
+
 	srand(time(NULL));
 	int	i = rand() % 3;
 
@@ -39,8 +39,8 @@ Base*	generate(void)
 		return (new C());
 }
 
-void	identify(Base* p)
-{
+void	identify(Base* p) {
+
 	std::cout << COLOR("The class pointed to by a pointer is: ", BLUE);
 
 	if (dynamic_cast<A *>(p))
@@ -51,8 +51,8 @@ void	identify(Base* p)
 		std::cout << COLOR("C", MAGENTA) << std::endl;
 }
 
-void	identify(Base& p)
-{
+void	identify(Base& p) {
+
 	std::cout << COLOR("The class pointed to by a reference is: ", CYAN);
 
 	try {

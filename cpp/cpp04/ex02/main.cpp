@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/08 11:34:45 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:41:17 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-int main()
-{
+int main() {
+
 	//Test to check if we can instantiate the AAnimal class without using a derived class
 	// const AAnimal test;
 
@@ -31,8 +31,7 @@ int main()
 	int	N = 4;
 	AAnimal*	array[N];
 
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		if (i == N / 2)
 			std::cout << std::endl;
 		if (i < N / 2)
@@ -43,8 +42,7 @@ int main()
 
 	std::cout << std::endl << std::endl;
 
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		if (i == N / 2)
 			std::cout << std::endl;
 		array[i]->makeSound();
@@ -52,8 +50,7 @@ int main()
 
 	std::cout << std::endl << std::endl;
 
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		if (i == N / 2)
 			std::cout << std::endl;
 		delete array[i];

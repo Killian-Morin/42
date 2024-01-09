@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:40:14 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/13 11:08:04 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:51:26 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,44 @@
 /*                            CANONICAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-Intern::Intern(void)
-{
+Intern::Intern(void) {
+
 	if (SHOWMSG)
 		std::cout << COLOR("Intern ", BLUEUNDER) << COLOR(" Default constructor called", GREEN) << std::endl;
 }
 
 //In private since has nothing to copy
-Intern::Intern(const Intern& src)
-{
+Intern::Intern(const Intern& src) {
+
 	(void)src;
+
 	if (SHOWMSG)
 		std::cout << COLOR("Intern ", BLUEUNDER) << COLOR(" Copy constructor called", GREEN) << std::endl;
 }
 
 //In private since has nothing to copy
-Intern&	Intern::operator=(const Intern& rhs)
-{
+Intern&	Intern::operator=(const Intern& rhs) {
+
 	(void)rhs;
+
 	if (SHOWMSG)
 		std::cout << COLOR("Intern ", BLUEUNDER) << COLOR(" Assignation operator called", GREEN) << std::endl;
+
 	return (*this);
 }
 
-Intern::~Intern(void)
-{
+Intern::~Intern(void) {
+
 	if (SHOWMSG)
 		std::cout << COLOR("Intern ", BLUEUNDER) << COLOR(" destructor called", RED) << std::endl;
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                              MEMBER FUNCTIONS                             */
 /* ************************************************************************** */
 
-AForm*	Intern::makeForm(std::string formName, std::string target)
-{
+AForm*	Intern::makeForm(std::string formName, std::string target) {
+
 	std::string	forms[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 
 	AForm*	(Intern::*methods[])(const std::string) = {
@@ -59,10 +62,8 @@ AForm*	Intern::makeForm(std::string formName, std::string target)
 		&Intern::makePresidentialPardonForm
 	};
 
-	for (int i = 0; i < 3; i++)
-	{
-		if (forms[i] ==	formName)
-		{
+	for (int i = 0; i < 3; i++) {
+		if (forms[i] ==	formName) {
 			std::cout << COLOR("Intern", BLUEUNDER) << " creates " << COLOR(formName, MAGENTAUNDER) << std::endl;
 			return (this->*methods[i])(target);
 		}
@@ -75,17 +76,17 @@ AForm*	Intern::makeForm(std::string formName, std::string target)
 	exit(0);
 }
 
-AForm*	Intern::makeShrubberyCreationForm(std::string target)
-{
+AForm*	Intern::makeShrubberyCreationForm(std::string target) {
+
 	return (new ShrubberyCreationForm(target));
 }
 
-AForm*	Intern::makeRobotomyRequestForm(std::string target)
-{
+AForm*	Intern::makeRobotomyRequestForm(std::string target) {
+
 	return (new RobotomyRequestForm(target));
 }
 
-AForm*	Intern::makePresidentialPardonForm(std::string target)
-{
+AForm*	Intern::makePresidentialPardonForm(std::string target) {
+
 	return (new PresidentialPardonForm(target));
 }

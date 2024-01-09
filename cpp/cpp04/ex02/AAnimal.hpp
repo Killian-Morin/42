@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:58 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:34:26 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:32:30 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,21 @@
 
 class AAnimal {
 
+	protected:
+		std::string	_type;
+
 	public:
+		//Canonical class functions
 		AAnimal(void);
 		AAnimal(const AAnimal& src);
-		AAnimal& operator=(const AAnimal& rhs);
+		AAnimal&	operator=(const AAnimal& rhs);
 		virtual ~AAnimal(void);
 
+		//Member Function
 		virtual void	makeSound(void) const = 0;
 
+		//Getter
 		std::string	getType(void) const;
-
-	protected:
-		std::string	_type;
-
 };
 
-/* ************************************************************************** */
-/*                                                                            */
-/* ************************************************************************** */
-
-class WrongAAnimal {
-
-	public:
-		WrongAAnimal(void);
-		WrongAAnimal(const WrongAAnimal& src);
-		WrongAAnimal& operator=(const WrongAAnimal& rhs);
-		virtual ~WrongAAnimal(void);
-
-		void	makeSound(void) const;
-
-		std::string	getType(void) const;
-
-	protected:
-		std::string	_type;
-
-};
-
-#endif
+#endif //ANIMAL_HPP

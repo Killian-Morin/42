@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:40:05 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/26 16:53:56 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:10:11 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -51,7 +51,7 @@ class MutantStack : public std::stack<T> {
 		}
 		~MutantStack(void) {}
 
-		//Members functions
+		//MEMBER FUNCTIONS
 		typedef typename std::stack<T>::container_type::iterator 				iterator;
 		typedef typename std::stack<T>::container_type::const_iterator			const_iterator;
 		typedef typename std::stack<T>::container_type::reverse_iterator		reverse_iterator;
@@ -84,7 +84,6 @@ class MutantStack : public std::stack<T> {
 		const_reverse_iterator	rend(void) const {
 			return (this->c.rend());
 		}
-
 };
 
-#endif
+#endif //MUTANTSTACK_HPP

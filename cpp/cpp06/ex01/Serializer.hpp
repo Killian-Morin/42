@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:41:16 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 15:02:22 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:59:19 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 #include <string>
 
 #include "Color.hpp"
-
-#ifndef SHOWMSG
-# define SHOWMSG 0
-#endif
 
 struct Data {
 
@@ -42,7 +38,6 @@ class Serializer {
 		//Member functions
 		static uintptr_t	serialize(Data* ptr);
 		static Data*		deserialize(uintptr_t raw);
-
 };
 
-#endif
+#endif //SERIALIZER_HPP

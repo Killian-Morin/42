@@ -6,14 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 08:37:15 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/29 13:56:13 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 11:07:45 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int main(void)
-{
+int main(void) {
+
 	Fixed		a;
 	Fixed const	b(Fixed(5.05f) * Fixed(2));
 
@@ -41,9 +41,9 @@ int main(void)
 	else
 		std::cout << "a is not equal to b (false)" << std::endl;
 	if (a.operator!=(b) == true)
-		std::cout << "a is different than b (true)" << std::endl << WHITE << std::endl;
+		std::cout << "a is different than b (true)" << std::endl << RESET << std::endl;
 	else
-		std::cout << "b is not different than a (false)" << std::endl << WHITE << std::endl;
+		std::cout << "b is not different than a (false)" << std::endl << RESET << std::endl;
 
 	Fixed		c(8);
 	Fixed const	d(12);
@@ -55,7 +55,7 @@ int main(void)
 	std::cout << "Multiplication = " << c.operator*(d) << std::endl;
 	std::cout << "Division       = " << c.operator/(d) << std::endl << std::endl;
 	Fixed const	z(0);
-	std::cout << "Division      : c = " << c.operator/(z) << std::endl << WHITE << std::endl;
+	std::cout << "Division      : c = " << c.operator/(z) << std::endl << RESET << std::endl;
 
 	Fixed	e;
 	std::cout << BLUE << "INCREMENTATION PRE-FIX AND POST-FIX:" << std::endl;
@@ -63,7 +63,7 @@ int main(void)
 	std::cout << "e (++e): " << ++e << std::endl;
 	std::cout << "e (e)  : " << e << std::endl;
 	std::cout << "e (e++): " << e++ << std::endl;
-	std::cout << "e (e)  : " << e << std::endl << WHITE << std::endl;
+	std::cout << "e (e)  : " << e << std::endl << RESET << std::endl;
 
 	Fixed	f;
 	std::cout << MAGENTA << "DECREMENTATION PRE-FIX AND POST-FIX:" << std::endl;
@@ -71,7 +71,7 @@ int main(void)
 	std::cout << "f (--f): " << --f << std::endl;
 	std::cout << "f (f)  : " << f << std::endl;
 	std::cout << "f (f--): " << f-- << std::endl;
-	std::cout << "f (f)  : " << f << std::endl << WHITE << std::endl;
+	std::cout << "f (f)  : " << f << std::endl << RESET << std::endl;
 
 	Fixed	g(12);
 	Fixed	h(32);
@@ -87,7 +87,7 @@ int main(void)
 	std::cout << "i: " << i << std::endl;
 	std::cout << "j: " << j << std::endl;
 	std::cout << Fixed::max(i, j) << std::endl;
-	std::cout << Fixed::min(i, j) << WHITE << std::endl;
+	std::cout << Fixed::min(i, j) << RESET << std::endl;
 
 	return 0;
 }

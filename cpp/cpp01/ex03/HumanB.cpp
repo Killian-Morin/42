@@ -6,31 +6,45 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:38:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:34:28 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 10:36:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
-{
-	this->_weapon = NULL;
+/* ************************************************************************** */
+/*                      PARAMETRIC CONSTRUCTOR/DESTRUCTOR                     */
+/* ************************************************************************** */
+
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("HumanB", GREENULINE) << COLOR(" Parametric constructor called", GREEN) << std::endl;
 }
 
-HumanB::~HumanB(void)
-{
-	// std::cout << COLOR("HumanB Default destructor called", RED) << WHITE << std::endl;
+HumanB::~HumanB(void) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("HumanB", REDULINE) << COLOR(" Default destructor called", RED) << std::endl;
 }
 
-void	HumanB::attack(void)
-{
+/* ************************************************************************** */
+/*                               MEMBER FUNCTION                              */
+/* ************************************************************************** */
+
+void	HumanB::attack(void) {
+
 	if (this->_weapon != NULL && this->_weapon->getType() != "")
-		std::cout << MAGENTA << this->_name << " attacks with their " << this->_weapon->getType() << WHITE << std::endl;
+		std::cout << COLOR(this->_name, MAGENTAULINE) << COLOR(" attacks with their ", MAGENTA) << COLOR(this->_weapon->getType(), CYAN) << std::endl;
 	else
-		std::cout << RED << this->_name << " does not have a weapon to use" << WHITE << std::endl;
+		std::cout << COLOR(this->_name, REDULINE) << COLOR(" does not have a weapon to use", RED) << std::endl;
 }
 
-void	HumanB::setWeapon(Weapon& weapon)
-{
+/* ************************************************************************** */
+/*                                   SETTER                                   */
+/* ************************************************************************** */
+
+void	HumanB::setWeapon(Weapon& weapon) {
+
 	this->_weapon = &weapon;
 }

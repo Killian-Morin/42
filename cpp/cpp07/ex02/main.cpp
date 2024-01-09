@@ -6,14 +6,13 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:54:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/19 15:42:42 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:04:27 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
-int	main(void)
-{
+int	main(void) {
 
 	std::cout << std::endl;
 
@@ -56,8 +55,7 @@ int	main(void)
 	std::cout << MAGENTA << "Creation of an Array of type double with a len of 5 " << \
 		"and accessing each of them with the [] operator\n\t";
 	Array<double>	test(5);
-	for (int i = 0; i < 5; i++)
-	{
+	for (int i = 0; i < 5; i++) {
 		std::cout << test[i];
 		if (i < 4)
 			std::cout << ", ";

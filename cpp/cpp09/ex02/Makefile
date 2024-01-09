@@ -36,13 +36,13 @@ fclean: clean
 
 re: fclean all
 
-show: FLAGS += -D SHOWMSG=1
-show: re
-
-unshow: FLAGS += -D SHOWMSG=0
-unshow: re
-
 leaks: re
 	leaks -atExit -- ./${NAME}
 
-.PHONY: all clean fclean re leaks
+show: FLAGS += -D SHOWMSG=1
+show: re run
+
+unshow: FLAGS += -D SHOWMSG=0
+unshow: re run
+
+.PHONY: all clean fclean re leaks show unshow

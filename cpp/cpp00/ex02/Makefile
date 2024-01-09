@@ -1,6 +1,6 @@
 NAME = Account
 
-CC = g++
+CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 RM = /bin/rm -rf
 
@@ -8,7 +8,8 @@ BLUE = \033[0;34m
 RED = \033[0;31m
 WHITE = \033[0;97m
 
-SRC_FILES = Account.cpp tests.cpp
+SRC_FILES = Account.cpp \
+			tests.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:.cpp=.o}}
@@ -35,4 +36,13 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: all
+	./${NAME}
+
+show: FLAGS += -D SHOWMSG=1
+show: re run
+
+unshow: FLAGS += -D SHOWMSG=0
+unshow: re run
+
+.PHONY: all clean fclean re run show unshow

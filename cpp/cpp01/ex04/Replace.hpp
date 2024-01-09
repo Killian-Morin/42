@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:21 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/05 15:35:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 09:53:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,25 @@
 #include <iostream>
 #include <fstream>
 
-#define RESET "\e[0m"
-#define RED "\033[31m"
-#define GREEN "\e[0;32m"
-#define BLUE "\e[0;34m"
-#define WHITE "\033[37m"
-
-#define COLOR(text, color) color << text << RESET
+#include "Color.hpp"
 
 //No default constructor since I didn't create a setter for the ≠ attributs
-class Replace
-{
-	public:
-		Replace(std::string file, std::string s1, std::string s2);
-		~Replace(void);
-
-		void	replace(void);
+class Replace {
 
 	private:
 		std::string	_infile;
 		std::string	_outfile;
 		std::string	_s1;
 		std::string	_s2;
+
+	public:
+		//Parametric constructor/Destructor
+		Replace(std::string file, std::string s1, std::string s2);
+		~Replace(void);
+
+		//Member Function
+		void	replace(void);
+
 };
 
-#endif
+#endif // REPLACE_HPP

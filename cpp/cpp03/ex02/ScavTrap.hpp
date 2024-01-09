@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:34:11 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 16:35:34 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:21:02 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,28 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
-{
-	public:
-		ScavTrap(void);
-		~ScavTrap(void);
-		ScavTrap(const ScavTrap& other);
-		ScavTrap& operator=(const ScavTrap& rhs);
-
-		ScavTrap(std::string name);
-
-		void	attack(const std::string& target);
-
-		void	guardGate(void);
-
-		void	printStatus(void);
+class ScavTrap : public ClapTrap {
 
 	private:
 		bool	_guardStatus;
 
+	public:
+		//Canonical class functions
+		ScavTrap(void);
+		ScavTrap(const ScavTrap& src);
+		ScavTrap& operator=(const ScavTrap& rhs);
+		~ScavTrap(void);
+
+		//Parametric Constructor
+		ScavTrap(std::string name);
+
+		//Member Functions
+		void	attack(const std::string& target);
+
+		void	guardGate(void);
+
+		//Extra function
+		void	printStatus(void);
 };
 
-#endif
+#endif //SCAV_TRAP_HPP

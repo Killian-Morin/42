@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:18:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/18 10:38:53 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:57:26 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,29 @@
 	with no message in them since we can nothing with the class apart from
 	calling the static member function convert.
 */
-ScalarConverter::ScalarConverter(void)
-{
+ScalarConverter::ScalarConverter(void) {
+
 	if (SHOWMSG)
 		std::cout << COLOR("ScalaraConverter ", BLUE) << COLOR("Default constructor called", GREEN) << std::endl;
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter& src)
-{
+ScalarConverter::ScalarConverter(const ScalarConverter& src) {
+
 	*this = src;
 	if (SHOWMSG)
 		std::cout << COLOR("ScalaraConverter ", BLUE) << COLOR("Copy constructor called", GREEN) << std::endl;
 }
 
-ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& rhs)
-{
+ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& rhs) {
+
 	(void)rhs;
 	if (SHOWMSG)
 		std::cout << COLOR("ScalaraConverter ", BLUE) << COLOR("Assignation operator called", GREEN) << std::endl;
 	return (*this);
 }
 
-ScalarConverter::~ScalarConverter(void)
-{
+ScalarConverter::~ScalarConverter(void) {
+
 	if (SHOWMSG)
 		std::cout << COLOR("ScalaraConverter ", BLUE) << COLOR("Default destructor called", RED) << std::endl;
 }
@@ -58,8 +58,8 @@ ScalarConverter::~ScalarConverter(void)
 	No printLiterarls since already done in the convert function for them
 */
 
-void	printChar(char c, bool isPossible)
-{
+void	printChar(char c, bool isPossible) {
+
 	if (!isPossible)
 		std::cout << COLOR("char:", UGREEN) << COLOR(" impossible", RED) << std::endl;
 	else if (isprint(c))
@@ -68,24 +68,24 @@ void	printChar(char c, bool isPossible)
 		std::cout << COLOR("char:", UGREEN) << " " << COLOR(" Non displayable", RED) << std::endl;
 }
 
-void	printInt(int i, bool isPossible)
-{
+void	printInt(int i, bool isPossible) {
+
 	if (!isPossible)
 		std::cout << COLOR("int:", UYELLOW) << COLOR(" impossible", RED) << std::endl;
 	else
 		std::cout << COLOR("int:", UYELLOW) << " " << COLOR(i, YELLOW) << std::endl;
 }
 
-void	printFloat(float f, bool isPossible)
-{
+void	printFloat(float f, bool isPossible) {
+
 	if (!isPossible)
 		std::cout << COLOR("float:", UBLUE) << COLOR(" impossible", RED) << std::endl;
 	else
 		std::cout << COLOR("float:", UBLUE) << " " << BLUE << std::fixed << std::setprecision(1) << f << "f" << RESET << std::endl;
 }
 
-void	printDouble(double d, bool isPossible)
-{
+void	printDouble(double d, bool isPossible) {
+
 	if (!isPossible)
 		std::cout << COLOR("double:", UMAGENTA) << COLOR(" impossible", RED) << std::endl;
 	else
@@ -97,8 +97,8 @@ void	printDouble(double d, bool isPossible)
 /*                                 CONVERTERS                                 */
 /* ************************************************************************** */
 
-void	convertPseudoLiteral(const std::string& strToConvert)
-{
+void	convertPseudoLiteral(const std::string& strToConvert) {
+
 	printChar(0, false);
 	printInt(0, false);
 	float	f = static_cast<float>(atof(strToConvert.c_str()));
@@ -107,8 +107,8 @@ void	convertPseudoLiteral(const std::string& strToConvert)
 	std::cout << COLOR("double:", UMAGENTA) << " " << COLOR(d, MAGENTA) << std::endl;
 }
 
-void	convertChar(const std::string& strToConvert)
-{
+void	convertChar(const std::string& strToConvert) {
+
 	char	c = strToConvert[0];
 	printChar(c, true);
 
@@ -129,8 +129,8 @@ void	convertChar(const std::string& strToConvert)
 	double: print with a cast
 	clear stream
 */
-void	convertInt(const std::string& strToConvert)
-{
+void	convertInt(const std::string& strToConvert) {
+
 	std::stringstream	streamInt;
 	int					i;
 
@@ -162,8 +162,8 @@ void	convertInt(const std::string& strToConvert)
 	double: print with a cast
 	clear both streams
 */
-void	convertFloat(const std::string& strToConvert)
-{
+void	convertFloat(const std::string& strToConvert) {
+
 	std::stringstream	streamFloat;
 	std::stringstream	streamInt;
 	std::string			s;
@@ -205,8 +205,8 @@ void	convertFloat(const std::string& strToConvert)
 	depending on the result, print an error or print with a cast to the result
 	clear both streams
 */
-void	convertDouble(const std::string& strToConvert)
-{
+void	convertDouble(const std::string& strToConvert) {
+
 	std::stringstream	streamDouble;
 	std::stringstream	streamInt;
 	std::string			s;
@@ -244,8 +244,8 @@ void	convertDouble(const std::string& strToConvert)
 /*                                  CHECKERS                                  */
 /* ************************************************************************** */
 
-bool	isPseudoLiteral(const std::string& strToConvert)
-{
+bool	isPseudoLiteral(const std::string& strToConvert) {
+
 	if (strToConvert == "-inff" || \
 		strToConvert == "+inff" || \
 		strToConvert == "inff" || \
@@ -267,8 +267,8 @@ bool	isPseudoLiteral(const std::string& strToConvert)
 	Check for the number of sign, dot and 'f' in the input
 		return false if > 1
 */
-bool	validInput(const std::string& strToConvert)
-{
+bool	validInput(const std::string& strToConvert) {
+
 	int	nbSign = 0;
 	int	posSign = 0;
 	int	nbDot = 0;
@@ -280,29 +280,29 @@ bool	validInput(const std::string& strToConvert)
 	if (strToConvert.length() == 1 || isPseudoLiteral(strToConvert))
 		return (true);
 
-	if (strToConvert.length() > 1)
-	{
-		for (size_t i = 0; i < strToConvert.length(); i++)
-		{
+	if (strToConvert.length() > 1) {
+		for (size_t i = 0; i < strToConvert.length(); i++) {
 			if (!isdigit(strToConvert[i]) && strToConvert[i] != 'f' && strToConvert[i] != '-' && strToConvert[i] != '+' && strToConvert[i] != '.')
 				return (false);
 		}
 	}
 
-	for (size_t i = 0; i < strToConvert.length(); i++)
-	{
-		if (strToConvert[i] == '-' || strToConvert[i] == '+')
-		{
+	for (size_t i = 0; i < strToConvert.length(); i++) {
+		if (strToConvert[i] == '-' || strToConvert[i] == '+') {
 			nbSign++;
 			posSign = i;
 		}
+
 		if (strToConvert[i] == '.')
 			nbDot++;
+
 		if (strToConvert[i] == 'f')
 			nbF++;
+
 		if (posSign != 0 || nbSign > 1 || nbDot > 1 || nbF > 1)
 			return (false);
 	}
+
 	return (true);
 }
 
@@ -310,8 +310,8 @@ bool	validInput(const std::string& strToConvert)
 	if the string contains only one character and that it's not a digit -> return true
 	else -> return false
 */
-bool	isChar(const std::string& strToConvert)
-{
+bool	isChar(const std::string& strToConvert) {
+
 	if (strToConvert.length() == 1 && !isdigit(strToConvert[0]))
 		return (true);
 	return (false);
@@ -322,28 +322,27 @@ bool	isChar(const std::string& strToConvert)
 		if it is -> return true
 		else -> return false
 */
-bool	isFloat(const std::string& strToConvert)
-{
+bool	isFloat(const std::string& strToConvert) {
+
 	if (strToConvert.back() != 'f')
 		return (false);
 	return (true);
 }
 
-bool	isDouble(const std::string& strToConvert)
-{
+bool	isDouble(const std::string& strToConvert) {
+
 	if (strToConvert.find('.') != strToConvert.npos)
 		return (true);
 	return (false);
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                              MEMBER FUNCTIONS                             */
 /* ************************************************************************** */
 
-void	ScalarConverter::convert(const std::string& strToConvert)
-{
-	if (!validInput(strToConvert))
-	{
+void	ScalarConverter::convert(const std::string& strToConvert) {
+
+	if (!validInput(strToConvert)) {
 		std::cout << RED << "Error." << std::endl << "The input is not a valid input. " << RESET << std::endl;
 		return ;
 	}

@@ -6,14 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 13:10:14 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 11:48:06 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-int	main(void)
-{
+int	main(void) {
+
 	ClapTrap	bob("bob");
 	ClapTrap	joe("joe");
 	std::cout << std::endl;
@@ -31,16 +31,8 @@ int	main(void)
 
 	// rien.setName("rien");
 
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
-	// rien.attack("joe");
+	// for (int i = 0; i < 10; i++)
+	// 	rien.attack("joe");
 
 	return (0);
 }

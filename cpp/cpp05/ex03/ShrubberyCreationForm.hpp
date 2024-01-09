@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:42 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 14:50:29 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:52:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm(const ShrubberyCreationForm& src);
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& rhs);
 		~ShrubberyCreationForm(void);
+
 		//Parametric constructor
 		ShrubberyCreationForm(const std::string target);
 
 		//Overloaded herited functions
 		void	execute(Bureaucrat const & executor) const;
-
 };
 
-#endif
+#endif //SHRUBBERYCREATIONFORM_HPP

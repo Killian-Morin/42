@@ -6,72 +6,69 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:34:08 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:09:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:38:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
 /* ************************************************************************** */
-/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/*                            CANONICAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-Brain::Brain(void)
-{
+Brain::Brain(void) {
+
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = "No idea";
 
-	std::cout << COLOR("Brain 🧠", WHITE);
-	std::cout << COLOR(" Default constructor", BLUE) << std::endl;
+	if (SHOWMSG)
+		std::cout << COLOR("Brain 🧠", WHITE) << COLOR(" Default constructor called", GREEN) << std::endl;
 }
 
-Brain::Brain(const Brain& src)
-{
+Brain::Brain(const Brain& src) {
+
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = src.ideas[i];
 
-	std::cout << COLOR("Brain 🧠", WHITE);
-	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
+	if (SHOWMSG)
+		std::cout << COLOR("Brain 🧠", WHITE) << COLOR(" Copy constructor called", GREEN) << std::endl;
 }
 
-Brain&	Brain::operator=(const Brain& rhs)
-{
-	if (this != &rhs)
-	{
+Brain&	Brain::operator=(const Brain& rhs) {
+
+	if (this != &rhs) {
 		for (int i = 0; i < 100; i++)
 			this->ideas[i] = rhs.ideas[i];
 	}
 
-	std::cout << COLOR("Brain 🧠", WHITE);
-	std::cout << COLOR(" assignement operator called", BLUE) << std::endl;
+	if (SHOWMSG)
+		std::cout << COLOR("Brain 🧠", WHITE) << COLOR(" Assignement operator called", GREEN) << std::endl;
 
 	return (*this);
 }
 
-Brain::~Brain(void)
-{
-	std::cout << COLOR("Brain 🧠", WHITE);
-	std::cout << COLOR(" Default destructor", RED) << std::endl;
+Brain::~Brain(void) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Brain 🧠", WHITE) << COLOR(" Default destructor called", RED) << std::endl;
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                                GETTER/SETTER                               */
 /* ************************************************************************** */
 
-std::string	Brain::getIdea(int index) const
-{
-	if (index < 0 || index > 100)
-	{
+std::string	Brain::getIdea(int index) const {
+
+	if (index < 0 || index > 100) {
 		std::cout << COLOR("Sorry, index is not within scope (0-100). ", RED);
 		return ("");
 	}
 	return (this->ideas[index]);
 }
 
-void	Brain::setIdea(std::string idea, int index)
-{
-	if (index < 0 || index > 100)
-	{
+void	Brain::setIdea(std::string idea, int index) {
+
+	if (index < 0 || index > 100) {
 		std::cout << COLOR("Sorry, index is not within scope (0-100).", RED) << std::endl;
 		return ;
 	}

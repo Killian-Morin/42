@@ -6,40 +6,42 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:40:47 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 13:23:22 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:41:20 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void)
-{
+/* ************************************************************************** */
+/*                            CANONICAL FUNCTIONS                             */
+/* ************************************************************************** */
+
+FragTrap::FragTrap(void) {
+
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
 	this->_name = "default-name";
-	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-	std::cout << COLOR(" Default constructor", BLUE) << std::endl;
+
+	if (SHOWMSG)
+		std::cout << CYANULINE << "FragTrap " << this->_name << \
+			COLOR(" Default constructor called", GREEN) << std::endl;
 }
 
-FragTrap::~FragTrap(void)
-{
-	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-	std::cout << COLOR(" Default destructor", RED) << std::endl;
+FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src) {
+
+	this->_hitPoints = src._hitPoints;
+	this->_energyPoints = src._energyPoints;
+	this->_attackDamage = src._attackDamage;
+	this->_name = src._name;
+
+	if (SHOWMSG)
+		std::cout << CYANULINE << "FragTrap " << this->_name << \
+			COLOR(" Copy constructor called", GREEN) << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
-{
-	this->_hitPoints = other._hitPoints;
-	this->_energyPoints = other._energyPoints;
-	this->_attackDamage = other._attackDamage;
-	this->_name = other._name;
-	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
-}
+FragTrap&	FragTrap::operator=(const FragTrap& rhs) {
 
-FragTrap&	FragTrap::operator=(const FragTrap& rhs)
-{
 	if (this != &rhs)
 	{
 		this->_hitPoints = rhs._hitPoints;
@@ -47,47 +49,75 @@ FragTrap&	FragTrap::operator=(const FragTrap& rhs)
 		this->_attackDamage = rhs._attackDamage;
 		this->_name = rhs._name;
 	}
-	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-	std::cout << COLOR(" assignement operator called", BLUE) << std::endl;
+
+	if (SHOWMSG)
+		std::cout << CYANULINE << "FragTrap " << this->_name << \
+			COLOR(" Assignement operator called", GREEN) << std::endl;
+
 	return (*this);
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
-{
+FragTrap::~FragTrap(void) {
+
+	if (SHOWMSG)
+		std::cout << CYANULINE << "FragTrap " << this->_name << \
+			COLOR(" Default destructor called", RED) << std::endl;
+}
+
+/* ************************************************************************** */
+/*                           PARAMETRIC CONSTRUCTOR                           */
+/* ************************************************************************** */
+
+FragTrap::FragTrap(std::string name) : ClapTrap(name) {
+
 	this->_hitPoints = 100;
 	this->_energyPoints = 100;
 	this->_attackDamage = 30;
-	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-	std::cout << COLOR(" name initializer constructor", BLUE) << std::endl;
+
+	if (SHOWMSG)
+		std::cout << CYANULINE << "FragTrap " << this->_name << \
+			COLOR(" Parametric constructor called", GREEN) << std::endl;
 }
 
-void	FragTrap::highFivesGuys(void)
-{
-	if (this->_hitPoints == 0)
-	{
-		std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-		std::cout << COLOR(" is destroyed (no more hit points). He can't do any action.", WHITEBACK) << std::endl;
+/* ************************************************************************** */
+/*                               MEMBER FUNCTIONS                             */
+/* ************************************************************************** */
+
+void	FragTrap::highFivesGuys(void) {
+
+	if (this->_hitPoints == 0) {
+		std::cout << CYANULINE << "FragTrap " << this->_name << RESET << " " << \
+			COLOR("is destroyed (no more hit points). He can't do any action.", WHITEBACK) << std::endl;
+
 		this->printStatus();
+
 		return ;
 	}
-	if (this->_energyPoints > 0)
-	{
+
+	if (this->_energyPoints > 0) {
 		this->_energyPoints -= 1;
+
 		std::cout << CYANULINE << "FragTrap " << this->_name << RESET << " " << COLOR("High fives ? 🙏", WHITEBACK) << std::endl;
+
 		this->printStatus();
+
 		return ;
 	}
-	else
-	{
-		std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-		std::cout << COLOR(" has no more energy points left. He can't do any action.", WHITEBACK) << std::endl;
+	else {
+		std::cout << CYANULINE << "FragTrap " << this->_name << RESET << " " << \
+			COLOR("has no more energy points left. He can't do any action.", WHITEBACK) << std::endl;
+
 		this->printStatus();
 	}
 }
 
-void	FragTrap::printStatus(void)
-{
-	std::cout << CYANULINE << "FragTrap " << this->_name << RESET;
-	std::cout << WHITE << " now has " << this->_hitPoints << " hit points and ";
-	std::cout << this->_energyPoints << " energy points." << std::endl << std::endl;
+/* ************************************************************************** */
+/*                               EXTRA FUNCTION                               */
+/* ************************************************************************** */
+
+void	FragTrap::printStatus(void) {
+
+	std::cout << CYANULINE << "FragTrap " << this->_name << \
+		WHITE << " now has " << this->_hitPoints << " hit points and " << \
+		this->_energyPoints << " energy points." << std::endl << std::endl;
 }

@@ -6,13 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 15:40:10 by kmorin            #+#    #+#             */
-/*   Updated: 2024/01/04 12:56:46 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:09:54 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 
 void	subject_test(void) {
+
 	std::cout << MAGENTA << "\tSUBJECT TEST" << std::endl;
 
 	MutantStack<int> mstack;

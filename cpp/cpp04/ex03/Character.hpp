@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:38:22 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:52:06 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:34:45 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@
 
 class Character : public ICharacter {
 
-	public:
-		Character(void);
-		Character(std::string const& name);
-		Character(Character const& src);
-		Character&	operator=(Character const& rhs);
-		virtual ~Character(void);
-
-		virtual std::string const&	getName(void) const;
-		virtual void				equip(AMateria* m);
-		virtual void				unequip(int idx);
-		virtual void				use(int idx, ICharacter& target);
-
 	private:
 		std::string	_name;
 		int			_idxInventory;
@@ -41,6 +29,21 @@ class Character : public ICharacter {
 		AMateria*	_unequipedInventory[4];
 		void		handleUnequipedInventory(int idx);
 
+	public:
+		//Canonical class functions
+		Character(void);
+		Character(Character const& src);
+		Character&	operator=(Character const& rhs);
+		virtual ~Character(void);
+
+		//Parametric constructor
+		Character(std::string const& name);
+
+		//Overloaded herited functions
+		virtual std::string const&	getName(void) const;
+		virtual void				equip(AMateria* m);
+		virtual void				unequip(int idx);
+		virtual void				use(int idx, ICharacter& target);
 };
 
-#endif
+#endif //CHARACTER_HPP

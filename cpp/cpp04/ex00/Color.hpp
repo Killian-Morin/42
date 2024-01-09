@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:01:55 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 12:52:47 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 13:58:15 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #define COLOR_HPP
 
 #include <iostream>
+
+#ifndef SHOWMSG
+# define SHOWMSG 0
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -32,4 +36,4 @@
 
 #define COLOR(text, color) color << text << RESET
 
-#endif
+#endif //COLOR_HPP

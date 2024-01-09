@@ -6,14 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:34:09 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/27 12:15:32 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 10:31:39 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int main(void)
-{
+int main(void) {
+
 	Fixed a;
 	Fixed b(a);
 	Fixed c;

@@ -39,13 +39,13 @@ re: fclean all
 run: all
 	./${NAME} input.txt
 
+leaks: re
+	leaks -atExit -- ./${NAME} input.txt
+
 show: FLAGS += -D SHOWMSG=1
 show: re run
 
 unshow: FLAGS += -D SHOWMSG=0
 unshow: re run
 
-leaks: re
-	leaks -atExit -- ./${NAME}
-
-.PHONY: all clean fclean re leaks
+.PHONY: all clean fclean re run leaks show unshow

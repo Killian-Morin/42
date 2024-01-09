@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:45:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/06 13:17:30 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 09:06:40 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,23 @@
 #include <iostream>
 #include <istream>
 
+#include "Color.hpp"
+
 class Contact {
+
+	private:
+		std::string	_FirstName;
+		std::string	_LastName;
+		std::string	_Nickname;
+		std::string	_PhoneNumber;
+		std::string	_Secret;
+
 	public:
+		//Constructor/Destructor
 		Contact(void);
 		~Contact(void);
 
+		//Getters/Setters
 		std::string	get_FirstName(void) const;
 		void		set_FirstName(std::string new_firstname);
 		std::string	get_LastName(void) const;
@@ -33,13 +45,6 @@ class Contact {
 		void		set_PhoneNumber(std::string new_phonenumber);
 		std::string	get_Secret(void) const;
 		void		set_Secret(std::string new_secret);
-
-	private:
-		std::string	_FirstName;
-		std::string	_LastName;
-		std::string	_Nickname;
-		std::string	_PhoneNumber;
-		std::string	_Secret;
 };
 
-#endif
+#endif //CONTACT_HPP

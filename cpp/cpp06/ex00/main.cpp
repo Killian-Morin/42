@@ -6,14 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:55:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/18 10:01:05 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:56:00 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-int	main(void)
-{
+int	main(void) {
+
 	std::cout << std::endl;
 
 	/*	CHAR	*/

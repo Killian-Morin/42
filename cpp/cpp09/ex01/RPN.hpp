@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 16:54:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/29 16:22:52 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:12:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -55,4 +55,4 @@ class RPN {
 
 };
 
-#endif
+#endif //RPN_HPP

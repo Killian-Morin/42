@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 16:37:39 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:36:10 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
-int	main(void)
-{
+int	main(void) {
+
 	DiamondTrap	empty;
 	std::cout << std::endl;
 	empty.whoAmI();

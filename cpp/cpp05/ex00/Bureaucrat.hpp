@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:57 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/13 10:53:01 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:38:13 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -48,17 +48,19 @@ class Bureaucrat {
 		//Canonical class functions
 		Bureaucrat(const Bureaucrat& src);
 		~Bureaucrat(void);
+
 		//Parametric constructor
 		Bureaucrat(const std::string name, int grade);
 
-		//Member Functions
+		//Getters
 		const std::string	getName(void) const;
 		int					getGrade(void) const;
 
+		//Member Functions
 		void				incGrade(void);
 		void				decGrade(void);
 
-		//Nested Classes for my exceptions
+		//Exceptions classes
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char*	what() const throw();
@@ -68,10 +70,9 @@ class Bureaucrat {
 			public:
 				virtual const char* what() const throw();
 		};
-
 };
 
 //Operator overload to print Bureaucrat class info
 std::ostream&	operator<<(std::ostream& o, const Bureaucrat& b);
 
-#endif
+#endif //BUREAUCRAT_HPP

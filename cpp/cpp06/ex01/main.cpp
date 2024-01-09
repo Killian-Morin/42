@@ -6,19 +6,18 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:48:51 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/18 10:20:50 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:59:01 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
-void	printData(Data* data)
-{
+void	printData(Data* data) {
+
 	std::cout << YELLOW << "Value of data structure: _n = " << data->_n << RESET << std::endl;
 }
 
-int	main(void)
-{
+int	main(void) {
 
 	std::cout << std::endl;
 

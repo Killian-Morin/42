@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/08 11:14:43 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:47:31 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-int main(void)
-{
+int main(void) {
+
 	const Animal *meta = new Animal();
 	const Animal *j = new Dog();
 	const Animal *i = new Cat();
@@ -37,7 +37,8 @@ int main(void)
 	delete j;
 	delete i;
 
-	/*const WrongAnimal* k = new WrongAnimal();
+	/*
+	const WrongAnimal* k = new WrongAnimal();
 	const WrongAnimal* l = new WrongCat();
 
 	std::cout << std::endl;
@@ -53,7 +54,8 @@ int main(void)
 	std::cout << std::endl;
 
 	delete k;
-	delete l;*/
+	delete l;
+	*/
 
 	return 0;
 }

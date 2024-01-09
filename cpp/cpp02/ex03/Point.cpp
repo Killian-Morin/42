@@ -6,50 +6,67 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:23:56 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/29 14:05:01 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 11:20:47 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Point::Point() : _x(0), _y(0)
-{
-	// std::cout << GREEN << "Default constructor called" << WHITE << std::endl;
+/* ************************************************************************** */
+/*                            CANONICAL FUNCTIONS                             */
+/* ************************************************************************** */
+
+Point::Point(void) : _x(0), _y(0) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Point", GREENULINE) << COLOR(" Default constructor called", GREEN) << std::endl;
 }
 
-Point::~Point()
-{
-	// std::cout << RED << "Destructor called" << WHITE << std::endl;
+Point::Point(const Point &src) : _x(src._x), _y(src._y) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Point", GREENULINE) << COLOR(" Copy constructor called", GREEN) << std::endl;
 }
 
-Point::Point(const Point &other) : _x(other._x), _y(other._y)
-{
-	// std::cout << BLUE << "Copy constructor called" << WHITE << std::endl;
-}
+Point&	Point::operator=(const Point& rhs) {
 
-Point&	Point::operator=(const Point& other)
-{
-	// Check for self-assignment
-	if (this != &other)
-	{
-		// Copy values from 'other' to 'this'
-		(Fixed)this->_x = other._x;
-		(Fixed)this->_y = other._y;
+	if (this != &rhs) {
+		(Fixed)this->_x = rhs._x;
+		(Fixed)this->_y = rhs._y;
 	}
-	return *this;
+
+	if (SHOWMSG)
+		std::cout << COLOR("Point", GREENULINE) << COLOR(" Copy assignment operator called", GREEN) << std::endl;
+
+	return (*this);
 }
 
-Point::Point(const float xValue, const float yValue) : _x(xValue), _y(yValue)
-{
-	// std::cout << BLUE << "Constructor with parameters called" << WHITE << std::endl;
+Point::~Point(void) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Point", REDULINE) << COLOR(" Default destructor called", RED) << std::endl;
 }
 
-Fixed const	Point::getX() const
-{
+/* ************************************************************************** */
+/*                          PARAMETRIC CONSTRUCTOR                            */
+/* ************************************************************************** */
+
+Point::Point(const float xValue, const float yValue) : _x(xValue), _y(yValue) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Point", GREENULINE) << COLOR(" Parametric constructor called", BOLDGREEN) << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                   GETTERS                                  */
+/* ************************************************************************** */
+
+Fixed const	Point::getX() const {
+
 	return (this->_x);
 }
 
-Fixed const	Point::getY() const
-{
+Fixed const	Point::getY() const {
+
 	return (this->_y);
 }

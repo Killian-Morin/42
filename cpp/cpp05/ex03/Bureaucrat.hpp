@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:56 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/13 10:53:30 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:53:15 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -80,7 +80,6 @@ class Bureaucrat {
 			public:
 				virtual const char* what() const throw();
 		};
-
 };
 
 //Operator overload to print Bureaucrat class info

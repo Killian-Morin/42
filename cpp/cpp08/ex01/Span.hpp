@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:37:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/22 15:43:15 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:09:28 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -64,6 +64,7 @@ class Span {
 		unsigned int		shortestSpan(void) const;
 		unsigned int		longestSpan(void) const;
 
+		//Getters
 		unsigned int		getN(void) const;
 		std::deque<int>		getContainer(void) const;
 
@@ -72,4 +73,4 @@ class Span {
 //Operator overload to print Span content
 std::ostream&	operator<<(std::ostream& o, const Span& span);
 
-#endif
+#endif //SPAN_HPP

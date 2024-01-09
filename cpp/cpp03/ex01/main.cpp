@@ -6,14 +6,14 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:35 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 16:34:25 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:08:42 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-int	main(void)
-{
+int	main(void) {
+
 	ScavTrap	bob("bob");
 	ClapTrap	joe("joe");
 	std::cout << std::endl;

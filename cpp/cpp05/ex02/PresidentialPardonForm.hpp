@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:52 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 14:50:18 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:25:31 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ class PresidentialPardonForm : public AForm {
 		PresidentialPardonForm(const PresidentialPardonForm& src);
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& rhs);
 		~PresidentialPardonForm(void);
+
 		//Parametric constructor
 		PresidentialPardonForm(const std::string target);
 
 		//Overloaded herited functions
 		void	execute(Bureaucrat const & executor) const;
-
 };
 
-#endif
+#endif //PRESIDENTIALPARDONFORM_HPP

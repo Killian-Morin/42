@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:23:51 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/28 13:48:24 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:01:17 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,48 @@
 #include <iostream>
 #include <cmath>
 
-#define RED "\e[31m"
+#ifndef SHOWMSG
+# define SHOWMSG 0
+#endif //SHOWMSG
+
+#define RESET "\e[0m"
+#define RED "\e[0;31m"
 #define GREEN "\e[0;32m"
 #define YELLOW "\e[0;33m"
 #define BLUE "\e[0;34m"
 #define MAGENTA "\e[0;35m"
 #define CYAN "\e[0;36m"
-#define WHITE "\e[37m"
+#define WHITE "\e[0;37m"
+
+#define BOLDGREEN "\e[1;32m"
+
+#define REDULINE "\e[4;31m"
+#define GREENULINE "\e[4;32m"
+
+#define COLOR(text, color) color << text << RESET
 
 class	Fixed {
+
+	private:
+		int					_fixedPointValue;
+		static const int	_fractionalBits = 8;
+
 	public:
-		Fixed();
-		~Fixed();
+		//Canonical class functions
+		Fixed(void);
+		Fixed(const Fixed& src);
+		Fixed&	operator=(const Fixed& rhs);
+		~Fixed(void);
 
-		Fixed(const Fixed& other);//copy constructor
-		Fixed& operator=(const Fixed& rhs);//assignment operator overload
-
+		//Getter/Setter
 		int		getRawBits(void) const;
 		void	setRawBits(const int raw);
 
-		Fixed(const int n);//constructor for integers
-		Fixed(const float n);//constructor for floats
+		//Parametric Constructors
+		Fixed(const int n);
+		Fixed(const float n);
 
+		//Member Functions
 		int		toInt(void) const;
 		float	toFloat(void) const;
 
@@ -64,12 +84,9 @@ class	Fixed {
 
 		static Fixed&		max(Fixed& a, Fixed& b);
 		static const Fixed&	max(const Fixed& a, const Fixed& b);
-
-	private:
-		int					_fixedPointValue;
-		static const int	_fractionalBits = 8;
 };
 
+//Operator overload to print Fixed class info
 std::ostream&	operator<<(std::ostream& o, Fixed const& instance);
 
-#endif
+#endif //FIXED_HPP

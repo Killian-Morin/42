@@ -6,14 +6,13 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:05:44 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/15 15:27:55 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:01:07 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
 
-int	main(void)
-{
+int	main(void) {
 
 	std::cout << std::endl;
 

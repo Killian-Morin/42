@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:58:29 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/08 11:27:25 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:41:02 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-int main(void)
-{
+int main(void) {
 
 	const Animal* j = new Dog();
 	const Animal* k = new Cat();
@@ -25,13 +24,11 @@ int main(void)
 	delete j;//should not create a leak
 	delete k;
 
-
 	/*
 	int	N = 4;
 	Animal*	array[N];
 
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		if (i == N / 2)
 			std::cout << std::endl;
 		if (i < N / 2)
@@ -42,8 +39,7 @@ int main(void)
 
 	std::cout << std::endl << std::endl;
 
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		if (i == N / 2)
 			std::cout << std::endl;
 		array[i]->makeSound();
@@ -51,8 +47,7 @@ int main(void)
 
 	std::cout << std::endl << std::endl;
 
-	for (int i = 0; i < N; i++)
-	{
+	for (int i = 0; i < N; i++) {
 		if (i == N / 2)
 			std::cout << std::endl;
 		delete array[i];

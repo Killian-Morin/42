@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:54:07 by kmorin            #+#    #+#             */
-/*   Updated: 2024/01/04 15:54:22 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:12:57 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ PmergeMe::~PmergeMe(void) {
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                              MEMBER FUNCTIONS                             */
 /* ************************************************************************** */
 
 bool	PmergeMe::checker(char **av) {
@@ -113,7 +113,6 @@ void	PmergeMe::initDeque(char **av) {
 	for (int i = 0; av[i]; i++) {
 		this->_d.push_back(std::atoi(av[i]));
 	}
-
 }
 
 void	PmergeMe::printDeque(bool when) {
@@ -219,7 +218,6 @@ void	PmergeMe::initVector(char **av) {
 	for (int i = 0; av[i]; i++) {
 		this->_v.push_back(std::atoi(av[i]));
 	}
-
 }
 
 void	PmergeMe::printVector(bool when) {
@@ -295,7 +293,6 @@ void	PmergeMe::sortVector(void) {
 	}
 
 	_v = vSort;
-
 }
 
 int	PmergeMe::binarySearchVector(std::vector<int> v, int elementToSearch) {

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 15:54:09 by kmorin            #+#    #+#             */
-/*   Updated: 2024/01/02 17:46:28 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:03:56 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 #include <deque>
 #include <vector>
 #include <utility>
+#include <list>
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 #define RESET "\e[0m"
 #define RED "\e[0;31m"
@@ -83,7 +84,6 @@ class Pair {
 
 	private:
 		Pair(void);
-
 };
 
 #endif //PMERGEME_HPP

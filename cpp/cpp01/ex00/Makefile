@@ -1,6 +1,6 @@
 NAME = Zombie
 
-CC = g++
+CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 RM = /bin/rm -rf
 
@@ -8,7 +8,10 @@ BLUE = \033[0;34m
 RED = \033[0;31m
 WHITE = \033[0;97m
 
-SRC_FILES = main.cpp newZombie.cpp Zombie.cpp randomChump.cpp
+SRC_FILES = main.cpp \
+			newZombie.cpp \
+			Zombie.cpp \
+			randomChump.cpp
 
 OBJ_DIR = ./objs/
 OBJ_FILES = ${addprefix ${OBJ_DIR}, ${SRC_FILES:.cpp=.o}}
@@ -35,7 +38,10 @@ fclean: clean
 
 re: fclean all
 
+run: all
+	./${NAME}
+
 leaks: all
 	leaks -atExit -- ./${NAME}
 
-.PHONY: all clean fclean re leaks
+.PHONY: all clean fclean re run leaks

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:22:06 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/01 11:28:08 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 12:39:03 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,25 @@ have their own instance of their parent: ClapTrap:
 
 */
 
-class DiamondTrap : public ScavTrap, public FragTrap
-{
-	public:
-		DiamondTrap();
-		~DiamondTrap();
-		DiamondTrap(const DiamondTrap& other);
-		DiamondTrap& operator=(const DiamondTrap& rhs);
-
-		DiamondTrap(std::string name);
-
-		void	attack(const std::string& target);
-
-		void	whoAmI(void);
+class DiamondTrap : public ScavTrap, public FragTrap {
 
 	private:
 		std::string	_name;
+
+	public:
+		//Canonical class functions
+		DiamondTrap(void);
+		DiamondTrap(const DiamondTrap& src);
+		DiamondTrap& operator=(const DiamondTrap& rhs);
+		~DiamondTrap(void);
+
+		//Parametric Constructor
+		DiamondTrap(std::string name);
+
+		//Member Functions
+		void	attack(const std::string& target);
+
+		void	whoAmI(void);
 };
 
-#endif
+#endif //DIAMOND_TRAP_HPP

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 08:49:55 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 16:43:14 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:38:26 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,20 @@ class Form {
 		//Canonical class functions
 		Form(const Form& src);
 		~Form(void);
+
 		//Parametric Constructor
 		Form(const std::string name, int gradeSign, int gradeExec);
 
-		//Member Functions
+		//Getters
 		const std::string	getName(void) const;
 		bool				getSigned(void) const;
 		int					getGradeSign(void) const;
 		int					getGradeExec(void) const;
 
+		//Member Functions
 		void				beSigned(Bureaucrat& bureaucrat);
 
-		//Nested Classes for my exceptions
+		//Exceptions classes
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -61,10 +63,9 @@ class Form {
 			public:
 				virtual const char* what() const throw();
 		};
-
 };
 
 //Operator overload to print Form class info
 std::ostream&	operator<<(std::ostream& o, const Form& f);
 
-#endif
+#endif //FORM_HPP

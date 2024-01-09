@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:51:26 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/13 10:36:11 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:02:58 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /* ************************************************************************** */
 
-void	creationOK(void)
-{
+void	creationOK(void) {
+
 	try {
 		std::cout << "Test for creating a Bureaucrat with a valid grade: " << std::endl;
 		Bureaucrat	ok("ok", 23);
@@ -30,8 +30,8 @@ void	creationOK(void)
 
 /* ************************************************************************** */
 
-void	creationNO(void)
-{
+void	creationNO(void) {
+
 	try {
 		std::cout << "Test for creating a Bureaucrat with an invalid grade: " << std::endl;
 		Bureaucrat	no("no", 0);
@@ -45,8 +45,8 @@ void	creationNO(void)
 
 /* ************************************************************************** */
 
-void	incOK(void)
-{
+void	incOK(void) {
+
 	std::cout << "Test for incrementing the grade of a Bureaucrat: " << std::endl;
 	Bureaucrat	bob("Bob", 150);
 
@@ -64,8 +64,8 @@ void	incOK(void)
 
 /* ************************************************************************** */
 
-void	decOK(void)
-{
+void	decOK(void) {
+
 	std::cout << "Test for decrementing the grade of a Bureaucrat: " << std::endl;
 	Bureaucrat	bob("Bob", 1);
 
@@ -83,8 +83,8 @@ void	decOK(void)
 
 /* ************************************************************************** */
 
-void	incNO(void)
-{
+void	incNO(void) {
+
 	std::cout << "Test for incrementing the grade of a Bureaucrat already at the highest possible grade (1): " << std::endl;
 	Bureaucrat	bob("Bob", 1);
 
@@ -102,8 +102,8 @@ void	incNO(void)
 
 /* ************************************************************************** */
 
-void	decNO(void)
-{
+void	decNO(void) {
+
 	std::cout << "Test for decrementing the grade of a Bureaucrat already at the lowest possible grade (150): " << std::endl;
 	Bureaucrat	bob("Bob", 150);
 
@@ -122,8 +122,8 @@ void	decNO(void)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-int	main(void)
-{
+int	main(void) {
+
 	std::cout << std::endl;
 
 	creationOK();

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:58 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/08 11:08:55 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 13:48:12 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@
 
 class Animal {
 
-	public:
-		Animal(void);
-		Animal(const Animal& src);
-		Animal& operator=(const Animal& rhs);
-		virtual ~Animal(void);
-
-		virtual void	makeSound(void) const;
-
-		std::string		getType(void) const;
-
 	protected:
 		std::string	_type;
 
+	public:
+		//Canonical class functions
+		Animal(void);
+		Animal(const Animal& src);
+		Animal&	operator=(const Animal& rhs);
+		virtual ~Animal(void);
+
+		//Member Function
+		virtual void	makeSound(void) const;
+
+		//Getter
+		std::string		getType(void) const;
 };
 
 /* ************************************************************************** */
@@ -41,19 +43,21 @@ class Animal {
 
 class WrongAnimal {
 
-	public:
-		WrongAnimal(void);
-		WrongAnimal(const WrongAnimal& src);
-		WrongAnimal& operator=(const WrongAnimal& rhs);
-		virtual ~WrongAnimal(void);
-
-		void		makeSound(void) const;
-
-		std::string	getType(void) const;
-
 	protected:
 		std::string	_type;
 
+	public:
+		//Canonical class functions
+		WrongAnimal(void);
+		WrongAnimal(const WrongAnimal& src);
+		WrongAnimal&	operator=(const WrongAnimal& rhs);
+		virtual ~WrongAnimal(void);
+
+		//Member Function
+		void		makeSound(void) const;
+
+		//Getter
+		std::string	getType(void) const;
 };
 
-#endif
+#endif //ANIMAL_HPP

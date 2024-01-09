@@ -6,12 +6,12 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:37:59 by kmorin            #+#    #+#             */
-/*   Updated: 2023/11/07 13:57:49 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/08 15:42:41 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 /*
 PHONEBOOK DISPLAY FORMAT
@@ -24,39 +24,42 @@ PHONEBOOK DISPLAY FORMAT
 \-------------------------------------------/
 */
 
-int	main(void)
-{
+int	main(void) {
+
 	PhoneBook	phonebook;
 
 	std::string	input;
-	while (1)
-	{
-		std::cout << BLUE << "Enter a command [ADD, SEARCH, EXIT]" << WHITE << std::endl << "> ";
+	while (1) {
+
+		std::cout << COLOR("Enter a command [ADD, SEARCH, EXIT]", BLUE) << std::endl << "> ";
 		std::cin >> input;
+
 		phonebook.handleCtrlD();
 
-		if (input == "ADD")
-		{
+		if (input == "ADD") {
 			phonebook.add();
+
 			std::cin.clear();
 		}
-		else if (input == "SEARCH")
-		{
+		else if (input == "SEARCH") {
 			phonebook.search();
+
 			std::cin.clear();
 			std::cin.ignore();
 		}
-		else if (input == "EXIT")
-		{
-			std::cout << "Exit the phonebook." << std::endl << "Bye !" << std::endl;
+		else if (input == "EXIT") {
+			std::cout << std::endl << COLOR("Exit the phonebook.\nBye !", MAGENTA) << std::endl;
 			break ;
 		}
-		else
-		{
-			std::cout << RED << "Invalid Command ! Try again." << WHITE << std::endl;
+		else {
+			std::cout << COLOR("Invalid Command ! Try again.", RED) << std::endl;
 			std::cin.clear();
 		}
+
 		phonebook.handleCtrlD();
+
+		std::cout << std::endl;
 	}
+
 	return (0);
 }

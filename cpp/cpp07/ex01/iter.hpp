@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:53:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/19 15:27:51 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:03:25 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,23 @@
 #define WHITE "\e[0;37m"
 
 template <typename T>
-void	iter(T* array, int len, void (*f)(T const&))
-{
+void	iter(T* array, int len, void (*f)(T const&)) {
+
 	for (int i = 0; i < len; i++)
 		f(array[i]);
 }
 
 template <typename T, typename TFunc>
-void	iter(T* array, int len, TFunc f)
-{
+void	iter(T* array, int len, TFunc f) {
+
 	for (int i = 0; i < len; i++)
 		f(array[i]);
 }
 
 template <typename T>
-void	print(T const& x)
-{
+void	print(T const& x) {
+
 	std::cout << "\t" << x << std::endl;
 }
 
-#endif
+#endif //ITER_HPP

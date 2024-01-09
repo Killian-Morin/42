@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 13:54:07 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/19 15:13:28 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:07:44 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 #ifndef SHOWMSG
 # define SHOWMSG 0
-#endif
+#endif //SHOWMSG
 
 template <typename T>
 class Array {
@@ -55,14 +55,13 @@ class Array {
 
 		unsigned int	size(void) const;
 
-		//Nested Classes for my exceptions
+		//Exceptions class
 		class OutOfBoundsException : public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
-
 };
 
 #include "Array.tpp"
 
-#endif
+#endif //ARRAY_HPP

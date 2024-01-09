@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 11:34:10 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:53:01 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:34:04 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@
 
 class Brain {
 
+	private:
+		std::string	ideas[100];
+
 	public:
+		//Canonical class functions
 		Brain(void);
 		Brain(const Brain& src);
 		Brain&	operator=(const Brain& rhs);
 		~Brain(void);
 
+		//Getter/Setter
 		std::string	getIdea(int index) const;
 		void		setIdea(std::string idea, int index);
-
-	private:
-		std::string	ideas[100];
-
 };
 
-#endif
+#endif //BRAIN_HPP

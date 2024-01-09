@@ -1,6 +1,6 @@
 NAME = span
 
-CC = g++
+CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98 #-g3 -fsanitize=address
 RM = /bin/rm -rf
 
@@ -48,4 +48,4 @@ unshow: re run
 leaks: re
 	leaks -atExit -- ./${NAME}
 
-.PHONY: all clean fclean re leaks
+.PHONY: all clean fclean re run leaks show unshow

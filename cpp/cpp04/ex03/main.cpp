@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:01:43 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/08 12:09:53 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:40:16 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
 
-int main(void)
-{
+int main(void) {
 
 	IMateriaSource *src = new MateriaSource();
 	std::cout << std::endl;
@@ -109,7 +108,7 @@ int main(void)
 	*/
 
 	/*
-	//Test for some of the assignement operator and copy constructor
+	//Test for some of the Assignement operator and copy constructor
 	IMateriaSource *src = new MateriaSource();
 	Cure *cure1 = new Cure();
 	src->learnMateria(cure1);

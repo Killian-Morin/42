@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:33:54 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/12 17:16:52 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:18:37 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 /* ************************************************************************** */
 
-void	execForm(void)
-{
+void	execForm(void) {
+
 	try {
 		std::cout << "Test grades to execute " << COLOR("PresidentialPardonForm", BLUE) << \
 			" by having the sufficent grade and by signing first:" << std::endl;
@@ -80,8 +80,8 @@ void	execForm(void)
 
 /* ************************************************************************** */
 
-void	execFormNotSigned(void)
-{
+void	execFormNotSigned(void) {
+
 	try {
 		std::cout << "Test to execute " << COLOR("PresidentialPardonForm", BLUE) << \
 			" without signing first:" << std::endl;
@@ -134,8 +134,8 @@ void	execFormNotSigned(void)
 
 /* ************************************************************************** */
 
-void	execFormNoPerm(void)
-{
+void	execFormNoPerm(void) {
+
 	try {
 		std::cout << "Test grades to sign and execute " << COLOR("PresidentialPardonForm", BLUE) << \
 			" without the sufficient grade to sign or execute:" << std::endl;
@@ -198,8 +198,8 @@ void	execFormNoPerm(void)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-int	main(void)
-{
+int	main(void) {
+
 	std::cout << std::endl;
 
 	execForm();

@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:58:54 by kmorin            #+#    #+#             */
-/*   Updated: 2024/01/04 15:24:48 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:10:25 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ BitcoinExchange::BitcoinExchange(const std::string& dbFilename) {
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                               MEMBER FUNCTIONS                             */
 /* ************************************************************************** */
 
 bool	BitcoinExchange::checkDate(std::string& date) {

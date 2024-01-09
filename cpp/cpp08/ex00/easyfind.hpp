@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:28:20 by kmorin            #+#    #+#             */
-/*   Updated: 2024/01/04 11:38:11 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 16:09:38 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,4 @@ void	easyfind(T& container, int value) {
 		// throw ParameterNotFoundException();
 }
 
-#endif
+#endif //EASYFIND_HPP

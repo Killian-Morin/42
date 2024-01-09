@@ -6,98 +6,59 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:52:55 by kmorin            #+#    #+#             */
-/*   Updated: 2023/12/07 13:12:11 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/01/09 14:33:09 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
 /* ************************************************************************** */
-/*                  CANONIC METHODS and SPECIAL CONSTRUCTORS                  */
+/*                            CANONICAL FUNCTIONS                             */
 /* ************************************************************************** */
 
-Animal::Animal(void) : _type("Animal_default")
-{
-	std::cout << COLOR("Animal", CYAN);
-	std::cout << COLOR(" Default constructor ", BLUE) << std::endl;
+Animal::Animal(void) : _type("Animal_default") {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Animal", BLUE) << COLOR(" Default constructor called", GREEN) << std::endl;
 }
 
-Animal::Animal(const Animal& src) : _type(src._type)
-{
-	std::cout << COLOR("Animal", CYAN);
-	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
+Animal::Animal(const Animal& src) : _type(src._type) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Animal", BLUE) << COLOR(" Copy constructor called", GREEN) << std::endl;
 }
 
-Animal&	Animal::operator=(const Animal& rhs)
-{
+Animal&	Animal::operator=(const Animal& rhs) {
+
 	if (this != &rhs)
-	{
 		this->_type = rhs._type;
-	}
-	std::cout << COLOR("Animal", CYAN);
-	std::cout << COLOR(" assignement operator called", BLUE) << std::endl;
+
+	if (SHOWMSG)
+		std::cout << COLOR("Animal", BLUE) << COLOR(" Assignement operator called", GREEN) << std::endl;
+
 	return (*this);
 }
 
-Animal::~Animal(void)
-{
-	std::cout << COLOR("Animal", CYAN);
-	std::cout << COLOR(" Default destructor", RED) << std::endl;
+Animal::~Animal(void) {
+
+	if (SHOWMSG)
+		std::cout << COLOR("Animal", BLUE) << COLOR(" Default destructor called", RED) << std::endl;
 }
 
 /* ************************************************************************** */
-/*                              MEMBERS FUNCTIONS                             */
+/*                              MEMBER FUNCTION                               */
 /* ************************************************************************** */
 
-std::string	Animal::getType(void) const
-{
-	return (this->_type);
-}
+void	Animal::makeSound(void) const {
 
-void	Animal::makeSound(void) const
-{
 	std::cout << COLOR("Default Animal sound: ...", MAGENTA) << std::endl;
 }
 
 /* ************************************************************************** */
-/*                                WRONG ANIMAL                                */
+/*                                   GETTER                                   */
 /* ************************************************************************** */
 
-WrongAnimal::WrongAnimal(void) : _type("WrongAnimal_default")
-{
-	std::cout << COLOR("WrongAnimal", CYAN);
-	std::cout << COLOR(" Default constructor ", BLUE) << std::endl;
-}
+std::string	Animal::getType(void) const {
 
-WrongAnimal::WrongAnimal(const WrongAnimal& src) : _type(src._type)
-{
-	std::cout << COLOR("WrongAnimal", CYAN);
-	std::cout << COLOR(" Copy constructor", BLUE) << std::endl;
-}
-
-WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& rhs)
-{
-	if (this != &rhs)
-	{
-		this->_type = rhs._type;
-	}
-	std::cout << COLOR("WrongAnimal", CYAN);
-	std::cout << COLOR(" assignement operator called", BLUE) << std::endl;
-	return (*this);
-}
-
-WrongAnimal::~WrongAnimal(void)
-{
-	std::cout << COLOR("WrongAnimal", CYAN);
-	std::cout << COLOR(" Default destructor", RED) << std::endl;
-}
-
-std::string	WrongAnimal::getType(void) const
-{
 	return (this->_type);
-}
-
-void	WrongAnimal::makeSound(void) const
-{
-	std::cout << COLOR("Default WrongAnimal sound: ...", MAGENTA) << std::endl;
 }

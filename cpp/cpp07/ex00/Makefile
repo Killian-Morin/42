@@ -1,6 +1,6 @@
 NAME = whatever
 
-CC = g++
+CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98 #-g3 -fsanitize=address
 RM = /bin/rm -rf
 
@@ -38,13 +38,13 @@ re: fclean all
 run: all
 	./${NAME}
 
+leaks: re
+	leaks -atExit -- ./${NAME}
+
 show: FLAGS += -D SHOWMSG=1
 show: re run
 
 unshow: FLAGS += -D SHOWMSG=0
 unshow: re run
 
-leaks: re
-	leaks -atExit -- ./${NAME}
-
-.PHONY: all clean fclean re leaks
+.PHONY: all clean fclean re run leaks show unshow
