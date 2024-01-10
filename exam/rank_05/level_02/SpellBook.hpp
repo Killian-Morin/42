@@ -20,8 +20,8 @@ class SpellBook {
 		~SpellBook();
 
 		void	learnSpell(ASpell* spell);
-		void	forgetSpell(std::string const & s);
-		ASpell*	createSpell(std::string const & s);
+		void	forgetSpell(std::string const & spell);
+		ASpell*	createSpell(std::string const & spell);
 };
 
 #endif

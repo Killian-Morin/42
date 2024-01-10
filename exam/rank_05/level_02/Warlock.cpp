@@ -50,8 +50,7 @@ void	Warlock::introduce(void) const {
 
 void	Warlock::learnSpell(ASpell* spell) {
 
-	if (spell)
-		this->_inventory.learnSpell(spell);
+	this->_inventory.learnSpell(spell);
 }
 
 void	Warlock::forgetSpell(std::string spell) {
@@ -64,7 +63,7 @@ void	Warlock::launchSpell(std::string spell, ATarget const & target) {
 	ASpell*	tmp = this->_inventory.createSpell(spell);
 
 	if (tmp)
-		this->_inventory.createSpell(spell)->launch(target);
+		tmp->launch(target);
 }
 
 /*

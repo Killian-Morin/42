@@ -48,7 +48,7 @@ void	Warlock::introduce(void) const {
 	std::cout << this->getName() << ": I am " << this->getName() << ", " << this->getTitle() << "!" << std::endl;
 }
 
-void	Warlock::learnSpell(const ASpell* spell) {
+void	Warlock::learnSpell(ASpell* spell) {
 
 	if (spell) {
 		if (this->_inventory.find(spell->getName()) == this->_inventory.end())
@@ -56,27 +56,27 @@ void	Warlock::learnSpell(const ASpell* spell) {
 	}
 }
 
-void	Warlock::forgetSpell(const std::string& spell) {
+void	Warlock::forgetSpell(std::string s) {
 
-	std::map<std::string, ASpell*>::iterator	tmp;
-	tmp = this->_inventory.find(spell);
+	std::map<std::string, ASpell*>::iterator	it;
+	it = this->_inventory.find(s);
 
-	if (tmp != this->_inventory.end())
-		this->_inventory.erase(tmp);
+	if (it != this->_inventory.end()) {
+		delete it->second;
+		this->_inventory.erase(it);
+	}
 }
 
-void	Warlock::launchSpell(const std::string& spell, const ATarget& target) {
+void	Warlock::launchSpell(std::string s, ATarget const & target) {
 
-	std::map<std::string, ASpell*>::iterator	tmp;
-	tmp = this->_inventory.find(spell);
+	std::map<std::string, ASpell*>::iterator	it;
+	it = this->_inventory.find(s);
 
-	if (tmp != this->_inventory.end())
-		tmp->second->launch(target);
+	if (it != this->_inventory.end())
+		it->second->launch(target);
 }
 
 /*
-#include "Warlock.hpp"
-
 int main()
 {
 	Warlock richard("Richard", "the Titled");
