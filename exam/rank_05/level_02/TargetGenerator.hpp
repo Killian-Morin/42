@@ -17,8 +17,8 @@ class TargetGenerator {
 		~TargetGenerator(void);
 
 		void		learnTargetType(ATarget* target);
-		void		forgetTargetType(std::string const & target);
-		ATarget*	createTarget(std::string const & target);
+		void		forgetTargetType(std::string const & targetName);
+		ATarget*	createTarget(std::string const & targetName);
 };
 
 #endif

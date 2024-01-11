@@ -56,10 +56,10 @@ void	Warlock::learnSpell(ASpell* spell) {
 	}
 }
 
-void	Warlock::forgetSpell(std::string s) {
+void	Warlock::forgetSpell(std::string spellName) {
 
 	std::map<std::string, ASpell*>::iterator	it;
-	it = this->_inventory.find(s);
+	it = this->_inventory.find(spellName);
 
 	if (it != this->_inventory.end()) {
 		delete it->second;
@@ -67,10 +67,10 @@ void	Warlock::forgetSpell(std::string s) {
 	}
 }
 
-void	Warlock::launchSpell(std::string s, ATarget const & target) {
+void	Warlock::launchSpell(std::string spellName, ATarget const & target) {
 
 	std::map<std::string, ASpell*>::iterator	it;
-	it = this->_inventory.find(s);
+	it = this->_inventory.find(spellName);
 
 	if (it != this->_inventory.end())
 		it->second->launch(target);

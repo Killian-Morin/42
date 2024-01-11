@@ -22,9 +22,9 @@ void	TargetGenerator::learnTargetType(ATarget* target) {
 		this->_inventory.insert(std::pair<std::string, ATarget*>(target->getType(), target->clone()));
 }
 
-void	TargetGenerator::forgetTargetType(std::string const & target) {
+void	TargetGenerator::forgetTargetType(std::string const & targetName) {
 
-	std::map<std::string, ATarget*>::iterator	it = this->_inventory.find(target);
+	std::map<std::string, ATarget*>::iterator	it = this->_inventory.find(targetName);
 
 	if (it != this->_inventory.end()) {
 		delete it->second;
@@ -32,13 +32,13 @@ void	TargetGenerator::forgetTargetType(std::string const & target) {
 	}
 }
 
-ATarget*	TargetGenerator::createTarget(std::string const & target) {
+ATarget*	TargetGenerator::createTarget(std::string const & targetName) {
 
 	ATarget*	tmp = NULL;
-	std::map<std::string, ATarget*>::iterator	it = this->_inventory.find(target);
+	std::map<std::string, ATarget*>::iterator	it = this->_inventory.find(targetName);
 
 	if (it != this->_inventory.end())
-		tmp = this->_inventory[target];
+		tmp = it->second;
 
 	return (tmp);
 }
