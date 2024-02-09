@@ -6,7 +6,7 @@
 /*   By: kmorin <kmorin@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 10:22:27 by kmorin            #+#    #+#             */
-/*   Updated: 2023/10/24 09:40:03 by kmorin           ###   ########.fr       */
+/*   Updated: 2024/02/09 14:30:25 by kmorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,30 @@ int	gnl_strchr(char *stock, int c)
 	return (0);
 }
 
-char	*gnl_strjoin(char *stock, char *buffer)
+char	*gnl_strjoin(char *s, char *buf)
 {
 	char	*str;
 	size_t	i;
 	size_t	j;
-	size_t	size;
 
-	if (!stock)
+	if (!s)
 	{
-		stock = (char *)malloc(sizeof(char) * 1);
-		stock[0] = '\0';
+		s = (char *)malloc(sizeof(char) * 1);
+		if (!s)
+			return (NULL);
+		s[0] = '\0';
 	}
-	size = gnl_strlen(stock) + gnl_strlen(buffer);
-	str = (char *)malloc(sizeof(str) * (size + 1));
+	str = (char *)malloc(sizeof(str) * ((gnl_strlen(s) + gnl_strlen(buf)) + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (stock[i])
-		str[j++] = stock[i++];
+	while (s[i])
+		str[j++] = s[i++];
 	i = 0;
-	while (buffer[i])
-		str[j++] = buffer[i++];
+	while (buf[i])
+		str[j++] = buf[i++];
 	str[j] = '\0';
-	free(stock);
+	free(s);
 	return (str);
 }
